@@ -667,7 +667,7 @@ export function getServiceBySlug(slug) {
 }
 
 export function getJurisdictionBySlug(slug) {
-  for (var i = 0; i < JURISDICTIONS.length; i++) {
+  for (var i = 0; JURISDICTIONS && i < JURISDICTIONS.length; i++) {
     if (JURISDICTIONS[i].slug === slug) {
       return JURISDICTIONS[i];
     }
@@ -676,7 +676,7 @@ export function getJurisdictionBySlug(slug) {
 }
 
 export function getInsightBySlug(slug) {
-  for (var i = 0; i < INSIGHTS.length; i++) {
+  for (var i = 0; INSIGHTS && i < INSIGHTS.length; i++) {
     if (INSIGHTS[i].slug === slug) {
       return INSIGHTS[i];
     }
