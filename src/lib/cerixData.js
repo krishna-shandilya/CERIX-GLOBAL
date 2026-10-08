@@ -1,6 +1,7 @@
 import { IMAGES, IMAGE_ALT } from "./siteImages";
 
 export { IMAGES, IMAGE_ALT };
+export const SITE_IMAGES = IMAGES;
 
 const safeAuth = {
   isAuthenticated: async () => false,
@@ -193,7 +194,7 @@ export const SERVICES = [
   }
 ];
 
-export const APPROACH = [
+export const APPROACH_STAGES = [
   {
     step: "01",
     title: "Strategic Diagnosis",
@@ -215,6 +216,8 @@ export const APPROACH = [
     description: "Continuous monitoring of regulatory shifts, substance maintenance, annual filings, and reporting."
   }
 ];
+
+export const APPROACH = APPROACH_STAGES;
 
 export const STATS = [
   { value: "10+", label: "Global Domiciles" },
@@ -238,6 +241,8 @@ export const FAQS = [
   }
 ];
 
+export const FAQ = FAQS;
+
 export const COMPANY_INFO = {
   name: "Cerix Global",
   tagline: "International Corporate Advisory & Structuring",
@@ -245,5 +250,7 @@ export const COMPANY_INFO = {
   phone: "+1 (800) 555-CERIX",
   address: "International Financial Centre, Level 14, Gateway Tower"
 };
+
+export const SITE_CONFIG = COMPANY_INFO;
 
 export default db;
