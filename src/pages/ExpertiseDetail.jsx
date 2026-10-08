@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link } from 'react_router_dom';
+import { useParams, Link } from 'react-router-dom';
 import { SERVICES, getServiceBySlug } from '../lib/cerixData';
 
 export default function ExpertiseDetail() {
@@ -11,7 +11,7 @@ export default function ExpertiseDetail() {
 
   return (
     <div style={{ backgroundColor: '#0c0e0d', color: '#e2e8f0', minHeight: '100vh', fontFamily: 'sans-serif' }}>
-      {/* Hero Header matching Image 4 */}
+      {/* Hero Header */}
       <div 
         style={{
           position: 'relative',
@@ -27,7 +27,7 @@ export default function ExpertiseDetail() {
         }}
       >
         <div>
-          <Link to="/expertise" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '12px', tracking: '2px', textTransform: 'uppercase' }}>
+          <Link to="/expertise" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase' }}>
             ← EXPERTISE
           </Link>
         </div>
@@ -42,7 +42,7 @@ export default function ExpertiseDetail() {
         </div>
       </div>
 
-      {/* Overview Section matching Image 4 */}
+      {/* Overview Section */}
       <div style={{ padding: '80px 60px', maxWidth: '1200px', margin: '0 auto' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', gap: '40px', alignItems: 'start' }}>
           <div style={{ textTransform: 'uppercase', fontSize: '12px', letterSpacing: '2px', color: '#94a3b8', paddingTop: '8px' }}>
@@ -55,7 +55,7 @@ export default function ExpertiseDetail() {
           </div>
         </div>
 
-        {/* Deliverables / Capabilities Grid */}
+        {/* Core Capabilities Grid */}
         {features.length > 0 && (
           <div style={{ marginTop: '100px' }}>
             <h3 style={{ fontSize: '14px', letterSpacing: '2px', textTransform: 'uppercase', color: '#94a3b8', marginBottom: '30px' }}>
@@ -74,7 +74,7 @@ export default function ExpertiseDetail() {
           </div>
         )}
 
-        {/* Detailed Sections if available */}
+        {/* Detailed Sections */}
         {sections.length > 0 && (
           <div style={{ marginTop: '80px' }}>
             {sections.map((sec, i) => (
