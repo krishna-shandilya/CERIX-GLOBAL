@@ -1,4 +1,3 @@
-// High Resolution Image Assets matched to corporate services
 const IMAGES_MAP = {
   corporate: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop",
   setup: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
@@ -17,7 +16,6 @@ export const IMAGES = IMAGES_MAP;
 export const IMAGE_ALT = {};
 export const SITE_IMAGES = IMAGES_MAP;
 
-// Safe Mock Auth & DB setup
 const safeAuth = {
   isAuthenticated: async () => false,
   me: async () => null,
@@ -69,7 +67,6 @@ const DEFAULT_ARRAY = [
   "Substance & Operational Directorship"
 ];
 
-// Approach & Methodology Data
 export const APPROACH_STAGES = [
   {
     number: "01",
@@ -110,7 +107,6 @@ export const STAGES = APPROACH_STAGES;
 export const METHODOLOGY = APPROACH_STAGES;
 export const APPROACH = APPROACH_STAGES;
 
-// Complete Services & Expertise Registry
 export const SERVICES = [
   {
     id: "01",
@@ -192,3 +188,42 @@ export const SERVICES = [
     bgImage: IMAGES_MAP.banking,
     features: DEFAULT_ARRAY,
     deliverables: DEFAULT_ARRAY,
+    capabilities: DEFAULT_ARRAY,
+    highlights: DEFAULT_ARRAY,
+    subServices: DEFAULT_ARRAY,
+    sections: []
+  },
+  {
+    id: "05",
+    num: "05",
+    slug: "trusts-foundations",
+    title: "Trusts & Foundations",
+    name: "Trusts & Foundations",
+    category: "Private Wealth",
+    description: "International trust and foundation structuring for asset protection, estate planning, and private governance.",
+    overview: "Tailored private asset protection frameworks and generational estate structures engineered across top trust jurisdictions.",
+    image: IMAGES_MAP.trusts,
+    heroImage: IMAGES_MAP.trusts,
+    bgImage: IMAGES_MAP.trusts,
+    features: DEFAULT_ARRAY,
+    deliverables: DEFAULT_ARRAY,
+    capabilities: DEFAULT_ARRAY,
+    highlights: DEFAULT_ARRAY,
+    subServices: DEFAULT_ARRAY,
+    sections: []
+  },
+  {
+    id: "06",
+    num: "06",
+    slug: "investment-migration",
+    title: "Investment Migration Advisory",
+    name: "Investment Migration Advisory",
+    category: "Mobility",
+    description: "Advisory for internationally mobile business leaders and families on residency and citizenship programs.",
+    overview: "Strategic residency and citizenship planning through qualified business investment and real estate programs.",
+    image: IMAGES_MAP.migration,
+    heroImage: IMAGES_MAP.migration,
+    bgImage: IMAGES_MAP.migration,
+    features: DEFAULT_ARRAY,
+    deliverables: DEFAULT_ARRAY,
+    capabilities: DEFAULT
