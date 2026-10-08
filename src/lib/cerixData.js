@@ -67,6 +67,64 @@ const defaultArr = [
   "Substance & Operational Directorship"
 ];
 
+export const WHO_WE_ADVISE = [
+  {
+    id: "01",
+    num: "01",
+    title: "Multinational Corporations & Holding Groups",
+    name: "Multinational Corporations & Holding Groups",
+    category: "Corporates",
+    description: "Cross-border corporate groups requiring multi-jurisdictional holding, operational, and tax-efficient structures.",
+    image: imgMap.corporate,
+    heroImage: imgMap.corporate,
+    bgImage: imgMap.corporate
+  },
+  {
+    id: "02",
+    num: "02",
+    title: "Asset Managers & Investment Funds",
+    name: "Asset Managers & Investment Funds",
+    category: "Financial Institutions",
+    description: "Emerging and established investment managers establishing private equity, venture capital, or hedge fund vehicles.",
+    image: imgMap.funds,
+    heroImage: imgMap.funds,
+    bgImage: imgMap.funds
+  },
+  {
+    id: "03",
+    num: "03",
+    title: "Family Offices & HNW Is",
+    name: "Family Offices & HNW Is",
+    category: "Private Wealth",
+    description: "Ultra-high-net-worth families seeking succession planning, foundation setups, and global wealth preservation.",
+    image: imgMap.wealth,
+    heroImage: imgMap.wealth,
+    bgImage: imgMap.wealth
+  },
+  {
+    id: "04",
+    num: "04",
+    title: "High-Growth Tech & Scale-ups",
+    name: "High-Growth Tech & Scale-ups",
+    category: "Ventures",
+    description: "Expanding technology businesses establishing regional headquarters, IP holding entities, and global banking.",
+    image: imgMap.expansion,
+    heroImage: imgMap.expansion,
+    bgImage: imgMap.expansion
+  }
+];
+
+export const CLIENT_CATEGORIES = WHO_WE_ADVISE;
+export const CLIENT_TYPES = WHO_WE_ADVISE;
+export const TARGET_AUDIENCE = WHO_WE_ADVISE;
+
+export const STATS = [
+  { value: "$10B+", label: "Assets Structured" },
+  { value: "15+", label: "Global Financial Hubs" },
+  { value: "100%", label: "Regulatory Compliance Rate" },
+  { value: "250+", label: "Institutional Clients" }
+];
+
 export const APPROACH_STAGES = [
   {
     number: "01",
