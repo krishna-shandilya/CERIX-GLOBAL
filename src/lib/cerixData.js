@@ -166,4 +166,23 @@ export const SERVICES = [
     title: "International Licensing",
     name: "International Licensing",
     category: "Regulatory",
-    description:
+    description: "Advisory around regulated and specialist business licences, including investment, financial, securities, and fund managers.",
+    overview: "Navigating complex financial service licensing, investment advisor authorizations, and regulatory approvals with global authorities.",
+    image: IMAGES_MAP.licensing,
+    heroImage: IMAGES_MAP.licensing,
+    bgImage: IMAGES_MAP.licensing,
+    features: DEFAULT_ARRAY,
+    deliverables: DEFAULT_ARRAY,
+    capabilities: DEFAULT_ARRAY,
+    highlights: DEFAULT_ARRAY,
+    subServices: DEFAULT_ARRAY,
+    sections: []
+  },
+  {
+    id: "04",
+    num: "04",
+    slug: "banking-financial-infrastructure",
+    title: "Banking & Financial Infrastructure",
+    name: "Banking & Financial Infrastructure",
+    category: "Banking Support",
+    description: "Support in navigating
