@@ -9,7 +9,8 @@ const imgMap = {
   tax: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1600&auto=format&fit=crop",
   funds: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1600&auto=format&fit=crop",
   compliance: "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1600&auto=format&fit=crop",
-  wealth: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop"
+  wealth: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop",
+  insights: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1600&auto=format&fit=crop"
 };
 
 export const IMAGES = imgMap;
@@ -119,7 +120,7 @@ export const CLIENT_TYPES = WHO_WE_ADVISE;
 export const TARGET_AUDIENCE = WHO_WE_ADVISE;
 
 export const STATS = [
-  { value: "$10B+", label: "Assets Structured" },
+  { value: "\$10B+", label: "Assets Structured" },
   { value: "15+", label: "Global Financial Hubs" },
   { value: "100%", label: "Regulatory Compliance Rate" },
   { value: "250+", label: "Institutional Clients" }
@@ -329,133 +330,4 @@ export const SERVICES = [
   },
   {
     id: "09",
-    num: "09",
-    slug: "fund-solutions",
-    title: "Alternative Fund Advisory & Structuring",
-    name: "Alternative Fund Advisory & Structuring",
-    category: "Funds",
-    description: "Structuring private equity, venture capital, and hedge funds across global hubs.",
-    overview: "Turnkey fund formation and fund administration workflows for alternative asset managers.",
-    image: imgMap.funds,
-    heroImage: imgMap.funds,
-    bgImage: imgMap.funds,
-    features: defaultArr,
-    deliverables: defaultArr,
-    capabilities: defaultArr,
-    highlights: defaultArr,
-    subServices: defaultArr,
-    sections: []
-  },
-  {
-    id: "10",
-    num: "10",
-    slug: "regulatory-compliance",
-    title: "Regulatory Compliance & Substance",
-    name: "Regulatory Compliance & Substance",
-    category: "Compliance",
-    description: "Ensuring ongoing compliance with FATCA, CRS, and Economic Substance laws.",
-    overview: "Continuous regulatory reporting, corporate secretarial management, and substance audit defense.",
-    image: imgMap.compliance,
-    heroImage: imgMap.compliance,
-    bgImage: imgMap.compliance,
-    features: defaultArr,
-    deliverables: defaultArr,
-    capabilities: defaultArr,
-    highlights: defaultArr,
-    subServices: defaultArr,
-    sections: []
-  },
-  {
-    id: "11",
-    num: "11",
-    slug: "asset-protection",
-    title: "Asset Protection & Private Wealth",
-    name: "Asset Protection & Private Wealth",
-    category: "Private Wealth",
-    description: "Safeguarding institutional and family assets through robust cross-border legal structures.",
-    overview: "Comprehensive private wealth preservation and succession planning solutions.",
-    image: imgMap.wealth,
-    heroImage: imgMap.wealth,
-    bgImage: imgMap.wealth,
-    features: defaultArr,
-    deliverables: defaultArr,
-    capabilities: defaultArr,
-    highlights: defaultArr,
-    subServices: defaultArr,
-    sections: []
-  }
-];
-
-export const EXPERTISE_LIST = SERVICES;
-export const SERVICE_LIST = SERVICES;
-export const SOLUTIONS = SERVICES;
-export const FEATURES = SERVICES;
-export const CAPABILITIES = SERVICES;
-export const PRACTICE_AREAS = SERVICES;
-export const OFFERINGS = SERVICES;
-
-export const JURISDICTIONS = [
-  {
-    id: "singapore",
-    slug: "singapore",
-    name: "Singapore",
-    region: "Asia-Pacific",
-    title: "Asian Financial & Holding Hub",
-    description: "Premier global financial center with extensive double taxation treaties and stable regulatory framework.",
-    image: imgMap.corporate,
-    highlights: ["17% Corporate Tax Rate", "Over 90 Tax Treaties", "No Capital Gains Tax"]
-  },
-  {
-    id: "mauritius",
-    slug: "mauritius",
-    name: "Mauritius",
-    region: "Africa & Asia Gateway",
-    title: "International Financial Centre",
-    description: "Preferred platform for cross-border investments into Africa and Asia, offering tax efficiency.",
-    image: imgMap.setup,
-    highlights: ["Partial Exemption Regime", "No Withholding Taxes", "Extensive DTAA Network"]
-  },
-  {
-    id: "cayman-islands",
-    slug: "cayman-islands",
-    name: "Cayman Islands",
-    region: "Americas & Caribbean",
-    title: "Global Investment Fund Hub",
-    description: "The world's leading domicile for alternative investment funds and private equity vehicles.",
-    image: imgMap.licensing,
-    highlights: ["Tax-Neutral Jurisdiction", "Flexible Fund Structures", "Global Recognition"]
-  },
-  {
-    id: "uae",
-    slug: "uae",
-    name: "UAE (DIFC / ADGM)",
-    region: "Middle East",
-    title: "Middle East Financial Heartland",
-    description: "Common-law financial free zones offering 100% foreign ownership and zero personal tax.",
-    image: imgMap.banking,
-    highlights: ["0% Personal Income Tax", "100% Foreign Ownership", "Common Law System"]
-  }
-];
-
-export const JURISDICTION_LIST = JURISDICTIONS;
-export const LOCATIONS = JURISDICTIONS;
-
-export function getServiceBySlug(slug) {
-  for (var i = 0; i < SERVICES.length; i++) {
-    if (SERVICES[i].slug === slug) {
-      return SERVICES[i];
-    }
-  }
-  return SERVICES[0];
-}
-
-export function getJurisdictionBySlug(slug) {
-  for (var i = 0; i < JURISDICTIONS.length; i++) {
-    if (JURISDICTIONS[i].slug === slug) {
-      return JURISDICTIONS[i];
-    }
-  }
-  return JURISDICTIONS[0];
-}
-
-export default safeDb;
+    num: "
