@@ -120,7 +120,7 @@ export const CLIENT_TYPES = WHO_WE_ADVISE;
 export const TARGET_AUDIENCE = WHO_WE_ADVISE;
 
 export const STATS = [
-  { value: "\$10B+", label: "Assets Structured" },
+  { value: "$10B+", label: "Assets Structured" },
   { value: "15+", label: "Global Financial Hubs" },
   { value: "100%", label: "Regulatory Compliance Rate" },
   { value: "250+", label: "Institutional Clients" }
@@ -330,4 +330,262 @@ export const SERVICES = [
   },
   {
     id: "09",
-    num: "
+    num: "09",
+    slug: "fund-solutions",
+    title: "Alternative Fund Advisory & Structuring",
+    name: "Alternative Fund Advisory & Structuring",
+    category: "Funds",
+    description: "Structuring private equity, venture capital, and hedge funds across global hubs.",
+    overview: "Turnkey fund formation and fund administration workflows for alternative asset managers.",
+    image: imgMap.funds,
+    heroImage: imgMap.funds,
+    bgImage: imgMap.funds,
+    features: defaultArr,
+    deliverables: defaultArr,
+    capabilities: defaultArr,
+    highlights: defaultArr,
+    subServices: defaultArr,
+    sections: []
+  },
+  {
+    id: "10",
+    num: "10",
+    slug: "regulatory-compliance",
+    title: "Regulatory Compliance & Substance",
+    name: "Regulatory Compliance & Substance",
+    category: "Compliance",
+    description: "Ensuring ongoing compliance with FATCA, CRS, and Economic Substance laws.",
+    overview: "Continuous regulatory reporting, corporate secretarial management, and substance audit defense.",
+    image: imgMap.compliance,
+    heroImage: imgMap.compliance,
+    bgImage: imgMap.compliance,
+    features: defaultArr,
+    deliverables: defaultArr,
+    capabilities: defaultArr,
+    highlights: defaultArr,
+    subServices: defaultArr,
+    sections: []
+  },
+  {
+    id: "11",
+    num: "11",
+    slug: "asset-protection",
+    title: "Asset Protection & Private Wealth",
+    name: "Asset Protection & Private Wealth",
+    category: "Private Wealth",
+    description: "Safeguarding institutional and family assets through robust cross-border legal structures.",
+    overview: "Comprehensive private wealth preservation and succession planning solutions.",
+    image: imgMap.wealth,
+    heroImage: imgMap.wealth,
+    bgImage: imgMap.wealth,
+    features: defaultArr,
+    deliverables: defaultArr,
+    capabilities: defaultArr,
+    highlights: defaultArr,
+    subServices: defaultArr,
+    sections: []
+  }
+];
+
+export const EXPERTISE_LIST = SERVICES;
+export const SERVICE_LIST = SERVICES;
+export const SOLUTIONS = SERVICES;
+export const FEATURES = SERVICES;
+export const CAPABILITIES = SERVICES;
+export const PRACTICE_AREAS = SERVICES;
+export const OFFERINGS = SERVICES;
+
+export const JURISDICTIONS = [
+  {
+    id: "singapore",
+    slug: "singapore",
+    name: "Singapore",
+    region: "Asia-Pacific",
+    title: "Asian Financial & Holding Hub",
+    description: "Premier global financial center with extensive double taxation treaties and stable regulatory framework.",
+    image: imgMap.corporate,
+    highlights: ["17% Corporate Tax Rate", "Over 90 Tax Treaties", "No Capital Gains Tax"]
+  },
+  {
+    id: "mauritius",
+    slug: "mauritius",
+    name: "Mauritius",
+    region: "Africa & Asia Gateway",
+    title: "International Financial Centre",
+    description: "Preferred platform for cross-border investments into Africa and Asia, offering tax efficiency.",
+    image: imgMap.setup,
+    highlights: ["Partial Exemption Regime", "No Withholding Taxes", "Extensive DTAA Network"]
+  },
+  {
+    id: "cayman-islands",
+    slug: "cayman-islands",
+    name: "Cayman Islands",
+    region: "Americas & Caribbean",
+    title: "Global Investment Fund Hub",
+    description: "The world's leading domicile for alternative investment funds and private equity vehicles.",
+    image: imgMap.licensing,
+    highlights: ["Tax-Neutral Jurisdiction", "Flexible Fund Structures", "Global Recognition"]
+  },
+  {
+    id: "uae",
+    slug: "uae",
+    name: "UAE (DIFC / ADGM)",
+    region: "Middle East",
+    title: "Middle East Financial Heartland",
+    description: "Common-law financial free zones offering 100% foreign ownership and zero personal tax.",
+    image: imgMap.banking,
+    highlights: ["0% Personal Income Tax", "100% Foreign Ownership", "Common Law System"]
+  }
+];
+
+export const JURISDICTION_LIST = JURISDICTIONS;
+export const LOCATIONS = JURISDICTIONS;
+
+export const INSIGHT_CATEGORIES = [
+  "All",
+  "Regulatory & Compliance",
+  "Corporate Structuring",
+  "Private Wealth",
+  "Fund Advisory",
+  "Investment Migration"
+];
+
+export const CATEGORIES = INSIGHT_CATEGORIES;
+export const ARTICLE_CATEGORIES = INSIGHT_CATEGORIES;
+
+export const INSIGHTS = [
+  {
+    id: "01",
+    slug: "navigating-economic-substance-2026",
+    title: "Navigating Economic Substance & Multi-Jurisdictional Compliance",
+    heading: "Navigating Economic Substance & Multi-Jurisdictional Compliance",
+    excerpt: "Essential requirements and operational benchmarks for corporate structures across Singapore, Mauritius, and Cayman Islands.",
+    summary: "Essential requirements and operational benchmarks for corporate structures across Singapore, Mauritius, and Cayman Islands.",
+    description: "An overview of international economic substance laws, directorship expectations, and nexus verification for holding companies.",
+    content: "International regulatory bodies continue to increase scrutiny on cross-border corporate entity substance. Operating entities and holding structures must demonstrate local management control, physical presence, and adequate operational expenditures.",
+    category: "Regulatory & Compliance",
+    date: "October 2026",
+    publishedAt: "2026-10-01",
+    readTime: "6 min read",
+    author: "Cerix Advisory Team",
+    image: imgMap.compliance,
+    heroImage: imgMap.compliance,
+    bgImage: imgMap.compliance
+  },
+  {
+    id: "02",
+    slug: "structuring-alternative-investment-funds",
+    title: "Structuring Alternative Investment Funds Across Emerging Hubs",
+    heading: "Structuring Alternative Investment Funds Across Emerging Hubs",
+    excerpt: "A comparative evaluation of fund vehicles across Mauritius, Cayman Islands, and UAE (ADGM) for private equity and venture capital.",
+    summary: "A comparative evaluation of fund vehicles across Mauritius, Cayman Islands, and UAE (ADGM) for private equity and venture capital.",
+    description: "Key trade-offs between speed-to-market, regulatory oversight, investor familiarity, and double tax agreements.",
+    content: "Selecting the optimal domicile for private capital funds requires balancing investor jurisdiction requirements, licensing timeframes, and double taxation treaty benefits.",
+    category: "Fund Advisory",
+    date: "September 2026",
+    publishedAt: "2026-09-15",
+    readTime: "8 min read",
+    author: "Cerix Funds Advisory",
+    image: imgMap.funds,
+    heroImage: imgMap.funds,
+    bgImage: imgMap.funds
+  },
+  {
+    id: "03",
+    slug: "family-office-governance-frameworks",
+    title: "Next-Generation Family Office Governance & Wealth Succession",
+    heading: "Next-Generation Family Office Governance & Wealth Succession",
+    excerpt: "Integrating international trusts, foundations, and corporate holding vehicles for long-term multi-generational preservation.",
+    summary: "Integrating international trusts, foundations, and corporate holding vehicles for long-term multi-generational preservation.",
+    description: "Designing succession governance protocols and private trust structures across top-tier international financial centers.",
+    content: "Modern wealth structuring requires clear governance protocols, family constitutions, and robust trust/foundation legal structures capable of navigating global asset protection requirements.",
+    category: "Private Wealth",
+    date: "September 2026",
+    publishedAt: "2026-09-01",
+    readTime: "5 min read",
+    author: "Cerix Private Client Group",
+    image: imgMap.wealth,
+    heroImage: imgMap.wealth,
+    bgImage: imgMap.wealth
+  }
+];
+
+export const ARTICLES = INSIGHTS;
+export const BLOG_POSTS = INSIGHTS;
+export const NEWS = INSIGHTS;
+export const RESOURCES = INSIGHTS;
+export const PUBLICATIONS = INSIGHTS;
+
+export const TESTIMONIALS = [
+  {
+    quote: "Cerix Global delivered exceptional clarity and precision when restructuring our cross-border investment holding framework.",
+    author: "Managing Director",
+    company: "Swiss Alternative Asset Management Firm",
+    role: "Chief Executive Officer"
+  },
+  {
+    quote: "Their team handled our fund setup and regulatory licensing seamlessly across multiple jurisdictions.",
+    author: "General Partner",
+    company: "Pan-Asian Venture Capital Fund",
+    role: "Founding Partner"
+  }
+];
+
+export const REVIEWS = TESTIMONIALS;
+export const CASE_STUDIES = INSIGHTS;
+export const STORIES = INSIGHTS;
+
+export const FAQS = [
+  {
+    question: "Which jurisdiction is right for my holding entity?",
+    answer: "The choice depends on your operating countries, treaty network requirements, tax efficiency targets, and investor preferences."
+  },
+  {
+    question: "How long does company setup and licensing take?",
+    answer: "Standard company incorporation typically takes 3 to 10 business days depending on jurisdiction, while regulatory licensing spans 4 to 12 weeks."
+  }
+];
+
+export const FAQ = FAQS;
+export const QUESTIONS = FAQS;
+
+export const COMPANY_INFO = {
+  name: "Cerix Global",
+  legalName: "Cerix Global Advisory Services",
+  email: "contact@cerixglobal.com",
+  phone: "+44 20 7946 0912",
+  address: "International Financial Centre, Global Headquarters",
+  tagline: "Cross-Border Corporate & Fund Advisory"
+};
+
+export const CONTACT_INFO = COMPANY_INFO;
+export const SITE_CONFIG = COMPANY_INFO;
+
+export function getServiceBySlug(slug) {
+  for (var i = 0; i < SERVICES.length; i++) {
+    if (SERVICES[i].slug === slug) {
+      return SERVICES[i];
+    }
+  }
+  return SERVICES[0];
+}
+
+export function getJurisdictionBySlug(slug) {
+  for (var i = 0; i < JURISDICTIONS.length; i++) {
+    if (JURISDICTIONS[i].slug === slug) {
+      return JURISDICTIONS[i];
+    }
+  }
+  return JURISDICTIONS[0];
+}
+
+export function getInsightBySlug(slug) {
+  for (var i = 0; i < INSIGHTS.length; i++) {
+    if (INSIGHTS[i].slug === slug) {
+      return INSIGHTS[i];
+    }
+  }
+  return INSIGHTS[0];
+}
+
+export default safeDb;
