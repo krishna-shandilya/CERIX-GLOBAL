@@ -1,23 +1,23 @@
-// High Resolution Image Assets
+// High Resolution Image Assets matched to corporate services
 const IMAGES_MAP = {
   corporate: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop",
-  setup: "https://images.unsplash.com/photo-1554469384-e58fac16e23a?q=80&w=1600&auto=format&fit=crop",
-  licensing: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1600&auto=format&fit=crop",
-  banking: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?q=80&w=1600&auto=format&fit=crop",
-  trusts: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1600&auto=format&fit=crop",
+  setup: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
+  licensing: "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1600&auto=format&fit=crop",
+  banking: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=1600&auto=format&fit=crop",
+  trusts: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1600&auto=format&fit=crop",
   migration: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1600&auto=format&fit=crop",
   expansion: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1600&auto=format&fit=crop",
-  tax: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=1600&auto=format&fit=crop",
-  funds: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop",
-  compliance: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
-  wealth: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1600&auto=format&fit=crop"
+  tax: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1600&auto=format&fit=crop",
+  funds: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1600&auto=format&fit=crop",
+  compliance: "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1600&auto=format&fit=crop",
+  wealth: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop"
 };
 
 export const IMAGES = IMAGES_MAP;
 export const IMAGE_ALT = {};
 export const SITE_IMAGES = IMAGES_MAP;
 
-// Mock Auth & DB setup
+// Safe Mock Auth & DB setup
 const safeAuth = {
   isAuthenticated: async () => false,
   me: async () => null,
@@ -69,7 +69,7 @@ const DEFAULT_ARRAY = [
   "Substance & Operational Directorship"
 ];
 
-// Approach / Methodology Data
+// Approach & Methodology Data
 export const APPROACH_STAGES = [
   {
     number: "01",
@@ -110,7 +110,7 @@ export const STAGES = APPROACH_STAGES;
 export const METHODOLOGY = APPROACH_STAGES;
 export const APPROACH = APPROACH_STAGES;
 
-// Complete Expertise / Services Registry
+// Complete Services & Expertise Registry
 export const SERVICES = [
   {
     id: "01",
@@ -120,7 +120,7 @@ export const SERVICES = [
     name: "International Corporate Structuring",
     category: "Corporate Advisory",
     description: "Cross-border corporate architecture designed around commercial, operational and strategic objectives.",
-    overview: "We design cross-border corporate architectures that align holding, operating and investment entities with commercial objectives, regulatory realities and long-term strategic intent — balancing substance, governance and operational efficiency.",
+    overview: "We design cross-border corporate architectures that align holding, operating and investment entities with commercial objectives, regulatory realities and long-term strategic intent.",
     image: IMAGES_MAP.corporate,
     heroImage: IMAGES_MAP.corporate,
     bgImage: IMAGES_MAP.corporate,
@@ -185,4 +185,10 @@ export const SERVICES = [
     title: "Banking & Financial Infrastructure",
     name: "Banking & Financial Infrastructure",
     category: "Banking Support",
-    description: "Support in navigating
+    description: "Support in navigating banking relationships and financial infrastructure requirements globally.",
+    overview: "Establishing corporate banking, multi-currency treasury accounts, and institutional payment channels for global corporate groups.",
+    image: IMAGES_MAP.banking,
+    heroImage: IMAGES_MAP.banking,
+    bgImage: IMAGES_MAP.banking,
+    features: DEFAULT_ARRAY,
+    deliverables: DEFAULT_ARRAY,
