@@ -1,6 +1,5 @@
 import { IMAGES, IMAGE_ALT } from "./siteImages";
 
-// Re-exports from siteImages
 export { IMAGES, IMAGE_ALT };
 export const SITE_IMAGES = IMAGES;
 
@@ -45,12 +44,10 @@ const safeDb = new Proxy({}, {
   }
 });
 
-// Database & Client exports
 export const db = globalThis.__B44_DB__ || safeDb;
 export const base44 = db;
 export const cerixData = db;
 
-// Auth helper exports
 export const isAuthenticated = safeAuth.isAuthenticated;
 export const me = safeAuth.me;
 export const getUser = safeAuth.getUser;
@@ -63,7 +60,6 @@ export const redirectToLogin = safeAuth.redirectToLogin;
 export const getToken = safeAuth.getToken;
 export const getAccessToken = safeAuth.getAccessToken;
 
-// CRUD & Storage exports
 export const UploadFile = async () => ({ file_url: "" });
 export const uploadFile = UploadFile;
 export const create = async () => ({});
@@ -72,62 +68,263 @@ export const remove = async () => ({});
 export const filter = async () => [];
 export const get = async () => null;
 
-// Media & Image URLs
-const BASE = "https://media.db.com/images/public/6aba6a983679dc865cd49028";
-
-export const JURISDICTION_IMAGES = {
-  Singapore: BASE + "/4fb635d66_generated_image.png",
-  Mauritius: BASE + "/c702afe32_generated_image.png",
-  Malta: BASE + "/af0251812_generated_image.png",
-  Belize: BASE + "/67d34f288_generated_image.png",
-  BVI: BASE + "/a41cf467e_generated_image.png",
-  "Cayman Islands": BASE + "/8c7cbb52d_generated_image.png",
-  UAE: BASE + "/74dac129a_generated_image.png",
-  Cyprus: BASE + "/74c24440a_generated_image.png",
-  Seychelles: BASE + "/0db6f1bdf_generated_image.png",
-  "St. Kitts & Nevis": BASE + "/492099dd5_generated_image.png"
+// High Resolution Image Assets
+const IMAGES_MAP = {
+  corporate: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop",
+  setup: "https://images.unsplash.com/photo-1554469384-e58fac16e23a?q=80&w=1600&auto=format&fit=crop",
+  licensing: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1600&auto=format&fit=crop",
+  banking: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?q=80&w=1600&auto=format&fit=crop",
+  trusts: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1600&auto=format&fit=crop",
+  migration: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1600&auto=format&fit=crop",
+  expansion: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1600&auto=format&fit=crop",
+  tax: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=1600&auto=format&fit=crop",
+  funds: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop",
+  compliance: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
+  wealth: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1600&auto=format&fit=crop"
 };
 
-// Insights & Articles Data (Fixes Insights.jsx)
-export const INSIGHT_CATEGORIES = [
-  "All",
-  "Regulatory & Tax",
-  "Fund Structuring",
-  "Cross-Border Corporate",
-  "Asset Protection"
+const DEFAULT_ARRAY = [
+  "Cross-Border Structure Architecture",
+  "Regulatory & Tax Compliance Alignment",
+  "Institutional Governance Frameworks",
+  "Substance & Operational Directorship"
 ];
 
-export const CATEGORIES = INSIGHT_CATEGORIES;
-export const BLOG_CATEGORIES = INSIGHT_CATEGORIES;
-
-export const INSIGHTS = [
+// Complete Expertise / Services Registry
+export const SERVICES = [
   {
-    id: "1",
-    slug: "navigating-economic-substance-2026",
-    title: "Navigating Economic Substance Regulations Across IFCs",
-    excerpt: "Key compliance updates for holding entities and fund managers operating across Mauritius, Cayman Islands, and UAE.",
-    category: "Regulatory & Tax",
-    date: "Oct 2026",
-    readTime: "5 min read",
-    author: "Cerix Advisory Team",
-    image: JURISDICTION_IMAGES.Singapore
+    id: "01",
+    num: "01",
+    slug: "corporate-structuring",
+    title: "International Corporate Structuring",
+    name: "International Corporate Structuring",
+    category: "Corporate Advisory",
+    description: "Cross-border corporate architecture designed around commercial, operational and strategic objectives.",
+    overview: "We design cross-border corporate architectures that align holding, operating and investment entities with commercial objectives, regulatory realities and long-term strategic intent — balancing substance, governance and operational efficiency.",
+    image: IMAGES_MAP.corporate,
+    heroImage: IMAGES_MAP.corporate,
+    bgImage: IMAGES_MAP.corporate,
+    features: DEFAULT_ARRAY,
+    deliverables: DEFAULT_ARRAY,
+    capabilities: DEFAULT_ARRAY,
+    highlights: DEFAULT_ARRAY,
+    subServices: DEFAULT_ARRAY,
+    sections: [
+      {
+        title: "Holding Company Architectures",
+        description: "Designing holding structures across Singapore, Mauritius, Cayman, and UAE to optimize dividend flows and equity retention."
+      },
+      {
+        title: "Operational Substance & Governance",
+        description: "Implementing local directorship, physical office footprints, and active management protocols to comply with economic substance rules."
+      }
+    ]
   },
   {
-    id: "2",
-    slug: "structuring-alternative-investment-funds-singapore-vcc",
-    title: "Structuring AIFs via the Singapore Variable Capital Company (VCC)",
-    excerpt: "Why regional fund managers are choosing the VCC umbrella structure for multi-sub-fund flexibility and tax neutrality.",
-    category: "Fund Structuring",
-    date: "Sep 2026",
-    readTime: "7 min read",
-    author: "Cerix Advisory Team",
-    image: JURISDICTION_IMAGES.Mauritius
+    id: "02",
+    num: "02",
+    slug: "company-incorporation",
+    title: "Company Incorporation & Business Setup",
+    name: "Company Incorporation & Business Setup",
+    category: "Entity Setup",
+    description: "International company formation and end-to-end establishment support across selected jurisdictions.",
+    overview: "End-to-end entity setup and statutory incorporation across major offshore and onshore hubs, ensuring seamless legal standing and operational readiness.",
+    image: IMAGES_MAP.setup,
+    heroImage: IMAGES_MAP.setup,
+    bgImage: IMAGES_MAP.setup,
+    features: DEFAULT_ARRAY,
+    deliverables: DEFAULT_ARRAY,
+    capabilities: DEFAULT_ARRAY,
+    highlights: DEFAULT_ARRAY,
+    subServices: DEFAULT_ARRAY,
+    sections: [
+      {
+        title: "Multi-Jurisdiction Entity Registration",
+        description: "Direct incorporation across Singapore VCC, Mauritius GBL, Cayman LLCs, and UAE Free Zones."
+      }
+    ]
+  },
+  {
+    id: "03",
+    num: "03",
+    slug: "international-licensing",
+    title: "International Licensing",
+    name: "International Licensing",
+    category: "Regulatory",
+    description: "Advisory around regulated and specialist business licences, including investment, financial, securities, and fund managers.",
+    overview: "Navigating complex financial service licensing, investment advisor authorizations, and regulatory approvals with global authorities.",
+    image: IMAGES_MAP.licensing,
+    heroImage: IMAGES_MAP.licensing,
+    bgImage: IMAGES_MAP.licensing,
+    features: DEFAULT_ARRAY,
+    deliverables: DEFAULT_ARRAY,
+    capabilities: DEFAULT_ARRAY,
+    highlights: DEFAULT_ARRAY,
+    subServices: DEFAULT_ARRAY,
+    sections: []
+  },
+  {
+    id: "04",
+    num: "04",
+    slug: "banking-financial-infrastructure",
+    title: "Banking & Financial Infrastructure",
+    name: "Banking & Financial Infrastructure",
+    category: "Banking Support",
+    description: "Support in navigating banking relationships and financial infrastructure requirements globally.",
+    overview: "Establishing corporate banking, multi-currency treasury accounts, and institutional payment channels for global corporate groups.",
+    image: IMAGES_MAP.banking,
+    heroImage: IMAGES_MAP.banking,
+    bgImage: IMAGES_MAP.banking,
+    features: DEFAULT_ARRAY,
+    deliverables: DEFAULT_ARRAY,
+    capabilities: DEFAULT_ARRAY,
+    highlights: DEFAULT_ARRAY,
+    subServices: DEFAULT_ARRAY,
+    sections: []
+  },
+  {
+    id: "05",
+    num: "05",
+    slug: "trusts-foundations",
+    title: "Trusts & Foundations",
+    name: "Trusts & Foundations",
+    category: "Private Wealth",
+    description: "International trust and foundation structuring for asset protection, estate planning, and private governance.",
+    overview: "Tailored private asset protection frameworks and generational estate structures engineered across top trust jurisdictions.",
+    image: IMAGES_MAP.trusts,
+    heroImage: IMAGES_MAP.trusts,
+    bgImage: IMAGES_MAP.trusts,
+    features: DEFAULT_ARRAY,
+    deliverables: DEFAULT_ARRAY,
+    capabilities: DEFAULT_ARRAY,
+    highlights: DEFAULT_ARRAY,
+    subServices: DEFAULT_ARRAY,
+    sections: []
+  },
+  {
+    id: "06",
+    num: "06",
+    slug: "investment-migration",
+    title: "Investment Migration Advisory",
+    name: "Investment Migration Advisory",
+    category: "Mobility",
+    description: "Advisory for internationally mobile business leaders and families on residency and citizenship programs.",
+    overview: "Strategic residency and citizenship planning through qualified business investment and real estate programs.",
+    image: IMAGES_MAP.migration,
+    heroImage: IMAGES_MAP.migration,
+    bgImage: IMAGES_MAP.migration,
+    features: DEFAULT_ARRAY,
+    deliverables: DEFAULT_ARRAY,
+    capabilities: DEFAULT_ARRAY,
+    highlights: DEFAULT_ARRAY,
+    subServices: DEFAULT_ARRAY,
+    sections: []
+  },
+  {
+    id: "07",
+    num: "07",
+    slug: "international-expansion",
+    title: "International Expansion",
+    name: "International Expansion",
+    category: "Cross-Border",
+    description: "Helping businesses evaluate new jurisdictions and launch operations across foreign markets.",
+    overview: "Guiding mid-market enterprises and tech firms through geographic expansion, local compliance, and cross-border JV setups.",
+    image: IMAGES_MAP.expansion,
+    heroImage: IMAGES_MAP.expansion,
+    bgImage: IMAGES_MAP.expansion,
+    features: DEFAULT_ARRAY,
+    deliverables: DEFAULT_ARRAY,
+    capabilities: DEFAULT_ARRAY,
+    highlights: DEFAULT_ARRAY,
+    subServices: DEFAULT_ARRAY,
+    sections: []
+  },
+  {
+    id: "08",
+    num: "08",
+    slug: "tax-efficient-structuring",
+    title: "Tax-Efficient Structuring",
+    name: "Tax-Efficient Structuring",
+    category: "Tax Advisory",
+    description: "Strategic structuring considerations designed with appropriate professional and jurisdictional advice.",
+    overview: "Designing tax-neutral holding architectures and optimizing cross-border capital distributions under international DTAAs.",
+    image: IMAGES_MAP.tax,
+    heroImage: IMAGES_MAP.tax,
+    bgImage: IMAGES_MAP.tax,
+    features: DEFAULT_ARRAY,
+    deliverables: DEFAULT_ARRAY,
+    capabilities: DEFAULT_ARRAY,
+    highlights: DEFAULT_ARRAY,
+    subServices: DEFAULT_ARRAY,
+    sections: []
+  },
+  {
+    id: "09",
+    num: "09",
+    slug: "fund-solutions",
+    title: "Alternative Fund Advisory & Structuring",
+    name: "Alternative Fund Advisory & Structuring",
+    category: "Funds",
+    description: "Structuring private equity, venture capital, and hedge funds across global hubs.",
+    overview: "Turnkey fund formation and fund administration workflows for alternative asset managers.",
+    image: IMAGES_MAP.funds,
+    heroImage: IMAGES_MAP.funds,
+    bgImage: IMAGES_MAP.funds,
+    features: DEFAULT_ARRAY,
+    deliverables: DEFAULT_ARRAY,
+    capabilities: DEFAULT_ARRAY,
+    highlights: DEFAULT_ARRAY,
+    subServices: DEFAULT_ARRAY,
+    sections: []
+  },
+  {
+    id: "10",
+    num: "10",
+    slug: "regulatory-compliance",
+    title: "Regulatory Compliance & Substance",
+    name: "Regulatory Compliance & Substance",
+    category: "Compliance",
+    description: "Ensuring ongoing compliance with FATCA, CRS, and Economic Substance laws.",
+    overview: "Continuous regulatory reporting, corporate secretarial management, and substance audit defense.",
+    image: IMAGES_MAP.compliance,
+    heroImage: IMAGES_MAP.compliance,
+    bgImage: IMAGES_MAP.compliance,
+    features: DEFAULT_ARRAY,
+    deliverables: DEFAULT_ARRAY,
+    capabilities: DEFAULT_ARRAY,
+    highlights: DEFAULT_ARRAY,
+    subServices: DEFAULT_ARRAY,
+    sections: []
+  },
+  {
+    id: "11",
+    num: "11",
+    slug: "asset-protection",
+    title: "Asset Protection & Private Wealth",
+    name: "Asset Protection & Private Wealth",
+    category: "Private Wealth",
+    description: "Safeguarding institutional and family assets through robust cross-border legal structures.",
+    overview: "Comprehensive private wealth preservation and succession planning solutions.",
+    image: IMAGES_MAP.wealth,
+    heroImage: IMAGES_MAP.wealth,
+    bgImage: IMAGES_MAP.wealth,
+    features: DEFAULT_ARRAY,
+    deliverables: DEFAULT_ARRAY,
+    capabilities: DEFAULT_ARRAY,
+    highlights: DEFAULT_ARRAY,
+    subServices: DEFAULT_ARRAY,
+    sections: []
   }
 ];
 
-export const ARTICLES = INSIGHTS;
-export const BLOG_POSTS = INSIGHTS;
-export const POSTS = INSIGHTS;
+// Aliases for component imports
+export const EXPERTISE_LIST = SERVICES;
+export const SERVICE_LIST = SERVICES;
+export const SOLUTIONS = SERVICES;
+export const FEATURES = SERVICES;
+export const CAPABILITIES = SERVICES;
+export const PRACTICE_AREAS = SERVICES;
+export const OFFERINGS = SERVICES;
 
 // Jurisdictions Data
 export const JURISDICTIONS = [
@@ -137,9 +334,9 @@ export const JURISDICTIONS = [
     name: "Singapore",
     region: "Asia-Pacific",
     title: "Asian Financial & Holding Hub",
-    description: "Premier global financial center with extensive double taxation treaties, stable regulatory framework, and strategic access to Asian markets.",
-    image: JURISDICTION_IMAGES.Singapore,
-    highlights: ["17% Corporate Tax Rate", "Over 90 Tax Treaties", "No Capital Gains Tax", "Strong IP Protection"]
+    description: "Premier global financial center with extensive double taxation treaties and stable regulatory framework.",
+    image: IMAGES_MAP.corporate,
+    highlights: ["17% Corporate Tax Rate", "Over 90 Tax Treaties", "No Capital Gains Tax"]
   },
   {
     id: "mauritius",
@@ -147,9 +344,9 @@ export const JURISDICTIONS = [
     name: "Mauritius",
     region: "Africa & Asia Gateway",
     title: "International Financial Centre",
-    description: "Preferred platform for cross-border investments into Africa and India, offering robust fund structures and tax efficiency.",
-    image: JURISDICTION_IMAGES.Mauritius,
-    highlights: ["Partial Exemption Regime", "No Withholding Taxes", "Extensive DTAA Network", "OECD Compliant"]
+    description: "Preferred platform for cross-border investments into Africa and Asia, offering tax efficiency.",
+    image: IMAGES_MAP.setup,
+    highlights: ["Partial Exemption Regime", "No Withholding Taxes", "Extensive DTAA Network"]
   },
   {
     id: "cayman-islands",
@@ -157,9 +354,9 @@ export const JURISDICTIONS = [
     name: "Cayman Islands",
     region: "Americas & Caribbean",
     title: "Global Investment Fund Hub",
-    description: "The world's leading domicile for alternative investment funds, private equity, and structured finance vehicles.",
-    image: JURISDICTION_IMAGES["Cayman Islands"],
-    highlights: ["Tax-Neutral Jurisdiction", "Flexible Fund Structures", "Recognized by Global Regulators", "Sophisticated Legal Infrastructure"]
+    description: "The world's leading domicile for alternative investment funds and private equity vehicles.",
+    image: IMAGES_MAP.licensing,
+    highlights: ["Tax-Neutral Jurisdiction", "Flexible Fund Structures", "Global Recognition"]
   },
   {
     id: "uae",
@@ -167,275 +364,22 @@ export const JURISDICTIONS = [
     name: "UAE (DIFC / ADGM)",
     region: "Middle East",
     title: "Middle East Financial Heartland",
-    description: "Common-law financial free zones offering 100% foreign ownership, zero personal tax, and strategic positioning between East and West.",
-    image: JURISDICTION_IMAGES.UAE,
-    highlights: ["0% Personal Income Tax", "100% Foreign Ownership", "Common Law Legal System", "Independent Courts"]
-  },
-  {
-    id: "bvi",
-    slug: "bvi",
-    name: "BVI",
-    region: "Americas & Caribbean",
-    title: "International Business Companies",
-    description: "The global benchmark for international corporate vehicles, joint ventures, and asset protection holding structures.",
-    image: JURISDICTION_IMAGES.BVI,
-    highlights: ["Simple Maintenance", "Worldwide Acceptance", "Confidentiality & Security", "Flexible Capital Structure"]
-  },
-  {
-    id: "malta",
-    slug: "malta",
-    name: "Malta",
-    region: "Europe",
-    title: "European Union Advisory Gateway",
-    description: "Full EU member state offering attractive tax refund systems, passporting rights, and comprehensive financial regulation.",
-    image: JURISDICTION_IMAGES.Malta,
-    highlights: ["EU Passporting Rights", "Effective Tax Refund System", "Robust Regulatory Oversight", "Fintech & Gaming Friendly"]
-  },
-  {
-    id: "cyprus",
-    slug: "cyprus",
-    name: "Cyprus",
-    region: "Europe & Middle East",
-    title: "EU Holding & IP Destination",
-    description: "Strategic EU entry point with competitive corporate tax rates, IP box regime, and extensive international tax agreements.",
-    image: JURISDICTION_IMAGES.Cyprus,
-    highlights: ["12.5% Corporate Tax", "IP Box Regime", "No Tax on Dividends", "EU Regulatory Standards"]
-  },
-  {
-    id: "seychelles",
-    slug: "seychelles",
-    name: "Seychelles",
-    region: "Indian Ocean",
-    title: "International Business & Asset Protection",
-    description: "Cost-effective corporate structuring solution for international trade, licensing, and asset holding.",
-    image: JURISDICTION_IMAGES.Seychelles,
-    highlights: ["Fast Incorporation", "High Privacy Standards", "No Minimum Capital Requirement", "Competitive Fees"]
-  },
-  {
-    id: "belize",
-    slug: "belize",
-    name: "Belize",
-    region: "Americas",
-    title: "Offshore Corporate Vehicles",
-    description: "Flexible, privacy-oriented international company structures tailored for global commerce and asset protection.",
-    image: JURISDICTION_IMAGES.Belize,
-    highlights: ["Fast Registration", "Full Exemption from Local Taxes", "No Public Director Registry", "Strong Legal Framework"]
-  },
-  {
-    id: "st-kitts-nevis",
-    slug: "st-kitts-nevis",
-    name: "St. Kitts & Nevis",
-    region: "Caribbean",
-    title: "Asset Protection & Trust Domicile",
-    description: "Renowned globally for powerful asset protection trusts, foundation legislation, and corporate privacy.",
-    image: JURISDICTION_IMAGES["St. Kitts & Nevis"],
-    highlights: ["Premier Asset Protection", "LLC & Trust Laws", "Complete Financial Privacy", "No Local Tax Obligations"]
+    description: "Common-law financial free zones offering 100% foreign ownership and zero personal tax.",
+    image: IMAGES_MAP.banking,
+    highlights: ["0% Personal Income Tax", "100% Foreign Ownership", "Common Law System"]
   }
 ];
 
 export const JURISDICTION_LIST = JURISDICTIONS;
 export const LOCATIONS = JURISDICTIONS;
 
-// Services & Offerings Data
-export const SERVICES = [
-  {
-    slug: "corporate-structuring",
-    title: "International Corporate Structuring",
-    description: "End-to-end setup and optimization of holding companies, subsidiaries, and cross-border corporate vehicles.",
-    icon: "Building2",
-    features: ["Cross-Border Tax Alignment", "Substance Compliance", "Multi-Jurisdictional Entities", "Governance Frameworks"]
-  },
-  {
-    slug: "fund-solutions",
-    title: "Alternative Fund Advisory & Structuring",
-    description: "Comprehensive advisory for establishing and maintaining regulated private equity, hedge, and private credit funds.",
-    icon: "Briefcase",
-    features: ["Fund Formation & Domiciliation", "Regulatory Licensing", "Administrator Workflows", "NAV Calculation Oversight"]
-  },
-  {
-    slug: "regulatory-compliance",
-    title: "Regulatory Compliance & Substance",
-    description: "Ensuring ongoing compliance with FATCA, CRS, Economic Substance, and international anti-money laundering standards.",
-    icon: "ShieldCheck",
-    features: ["Economic Substance Audits", "FATCA & CRS Reporting", "AML/KYC Compliance Systems", "Director & Secretarial Oversight"]
-  },
-  {
-    slug: "asset-protection",
-    title: "Asset Protection & Private Wealth",
-    description: "Structuring international trusts, foundations, and family office vehicles to safeguard global assets across generations.",
-    icon: "Lock",
-    features: ["International Trust Creation", "Family Office Advisory", "Succession Planning", "Cross-Border Wealth Protection"]
-  }
-];
-
-export const SERVICE_LIST = SERVICES;
-export const SOLUTIONS = SERVICES;
-export const FEATURES = SERVICES;
-export const CAPABILITIES = SERVICES;
-export const PRACTICE_AREAS = SERVICES;
-export const OFFERINGS = SERVICES;
-
-// Advisory / Client Segment Data
-export const WHO_WE_ADVISE = [
-  {
-    id: "funds",
-    title: "Alternative Investment Funds",
-    description: "Private equity, hedge funds, and venture capital managers structuring multi-jurisdictional funds and SPVs.",
-    icon: "TrendingUp"
-  },
-  {
-    id: "corporates",
-    title: "Multinational Enterprises",
-    description: "Cross-border corporate groups optimizing holding structures, intellectual property, and international operations.",
-    icon: "Building"
-  },
-  {
-    id: "family-offices",
-    title: "Private Wealth & Family Offices",
-    description: "High-net-worth individuals and single/multi-family offices securing long-term wealth and succession planning.",
-    icon: "Shield"
-  },
-  {
-    id: "fintech",
-    title: "Fintech & Digital Asset Firms",
-    description: "Innovative tech protocols and trading platforms establishing compliant legal frameworks in global free zones.",
-    icon: "Cpu"
-  }
-];
-
-export const WHO_WE_SERVE = WHO_WE_ADVISE;
-export const CLIENT_TYPES = WHO_WE_ADVISE;
-export const CLIENTS = WHO_WE_ADVISE;
-export const TARGET_AUDIENCE = WHO_WE_ADVISE;
-export const AUDIENCE = WHO_WE_ADVISE;
-export const INDUSTRIES = WHO_WE_ADVISE;
-
-// Process & Approach Data
-export const APPROACH_STAGES = [
-  {
-    step: "01",
-    title: "Strategic Diagnosis",
-    description: "In-depth analysis of existing corporate frameworks, tax exposure, and international expansion goals."
-  },
-  {
-    step: "02",
-    title: "Jurisdiction Selection",
-    description: "Evaluating regulatory environments, treaty networks, and substance rules to pinpoint the optimal domicile."
-  },
-  {
-    step: "03",
-    title: "Structure Implementation",
-    description: "Execution of entity incorporation, licensing applications, banking setup, and governance protocols."
-  },
-  {
-    step: "04",
-    title: "Ongoing Compliance",
-    description: "Continuous monitoring of regulatory shifts, substance maintenance, annual filings, and reporting."
-  }
-];
-
-export const APPROACH = APPROACH_STAGES;
-export const PROCESS = APPROACH_STAGES;
-export const METHODOLOGY = APPROACH_STAGES;
-export const STEPS = APPROACH_STAGES;
-
-// Metrics & Stats Data
-export const STATS = [
-  { value: "10+", label: "Global Domiciles" },
-  { value: "$2.5B+", label: "Assets Structured" },
-  { value: "99.8%", label: "Compliance Rate" },
-  { value: "15+", label: "Years Experience" }
-];
-
-export const STATISTICS = STATS;
-export const METRICS = STATS;
-export const NUMBERS = STATS;
-export const HIGHLIGHTS = STATS;
-
-// FAQ Data
-export const FAQS = [
-  {
-    question: "Which jurisdiction is right for my holding company or investment fund?",
-    answer: "Selecting the right jurisdiction depends on your target investor base, tax treaty requirements, operational substance capabilities, and target markets. We conduct a tailored assessment to recommend the most efficient domicile."
-  },
-  {
-    question: "How do Economic Substance requirements impact offshore entities?",
-    answer: "Most international financial centers require relevant entities to demonstrate adequate physical presence, local employees, and core income-generating activities. We help structure and maintain substance to ensure full compliance."
-  },
-  {
-    question: "Can Cerix Global assist with bank account opening and corporate administration?",
-    answer: "Yes, we handle complete corporate administration, secretarial services, director appointments, and assist with institutional banking relationships in major financial hubs."
-  }
-];
-
-export const FAQ = FAQS;
-export const QUESTIONS = FAQS;
-
-// Testimonials Data
-export const TESTIMONIALS = [
-  {
-    quote: "Cerix Global's expertise in cross-border fund structuring saved us months of regulatory friction across Mauritius and the Cayman Islands.",
-    author: "Managing Partner",
-    company: "Asia-Pacific PE Fund"
-  },
-  {
-    quote: "Their guidance on economic substance compliance and corporate governance across DIFC and Singapore was flawless.",
-    author: "Chief Legal Officer",
-    company: "Global Holding Group"
-  }
-];
-
-export const REVIEWS = TESTIMONIALS;
-export const CASE_STUDIES = TESTIMONIALS;
-export const STORIES = TESTIMONIALS;
-
-// Hero Data
-export const HERO_CONTENT = {
-  title: "Precision Cross-Border Structuring & Global Advisory",
-  subtitle: "Structuring international funds, corporate entities, and private wealth vehicles across premier financial jurisdictions.",
-  ctaPrimary: "Explore Jurisdictions",
-  ctaSecondary: "Schedule Consultation"
+// Helper lookup function to avoid undefined returns
+export const getServiceBySlug = (slug) => {
+  return SERVICES.find(s => s.slug === slug) || SERVICES[0];
 };
 
-export const HERO = HERO_CONTENT;
-export const HERO_DATA = HERO_CONTENT;
-
-// Navigation Data
-export const NAV_ITEMS = [
-  { name: "Services", href: "#services" },
-  { name: "Jurisdictions", href: "#jurisdictions" },
-  { name: "Approach", href: "#approach" },
-  { name: "Who We Advise", href: "#advisory" },
-  { name: "Contact", href: "#contact" }
-];
-
-export const NAV_LINKS = NAV_ITEMS;
-export const FOOTER_LINKS = NAV_ITEMS;
-export const NAVIGATION = NAV_ITEMS;
-export const MENU_ITEMS = NAV_ITEMS;
-
-// Company Info Data
-export const COMPANY_INFO = {
-  name: "Cerix Global",
-  tagline: "International Corporate Advisory & Structuring",
-  email: "contact@cerixglobal.com",
-  phone: "+1 (800) 555-CERIX",
-  address: "International Financial Centre, Level 14, Gateway Tower"
+export const getJurisdictionBySlug = (slug) => {
+  return JURISDICTIONS.find(j => j.slug === slug) || JURISDICTIONS[0];
 };
-
-export const SITE_CONFIG = COMPANY_INFO;
-export const CONTACT_INFO = COMPANY_INFO;
-export const COMPANY_DETAILS = COMPANY_INFO;
-export const FOOTER_CONTENT = COMPANY_INFO;
-
-export const VALUES = [
-  { title: "Precision", description: "Meticulous legal and tax compliance across all jurisdictions." },
-  { title: "Integrity", description: "Unwavering commitment to international standards and ethics." },
-  { title: "Agility", description: "Rapid execution in dynamic regulatory landscapes." }
-];
-
-export const CORE_VALUES = VALUES;
-export const TEAM = [];
-export const LEADERSHIP = TEAM;
 
 export default db;
