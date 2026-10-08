@@ -1,9 +1,23 @@
-import { IMAGES, IMAGE_ALT } from "./siteImages";
+// High Resolution Image Assets
+const IMAGES_MAP = {
+  corporate: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop",
+  setup: "https://images.unsplash.com/photo-1554469384-e58fac16e23a?q=80&w=1600&auto=format&fit=crop",
+  licensing: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1600&auto=format&fit=crop",
+  banking: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?q=80&w=1600&auto=format&fit=crop",
+  trusts: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1600&auto=format&fit=crop",
+  migration: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1600&auto=format&fit=crop",
+  expansion: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1600&auto=format&fit=crop",
+  tax: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=1600&auto=format&fit=crop",
+  funds: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop",
+  compliance: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
+  wealth: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1600&auto=format&fit=crop"
+};
 
-export { IMAGES, IMAGE_ALT };
-export const SITE_IMAGES = IMAGES;
+export const IMAGES = IMAGES_MAP;
+export const IMAGE_ALT = {};
+export const SITE_IMAGES = IMAGES_MAP;
 
-// Safe Mock Client & DB setup
+// Mock Auth & DB setup
 const safeAuth = {
   isAuthenticated: async () => false,
   me: async () => null,
@@ -15,36 +29,16 @@ const safeAuth = {
   logout: async () => {},
   redirectToLogin: () => {},
   getToken: async () => null,
-  getAccessToken: async () => null,
+  getAccessToken: async () => null
 };
 
-const safeDb = new Proxy({}, {
-  get: (target, prop) => {
-    if (prop === "auth") return safeAuth;
-    if (prop === "entities") {
-      return new Proxy({}, {
-        get: (_, entityName) => new Proxy({}, {
-          get: (_, method) => {
-            if (typeof method === "string" && method.startsWith("use")) {
-              return () => ({ data: [], isLoading: false, error: null, refetch: () => {} });
-            }
-            return async () => [];
-          }
-        })
-      });
-    }
-    if (prop === "integrations") {
-      return new Proxy({}, {
-        get: () => new Proxy({}, {
-          get: () => async () => ({ file_url: "" })
-        })
-      });
-    }
-    return async () => [];
-  }
-});
+const safeDb = {
+  auth: safeAuth,
+  entities: {},
+  integrations: {}
+};
 
-export const db = globalThis.__B44_DB__ || safeDb;
+export const db = typeof window !== "undefined" && window.__B44_DB__ ? window.__B44_DB__ : safeDb;
 export const base44 = db;
 export const cerixData = db;
 
@@ -67,21 +61,6 @@ export const update = async () => ({});
 export const remove = async () => ({});
 export const filter = async () => [];
 export const get = async () => null;
-
-// High Resolution Image Assets
-const IMAGES_MAP = {
-  corporate: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop",
-  setup: "https://images.unsplash.com/photo-1554469384-e58fac16e23a?q=80&w=1600&auto=format&fit=crop",
-  licensing: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1600&auto=format&fit=crop",
-  banking: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?q=80&w=1600&auto=format&fit=crop",
-  trusts: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1600&auto=format&fit=crop",
-  migration: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1600&auto=format&fit=crop",
-  expansion: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1600&auto=format&fit=crop",
-  tax: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=1600&auto=format&fit=crop",
-  funds: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop",
-  compliance: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
-  wealth: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1600&auto=format&fit=crop"
-};
 
 const DEFAULT_ARRAY = [
   "Cross-Border Structure Architecture",
@@ -165,3 +144,26 @@ export const SERVICES = [
     id: "02",
     num: "02",
     slug: "company-incorporation",
+    title: "Company Incorporation & Business Setup",
+    name: "Company Incorporation & Business Setup",
+    category: "Entity Setup",
+    description: "International company formation and end-to-end establishment support across selected jurisdictions.",
+    overview: "End-to-end entity setup and statutory incorporation across major offshore and onshore hubs, ensuring seamless legal standing and operational readiness.",
+    image: IMAGES_MAP.setup,
+    heroImage: IMAGES_MAP.setup,
+    bgImage: IMAGES_MAP.setup,
+    features: DEFAULT_ARRAY,
+    deliverables: DEFAULT_ARRAY,
+    capabilities: DEFAULT_ARRAY,
+    highlights: DEFAULT_ARRAY,
+    subServices: DEFAULT_ARRAY,
+    sections: []
+  },
+  {
+    id: "03",
+    num: "03",
+    slug: "international-licensing",
+    title: "International Licensing",
+    name: "International Licensing",
+    category: "Regulatory",
+    description:
