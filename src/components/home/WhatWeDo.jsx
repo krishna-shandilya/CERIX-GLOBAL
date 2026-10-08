@@ -7,19 +7,14 @@ import Reveal from "@/components/Reveal";
 import { Image } from "@/components/ui/image";
 import { motion } from "framer-motion";
 
-// Eight disciplines in a uniform 4×2 grid (2 on tablet, 1 on mobile). Every card
-// is exactly aspect-ratio 4/5 with rounded corners; all text sits inside a glass
-// panel anchored 16px from the bottom. On hover the card takes an olive tint and
-// the panel turns solid olive with ivory text (ABC-style solid-colour hover).
 const CARDS = [
-  ...SERVICES,
+  ...SERVICES.slice(0, 7),
   {
     slug: "corporate-structuring",
-    title: "Tax-Efficient Structuring",
-    short: "Strategic structuring considerations designed with appropriate professional and jurisdictional advice.",
-    image: IMAGES.tax,
+    title: "International Corporate Structuring",
+    short: "Cross-border corporate architecture designed around commercial, operational and strategic objectives.",
+    image: IMAGES.corporate,
     label: "08",
-    isTax: true,
   },
 ];
 
@@ -77,7 +72,7 @@ function ServiceCard({ service, index }) {
           <div className="relative p-5">
             <div className="flex items-center justify-between">
               <span className="font-mono text-[0.62rem] tracking-[0.25em] text-terracotta-soft group-hover:text-parchment/80 transition-colors duration-500">
-                {service.label}
+                {service.label || service.num}
               </span>
               <span className="inline-flex items-center gap-1.5 font-sans text-[0.68rem] tracking-[0.18em] uppercase font-medium text-parchment/80">
                 Explore
@@ -88,7 +83,7 @@ function ServiceCard({ service, index }) {
               {service.title}
             </h3>
             <p className="mt-2 font-sans text-[0.82rem] lg:text-[0.86rem] text-parchment/75 group-hover:text-parchment/90 leading-relaxed line-clamp-3 transition-colors duration-500">
-              {service.short}
+              {service.short || service.description}
             </p>
           </div>
         </div>
