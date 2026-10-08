@@ -90,6 +90,47 @@ const DEFAULT_ARRAY = [
   "Substance & Operational Directorship"
 ];
 
+// Approach / Methodology Data
+export const APPROACH_STAGES = [
+  {
+    number: "01",
+    stage: "Stage 01",
+    title: "Strategic Discovery & Analysis",
+    heading: "Strategic Discovery & Analysis",
+    description: "In-depth review of business models, tax residency, entity structures, and cross-border strategic goals.",
+    details: "We conduct preliminary jurisdictional analysis and evaluate legal, compliance, and operational requirements."
+  },
+  {
+    number: "02",
+    stage: "Stage 02",
+    title: "Jurisdictional & Structural Design",
+    heading: "Jurisdictional & Structural Design",
+    description: "Tailored architecture balancing tax optimization, regulatory compliance, operational efficiency, and governance.",
+    details: "Designing optimal holding company, fund, trust, or operational entity structures across suitable global financial centers."
+  },
+  {
+    number: "03",
+    stage: "Stage 03",
+    title: "Implementation & Licensing",
+    heading: "Implementation & Licensing",
+    description: "End-to-end execution of company formation, regulatory licensing, banking setup, and corporate secretarial onboarding.",
+    details: "Coordinating with local regulators, financial authorities, and corporate service partners for seamless deployment."
+  },
+  {
+    number: "04",
+    stage: "Stage 04",
+    title: "Ongoing Substance & Compliance",
+    heading: "Ongoing Substance & Compliance",
+    description: "Long-term operational support, economic substance fulfillment, regulatory reporting, and board governance.",
+    details: "Ensuring continued compliance with FATCA, CRS, local tax filings, and institutional substance criteria."
+  }
+];
+
+export const PROCESS_STEPS = APPROACH_STAGES;
+export const STAGES = APPROACH_STAGES;
+export const METHODOLOGY = APPROACH_STAGES;
+export const APPROACH = APPROACH_STAGES;
+
 // Complete Expertise / Services Registry
 export const SERVICES = [
   {
@@ -124,262 +165,3 @@ export const SERVICES = [
     id: "02",
     num: "02",
     slug: "company-incorporation",
-    title: "Company Incorporation & Business Setup",
-    name: "Company Incorporation & Business Setup",
-    category: "Entity Setup",
-    description: "International company formation and end-to-end establishment support across selected jurisdictions.",
-    overview: "End-to-end entity setup and statutory incorporation across major offshore and onshore hubs, ensuring seamless legal standing and operational readiness.",
-    image: IMAGES_MAP.setup,
-    heroImage: IMAGES_MAP.setup,
-    bgImage: IMAGES_MAP.setup,
-    features: DEFAULT_ARRAY,
-    deliverables: DEFAULT_ARRAY,
-    capabilities: DEFAULT_ARRAY,
-    highlights: DEFAULT_ARRAY,
-    subServices: DEFAULT_ARRAY,
-    sections: [
-      {
-        title: "Multi-Jurisdiction Entity Registration",
-        description: "Direct incorporation across Singapore VCC, Mauritius GBL, Cayman LLCs, and UAE Free Zones."
-      }
-    ]
-  },
-  {
-    id: "03",
-    num: "03",
-    slug: "international-licensing",
-    title: "International Licensing",
-    name: "International Licensing",
-    category: "Regulatory",
-    description: "Advisory around regulated and specialist business licences, including investment, financial, securities, and fund managers.",
-    overview: "Navigating complex financial service licensing, investment advisor authorizations, and regulatory approvals with global authorities.",
-    image: IMAGES_MAP.licensing,
-    heroImage: IMAGES_MAP.licensing,
-    bgImage: IMAGES_MAP.licensing,
-    features: DEFAULT_ARRAY,
-    deliverables: DEFAULT_ARRAY,
-    capabilities: DEFAULT_ARRAY,
-    highlights: DEFAULT_ARRAY,
-    subServices: DEFAULT_ARRAY,
-    sections: []
-  },
-  {
-    id: "04",
-    num: "04",
-    slug: "banking-financial-infrastructure",
-    title: "Banking & Financial Infrastructure",
-    name: "Banking & Financial Infrastructure",
-    category: "Banking Support",
-    description: "Support in navigating banking relationships and financial infrastructure requirements globally.",
-    overview: "Establishing corporate banking, multi-currency treasury accounts, and institutional payment channels for global corporate groups.",
-    image: IMAGES_MAP.banking,
-    heroImage: IMAGES_MAP.banking,
-    bgImage: IMAGES_MAP.banking,
-    features: DEFAULT_ARRAY,
-    deliverables: DEFAULT_ARRAY,
-    capabilities: DEFAULT_ARRAY,
-    highlights: DEFAULT_ARRAY,
-    subServices: DEFAULT_ARRAY,
-    sections: []
-  },
-  {
-    id: "05",
-    num: "05",
-    slug: "trusts-foundations",
-    title: "Trusts & Foundations",
-    name: "Trusts & Foundations",
-    category: "Private Wealth",
-    description: "International trust and foundation structuring for asset protection, estate planning, and private governance.",
-    overview: "Tailored private asset protection frameworks and generational estate structures engineered across top trust jurisdictions.",
-    image: IMAGES_MAP.trusts,
-    heroImage: IMAGES_MAP.trusts,
-    bgImage: IMAGES_MAP.trusts,
-    features: DEFAULT_ARRAY,
-    deliverables: DEFAULT_ARRAY,
-    capabilities: DEFAULT_ARRAY,
-    highlights: DEFAULT_ARRAY,
-    subServices: DEFAULT_ARRAY,
-    sections: []
-  },
-  {
-    id: "06",
-    num: "06",
-    slug: "investment-migration",
-    title: "Investment Migration Advisory",
-    name: "Investment Migration Advisory",
-    category: "Mobility",
-    description: "Advisory for internationally mobile business leaders and families on residency and citizenship programs.",
-    overview: "Strategic residency and citizenship planning through qualified business investment and real estate programs.",
-    image: IMAGES_MAP.migration,
-    heroImage: IMAGES_MAP.migration,
-    bgImage: IMAGES_MAP.migration,
-    features: DEFAULT_ARRAY,
-    deliverables: DEFAULT_ARRAY,
-    capabilities: DEFAULT_ARRAY,
-    highlights: DEFAULT_ARRAY,
-    subServices: DEFAULT_ARRAY,
-    sections: []
-  },
-  {
-    id: "07",
-    num: "07",
-    slug: "international-expansion",
-    title: "International Expansion",
-    name: "International Expansion",
-    category: "Cross-Border",
-    description: "Helping businesses evaluate new jurisdictions and launch operations across foreign markets.",
-    overview: "Guiding mid-market enterprises and tech firms through geographic expansion, local compliance, and cross-border JV setups.",
-    image: IMAGES_MAP.expansion,
-    heroImage: IMAGES_MAP.expansion,
-    bgImage: IMAGES_MAP.expansion,
-    features: DEFAULT_ARRAY,
-    deliverables: DEFAULT_ARRAY,
-    capabilities: DEFAULT_ARRAY,
-    highlights: DEFAULT_ARRAY,
-    subServices: DEFAULT_ARRAY,
-    sections: []
-  },
-  {
-    id: "08",
-    num: "08",
-    slug: "tax-efficient-structuring",
-    title: "Tax-Efficient Structuring",
-    name: "Tax-Efficient Structuring",
-    category: "Tax Advisory",
-    description: "Strategic structuring considerations designed with appropriate professional and jurisdictional advice.",
-    overview: "Designing tax-neutral holding architectures and optimizing cross-border capital distributions under international DTAAs.",
-    image: IMAGES_MAP.tax,
-    heroImage: IMAGES_MAP.tax,
-    bgImage: IMAGES_MAP.tax,
-    features: DEFAULT_ARRAY,
-    deliverables: DEFAULT_ARRAY,
-    capabilities: DEFAULT_ARRAY,
-    highlights: DEFAULT_ARRAY,
-    subServices: DEFAULT_ARRAY,
-    sections: []
-  },
-  {
-    id: "09",
-    num: "09",
-    slug: "fund-solutions",
-    title: "Alternative Fund Advisory & Structuring",
-    name: "Alternative Fund Advisory & Structuring",
-    category: "Funds",
-    description: "Structuring private equity, venture capital, and hedge funds across global hubs.",
-    overview: "Turnkey fund formation and fund administration workflows for alternative asset managers.",
-    image: IMAGES_MAP.funds,
-    heroImage: IMAGES_MAP.funds,
-    bgImage: IMAGES_MAP.funds,
-    features: DEFAULT_ARRAY,
-    deliverables: DEFAULT_ARRAY,
-    capabilities: DEFAULT_ARRAY,
-    highlights: DEFAULT_ARRAY,
-    subServices: DEFAULT_ARRAY,
-    sections: []
-  },
-  {
-    id: "10",
-    num: "10",
-    slug: "regulatory-compliance",
-    title: "Regulatory Compliance & Substance",
-    name: "Regulatory Compliance & Substance",
-    category: "Compliance",
-    description: "Ensuring ongoing compliance with FATCA, CRS, and Economic Substance laws.",
-    overview: "Continuous regulatory reporting, corporate secretarial management, and substance audit defense.",
-    image: IMAGES_MAP.compliance,
-    heroImage: IMAGES_MAP.compliance,
-    bgImage: IMAGES_MAP.compliance,
-    features: DEFAULT_ARRAY,
-    deliverables: DEFAULT_ARRAY,
-    capabilities: DEFAULT_ARRAY,
-    highlights: DEFAULT_ARRAY,
-    subServices: DEFAULT_ARRAY,
-    sections: []
-  },
-  {
-    id: "11",
-    num: "11",
-    slug: "asset-protection",
-    title: "Asset Protection & Private Wealth",
-    name: "Asset Protection & Private Wealth",
-    category: "Private Wealth",
-    description: "Safeguarding institutional and family assets through robust cross-border legal structures.",
-    overview: "Comprehensive private wealth preservation and succession planning solutions.",
-    image: IMAGES_MAP.wealth,
-    heroImage: IMAGES_MAP.wealth,
-    bgImage: IMAGES_MAP.wealth,
-    features: DEFAULT_ARRAY,
-    deliverables: DEFAULT_ARRAY,
-    capabilities: DEFAULT_ARRAY,
-    highlights: DEFAULT_ARRAY,
-    subServices: DEFAULT_ARRAY,
-    sections: []
-  }
-];
-
-// Aliases for component imports
-export const EXPERTISE_LIST = SERVICES;
-export const SERVICE_LIST = SERVICES;
-export const SOLUTIONS = SERVICES;
-export const FEATURES = SERVICES;
-export const CAPABILITIES = SERVICES;
-export const PRACTICE_AREAS = SERVICES;
-export const OFFERINGS = SERVICES;
-
-// Jurisdictions Data
-export const JURISDICTIONS = [
-  {
-    id: "singapore",
-    slug: "singapore",
-    name: "Singapore",
-    region: "Asia-Pacific",
-    title: "Asian Financial & Holding Hub",
-    description: "Premier global financial center with extensive double taxation treaties and stable regulatory framework.",
-    image: IMAGES_MAP.corporate,
-    highlights: ["17% Corporate Tax Rate", "Over 90 Tax Treaties", "No Capital Gains Tax"]
-  },
-  {
-    id: "mauritius",
-    slug: "mauritius",
-    name: "Mauritius",
-    region: "Africa & Asia Gateway",
-    title: "International Financial Centre",
-    description: "Preferred platform for cross-border investments into Africa and Asia, offering tax efficiency.",
-    image: IMAGES_MAP.setup,
-    highlights: ["Partial Exemption Regime", "No Withholding Taxes", "Extensive DTAA Network"]
-  },
-  {
-    id: "cayman-islands",
-    slug: "cayman-islands",
-    name: "Cayman Islands",
-    region: "Americas & Caribbean",
-    title: "Global Investment Fund Hub",
-    description: "The world's leading domicile for alternative investment funds and private equity vehicles.",
-    image: IMAGES_MAP.licensing,
-    highlights: ["Tax-Neutral Jurisdiction", "Flexible Fund Structures", "Global Recognition"]
-  },
-  {
-    id: "uae",
-    slug: "uae",
-    name: "UAE (DIFC / ADGM)",
-    region: "Middle East",
-    title: "Middle East Financial Heartland",
-    description: "Common-law financial free zones offering 100% foreign ownership and zero personal tax.",
-    image: IMAGES_MAP.banking,
-    highlights: ["0% Personal Income Tax", "100% Foreign Ownership", "Common Law System"]
-  }
-];
-
-export const JURISDICTION_LIST = JURISDICTIONS;
-export const LOCATIONS = JURISDICTIONS;
-
-// Helper lookup function to avoid undefined returns
-export const getServiceBySlug = (slug) => {
-  return SERVICES.find(s => s.slug === slug) || SERVICES[0];
-};
-
-export const getJurisdictionBySlug = (slug) => {
-  return JURISDICTIONS.find(j => j.slug === slug) || JURISDICTIONS[0];
-};
-
-export default db;
