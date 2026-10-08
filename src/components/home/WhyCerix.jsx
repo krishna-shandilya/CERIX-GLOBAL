@@ -20,7 +20,7 @@ export default function WhyCerix() {
           {/* Image with parallax + clip reveal */}
           <div className="lg:col-span-6 order-2 lg:order-1">
             <ParallaxImage
-              src={IMAGES.whyCerix}
+              src={IMAGES.corporate}
               alt="Modern geometric glass building facade with reflective windows"
               parallax={50}
               direction="up"
