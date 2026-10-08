@@ -1,8 +1,10 @@
 import { IMAGES, IMAGE_ALT } from "./siteImages";
 
+// Re-exports from siteImages
 export { IMAGES, IMAGE_ALT };
 export const SITE_IMAGES = IMAGES;
 
+// Safe Mock Client & DB setup
 const safeAuth = {
   isAuthenticated: async () => false,
   me: async () => null,
@@ -43,10 +45,12 @@ const safeDb = new Proxy({}, {
   }
 });
 
+// Database & Client exports
 export const db = globalThis.__B44_DB__ || safeDb;
 export const base44 = db;
 export const cerixData = db;
 
+// Auth helper exports
 export const isAuthenticated = safeAuth.isAuthenticated;
 export const me = safeAuth.me;
 export const getUser = safeAuth.getUser;
@@ -59,6 +63,7 @@ export const redirectToLogin = safeAuth.redirectToLogin;
 export const getToken = safeAuth.getToken;
 export const getAccessToken = safeAuth.getAccessToken;
 
+// CRUD & Storage exports
 export const UploadFile = async () => ({ file_url: "" });
 export const uploadFile = UploadFile;
 export const create = async () => ({});
@@ -67,7 +72,8 @@ export const remove = async () => ({});
 export const filter = async () => [];
 export const get = async () => null;
 
-const BASE = "[https://media.db.com/images/public/6aba6a983679dc865cd49028](https://media.db.com/images/public/6aba6a983679dc865cd49028)";
+// Media & Image URLs
+const BASE = "https://media.db.com/images/public/6aba6a983679dc865cd49028";
 
 export const JURISDICTION_IMAGES = {
   Singapore: BASE + "/4fb635d66_generated_image.png",
@@ -82,6 +88,48 @@ export const JURISDICTION_IMAGES = {
   "St. Kitts & Nevis": BASE + "/492099dd5_generated_image.png"
 };
 
+// Insights & Articles Data (Fixes Insights.jsx)
+export const INSIGHT_CATEGORIES = [
+  "All",
+  "Regulatory & Tax",
+  "Fund Structuring",
+  "Cross-Border Corporate",
+  "Asset Protection"
+];
+
+export const CATEGORIES = INSIGHT_CATEGORIES;
+export const BLOG_CATEGORIES = INSIGHT_CATEGORIES;
+
+export const INSIGHTS = [
+  {
+    id: "1",
+    slug: "navigating-economic-substance-2026",
+    title: "Navigating Economic Substance Regulations Across IFCs",
+    excerpt: "Key compliance updates for holding entities and fund managers operating across Mauritius, Cayman Islands, and UAE.",
+    category: "Regulatory & Tax",
+    date: "Oct 2026",
+    readTime: "5 min read",
+    author: "Cerix Advisory Team",
+    image: JURISDICTION_IMAGES.Singapore
+  },
+  {
+    id: "2",
+    slug: "structuring-alternative-investment-funds-singapore-vcc",
+    title: "Structuring AIFs via the Singapore Variable Capital Company (VCC)",
+    excerpt: "Why regional fund managers are choosing the VCC umbrella structure for multi-sub-fund flexibility and tax neutrality.",
+    category: "Fund Structuring",
+    date: "Sep 2026",
+    readTime: "7 min read",
+    author: "Cerix Advisory Team",
+    image: JURISDICTION_IMAGES.Mauritius
+  }
+];
+
+export const ARTICLES = INSIGHTS;
+export const BLOG_POSTS = INSIGHTS;
+export const POSTS = INSIGHTS;
+
+// Jurisdictions Data
 export const JURISDICTIONS = [
   {
     id: "singapore",
@@ -188,6 +236,7 @@ export const JURISDICTIONS = [
 export const JURISDICTION_LIST = JURISDICTIONS;
 export const LOCATIONS = JURISDICTIONS;
 
+// Services & Offerings Data
 export const SERVICES = [
   {
     slug: "corporate-structuring",
@@ -226,6 +275,7 @@ export const CAPABILITIES = SERVICES;
 export const PRACTICE_AREAS = SERVICES;
 export const OFFERINGS = SERVICES;
 
+// Advisory / Client Segment Data
 export const WHO_WE_ADVISE = [
   {
     id: "funds",
@@ -260,6 +310,7 @@ export const TARGET_AUDIENCE = WHO_WE_ADVISE;
 export const AUDIENCE = WHO_WE_ADVISE;
 export const INDUSTRIES = WHO_WE_ADVISE;
 
+// Process & Approach Data
 export const APPROACH_STAGES = [
   {
     step: "01",
@@ -288,6 +339,7 @@ export const PROCESS = APPROACH_STAGES;
 export const METHODOLOGY = APPROACH_STAGES;
 export const STEPS = APPROACH_STAGES;
 
+// Metrics & Stats Data
 export const STATS = [
   { value: "10+", label: "Global Domiciles" },
   { value: "$2.5B+", label: "Assets Structured" },
@@ -300,6 +352,7 @@ export const METRICS = STATS;
 export const NUMBERS = STATS;
 export const HIGHLIGHTS = STATS;
 
+// FAQ Data
 export const FAQS = [
   {
     question: "Which jurisdiction is right for my holding company or investment fund?",
@@ -318,6 +371,7 @@ export const FAQS = [
 export const FAQ = FAQS;
 export const QUESTIONS = FAQS;
 
+// Testimonials Data
 export const TESTIMONIALS = [
   {
     quote: "Cerix Global's expertise in cross-border fund structuring saved us months of regulatory friction across Mauritius and the Cayman Islands.",
@@ -335,6 +389,7 @@ export const REVIEWS = TESTIMONIALS;
 export const CASE_STUDIES = TESTIMONIALS;
 export const STORIES = TESTIMONIALS;
 
+// Hero Data
 export const HERO_CONTENT = {
   title: "Precision Cross-Border Structuring & Global Advisory",
   subtitle: "Structuring international funds, corporate entities, and private wealth vehicles across premier financial jurisdictions.",
@@ -345,6 +400,7 @@ export const HERO_CONTENT = {
 export const HERO = HERO_CONTENT;
 export const HERO_DATA = HERO_CONTENT;
 
+// Navigation Data
 export const NAV_ITEMS = [
   { name: "Services", href: "#services" },
   { name: "Jurisdictions", href: "#jurisdictions" },
@@ -358,6 +414,7 @@ export const FOOTER_LINKS = NAV_ITEMS;
 export const NAVIGATION = NAV_ITEMS;
 export const MENU_ITEMS = NAV_ITEMS;
 
+// Company Info Data
 export const COMPANY_INFO = {
   name: "Cerix Global",
   tagline: "International Corporate Advisory & Structuring",
