@@ -1,4 +1,5 @@
 const imgMap = {
+  whyCerix: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop",
   corporate: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop",
   setup: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
   licensing: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1600&auto=format&fit=crop",
@@ -78,7 +79,8 @@ export const WHO_WE_ADVISE = [
     description: "Cross-border corporate groups requiring multi-jurisdictional holding, operational, and tax-efficient structures.",
     image: imgMap.corporate,
     heroImage: imgMap.corporate,
-    bgImage: imgMap.corporate
+    bgImage: imgMap.corporate,
+    thumbnail: imgMap.corporate
   },
   {
     id: "02",
@@ -89,7 +91,8 @@ export const WHO_WE_ADVISE = [
     description: "Emerging and established investment managers establishing private equity, venture capital, or hedge fund vehicles.",
     image: imgMap.funds,
     heroImage: imgMap.funds,
-    bgImage: imgMap.funds
+    bgImage: imgMap.funds,
+    thumbnail: imgMap.funds
   },
   {
     id: "03",
@@ -100,7 +103,8 @@ export const WHO_WE_ADVISE = [
     description: "Ultra-high-net-worth families seeking succession planning, foundation setups, and global wealth preservation.",
     image: imgMap.wealth,
     heroImage: imgMap.wealth,
-    bgImage: imgMap.wealth
+    bgImage: imgMap.wealth,
+    thumbnail: imgMap.wealth
   },
   {
     id: "04",
@@ -111,7 +115,8 @@ export const WHO_WE_ADVISE = [
     description: "Expanding technology businesses establishing regional headquarters, IP holding entities, and global banking.",
     image: imgMap.expansion,
     heroImage: imgMap.expansion,
-    bgImage: imgMap.expansion
+    bgImage: imgMap.expansion,
+    thumbnail: imgMap.expansion
   }
 ];
 
@@ -406,7 +411,6 @@ export const CAPABILITIES = SERVICES;
 export const PRACTICE_AREAS = SERVICES;
 export const OFFERINGS = SERVICES;
 
-// The exact 10 Jurisdictions matching Screenshot 22
 export const JURISDICTIONS = [
   {
     id: "singapore",
