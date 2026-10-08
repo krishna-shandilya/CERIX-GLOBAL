@@ -1,14 +1,14 @@
 const imgMap = {
   corporate: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop",
   setup: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
-  licensing: "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1600&auto=format&fit=crop",
+  licensing: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1600&auto=format&fit=crop",
   banking: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=1600&auto=format&fit=crop",
   trusts: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1600&auto=format&fit=crop",
   migration: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1600&auto=format&fit=crop",
   expansion: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1600&auto=format&fit=crop",
   tax: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1600&auto=format&fit=crop",
   funds: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1600&auto=format&fit=crop",
-  compliance: "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1600&auto=format&fit=crop",
+  compliance: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1600&auto=format&fit=crop",
   wealth: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop",
   insights: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1600&auto=format&fit=crop"
 };
@@ -435,6 +435,46 @@ export const JURISDICTIONS = [
     description: "Common-law financial free zones offering 100% foreign ownership and zero personal tax.",
     image: imgMap.banking,
     highlights: ["0% Personal Income Tax", "100% Foreign Ownership", "Common Law System"]
+  },
+  {
+    id: "bvi",
+    slug: "bvi",
+    name: "British Virgin Islands",
+    region: "Caribbean",
+    title: "Global Corporate Structuring Hub",
+    description: "Renowned offshore center offering streamlined business incorporation and flexible corporate laws.",
+    image: imgMap.trusts,
+    highlights: ["Flexible Company Law", "Tax-Neutral Regime", "Global Banking Acceptance"]
+  },
+  {
+    id: "switzerland",
+    slug: "switzerland",
+    name: "Switzerland",
+    region: "Europe",
+    title: "Premier Private Wealth & Holding Hub",
+    description: "Renowned European jurisdiction providing absolute financial stability and elite banking infrastructure.",
+    image: imgMap.wealth,
+    highlights: ["Strong Banking Secrecy", "Stable Political Climate", "Holding Tax Exemptions"]
+  },
+  {
+    id: "luxembourg",
+    slug: "luxembourg",
+    name: "Luxembourg",
+    region: "European Union",
+    title: "European Fund & Investment Hub",
+    description: "The premier European domicile for UCITS, alternative investment funds, and cross-border holding vehicles.",
+    image: imgMap.funds,
+    highlights: ["EU Passporting Rights", "Sophisticated Fund Toolkit", "Extensive Treaty Network"]
+  },
+  {
+    id: "united-kingdom",
+    slug: "united-kingdom",
+    name: "United Kingdom",
+    region: "Europe",
+    title: "Global Commercial & Trading Center",
+    description: "Established common-law jurisdiction offering deep capital markets and robust corporate credibility.",
+    image: imgMap.expansion,
+    highlights: ["Extensive DTA Network", "English Common Law", "Global Investor Trust"]
   }
 ];
 
