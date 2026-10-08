@@ -17,7 +17,7 @@ const CARDS = [
     slug: "corporate-structuring",
     title: "Tax-Efficient Structuring",
     short: "Strategic structuring considerations designed with appropriate professional and jurisdictional advice.",
-    image: IMAGES.taxStructuring,
+    image: IMAGES.tax,
     label: "08",
     isTax: true,
   },
