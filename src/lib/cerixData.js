@@ -213,16 +213,7 @@ export const SERVICES = [
     capabilities: defaultArr,
     highlights: defaultArr,
     subServices: defaultArr,
-    sections: [
-      {
-        title: "Holding Company Architectures",
-        description: "Designing holding structures across Singapore, Mauritius, Cayman, and UAE to optimize dividend flows and equity retention."
-      },
-      {
-        title: "Operational Substance & Governance",
-        description: "Implementing local directorship, physical office footprints, and active management protocols to comply with economic substance rules."
-      }
-    ]
+    sections: []
   },
   {
     id: "02",
@@ -232,7 +223,30 @@ export const SERVICES = [
     name: "Company Incorporation & Business Setup",
     category: "Entity Setup",
     description: "International company formation and end-to-end establishment support across selected jurisdictions.",
-    overview: "End-to-end entity setup and statutory incorporation across major offshore and onshore hubs, ensuring seamless legal standing and operational readiness.",
+    overview: "We support the formation and establishment of companies across selected jurisdictions — from initial entity selection through registration, statutory compliance and operational readiness.",
+    whoItsFor: "Founders, businesses and investors establishing a new legal entity in an international jurisdiction.",
+    typicalConsiderations: [
+      { num: "01", title: "Entity type and jurisdiction selection" },
+      { num: "02", title: "Registered office, directors and company secretary" },
+      { num: "03", title: "Statutory filings and ongoing compliance" },
+      { num: "04", title: "Banking and operational account setup" }
+    ],
+    theApproach: "We coordinate the full establishment process — engaging local registered agents and partners where required — so that the entity is properly constituted and operationally ready.",
+    relatedJurisdictions: ["UAE", "Singapore", "Mauritius", "Seychelles", "Belize"],
+    faqs: [
+      {
+        question: "Which jurisdictions do you incorporate in?",
+        answer: "We work across a curated set of jurisdictions selected for their relevance to international business. Suitability depends entirely on the client's objectives."
+      },
+      {
+        question: "Do you provide ongoing administration?",
+        answer: "We coordinate registered office, compliance and administration support through local partners where the jurisdiction requires it."
+      },
+      {
+        question: "Can you help with banking after incorporation?",
+        answer: "Yes. We support introductions and the preparation required for banking relationships, though account opening remains at the discretion of the financial institution."
+      }
+    ],
     image: imgMap.setup,
     heroImage: imgMap.setup,
     bgImage: imgMap.setup,
@@ -732,7 +746,7 @@ export function getJurisdictionBySlug(slug) {
 export function getInsightBySlug(slug) {
   for (var i = 0; INSIGHTS && INSIGHTS.length && i < INSIGHTS.length; i++) {
     if (INSIGHTS[i].slug === slug) {
-      return new Proxy(INSIGHTS[i], shortlistedHandler(INSIGHTS[i]));
+      return new Proxy(INSIGHTS[i], universalSafeHandler);
     }
   }
   return new Proxy(INSIGHTS[0], universalSafeHandler);
