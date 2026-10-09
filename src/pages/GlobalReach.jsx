@@ -1,12 +1,16 @@
 import React from 'react';
-import { JURISDICTIONS } from '../lib/cerixData';
+import { Link } from 'react-router-dom';
+import { JURISDICTIONS, IMAGES } from '../lib/cerixData';
 
 export default function GlobalReachPage() {
   return (
     <div className="min-h-screen bg-[#FDFBF7] text-[#1A1A1A]">
-      {/* Exact Homepage Dark Green Hero Header */}
-      <section className="bg-[#0D1F17] text-white pt-32 pb-20 px-6 md:px-12 lg:px-24">
-        <div className="max-w-7xl mx-auto">
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-24 px-6 md:px-12 lg:px-24 bg-[#142B20] text-white overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-30">
+          <img src={IMAGES.corporate} alt="Global Reach" className="w-full h-full object-cover" />
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-4">
             <span className="h-px w-8 bg-[#C86D51]"></span>
             <span className="text-[#C86D51] font-mono uppercase tracking-widest text-xs">
@@ -22,11 +26,11 @@ export default function GlobalReachPage() {
         </div>
       </section>
 
-      {/* Jurisdictions Content Grid */}
+      {/* Jurisdictions Grid */}
       <section className="max-w-7xl mx-auto px-6 md:px-12 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {JURISDICTIONS.map((jur, idx) => (
-            <div key={jur.slug || idx} className="bg-white p-8 border border-[#E5E0D8] shadow-sm flex flex-col justify-between">
+            <div key={jur.slug || idx} className="bg-white p-8 border border-[#E5E0D8] shadow-sm flex flex-col justify-between group hover:border-[#C86D51] transition-colors">
               <div>
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-[#C86D51] font-mono text-xs uppercase tracking-widest">{jur.region}</span>
