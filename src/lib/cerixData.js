@@ -81,7 +81,18 @@ export const SERVICES = [
     category: "Corporate Advisory",
     description: "Cross-border corporate architecture designed around commercial, operational and strategic objectives.",
     overview: "We design cross-border corporate architectures that align holding, operating and investment entities with commercial objectives, regulatory realities and long-term strategic intent.",
-    image: imgMap.corporate
+    image: imgMap.corporate,
+    typicalConsiderations: [
+      { num: "01", title: "Holding-company jurisdiction and intermediate entities" },
+      { num: "02", title: "Substance, economic presence and governance requirements" },
+      { num: "03", title: "Intra-group flows, funding and treasury architecture" }
+    ],
+    theApproach: "We begin with the commercial objective, map the structural options across relevant jurisdictions, and design an architecture that is coherent, defensible and operationally practical.",
+    whoItsFor: "Multinational groups, holding companies, investment platforms and businesses with cross-border operations.",
+    relatedJurisdictions: ["UAE", "Singapore", "Cyprus", "Mauritius", "Malta"],
+    faqs: [
+      { question: "Is corporate structuring the same as tax planning?", answer: "No. Corporate structuring is primarily about commercial and operational architecture." }
+    ]
   },
   {
     id: "02",
@@ -91,7 +102,15 @@ export const SERVICES = [
     category: "Entity Setup",
     description: "International company formation and end-to-end establishment support across selected jurisdictions.",
     overview: "We support the formation and establishment of companies across selected jurisdictions — from initial entity selection through registration and operational readiness.",
-    image: imgMap.setup
+    image: imgMap.setup,
+    typicalConsiderations: [
+      { num: "01", title: "Entity type and jurisdiction selection" },
+      { num: "02", title: "Registered office, directors and company secretary" }
+    ],
+    theApproach: "We coordinate the full establishment process — engaging local registered agents and partners where required.",
+    whoItsFor: "Founders, businesses and investors establishing a new legal entity in an international jurisdiction.",
+    relatedJurisdictions: ["UAE", "Singapore", "Mauritius", "Seychelles"],
+    faqs: []
   },
   {
     id: "03",
@@ -101,7 +120,12 @@ export const SERVICES = [
     category: "Regulatory",
     description: "Advisory around regulated and specialist business licences, including investment, financial, securities, and fund managers.",
     overview: "We advise on and coordinate regulatory licensing processes for financial, investment, digital-asset and specialized commercial activities.",
-    image: imgMap.licensing
+    image: imgMap.licensing,
+    typicalConsiderations: [],
+    theApproach: "We assess the licensing regime against the business activity and coordinate with local counsel.",
+    whoItsFor: "Financial institutions, fintechs, investment managers and commercial enterprises.",
+    relatedJurisdictions: ["Mauritius", "Seychelles", "Cayman"],
+    faqs: []
   },
   {
     id: "04",
@@ -110,8 +134,13 @@ export const SERVICES = [
     title: "Banking & Financial Infrastructure",
     category: "Banking Support",
     description: "Support in navigating banking relationships and financial infrastructure requirements globally.",
-    overview: "We assist businesses and private clients in navigating international banking relationships, preparing institutional compliance files, and establishing treasury infrastructure.",
-    image: imgMap.banking
+    overview: "We assist businesses and private clients in navigating international banking relationships and establishing treasury infrastructure.",
+    image: imgMap.banking,
+    typicalConsiderations: [],
+    theApproach: "We prepare documentation and compliance files required by financial institutions.",
+    whoItsFor: "Businesses and individuals establishing or restructuring international banking relationships.",
+    relatedJurisdictions: ["UAE", "Singapore", "Mauritius"],
+    faqs: []
   },
   {
     id: "05",
@@ -120,8 +149,13 @@ export const SERVICES = [
     title: "Trusts & Foundations",
     category: "Private Wealth",
     description: "International trust and foundation structuring for asset protection, estate planning, and private governance.",
-    overview: "We advise on and coordinate the establishment of international trusts, foundations and private wealth vehicles for succession planning and asset protection.",
-    image: imgMap.trusts
+    overview: "We advise on and coordinate the establishment of international trusts, foundations and private wealth vehicles.",
+    image: imgMap.trusts,
+    typicalConsiderations: [],
+    theApproach: "We begin with family objectives and coordinate establishment with qualified trustees.",
+    whoItsFor: "Families, principals and private clients considering succession and asset protection.",
+    relatedJurisdictions: ["Mauritius", "Cyprus", "Malta"],
+    faqs: []
   },
   {
     id: "06",
@@ -130,8 +164,13 @@ export const SERVICES = [
     title: "Investment Migration Advisory",
     category: "Mobility",
     description: "Advisory for internationally mobile business leaders and families on residency and citizenship programs.",
-    overview: "We advise internationally mobile individuals and families on investment migration programmes, coordinating with licensed agents and immigration counsel.",
-    image: imgMap.migration
+    overview: "We advise internationally mobile individuals and families on investment migration programmes.",
+    image: imgMap.migration,
+    typicalConsiderations: [],
+    theApproach: "We help families clarify objectives and coordinate applications with licensed agents.",
+    whoItsFor: "Individuals and families seeking alternative residency or citizenship through investment.",
+    relatedJurisdictions: ["Cyprus", "Malta", "UAE"],
+    faqs: []
   },
   {
     id: "07",
@@ -140,8 +179,13 @@ export const SERVICES = [
     title: "International Expansion",
     category: "Cross-Border",
     description: "Helping businesses evaluate new jurisdictions and launch operations across foreign markets.",
-    overview: "We help businesses evaluate jurisdictions, establish structures and move toward operational readiness across foreign markets.",
-    image: imgMap.expansion
+    overview: "We help businesses evaluate jurisdictions, establish structures and move toward operational readiness.",
+    image: imgMap.expansion,
+    typicalConsiderations: [],
+    theApproach: "We assess market and jurisdiction against the business objective.",
+    whoItsFor: "Businesses planning to enter a new jurisdiction.",
+    relatedJurisdictions: ["UAE", "Singapore", "Malta"],
+    faqs: []
   },
   {
     id: "08",
@@ -150,8 +194,13 @@ export const SERVICES = [
     title: "Alternative Fund Advisory & Structuring",
     category: "Funds",
     description: "Structuring private equity, venture capital, and hedge funds across global hubs.",
-    overview: "We advise on and coordinate the structuring, formation and regulatory setup of alternative investment funds across major international jurisdictions.",
-    image: imgMap.funds
+    overview: "We advise on and coordinate the structuring, formation and regulatory setup of alternative investment funds.",
+    image: imgMap.funds,
+    typicalConsiderations: [],
+    theApproach: "We design fund architecture and coordinate setup with local counsel.",
+    whoItsFor: "Asset managers, fund sponsors, and institutional investors.",
+    relatedJurisdictions: ["Mauritius", "Cayman Islands", "BVI"],
+    faqs: []
   }
 ];
 
