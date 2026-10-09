@@ -134,7 +134,7 @@ export const SERVICES = [
     title: "Banking & Financial Infrastructure",
     category: "Banking Support",
     description: "Support in navigating banking relationships and financial infrastructure requirements globally.",
-    overview: "We assist businesses and private clients in navigating international banking relationships and establishing treasury infrastructure.",
+    overview: "We assist businesses and private clients in navigating international banking relationships, preparing institutional compliance files, and establishing treasury infrastructure.",
     image: imgMap.banking,
     typicalConsiderations: [],
     theApproach: "We prepare documentation and compliance files required by financial institutions.",
@@ -203,6 +203,14 @@ export const SERVICES = [
     faqs: []
   }
 ];
+
+export const EXPERTISE_LIST = SERVICES;
+export const SERVICE_LIST = SERVICES;
+export const SOLUTIONS = SERVICES;
+export const FEATURES = SERVICES;
+export const CAPABILITIES = SERVICES;
+export const PRACTICE_AREAS = SERVICES;
+export const OFFERINGS = SERVICES;
 
 export const JURISDICTIONS = [
   {
@@ -307,6 +315,9 @@ export const JURISDICTIONS = [
   }
 ];
 
+export const JURISDICTION_LIST = JURISDICTIONS;
+export const LOCATIONS = JURISDICTIONS;
+
 export const APPROACH_STAGES = [
   {
     number: "01",
@@ -333,6 +344,23 @@ export const APPROACH_STAGES = [
     details: "Ensuring continued compliance with FATCA, CRS, local tax filings, and institutional substance criteria."
   }
 ];
+
+export const PROCESS_STEPS = APPROACH_STAGES;
+export const STAGES = APPROACH_STAGES;
+export const METHODOLOGY = APPROACH_STAGES;
+export const APPROACH = APPROACH_STAGES;
+
+export const INSIGHT_CATEGORIES = [
+  "All",
+  "Regulatory & Compliance",
+  "Corporate Structuring",
+  "Private Wealth",
+  "Fund Advisory",
+  "Investment Migration"
+];
+
+export const CATEGORIES = INSIGHT_CATEGORIES;
+export const ARTICLE_CATEGORIES = INSIGHT_CATEGORIES;
 
 export const INSIGHTS = [
   {
@@ -366,6 +394,12 @@ export const INSIGHTS = [
     image: imgMap.trusts
   }
 ];
+
+export const ARTICLES = INSIGHTS;
+export const BLOG_POSTS = INSIGHTS;
+export const NEWS = INSIGHTS;
+export const RESOURCES = INSIGHTS;
+export const PUBLICATIONS = INSIGHTS;
 
 export function getServiceBySlug(slug) { return SERVICES.find(s => s.slug === slug) || SERVICES[0]; }
 export function getJurisdictionBySlug(slug) { return JURISDICTIONS.find(j => j.slug === slug) || JURISDICTIONS[0]; }
