@@ -1,179 +1,160 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import MotionText from "@/components/MotionText";
-import MagneticButton from "@/components/MagneticButton";
-import { Stagger, StaggerItem } from "@/components/Reveal";
-import ClientExperienceEntry from "@/components/ClientExperienceEntry";
-import { CLIENT_EXPERIENCES } from "@/lib/clientExperiences";
-
-const INTERESTS = [
-  "Corporate Structuring",
-  "Company Incorporation",
-  "International Licensing",
-  "Banking & Financial Infrastructure",
-  "Trusts & Foundations",
-  "Investment Migration",
-  "International Expansion",
-  "Other",
-];
+import React, { useState } from 'react';
 
 export default function ContactSection() {
-  const [form, setForm] = useState({ name: "", company: "", email: "", phone: "", country: "", interest: "", message: "" });
-  const [sent, setSent] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    company: '',
+    email: '',
+    phone: '',
+    country: '',
+    interest: '',
+    message: ''
+  });
 
-  const update = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
-  const submit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setSent(true);
+    alert('Thank you. Your inquiry has been submitted successfully.');
   };
 
   return (
-    <section id="contact" data-theme="light" className="relative bg-parchment text-obsidian py-40 lg:py-56 overflow-hidden">
-      <div className="coord-grid-light absolute inset-0 opacity-40" />
-      <div className="relative mx-auto max-w-[1500px] px-6 lg:px-12">
-        <div className="grid lg:grid-cols-12 gap-16 lg:gap-20">
-          {/* Left — headline + contact */}
-          <div className="lg:col-span-5">
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="eyebrow text-terracotta mb-8 flex items-center gap-4"
-            >
-              <span className="h-px w-10 bg-terracotta/60" />
-              10 — Contact
-            </motion.div>
-            <MotionText
-              text="Your next move starts with a conversation."
-              as="h2"
-              className="font-serif text-[2.8rem] sm:text-6xl lg:text-[4.5rem] leading-[1.02] text-obsidian text-balance"
-            />
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-8 font-sans text-lg lg:text-xl text-obsidian/65 leading-relaxed max-w-md font-light"
-            >
-              Tell us what you're building, where you're going and what you need to navigate.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-16 pt-10 border-t border-obsidian/12"
-            >
-              <p className="eyebrow text-terracotta mb-5">Cerix Global Consulting</p>
-              <p className="font-sans text-sm text-obsidian/70 leading-relaxed">
-                Bengaluru, India
-              </p>
-              <a href="mailto:info@cerixglobal.com" className="mt-3 inline-block font-serif text-3xl text-obsidian hover:text-olive-deep transition-colors duration-300">
-                info@cerixglobal.com
-              </a>
-            </motion.div>
-            <ul className="mt-10 border border-forest/15">
-              <ClientExperienceEntry entry={CLIENT_EXPERIENCES[1]} compact />
-            </ul>
+    <section className="min-h-screen bg-[#FDFBF7] text-[#1A1A1A] flex flex-col lg:flex-row border-t border-[#E5E0D8]">
+      {/* Left Column: Dark Forest Green Panel */}
+      <div className="lg:w-5/12 bg-[#142B20] text-white p-8 md:p-16 flex flex-col justify-between">
+        <div className="space-y-8 pt-16">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-8 bg-[#C86D51]"></span>
+            <span className="text-[#C86D51] font-mono uppercase tracking-widest text-xs">
+              CONTACT
+            </span>
           </div>
+          <h2 className="font-serif text-4xl md:text-6xl font-normal leading-tight text-white">
+            Your next move starts with a conversation.
+          </h2>
+          <p className="text-[#D4CFC4] text-lg font-light leading-relaxed">
+            Tell us what you're building, where you're going and what you need to navigate.
+          </p>
+        </div>
 
-          {/* Right — form */}
-          <div className="lg:col-span-7">
-            {sent ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.97 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="h-full min-h-[400px] flex flex-col items-center justify-center text-center p-12"
-              >
-                <div className="w-14 h-14 border border-terracotta flex items-center justify-center mb-8">
-                  <ArrowRight size={22} strokeWidth={1.5} className="text-terracotta" />
-                </div>
-                <h3 className="font-serif text-4xl text-obsidian mb-4">Thank you.</h3>
-                <p className="font-sans text-base text-obsidian/60 max-w-sm leading-relaxed">
-                  Your enquiry has been received. A member of our advisory team will be in touch shortly.
-                </p>
-              </motion.div>
-            ) : (
-              <Stagger interval={0.08} className="space-y-8">
-                <form onSubmit={submit}>
-                  <div className="grid sm:grid-cols-2 gap-8">
-                    <StaggerItem><Field label="Name" value={form.name} onChange={update("name")} required /></StaggerItem>
-                    <StaggerItem><Field label="Company" value={form.company} onChange={update("company")} /></StaggerItem>
-                  </div>
-                  <div className="grid sm:grid-cols-2 gap-8 mt-8">
-                    <StaggerItem><Field label="Email" type="email" value={form.email} onChange={update("email")} required /></StaggerItem>
-                    <StaggerItem><Field label="Phone" value={form.phone} onChange={update("phone")} /></StaggerItem>
-                  </div>
-                  <div className="mt-8">
-                    <StaggerItem>
-                      <Field label="Country / Region" value={form.country} onChange={update("country")} />
-                    </StaggerItem>
-                  </div>
-                  <div className="mt-8">
-                    <StaggerItem>
-                      <label className="eyebrow text-obsidian/55 mb-3 block">Area of Interest</label>
-                      <select
-                        value={form.interest}
-                        onChange={update("interest")}
-                        className="w-full bg-transparent border-b border-obsidian/20 py-3.5 font-sans text-base text-obsidian focus:border-terracotta outline-none transition-colors duration-300 [&>option]:bg-ivory"
-                      >
-                        <option value="">Select an area of interest</option>
-                        {INTERESTS.map((o) => (
-                          <option key={o} value={o}>{o}</option>
-                        ))}
-                      </select>
-                    </StaggerItem>
-                  </div>
-                  <div className="mt-8">
-                    <StaggerItem>
-                      <label className="eyebrow text-obsidian/55 mb-3 block">Message</label>
-                      <textarea
-                        rows={4}
-                        value={form.message}
-                        onChange={update("message")}
-                        required
-                        className="w-full bg-transparent border-b border-obsidian/20 py-3.5 font-sans text-base text-obsidian focus:border-terracotta outline-none transition-colors duration-300 resize-none"
-                      />
-                    </StaggerItem>
-                  </div>
-                  <StaggerItem className="pt-4">
-                    <MagneticButton strength={0.2}>
-                      <button
-                        type="submit"
-                        className="group inline-flex items-center gap-3 bg-terracotta text-ivory px-10 py-5 font-sans text-sm tracking-[0.14em] uppercase font-medium rounded-full hover:bg-olive-deep transition-colors duration-300"
-                      >
-                        Start a Conversation
-                        <ArrowRight size={16} strokeWidth={1.5} className="group-hover:translate-x-1.5 transition-transform duration-300" />
-                      </button>
-                    </MagneticButton>
-                  </StaggerItem>
-                </form>
-              </Stagger>
-            )}
+        <div className="pt-16 space-y-6">
+          <div className="border-t border-white/10 pt-6">
+            <span className="text-[#C86D51] font-mono text-xs uppercase tracking-widest block mb-2">
+              Direct Channel
+            </span>
+            <a 
+              href="https://t.me/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full text-xs font-mono uppercase tracking-wider text-white hover:bg-white/20 transition-all shadow-sm"
+            >
+              💬 Chat with us on Telegram
+            </a>
           </div>
         </div>
       </div>
-    </section>
-  );
-}
 
-function Field({ label, type = "text", value, onChange, required }) {
-  return (
-    <div>
-      <label className="eyebrow text-obsidian/55 mb-3 block">
-        {label}{required && <span className="text-terracotta ml-1">*</span>}
-      </label>
-      <input
-        type={type}
-        value={value}
-        onChange={onChange}
-        required={required}
-        className="w-full bg-transparent border-b border-obsidian/20 py-3.5 font-sans text-base text-obsidian focus:border-terracotta outline-none transition-colors duration-300"
-      />
-    </div>
+      {/* Right Column: Form Panel */}
+      <div className="lg:w-7/12 p-8 md:p-16 lg:p-24 bg-white flex flex-col justify-between">
+        <form onSubmit={handleSubmit} className="space-y-8 max-w-2xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-2">
+              <label className="text-xs font-mono uppercase tracking-wider text-[#777]">Name *</label>
+              <input 
+                type="text" 
+                required
+                placeholder="Full Name"
+                value={formData.name}
+                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#C86D51]"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-xs font-mono uppercase tracking-wider text-[#777]">Company</label>
+              <input 
+                type="text" 
+                placeholder="Company Name"
+                value={formData.company}
+                onChange={(e) => setFormData({...formData, company: e.target.value})}
+                className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#C86D51]"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-2">
+              <label className="text-xs font-mono uppercase tracking-wider text-[#777]">Email *</label>
+              <input 
+                type="email" 
+                required
+                placeholder="name@example.com"
+                value={formData.email}
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#C86D51]"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-xs font-mono uppercase tracking-wider text-[#777]">Phone</label>
+              <input 
+                type="tel" 
+                placeholder="+1 (555) 000-0000"
+                value={formData.phone}
+                onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#C86D51]"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-xs font-mono uppercase tracking-wider text-[#777]">Country / Region</label>
+            <input 
+              type="text" 
+              placeholder="e.g. United Arab Emirates, Singapore, Mauritius"
+              value={formData.country}
+              onChange={(e) => setFormData({...formData, country: e.target.value})}
+              className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#C86D51]"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-xs font-mono uppercase tracking-wider text-[#777]">Area of Interest</label>
+            <select 
+              value={formData.interest}
+              onChange={(e) => setFormData({...formData, interest: e.target.value})}
+              className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] focus:outline-none focus:border-[#C86D51]"
+            >
+              <option value="">Select an area of interest</option>
+              <option value="corporate">Corporate Structuring</option>
+              <option value="fund">Fund Setup & Licensing</option>
+              <option value="wealth">Family Office & Trusts</option>
+              <option value="migration">Investment Migration</option>
+            </select>
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-xs font-mono uppercase tracking-wider text-[#777]">Message</label>
+            <textarea 
+              rows={4}
+              placeholder="Tell us about your requirements..."
+              value={formData.message}
+              onChange={(e) => setFormData({...formData, message: e.target.value})}
+              className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#C86D51] resize-none"
+            ></textarea>
+          </div>
+
+          <div className="pt-4">
+            <button 
+              type="submit" 
+              className="rounded-full bg-[#142B20] text-white px-8 py-4 text-xs font-mono uppercase tracking-wider hover:bg-[#1A382B] transition-all flex items-center gap-3 shadow-sm"
+            >
+              Submit Inquiry →
+            </button>
+          </div>
+        </form>
+
+        <div className="pt-16 mt-16 border-t border-[#E5E0D8] text-xs font-mono text-[#777] flex flex-col md:flex-row justify-between gap-4">
+          <span>CERIX GLOBAL CONSULTING</span>
+          <a href="mailto:info@cerixglobal.com" className="hover:text-[#1A1A1A]">INFO@CERIXGLOBAL.COM</a>
+        </div>
+      </div>
+    </section>
   );
 }
