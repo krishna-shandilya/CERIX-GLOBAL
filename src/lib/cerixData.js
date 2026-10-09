@@ -433,7 +433,7 @@ export const JURISDICTIONS = [
     subtitle: "International Financial Centre",
     description: "A treaty-network jurisdiction used for holding, investment and trust structures with global fund credentials.",
     coordinates: "20° 10' S  57° 31' E",
-    image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1600&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1600&auto=format&fit=crop", // Port Louis modern skyline & harbor view
     highlights: ["Partial Exemption Regime", "No Withholding Taxes", "Extensive DTAA Network"]
   },
   {
@@ -457,7 +457,7 @@ export const JURISDICTIONS = [
     subtitle: "International Business Companies",
     description: "An international business company jurisdiction used for holding structures.",
     coordinates: "17° 15' N  88° 46' W",
-    image: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?q=80&w=1600&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=1600&auto=format&fit=crop", // Belize City waterfront / harbor view
     highlights: ["Fast Registration", "Full Exemption from Local Taxes", "Asset Protection"]
   },
   {
