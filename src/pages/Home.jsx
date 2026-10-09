@@ -1,14 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { SERVICES, WHO_WE_ADVISE, APPROACH_STAGES, JURISDICTIONS, INSIGHTS } from '../lib/cerixData';
+import { SERVICES, WHO_WE_ADVISE, APPROACH_STAGES, JURISDICTIONS, INSIGHTS, IMAGES } from '../lib/cerixData';
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#FDFBF7] text-[#1A1A1A]">
-      {/* Hero Section */}
+      {/* Section 1: Hero Section */}
       <section className="relative min-h-[90vh] flex flex-col justify-between bg-[#142B20] text-white px-6 md:px-12 lg:px-24 pt-32 pb-16 overflow-hidden">
-        {/* World Map Background Dot Matrix Simulation */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-full lg:w-3/5 h-full opacity-20 pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-full lg:w-3/5 h-full opacity-30 pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]">
+          <svg className="absolute inset-0 w-full h-full text-[#C86D51]" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M420 220 Q 550 180, 680 240" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.6"/>
+            <path d="M350 280 Q 500 380, 640 310" stroke="currentColor" strokeWidth="1.5" opacity="0.4"/>
+            <circle cx="420" cy="220" r="3" fill="currentColor"/>
+            <circle cx="680" cy="240" r="3" fill="currentColor"/>
+            <circle cx="350" cy="280" r="3" fill="currentColor"/>
+            <circle cx="640" cy="310" r="3" fill="currentColor"/>
+          </svg>
+        </div>
         
         <div className="relative z-10 max-w-7xl mx-auto w-full my-auto space-y-8">
           <div className="text-[#C86D51] font-mono uppercase tracking-widest text-xs">
@@ -30,7 +38,7 @@ export default function HomePage() {
             </Link>
             <Link
               to="/contact"
-              className="rounded-full bg-transparent border border-white/30 text-white hover:bg-white/10 px-8 py-4 text-xs font-mono uppercase tracking-wider transition-all flex items-center gap-2"
+              className="rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 px-8 py-4 text-xs font-mono uppercase tracking-wider transition-all flex items-center gap-2 shadow-sm"
             >
               Talk to Cerix Global →
             </Link>
@@ -42,7 +50,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Who We Advise Section */}
+      {/* Section 2: Who We Advise */}
       <section className="py-24 px-6 md:px-12 lg:px-24 bg-[#FDFBF7]">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-4">
@@ -65,7 +73,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Core Disciplines Section */}
+      {/* Section 3: Core Disciplines */}
       <section className="bg-[#142B20] text-white py-24 px-6 md:px-12 lg:px-24">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-end mb-16">
@@ -100,8 +108,46 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Approach Preview Section */}
-      <section className="py-24 px-6 md:px-12 lg:px-24 bg-[#FDFBF7]">
+      {/* Section 4: Built for Complexity */}
+      <section className="max-w-7xl mx-auto px-6 md:px-12 py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-6 relative h-[480px] overflow-hidden border border-[#E5E0D8] bg-[#EAE5DC] shadow-sm">
+            <img 
+              src={IMAGES.corporate} 
+              alt="International architecture and corporate structures" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute bottom-4 left-4 text-white text-xs font-mono bg-black/50 backdrop-blur-md px-3 py-1">
+              48° 51' N  2° 21' E
+            </div>
+          </div>
+          <div className="lg:col-span-6 space-y-6">
+            <div className="flex items-center gap-3 mb-2">
+              <span className="h-px w-8 bg-[#C86D51]"></span>
+              <span className="text-[#C86D51] font-mono uppercase tracking-widest text-xs">
+                09 — About Cerix Global
+              </span>
+            </div>
+            <h2 className="font-serif text-3xl md:text-5xl text-[#1A1A1A] leading-snug font-normal">
+              Built for complexity.
+            </h2>
+            <p className="text-[#4A4A4A] text-lg font-light leading-relaxed">
+              Cerix Global is an international consulting firm supporting corporate structuring, international licensing, business establishment, trusts and foundations, investment migration and related cross-border advisory requirements.
+            </p>
+            <p className="text-[#4A4A4A] text-lg font-light leading-relaxed">
+              Our network includes professionals and business partners across multiple jurisdictions — coordinated to address the full complexity of international structures.
+            </p>
+            <div className="pt-4">
+              <Link to="/about" className="font-mono text-xs uppercase tracking-wider text-[#C86D51] hover:underline">
+                Read More About Our Approach →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 5: Our Four-Stage Approach */}
+      <section className="py-24 px-6 md:px-12 lg:px-24 bg-[#FDFBF7] border-t border-[#E5E0D8]">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-end mb-16">
             <div>
@@ -128,7 +174,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Jurisdictions Preview Section */}
+      {/* Section 6: Key Jurisdictions */}
       <section className="py-24 px-6 md:px-12 lg:px-24 bg-[#EFECE6]">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-end mb-16">
@@ -164,8 +210,43 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Insights Section */}
-      <section className="py-24 px-6 md:px-12 lg:px-24 bg-[#FDFBF7]">
+      {/* Section 7: Principles */}
+      <section className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-24 bg-[#FDFBF7]">
+        <div className="mb-16">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="h-px w-8 bg-[#C86D51]"></span>
+            <span className="text-[#C86D51] font-mono uppercase tracking-widest text-xs">Principles</span>
+          </div>
+          <h2 className="font-serif text-3xl md:text-5xl text-[#1A1A1A]">Core tenets of practice.</h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="bg-white border border-[#E5E0D8] p-8 shadow-sm">
+            <span className="text-[#C86D51] font-mono text-sm block mb-3">01</span>
+            <h3 className="font-serif text-2xl text-[#1A1A1A] mb-3">Discretion</h3>
+            <p className="text-[#666] font-light leading-relaxed">
+              We operate with the confidentiality the subject matter demands.
+            </p>
+          </div>
+          <div className="bg-white border border-[#E5E0D8] p-8 shadow-sm">
+            <span className="text-[#C86D51] font-mono text-sm block mb-3">02</span>
+            <h3 className="font-serif text-2xl text-[#1A1A1A] mb-3">Coordination</h3>
+            <p className="text-[#666] font-light leading-relaxed">
+              We hold the strategic picture while local professionals execute the detail.
+            </p>
+          </div>
+          <div className="bg-white border border-[#E5E0D8] p-8 shadow-sm">
+            <span className="text-[#C86D51] font-mono text-sm block mb-3">03</span>
+            <h3 className="font-serif text-2xl text-[#1A1A1A] mb-3">No presumption</h3>
+            <p className="text-[#666] font-light leading-relaxed">
+              No jurisdiction is presumed suitable. Every structure begins with the objective.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 8: Perspectives on Architecture (Insights) */}
+      <section className="py-24 px-6 md:px-12 lg:px-24 bg-[#EFECE6]">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-end mb-16">
             <div>
@@ -202,6 +283,21 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Section 9: Bottom CTA Banner */}
+      <section className="bg-[#142B20] text-white py-16 px-6 md:px-12 lg:px-24">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+          <h2 className="font-serif text-3xl md:text-4xl font-normal">
+            Meet the team — when the conversation begins.
+          </h2>
+          <Link 
+            to="/contact" 
+            className="inline-flex items-center gap-3 rounded-full bg-white/10 backdrop-blur-md border border-white/25 text-white px-8 py-4 text-sm uppercase tracking-wider hover:bg-white/20 transition-all shadow-sm"
+          >
+            Start a Conversation <span className="text-[#C86D51]">→</span>
+          </Link>
         </div>
       </section>
     </div>
