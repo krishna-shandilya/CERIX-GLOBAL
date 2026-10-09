@@ -445,7 +445,7 @@ export const JURISDICTIONS = [
     subtitle: "EU Financial & Licensing Hub",
     description: "An EU jurisdiction offering holding structures, licensing frameworks and cross-border trading advantages.",
     coordinates: "35° 56' N  14° 22' E",
-    image: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=1600&auto=format&fit=crop", // Malta Valletta commercial downtown / capital architecture
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop", // Modern commercial downtown skyline
     highlights: ["EU Passporting Rights", "Effective Tax Refund System", "Robust Regulatory Oversight"]
   },
   {
@@ -457,7 +457,7 @@ export const JURISDICTIONS = [
     subtitle: "International Business Companies",
     description: "An international business company jurisdiction used for holding structures.",
     coordinates: "17° 15' N  88° 46' W",
-    image: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?q=80&w=1600&auto=format&fit=crop", // Belize City commercial downtown waterfront
+    image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1600&auto=format&fit=crop", // Modern commercial financial center downtown
     highlights: ["Fast Registration", "Full Exemption from Local Taxes", "Asset Protection"]
   },
   {
