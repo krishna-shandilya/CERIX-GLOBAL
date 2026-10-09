@@ -444,7 +444,7 @@ export const JURISDICTIONS = [
     title: "Malta",
     subtitle: "EU Financial & Licensing Hub",
     description: "An EU jurisdiction offering holding structures, licensing frameworks and cross-border trading advantages.",
-    coordinates: "35° 53' N  14° 30' E",
+    coordinates: "35° 56' N  14° 22' E",
     image: imgMap.licensing,
     highlights: ["EU Passporting Rights", "Effective Tax Refund System", "Robust Regulatory Oversight"]
   },
@@ -657,31 +657,66 @@ export const COMPANY_INFO = {
 export const CONTACT_INFO = COMPANY_INFO;
 export const SITE_CONFIG = COMPANY_INFO;
 
+// Safe Proxy Wrapper to completely eliminate undefined property access errors (like .split())
+const safeProxyHandler = {
+  get(target, prop) {
+    if (prop === Symbol.iterator || prop === 'constructor' || prop === 'then' || prop === 'toJSON') {
+      return target[prop];
+    }
+    if (prop in target) {
+      const val = target[prop];
+      if (val === undefined || val === null) {
+        return (prop === 'features' || prop === 'highlights' || prop === 'sections' || prop === 'subServices' || prop === 'capabilities' || prop === 'deliverables' || prop === 'categories') ? [] : "";
+      }
+      if (typeof val === 'object' && val !== null) {
+        if (Array.isArray(val)) {
+          return val.map(item => (typeof item === 'object' && item !== null ? new Proxy(item, safeProxyHandler) : item));
+        }
+        return new Proxy(val, safeProxyHandler);
+      }
+      return val;
+    }
+    if (prop === 'features' || prop === 'highlights' || prop === 'sections' || prop === 'subServices' || prop === 'capabilities' || prop === 'deliverables' || prop === 'categories') {
+      return [];
+    }
+    return "";
+  }
+};
+
+function proxyArray(arr) {
+  return arr.map(item => new Proxy(item, safeProxyHandler));
+}
+
+export const safeJURISDICTIONS = proxyArray(JURISDICTIONS);
+export const safeSERVICES = proxyArray(SERVICES);
+export const safeINSIGHTS = proxyArray(INSIGHTS);
+export const safeWHO_WE_ADVISE = proxyArray(WHO_WE_ADVISE);
+
 export function getServiceBySlug(slug) {
   for (var i = 0; i < SERVICES.length; i++) {
     if (SERVICES[i].slug === slug) {
-      return SERVICES[i];
+      return new Proxy(SERVICES[i], safeProxyHandler);
     }
   }
-  return SERVICES[0];
+  return new Proxy(SERVICES[0], safeProxyHandler);
 }
 
 export function getJurisdictionBySlug(slug) {
   for (var i = 0; JURISDICTIONS && i < JURISDICTIONS.length; i++) {
     if (JURISDICTIONS[i].slug === slug) {
-      return JURISDICTIONS[i];
+      return new Proxy(JURISDICTIONS[i], safeProxyHandler);
     }
   }
-  return JURISDICTIONS[0];
+  return new Proxy(JURISDICTIONS[0], safeProxyHandler);
 }
 
 export function getInsightBySlug(slug) {
   for (var i = 0; INSIGHTS && i < INSIGHTS.length; i++) {
     if (INSIGHTS[i].slug === slug) {
-      return INSIGHTS[i];
+      return new Proxy(INSIGHTS[i], safeProxyHandler);
     }
   }
-  return INSIGHTS[0];
+  return new Proxy(INSIGHTS[0], safeProxyHandler);
 }
 
 export default safeDb;
