@@ -180,7 +180,30 @@ export const SERVICES = [
     name: "International Corporate Structuring",
     category: "Corporate Advisory",
     description: "Cross-border corporate architecture designed around commercial, operational and strategic objectives.",
-    overview: "We design cross-border corporate architectures that align holding, operating and investment entities with commercial objectives, regulatory realities and long-term strategic intent.",
+    overview: "We design cross-border corporate architectures that align holding, operating and investment entities with commercial objectives, regulatory realities and long-term strategic intent — balancing substance, governance and operational efficiency.",
+    whoItsFor: "Multinational groups, holding companies, investment platforms and businesses with cross-border operations seeking coherent, defensible structures.",
+    typicalConsiderations: [
+      { num: "01", title: "Holding-company jurisdiction and intermediate entities" },
+      { num: "02", title: "Substance, economic presence and governance requirements" },
+      { num: "03", title: "Intra-group flows, funding and treasury architecture" },
+      { num: "04", title: "Succession and continuity planning across jurisdictions" }
+    ],
+    theApproach: "We begin with the commercial objective, map the structural options across relevant jurisdictions, and design an architecture that is coherent, defensible and operationally practical — coordinated with appropriate professional advice.",
+    relatedJurisdictions: ["UAE", "Singapore", "Cyprus", "Mauritius", "Malta"],
+    faqs: [
+      {
+        question: "Is corporate structuring the same as tax planning?",
+        answer: "No. Corporate structuring is primarily about commercial and operational architecture. Tax outcomes are a consideration, but specific tax advice must come from qualified professionals in the relevant jurisdictions."
+      },
+      {
+        question: "How long does a structuring engagement take?",
+        answer: "It varies with complexity. A focused review may take several weeks; a full multi-jurisdiction architecture can take longer, particularly where local partners and registrations are involved."
+      },
+      {
+        question: "Do you work with existing structures or only new ones?",
+        answer: "Both. We frequently review and refine existing structures, and design new architectures for businesses at the point of international expansion."
+      }
+    ],
     image: imgMap.corporate,
     heroImage: imgMap.corporate,
     bgImage: imgMap.corporate,
@@ -445,7 +468,7 @@ export const JURISDICTIONS = [
     subtitle: "EU Financial & Licensing Hub",
     description: "An EU jurisdiction offering holding structures, licensing frameworks and cross-border trading advantages.",
     coordinates: "35° 56' N  14° 22' E",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop", // Modern commercial downtown skyline
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop",
     highlights: ["EU Passporting Rights", "Effective Tax Refund System", "Robust Regulatory Oversight"]
   },
   {
@@ -457,7 +480,7 @@ export const JURISDICTIONS = [
     subtitle: "International Business Companies",
     description: "An international business company jurisdiction used for holding structures.",
     coordinates: "17° 15' N  88° 46' W",
-    image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1600&auto=format&fit=crop", // Modern commercial financial center downtown
+    image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1600&auto=format&fit=crop",
     highlights: ["Fast Registration", "Full Exemption from Local Taxes", "Asset Protection"]
   },
   {
@@ -709,7 +732,7 @@ export function getJurisdictionBySlug(slug) {
 export function getInsightBySlug(slug) {
   for (var i = 0; INSIGHTS && INSIGHTS.length && i < INSIGHTS.length; i++) {
     if (INSIGHTS[i].slug === slug) {
-      return new Proxy(INSIGHTS[i], universalSafeHandler);
+      return new Proxy(INSIGHTS[i], shortlistedHandler(INSIGHTS[i]));
     }
   }
   return new Proxy(INSIGHTS[0], universalSafeHandler);
