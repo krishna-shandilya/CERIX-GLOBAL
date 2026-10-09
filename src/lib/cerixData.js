@@ -433,7 +433,7 @@ export const JURISDICTIONS = [
     subtitle: "International Financial Centre",
     description: "A treaty-network jurisdiction used for holding, investment and trust structures with global fund credentials.",
     coordinates: "20° 10' S  57° 31' E",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop", // Downtown skyline with large commercial buildings
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop",
     highlights: ["Partial Exemption Regime", "No Withholding Taxes", "Extensive DTAA Network"]
   },
   {
@@ -445,7 +445,7 @@ export const JURISDICTIONS = [
     subtitle: "EU Financial & Licensing Hub",
     description: "An EU jurisdiction offering holding structures, licensing frameworks and cross-border trading advantages.",
     coordinates: "35° 56' N  14° 22' E",
-    image: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=1600&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=1600&auto=format&fit=crop", // Malta Valletta commercial downtown / capital architecture
     highlights: ["EU Passporting Rights", "Effective Tax Refund System", "Robust Regulatory Oversight"]
   },
   {
@@ -457,7 +457,7 @@ export const JURISDICTIONS = [
     subtitle: "International Business Companies",
     description: "An international business company jurisdiction used for holding structures.",
     coordinates: "17° 15' N  88° 46' W",
-    image: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?q=80&w=1600&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?q=80&w=1600&auto=format&fit=crop", // Belize City commercial downtown waterfront
     highlights: ["Fast Registration", "Full Exemption from Local Taxes", "Asset Protection"]
   },
   {
@@ -517,7 +517,7 @@ export const JURISDICTIONS = [
     subtitle: "International Business & Asset Protection",
     description: "An international business company jurisdiction used for holding and trading structures.",
     coordinates: "4° 40' S  55° 28' E",
-    image: "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?q=80&w=1600&auto=format&fit=crop", // La Digue beach / granite boulders & turquoise water
+    image: "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?q=80&w=1600&auto=format&fit=crop",
     highlights: ["High Privacy Standards", "Fast Incorporation", "Competitive Fees"]
   },
   {
