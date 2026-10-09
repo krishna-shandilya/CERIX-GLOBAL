@@ -1,15 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { IMAGES } from '../lib/cerixData';
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-[#FDFBF7] text-[#1A1A1A]">
-      <section className="relative pt-32 pb-24 px-6 md:px-12 lg:px-24 bg-[#142B20] text-white overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-30">
-          <img src={IMAGES.whyCerix} alt="About Cerix Global" className="w-full h-full object-cover" />
-        </div>
-        <div className="relative z-10 max-w-7xl mx-auto">
+      {/* Hero Section - Solid Dark Green matching Expertise */}
+      <section className="pt-32 pb-24 px-6 md:px-12 lg:px-24 bg-[#142B20] text-white">
+        <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-4">
             <span className="h-px w-8 bg-[#C86D51]"></span>
             <span className="text-[#C86D51] font-mono uppercase tracking-widest text-xs">
@@ -87,16 +84,16 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-[#8B3A2B] text-white py-16 px-6 md:px-12">
+      <section className="bg-[#142B20] text-white py-16 px-6 md:px-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
           <h2 className="font-serif text-3xl md:text-4xl font-normal">
             Meet the team — when the conversation begins.
           </h2>
           <Link 
             to="/contact" 
-            className="inline-flex items-center gap-3 bg-[#FDFBF7] text-[#1A1A1A] px-8 py-4 text-sm uppercase tracking-wider hover:bg-white transition-colors"
+            className="inline-flex items-center gap-3 rounded-full bg-white/10 backdrop-blur-md border border-white/25 text-white px-8 py-4 text-sm uppercase tracking-wider hover:bg-white/20 transition-all shadow-sm"
           >
-            Start a Conversation <span className="text-[#8B3A2B]">→</span>
+            Start a Conversation <span className="text-[#C86D51]">→</span>
           </Link>
         </div>
       </section>
