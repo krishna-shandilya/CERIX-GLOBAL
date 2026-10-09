@@ -433,7 +433,7 @@ export const JURISDICTIONS = [
     subtitle: "International Financial Centre",
     description: "A treaty-network jurisdiction used for holding, investment and trust structures with global fund credentials.",
     coordinates: "20° 10' S  57° 31' E",
-    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1600&auto=format&fit=crop", // Port Louis modern skyline & harbor view
+    image: "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?q=80&w=1600&auto=format&fit=crop", // Mauritius coastal / Port Louis view
     highlights: ["Partial Exemption Regime", "No Withholding Taxes", "Extensive DTAA Network"]
   },
   {
@@ -445,7 +445,7 @@ export const JURISDICTIONS = [
     subtitle: "EU Financial & Licensing Hub",
     description: "An EU jurisdiction offering holding structures, licensing frameworks and cross-border trading advantages.",
     coordinates: "35° 56' N  14° 22' E",
-    image: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=1600&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=1600&auto=format&fit=crop", // Valletta capital architecture & grand harbor
     highlights: ["EU Passporting Rights", "Effective Tax Refund System", "Robust Regulatory Oversight"]
   },
   {
@@ -457,7 +457,7 @@ export const JURISDICTIONS = [
     subtitle: "International Business Companies",
     description: "An international business company jurisdiction used for holding structures.",
     coordinates: "17° 15' N  88° 46' W",
-    image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=1600&auto=format&fit=crop", // Belize City waterfront / harbor view
+    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1600&auto=format&fit=crop", // Belize City harbor waterfront with boats
     highlights: ["Fast Registration", "Full Exemption from Local Taxes", "Asset Protection"]
   },
   {
@@ -505,7 +505,7 @@ export const JURISDICTIONS = [
     subtitle: "EU Holding & IP Destination",
     description: "An EU jurisdiction with a broad treaty network, used for holding, trading and shipping structures.",
     coordinates: "35° 10' N  33° 25' E",
-    image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=1600&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=1600&auto=format&fit=crop", // Limassol / coastal Cyprus architecture
     highlights: ["12.5% Corporate Tax", "IP Box Regime", "EU Regulatory Standards"]
   },
   {
@@ -517,7 +517,7 @@ export const JURISDICTIONS = [
     subtitle: "International Business & Asset Protection",
     description: "An international business company jurisdiction used for holding and trading structures.",
     coordinates: "4° 40' S  55° 28' E",
-    image: "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?q=80&w=1600&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1578593141415-f5b66c434444?q=80&w=1600&auto=format&fit=crop", // La Digue beach / granite boulders
     highlights: ["High Privacy Standards", "Fast Incorporation", "Competitive Fees"]
   },
   {
