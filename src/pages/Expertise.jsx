@@ -4,7 +4,7 @@ import { SERVICES } from '../lib/cerixData';
 export default function ExpertisePage() {
   return (
     <div className="min-h-screen bg-[#FDFBF7] text-[#1A1A1A]">
-      {/* Exact Homepage Dark Green Hero Header */}
+      {/* Dark Green Hero Header */}
       <section className="bg-[#0D1F17] text-white pt-32 pb-20 px-6 md:px-12 lg:px-24">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-4">
@@ -22,7 +22,7 @@ export default function ExpertisePage() {
         </div>
       </section>
 
-      {/* Services Grid Content */}
+      {/* Services Grid */}
       <section className="max-w-7xl mx-auto px-6 md:px-12 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {SERVICES.map((service, idx) => (
