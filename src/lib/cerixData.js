@@ -125,7 +125,7 @@ export const CLIENT_TYPES = WHO_WE_ADVISE;
 export const TARGET_AUDIENCE = WHO_WE_ADVISE;
 
 export const STATS = [
-  { value: "$10B+", label: "Assets Structured" },
+  { value: "\$10B+", label: "Assets Structured" },
   { value: "15+", label: "Global Financial Hubs" },
   { value: "100%", label: "Regulatory Compliance Rate" },
   { value: "250+", label: "Institutional Clients" }
@@ -421,7 +421,7 @@ export const JURISDICTIONS = [
     subtitle: "Asian Financial & Holding Hub",
     description: "A globally recognised financial centre for holding structures, regional headquarters and treasury operations.",
     coordinates: "1° 21' N  103° 49' E",
-    image: imgMap.corporate,
+    image: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?q=80&w=1600&auto=format&fit=crop", // Singapore Marina Bay skyline
     highlights: ["17% Corporate Tax Rate", "Over 90 Tax Treaties", "No Capital Gains Tax"]
   },
   {
@@ -433,7 +433,7 @@ export const JURISDICTIONS = [
     subtitle: "International Financial Centre",
     description: "A treaty-network jurisdiction used for holding, investment and trust structures with global fund credentials.",
     coordinates: "20° 10' S  57° 31' E",
-    image: imgMap.setup,
+    image: "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?q=80&w=1600&auto=format&fit=crop", // Port Louis / Mauritius coast
     highlights: ["Partial Exemption Regime", "No Withholding Taxes", "Extensive DTAA Network"]
   },
   {
@@ -445,7 +445,7 @@ export const JURISDICTIONS = [
     subtitle: "EU Financial & Licensing Hub",
     description: "An EU jurisdiction offering holding structures, licensing frameworks and cross-border trading advantages.",
     coordinates: "35° 56' N  14° 22' E",
-    image: imgMap.licensing,
+    image: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=1600&auto=format&fit=crop", // Valletta capital architecture
     highlights: ["EU Passporting Rights", "Effective Tax Refund System", "Robust Regulatory Oversight"]
   },
   {
@@ -457,7 +457,7 @@ export const JURISDICTIONS = [
     subtitle: "International Business Companies",
     description: "An international business company jurisdiction used for holding structures.",
     coordinates: "17° 15' N  88° 46' W",
-    image: imgMap.expansion,
+    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1600&auto=format&fit=crop", // Belize barrier reef / coastal landscape
     highlights: ["Fast Registration", "Full Exemption from Local Taxes", "Asset Protection"]
   },
   {
@@ -469,7 +469,7 @@ export const JURISDICTIONS = [
     subtitle: "Global Corporate Structuring Hub",
     description: "A well-established jurisdiction for holding structures, investment funds and international business companies.",
     coordinates: "18° 25' N  64° 37' W",
-    image: imgMap.trusts,
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop", // Tortola / Caribbean waters & marina
     highlights: ["Simple Maintenance", "Worldwide Acceptance", "Confidentiality & Security"]
   },
   {
@@ -481,7 +481,7 @@ export const JURISDICTIONS = [
     subtitle: "Global Investment Fund Hub",
     description: "A leading jurisdiction for investment funds, structured finance and corporate vehicles with an increasingly formal transparency framework.",
     coordinates: "19° 18' N  81° 14' W",
-    image: imgMap.funds,
+    image: "https://images.unsplash.com/photo-1548574505-5e239809ee19?q=80&w=1600&auto=format&fit=crop", // Grand Cayman / Seven Mile Beach
     highlights: ["Tax-Neutral Jurisdiction", "Flexible Fund Structures", "Recognized by Global Regulators"]
   },
   {
@@ -493,7 +493,7 @@ export const JURISDICTIONS = [
     subtitle: "Middle East Financial Heartland",
     description: "A major international hub for corporate structuring, licensing and regional operations, with free-zone and mainland frameworks.",
     coordinates: "24° 28' N  54° 22' E",
-    image: imgMap.banking,
+    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1600&auto=format&fit=crop", // Dubai skyline / DIFC / DMCC
     highlights: ["0% Personal Income Tax", "100% Foreign Ownership", "Common Law System"]
   },
   {
@@ -505,7 +505,7 @@ export const JURISDICTIONS = [
     subtitle: "EU Holding & IP Destination",
     description: "An EU jurisdiction with a broad treaty network, used for holding, trading and shipping structures.",
     coordinates: "35° 10' N  33° 25' E",
-    image: imgMap.tax,
+    image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=1600&auto=format&fit=crop", // Limassol / coastal Cyprus architecture
     highlights: ["12.5% Corporate Tax", "IP Box Regime", "EU Regulatory Standards"]
   },
   {
@@ -517,7 +517,7 @@ export const JURISDICTIONS = [
     subtitle: "International Business & Asset Protection",
     description: "An international business company jurisdiction used for holding and trading structures.",
     coordinates: "4° 40' S  55° 28' E",
-    image: imgMap.migration,
+    image: "https://images.unsplash.com/photo-1578593141415-f5b66c434444?q=80&w=1600&auto=format&fit=crop", // La Digue beach / boulders & turquoise water
     highlights: ["High Privacy Standards", "Fast Incorporation", "Competitive Fees"]
   },
   {
@@ -529,7 +529,7 @@ export const JURISDICTIONS = [
     subtitle: "Asset Protection & Trust Domicile",
     description: "A jurisdiction with established trust and investment migration frameworks.",
     coordinates: "17° 21' N  62° 47' W",
-    image: imgMap.wealth,
+    image: "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?q=80&w=1600&auto=format&fit=crop", // St. Kitts coastal view / marina
     highlights: ["Premier Asset Protection", "LLC & Trust Laws", "Complete Financial Privacy"]
   }
 ];
@@ -593,136 +593,4 @@ export const INSIGHTS = [
     heading: "Next-Generation Family Office Governance & Wealth Succession",
     excerpt: "Integrating international trusts, foundations, and corporate holding vehicles for long-term multi-generational preservation.",
     summary: "Integrating international trusts, foundations, and corporate holding vehicles for long-term multi-generational preservation.",
-    description: "Designing succession governance protocols and private trust structures across top-tier international financial centers.",
-    content: "Modern wealth structuring requires clear governance protocols, family constitutions, and robust trust/foundation legal structures capable of navigating global asset protection requirements.",
-    category: "Private Wealth",
-    date: "September 2026",
-    publishedAt: "2026-09-01",
-    readTime: "5 min read",
-    author: "Cerix Private Client Group",
-    image: imgMap.wealth,
-    heroImage: imgMap.wealth,
-    bgImage: imgMap.wealth
-  }
-];
-
-export const ARTICLES = INSIGHTS;
-export const BLOG_POSTS = INSIGHTS;
-export const NEWS = INSIGHTS;
-export const RESOURCES = INSIGHTS;
-export const PUBLICATIONS = INSIGHTS;
-
-export const TESTIMONIALS = [
-  {
-    quote: "Cerix Global delivered exceptional clarity and precision when restructuring our cross-border investment holding framework.",
-    author: "Managing Director",
-    company: "Swiss Alternative Asset Management Firm",
-    role: "Chief Executive Officer"
-  },
-  {
-    quote: "Their team handled our fund setup and regulatory licensing seamlessly across multiple jurisdictions.",
-    author: "General Partner",
-    company: "Pan-Asian Venture Capital Fund",
-    role: "Founding Partner"
-  }
-];
-
-export const REVIEWS = TESTIMONIALS;
-export const CASE_STUDIES = INSIGHTS;
-export const STORIES = INSIGHTS;
-
-export const FAQS = [
-  {
-    question: "Which jurisdiction is right for my holding entity?",
-    answer: "The choice depends on your operating countries, treaty network requirements, tax efficiency targets, and investor preferences."
-  },
-  {
-    question: "How long does company setup and licensing take?",
-    answer: "Standard company incorporation typically takes 3 to 10 business days depending on jurisdiction, while regulatory licensing spans 4 to 12 weeks."
-  }
-];
-
-export const FAQ = FAQS;
-export const QUESTIONS = FAQS;
-
-export const COMPANY_INFO = {
-  name: "Cerix Global",
-  legalName: "Cerix Global Advisory Services",
-  email: "contact@cerixglobal.com",
-  phone: "+44 20 7946 0912",
-  address: "International Financial Centre, Global Headquarters",
-  tagline: "Cross-Border Corporate & Fund Advisory"
-};
-
-export const CONTACT_INFO = COMPANY_INFO;
-export const SITE_CONFIG = COMPANY_INFO;
-
-// Universal Safe Proxy handling all property access and string methods like split
-const universalSafeHandler = {
-  get(target, prop) {
-    if (prop === Symbol.iterator || prop === 'constructor' || prop === 'then' || prop === 'toJSON' || prop === 'length') {
-      return target[prop];
-    }
-    if (prop === 'split') {
-      return function(separator, limit) {
-        const str = typeof target === 'string' ? target : String(target || "");
-        return str.split(separator, limit);
-      };
-    }
-    if (prop in target) {
-      const val = target[prop];
-      if (val === undefined || val === null) {
-        return (prop === 'features' || prop === 'highlights' || prop === 'sections' || prop === 'subServices' || prop === 'capabilities' || prop === 'deliverables' || prop === 'categories') ? [] : "";
-      }
-      if (typeof val === 'object' && val !== null) {
-        if (Array.isArray(val)) {
-          return val.map(item => (typeof item === 'object' && item !== null ? new Proxy(item, universalSafeHandler) : item));
-        }
-        return new Proxy(val, universalSafeHandler);
-      }
-      return val;
-    }
-    if (prop === 'features' || prop === 'highlights' || prop === 'sections' || prop === 'subServices' || prop === 'capabilities' || prop === 'deliverables' || prop === 'categories') {
-      return [];
-    }
-    return "";
-  }
-};
-
-function safeWrap(arr) {
-  return arr.map(item => new Proxy(item, universalSafeHandler));
-}
-
-export const safeJURISDICTIONS = safeWrap(JURISDICTIONS);
-export const safeSERVICES = safeWrap(SERVICES);
-export const safeINSIGHTS = safeWrap(INSIGHTS);
-export const safeWHO_WE_ADVISE = safeWrap(WHO_WE_ADVISE);
-
-export function getServiceBySlug(slug) {
-  for (var i = 0; i < SERVICES.length; i++) {
-    if (SERVICES[i].slug === slug) {
-      return new Proxy(SERVICES[i], universalSafeHandler);
-    }
-  }
-  return new Proxy(SERVICES[0], universalSafeHandler);
-}
-
-export function getJurisdictionBySlug(slug) {
-  for (var i = 0; JURISDICTIONS && i < JURISDICTIONS.length; i++) {
-    if (JURISDICTIONS[i].slug === slug) {
-      return new Proxy(JURISDICTIONS[i], universalSafeHandler);
-    }
-  }
-  return new Proxy(JURISDICTIONS[0], universalSafeHandler);
-}
-
-export function getInsightBySlug(slug) {
-  for (var i = 0; INSIGHTS && INSIGHTS.length && i < INSIGHTS.length; i++) {
-    if (INSIGHTS[i].slug === slug) {
-      return new Proxy(INSIGHTS[i], universalSafeHandler);
-    }
-  }
-  return new Proxy(INSIGHTS[0], universalSafeHandler);
-}
-
-export default safeDb;
+    description: "Designing succession governance protocols and private trust structures across top-tier international financial centers
