@@ -309,7 +309,30 @@ export const SERVICES = [
     name: "Banking & Financial Infrastructure",
     category: "Banking Support",
     description: "Support in navigating banking relationships and financial infrastructure requirements globally.",
-    overview: "Establishing corporate banking, multi-currency treasury accounts, and institutional payment channels for global corporate groups.",
+    overview: "We assist businesses and private clients in navigating international banking relationships, preparing institutional compliance files, and establishing robust treasury and account infrastructure.",
+    whoItsFor: "Businesses and individuals establishing or restructuring international banking relationships.",
+    typicalConsiderations: [
+      { num: "01", title: "Institution selection and relationship mapping" },
+      { num: "02", title: "KYC, source-of-funds and beneficial-ownership documentation" },
+      { num: "03", title: "Account architecture for multi-entity groups" },
+      { num: "04", title: "Payment, treasury and correspondent infrastructure" }
+    ],
+    theApproach: "We prepare the documentation and narrative that institutions require, make introductions where appropriate, and guide clients through the compliance review — while recognising that account-opening decisions rest with the institution.",
+    relatedJurisdictions: ["UAE", "Singapore", "Mauritius", "Cyprus"],
+    faqs: [
+      {
+        question: "Can you guarantee a bank account will be opened?",
+        answer: "No. Account-opening decisions rest entirely with the financial institution. We prepare the strongest possible file and support the process."
+      },
+      {
+        question: "Do you act as a bank introducer?",
+        answer: "We support introductions and preparation, but we are not a licensed financial intermediary. The banking relationship is directly between the client and the institution."
+      },
+      {
+        question: "What if our profile is complex?",
+        answer: "Complex profiles are common in our practice. We help present the structure and source of funds clearly, which is often the most important factor."
+      }
+    ],
     image: imgMap.banking,
     heroImage: imgMap.banking,
     bgImage: imgMap.banking,
