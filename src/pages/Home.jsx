@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { SERVICES, JURISDICTIONS, INSIGHTS, IMAGES } from '../lib/cerixData';
+import { SERVICES, IMAGES } from '../lib/cerixData';
 
 export default function HomePage() {
   return (
@@ -40,45 +40,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Built for Complexity Section with Fixed Image */}
-      <section className="max-w-7xl mx-auto px-6 md:px-12 py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-6 relative h-[480px] overflow-hidden border border-[#E5E0D8] shadow-sm">
-            <img 
-              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop" 
-              alt="Historic stone architecture with an ornate detailed facade" 
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute bottom-4 left-4 text-white text-xs font-mono bg-black/40 backdrop-blur-md px-3 py-1">
-              48° 51' N  2° 21' E
-            </div>
-          </div>
-          <div className="lg:col-span-6 space-y-6">
-            <div className="flex items-center gap-3 mb-2">
-              <span className="h-px w-8 bg-[#C86D51]"></span>
-              <span className="text-[#C86D51] font-mono uppercase tracking-widest text-xs">
-                09 — About Cerix Global
-              </span>
-            </div>
-            <h2 className="font-serif text-3xl md:text-5xl text-[#1A1A1A] leading-snug font-normal">
-              Built for complexity.
-            </h2>
-            <p className="text-[#4A4A4A] text-lg font-light leading-relaxed">
-              Cerix Global is an international consulting firm supporting corporate structuring, international licensing, business establishment, trusts and foundations, investment migration and related cross-border advisory requirements.
-            </p>
-            <p className="text-[#4A4A4A] text-lg font-light leading-relaxed">
-              Our network includes professionals and business partners across multiple jurisdictions — coordinated to address the full complexity of international structures.
-            </p>
-            <div className="pt-4">
-              <Link to="/about" className="font-mono text-xs uppercase tracking-wider text-[#C86D51] hover:underline">
-                Read More About Our Approach →
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Services Section */}
+      {/* Featured Services Section (Core Disciplines) */}
       <section className="bg-[#142B20] text-white py-24 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-end mb-16">
