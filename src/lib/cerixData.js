@@ -657,11 +657,17 @@ export const COMPANY_INFO = {
 export const CONTACT_INFO = COMPANY_INFO;
 export const SITE_CONFIG = COMPANY_INFO;
 
-// Safe Proxy Wrapper to completely eliminate undefined property access errors (like .split())
-const safeProxyHandler = {
+// Universal Safe Proxy handling all property access and string methods like split
+const universalSafeHandler = {
   get(target, prop) {
-    if (prop === Symbol.iterator || prop === 'constructor' || prop === 'then' || prop === 'toJSON') {
+    if (prop === Symbol.iterator || prop === 'constructor' || prop === 'then' || prop === 'toJSON' || prop === 'length') {
       return target[prop];
+    }
+    if (prop === 'split') {
+      return function(separator, limit) {
+        const str = typeof target === 'string' ? target : String(target || "");
+        return str.split(separator, limit);
+      };
     }
     if (prop in target) {
       const val = target[prop];
@@ -670,9 +676,9 @@ const safeProxyHandler = {
       }
       if (typeof val === 'object' && val !== null) {
         if (Array.isArray(val)) {
-          return val.map(item => (typeof item === 'object' && item !== null ? new Proxy(item, safeProxyHandler) : item));
+          return val.map(item => (typeof item === 'object' && item !== null ? new Proxy(item, universalSafeHandler) : item));
         }
-        return new Proxy(val, safeProxyHandler);
+        return new Proxy(val, universalSafeHandler);
       }
       return val;
     }
@@ -683,40 +689,40 @@ const safeProxyHandler = {
   }
 };
 
-function proxyArray(arr) {
-  return arr.map(item => new Proxy(item, safeProxyHandler));
+function safeWrap(arr) {
+  return arr.map(item => new Proxy(item, universalSafeHandler));
 }
 
-export const safeJURISDICTIONS = proxyArray(JURISDICTIONS);
-export const safeSERVICES = proxyArray(SERVICES);
-export const safeINSIGHTS = proxyArray(INSIGHTS);
-export const safeWHO_WE_ADVISE = proxyArray(WHO_WE_ADVISE);
+export const safeJURISDICTIONS = safeWrap(JURISDICTIONS);
+export const safeSERVICES = safeWrap(SERVICES);
+export const safeINSIGHTS = safeWrap(INSIGHTS);
+export const safeWHO_WE_ADVISE = safeWrap(WHO_WE_ADVISE);
 
 export function getServiceBySlug(slug) {
   for (var i = 0; i < SERVICES.length; i++) {
     if (SERVICES[i].slug === slug) {
-      return new Proxy(SERVICES[i], safeProxyHandler);
+      return new Proxy(SERVICES[i], universalSafeHandler);
     }
   }
-  return new Proxy(SERVICES[0], safeProxyHandler);
+  return new Proxy(SERVICES[0], universalSafeHandler);
 }
 
 export function getJurisdictionBySlug(slug) {
   for (var i = 0; JURISDICTIONS && i < JURISDICTIONS.length; i++) {
     if (JURISDICTIONS[i].slug === slug) {
-      return new Proxy(JURISDICTIONS[i], safeProxyHandler);
+      return new Proxy(JURISDICTIONS[i], universalSafeHandler);
     }
   }
-  return new Proxy(JURISDICTIONS[0], safeProxyHandler);
+  return new Proxy(JURISDICTIONS[0], universalSafeHandler);
 }
 
 export function getInsightBySlug(slug) {
-  for (var i = 0; INSIGHTS && i < INSIGHTS.length; i++) {
+  for (var i = 0; INSIGHTS && INSIGHTS.length && i < INSIGHTS.length; i++) {
     if (INSIGHTS[i].slug === slug) {
-      return new Proxy(INSIGHTS[i], safeProxyHandler);
+      return new Proxy(INSIGHTS[i], universalSafeHandler);
     }
   }
-  return new Proxy(INSIGHTS[0], safeProxyHandler);
+  return new Proxy(INSIGHTS[0], universalSafeHandler);
 }
 
 export default safeDb;
