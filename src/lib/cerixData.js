@@ -221,6 +221,7 @@ export const JURISDICTIONS = [
     subtitle: "Asian Financial & Holding Hub",
     description: "A globally recognised financial centre for holding structures, regional headquarters and treasury operations.",
     coordinates: "1° 21' N  103° 49' E",
+    image: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?q=80&w=1600&auto=format&fit=crop",
     highlights: ["17% Corporate Tax Rate", "Over 90 Tax Treaties", "No Capital Gains Tax"]
   },
   {
@@ -231,6 +232,7 @@ export const JURISDICTIONS = [
     subtitle: "International Financial Centre",
     description: "A treaty-network jurisdiction used for holding, investment and trust structures with global fund credentials.",
     coordinates: "20° 10' S  57° 31' E",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop",
     highlights: ["Partial Exemption Regime", "No Withholding Taxes", "Extensive DTAA Network"]
   },
   {
@@ -241,6 +243,7 @@ export const JURISDICTIONS = [
     subtitle: "EU Financial & Licensing Hub",
     description: "An EU jurisdiction offering holding structures, licensing frameworks and cross-border trading advantages.",
     coordinates: "35° 56' N  14° 22' E",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop",
     highlights: ["EU Passporting Rights", "Effective Tax Refund System", "Robust Regulatory Oversight"]
   },
   {
@@ -251,6 +254,7 @@ export const JURISDICTIONS = [
     subtitle: "International Business Companies",
     description: "An international business company jurisdiction used for holding structures.",
     coordinates: "17° 15' N  88° 46' W",
+    image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1600&auto=format&fit=crop",
     highlights: ["Fast Registration", "Full Exemption from Local Taxes", "Asset Protection"]
   },
   {
@@ -261,6 +265,7 @@ export const JURISDICTIONS = [
     subtitle: "Global Corporate Structuring Hub",
     description: "A well-established jurisdiction for holding structures, investment funds and international business companies.",
     coordinates: "18° 25' N  64° 37' W",
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop",
     highlights: ["Simple Maintenance", "Worldwide Acceptance", "Confidentiality & Security"]
   },
   {
@@ -271,6 +276,7 @@ export const JURISDICTIONS = [
     subtitle: "Global Investment Fund Hub",
     description: "A leading jurisdiction for investment funds, structured finance and corporate vehicles.",
     coordinates: "19° 18' N  81° 14' W",
+    image: "https://images.unsplash.com/photo-1548574505-5e239809ee19?q=80&w=1600&auto=format&fit=crop",
     highlights: ["Tax-Neutral Jurisdiction", "Flexible Fund Structures", "Recognized by Global Regulators"]
   },
   {
@@ -281,6 +287,7 @@ export const JURISDICTIONS = [
     subtitle: "Middle East Financial Heartland",
     description: "A major international hub for corporate structuring, licensing and regional operations.",
     coordinates: "24° 28' N  54° 22' E",
+    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1600&auto=format&fit=crop",
     highlights: ["0% Personal Income Tax", "100% Foreign Ownership", "Common Law System"]
   },
   {
@@ -291,6 +298,7 @@ export const JURISDICTIONS = [
     subtitle: "EU Holding & IP Destination",
     description: "An EU jurisdiction with a broad treaty network, used for holding, trading and shipping structures.",
     coordinates: "35° 10' N  33° 25' E",
+    image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=1600&auto=format&fit=crop",
     highlights: ["12.5% Corporate Tax", "IP Box Regime", "EU Regulatory Standards"]
   },
   {
@@ -301,6 +309,7 @@ export const JURISDICTIONS = [
     subtitle: "International Business & Asset Protection",
     description: "An international business company jurisdiction used for holding and trading structures.",
     coordinates: "4° 40' S  55° 28' E",
+    image: "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?q=80&w=1600&auto=format&fit=crop",
     highlights: ["High Privacy Standards", "Fast Incorporation", "Competitive Fees"]
   },
   {
@@ -311,6 +320,7 @@ export const JURISDICTIONS = [
     subtitle: "Asset Protection & Trust Domicile",
     description: "A jurisdiction with established trust and investment migration frameworks.",
     coordinates: "17° 21' N  62° 47' W",
+    image: "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?q=80&w=1600&auto=format&fit=crop",
     highlights: ["Premier Asset Protection", "LLC & Trust Laws", "Complete Financial Privacy"]
   }
 ];
