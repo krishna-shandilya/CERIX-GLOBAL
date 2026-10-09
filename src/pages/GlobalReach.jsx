@@ -14,7 +14,7 @@ export default function GlobalReach() {
       {/* Hero */}
       <section data-theme="dark" className="relative h-[55vh] min-h-[400px] overflow-hidden">
         <motion.div initial={{ scale: 1.1 }} animate={{ scale: 1 }} transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0">
-          <img src={IMAGES.globalScale} alt="Long-exposure aerial view of earth at night with light trails across oceans" className="w-full h-full object-cover" />
+          <img src={IMAGES.globalScale || IMAGES.corporate} alt="Long-exposure aerial view of earth at night with light trails across oceans" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-forest/55 mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-b from-obsidian/30 to-obsidian/60" />
         </motion.div>
@@ -45,17 +45,21 @@ export default function GlobalReach() {
           <div className="lg:col-span-5">
             <p className="eyebrow text-terracotta-soft mb-6">Jurisdictions</p>
             <div className="flex flex-col">
-              {JURISDICTIONS.map((j, i) => (
-                <button
-                  key={j.name}
-                  onMouseEnter={() => setActive(j)}
-                  onClick={() => setActive(j)}
-                  className={`group text-left py-4 border-b border-obsidian/12 flex items-center justify-between transition-colors ${active.name === j.name ? "text-obsidian" : "text-obsidian/55 hover:text-olive-deep"}`}
-                >
-                  <span className="font-serif text-2xl">{j.name}</span>
-                  <span className="font-mono text-[0.62rem] tracking-[0.12em]">{j.coord.split(" · ")[0]}</span>
-                </button>
-              ))}
+              {JURISDICTIONS.map((j, i) => {
+                const coordText = j.coordinates || j.coord || "";
+                const coordDisplay = coordText.includes("·") ? coordText.split(" · ")[0] : coordText;
+                return (
+                  <button
+                    key={j.name}
+                    onMouseEnter={() => setActive(j)}
+                    onClick={() => setActive(j)}
+                    className={`group text-left py-4 border-b border-obsidian/12 flex items-center justify-between transition-colors ${active.name === j.name ? "text-obsidian" : "text-obsidian/55 hover:text-olive-deep"}`}
+                  >
+                    <span className="font-serif text-2xl">{j.name}</span>
+                    <span className="font-mono text-[0.62rem] tracking-[0.12em]">{coordDisplay}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
@@ -74,9 +78,9 @@ export default function GlobalReach() {
                   <Image src={active.image} alt={`${active.name} financial district`} fittingType="fill" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-obsidian/45 to-transparent" />
                 </div>
-                <p className="font-mono text-[0.65rem] tracking-[0.15em] text-terracotta mb-3">{active.coord}</p>
+                <p className="font-mono text-[0.65rem] tracking-[0.15em] text-terracotta mb-3">{active.coordinates || active.coord}</p>
                 <h2 className="font-serif text-5xl lg:text-6xl text-obsidian mb-5">{active.name}</h2>
-                <p className="font-sans text-lg text-obsidian/70 leading-relaxed max-w-lg">{active.desc}</p>
+                <p className="font-sans text-lg text-obsidian/70 leading-relaxed max-w-lg">{active.description || active.desc}</p>
                 <Link to="/contact" className="group mt-8 inline-flex items-center gap-2 font-sans text-sm tracking-[0.1em] uppercase font-medium text-terracotta hover:text-olive-deep transition-colors">
                   Discuss this jurisdiction
                   <ArrowRight size={16} strokeWidth={1.5} className="group-hover:translate-x-1 transition-transform" />
