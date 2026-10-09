@@ -1,181 +1,282 @@
-import React, { useState } from 'react';
+const imgMap = {
+  whyCerix: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop",
+  corporate: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop",
+  setup: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
+  licensing: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1600&auto=format&fit=crop",
+  banking: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=1600&auto=format&fit=crop",
+  trusts: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1600&auto=format&fit=crop",
+  migration: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1600&auto=format&fit=crop",
+  expansion: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1600&auto=format&fit=crop",
+  funds: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1600&auto=format&fit=crop",
+  insights: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1600&auto=format&fit=crop"
+};
 
-export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    company: '',
-    email: '',
-    phone: '',
-    country: '',
-    interest: '',
-    message: ''
-  });
+export const IMAGES = imgMap;
+export const SITE_IMAGES = imgMap;
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+const safeAuth = {
+  isAuthenticated: async function() { return false; },
+  me: async function() { return null; },
+  getUser: async function() { return null; },
+  useMe: function() { return { data: null, isLoading: false, error: null }; },
+  useUser: function() { return { data: null, isLoading: false, error: null }; },
+  useAuth: function() { return { user: null, isAuthenticated: false, isLoading: false }; }
+};
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const subject = encodeURIComponent(`New Inquiry from ${formData.name} - Cerix Global`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\n` +
-      `Company: ${formData.company}\n` +
-      `Email: ${formData.email}\n` +
-      `Phone: ${formData.phone}\n` +
-      `Country/Region: ${formData.country}\n` +
-      `Area of Interest: ${formData.interest}\n\n` +
-      `Message:\n${formData.message}`
-    );
-    window.location.href = `mailto:info@cerixglobal.com?subject=${subject}&body=${body}`;
-  };
+const safeDb = { auth: safeAuth, entities: {}, integrations: {} };
 
-  return (
-    <div className="min-h-screen bg-[#FDFBF7] text-[#1A1A1A] flex flex-col lg:flex-row">
-      <div className="lg:w-5/12 bg-[#142B20] text-white p-10 lg:p-20 flex flex-col justify-between">
-        <div>
-          <div className="flex items-center gap-3 mb-6">
-            <span className="h-px w-8 bg-[#C86D51]"></span>
-            <span className="text-[#C86D51] font-mono uppercase tracking-widest text-xs">
-              10 — Contact
-            </span>
-          </div>
-          <h1 className="font-serif text-4xl lg:text-6xl font-normal leading-tight text-white mb-6">
-            Your next move starts with a conversation.
-          </h1>
-          <p className="text-[#E2DDD5] text-lg font-light leading-relaxed">
-            Tell us what you're building, where you're going and what you need to navigate.
-          </p>
-        </div>
+export const db = safeDb;
+export const base44 = safeDb;
+export const cerixData = safeDb;
 
-        <div className="mt-16 pt-8 border-t border-[#2A4438]">
-          <p className="text-[#E2DDD5] text-xs uppercase tracking-widest mb-4 font-mono">Direct Channel</p>
-          <a
-            href="https://t.me/919731709711"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-[#1A382B] hover:bg-[#204434] text-white px-6 py-3.5 transition-colors border border-[#2A4438]"
-          >
-            <svg className="w-5 h-5 text-[#C86D51]" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.03-2.01 1.28-5.68 3.77-.54.37-1.03.55-1.47.54-.48-.01-1.4-.27-2.08-.49-.84-.27-1.51-.42-1.45-.89.03-.25.38-.51 1.05-.78 4.12-1.79 6.87-2.97 8.25-3.55 3.93-1.65 4.74-1.94 5.27-1.95.12 0 .38.03.55.17.14.12.18.28.2.4-.02.07-.02.21-.04.35z"/>
-            </svg>
-            <span className="font-medium tracking-wide text-sm">Chat with us on Telegram</span>
-          </a>
-        </div>
-      </div>
+export const SERVICES = [
+  {
+    id: "01",
+    num: "01",
+    slug: "corporate-structuring",
+    title: "International Corporate Structuring",
+    category: "Corporate Advisory",
+    description: "Cross-border corporate architecture designed around commercial, operational and strategic objectives.",
+    overview: "We design cross-border corporate architectures that align holding, operating and investment entities with commercial objectives, regulatory realities and long-term strategic intent.",
+    image: imgMap.corporate
+  },
+  {
+    id: "02",
+    num: "02",
+    slug: "company-incorporation",
+    title: "Company Incorporation & Business Setup",
+    category: "Entity Setup",
+    description: "International company formation and end-to-end establishment support across selected jurisdictions.",
+    overview: "We support the formation and establishment of companies across selected jurisdictions — from initial entity selection through registration and operational readiness.",
+    image: imgMap.setup
+  },
+  {
+    id: "03",
+    num: "03",
+    slug: "international-licensing",
+    title: "International Licensing",
+    category: "Regulatory",
+    description: "Advisory around regulated and specialist business licences, including investment, financial, securities, and fund managers.",
+    overview: "We advise on and coordinate regulatory licensing processes for financial, investment, digital-asset and specialized commercial activities.",
+    image: imgMap.licensing
+  },
+  {
+    id: "04",
+    num: "04",
+    slug: "banking-financial-infrastructure",
+    title: "Banking & Financial Infrastructure",
+    category: "Banking Support",
+    description: "Support in navigating banking relationships and financial infrastructure requirements globally.",
+    overview: "We assist businesses and private clients in navigating international banking relationships, preparing institutional compliance files, and establishing treasury infrastructure.",
+    image: imgMap.banking
+  },
+  {
+    id: "05",
+    num: "05",
+    slug: "trusts-foundations",
+    title: "Trusts & Foundations",
+    category: "Private Wealth",
+    description: "International trust and foundation structuring for asset protection, estate planning, and private governance.",
+    overview: "We advise on and coordinate the establishment of international trusts, foundations and private wealth vehicles for succession planning and asset protection.",
+    image: imgMap.trusts
+  },
+  {
+    id: "06",
+    num: "06",
+    slug: "investment-migration",
+    title: "Investment Migration Advisory",
+    category: "Mobility",
+    description: "Advisory for internationally mobile business leaders and families on residency and citizenship programs.",
+    overview: "We advise internationally mobile individuals and families on investment migration programmes, coordinating with licensed agents and immigration counsel.",
+    image: imgMap.migration
+  },
+  {
+    id: "07",
+    num: "07",
+    slug: "international-expansion",
+    title: "International Expansion",
+    category: "Cross-Border",
+    description: "Helping businesses evaluate new jurisdictions and launch operations across foreign markets.",
+    overview: "We help businesses evaluate jurisdictions, establish structures and move toward operational readiness across foreign markets.",
+    image: imgMap.expansion
+  },
+  {
+    id: "08",
+    num: "08",
+    slug: "fund-solutions",
+    title: "Alternative Fund Advisory & Structuring",
+    category: "Funds",
+    description: "Structuring private equity, venture capital, and hedge funds across global hubs.",
+    overview: "We advise on and coordinate the structuring, formation and regulatory setup of alternative investment funds across major international jurisdictions.",
+    image: imgMap.funds
+  }
+];
 
-      <div className="lg:w-7/12 bg-[#FDFBF7] p-10 lg:p-20 flex flex-col justify-between">
-        <form onSubmit={handleSubmit} className="space-y-8 max-w-2xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="border-b border-[#D4CFC4] pb-2">
-              <label className="block text-xs uppercase font-mono tracking-widest text-[#777] mb-1">Name *</label>
-              <input
-                type="text"
-                name="name"
-                required
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full bg-transparent focus:outline-none text-[#1A1A1A] py-1"
-                placeholder="Full Name"
-              />
-            </div>
-            <div className="border-b border-[#D4CFC4] pb-2">
-              <label className="block text-xs uppercase font-mono tracking-widest text-[#777] mb-1">Company</label>
-              <input
-                type="text"
-                name="company"
-                value={formData.company}
-                onChange={handleChange}
-                className="w-full bg-transparent focus:outline-none text-[#1A1A1A] py-1"
-                placeholder="Company Name"
-              />
-            </div>
-          </div>
+export const JURISDICTIONS = [
+  {
+    id: "singapore",
+    slug: "singapore",
+    name: "Singapore",
+    region: "Asia-Pacific",
+    subtitle: "Asian Financial & Holding Hub",
+    description: "A globally recognised financial centre for holding structures, regional headquarters and treasury operations.",
+    coordinates: "1° 21' N  103° 49' E",
+    highlights: ["17% Corporate Tax Rate", "Over 90 Tax Treaties", "No Capital Gains Tax"]
+  },
+  {
+    id: "mauritius",
+    slug: "mauritius",
+    name: "Mauritius",
+    region: "Africa & Asia Gateway",
+    subtitle: "International Financial Centre",
+    description: "A treaty-network jurisdiction used for holding, investment and trust structures with global fund credentials.",
+    coordinates: "20° 10' S  57° 31' E",
+    highlights: ["Partial Exemption Regime", "No Withholding Taxes", "Extensive DTAA Network"]
+  },
+  {
+    id: "malta",
+    slug: "malta",
+    name: "Malta",
+    region: "Europe",
+    subtitle: "EU Financial & Licensing Hub",
+    description: "An EU jurisdiction offering holding structures, licensing frameworks and cross-border trading advantages.",
+    coordinates: "35° 56' N  14° 22' E",
+    highlights: ["EU Passporting Rights", "Effective Tax Refund System", "Robust Regulatory Oversight"]
+  },
+  {
+    id: "belize",
+    slug: "belize",
+    name: "Belize",
+    region: "Americas",
+    subtitle: "International Business Companies",
+    description: "An international business company jurisdiction used for holding structures.",
+    coordinates: "17° 15' N  88° 46' W",
+    highlights: ["Fast Registration", "Full Exemption from Local Taxes", "Asset Protection"]
+  },
+  {
+    id: "bvi",
+    slug: "bvi",
+    name: "BVI",
+    region: "Americas & Caribbean",
+    subtitle: "Global Corporate Structuring Hub",
+    description: "A well-established jurisdiction for holding structures, investment funds and international business companies.",
+    coordinates: "18° 25' N  64° 37' W",
+    highlights: ["Simple Maintenance", "Worldwide Acceptance", "Confidentiality & Security"]
+  },
+  {
+    id: "cayman-islands",
+    slug: "cayman-islands",
+    name: "Cayman Islands",
+    region: "Americas & Caribbean",
+    subtitle: "Global Investment Fund Hub",
+    description: "A leading jurisdiction for investment funds, structured finance and corporate vehicles.",
+    coordinates: "19° 18' N  81° 14' W",
+    highlights: ["Tax-Neutral Jurisdiction", "Flexible Fund Structures", "Recognized by Global Regulators"]
+  },
+  {
+    id: "uae",
+    slug: "uae",
+    name: "UAE",
+    region: "Middle East",
+    subtitle: "Middle East Financial Heartland",
+    description: "A major international hub for corporate structuring, licensing and regional operations.",
+    coordinates: "24° 28' N  54° 22' E",
+    highlights: ["0% Personal Income Tax", "100% Foreign Ownership", "Common Law System"]
+  },
+  {
+    id: "cyprus",
+    slug: "cyprus",
+    name: "Cyprus",
+    region: "Europe & Middle East",
+    subtitle: "EU Holding & IP Destination",
+    description: "An EU jurisdiction with a broad treaty network, used for holding, trading and shipping structures.",
+    coordinates: "35° 10' N  33° 25' E",
+    highlights: ["12.5% Corporate Tax", "IP Box Regime", "EU Regulatory Standards"]
+  },
+  {
+    id: "seychelles",
+    slug: "seychelles",
+    name: "Seychelles",
+    region: "Indian Ocean",
+    subtitle: "International Business & Asset Protection",
+    description: "An international business company jurisdiction used for holding and trading structures.",
+    coordinates: "4° 40' S  55° 28' E",
+    highlights: ["High Privacy Standards", "Fast Incorporation", "Competitive Fees"]
+  },
+  {
+    id: "st-kitts-nevis",
+    slug: "st-kitts-nevis",
+    name: "St. Kitts & Nevis",
+    region: "Caribbean",
+    subtitle: "Asset Protection & Trust Domicile",
+    description: "A jurisdiction with established trust and investment migration frameworks.",
+    coordinates: "17° 21' N  62° 47' W",
+    highlights: ["Premier Asset Protection", "LLC & Trust Laws", "Complete Financial Privacy"]
+  }
+];
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="border-b border-[#D4CFC4] pb-2">
-              <label className="block text-xs uppercase font-mono tracking-widest text-[#777] mb-1">Email *</label>
-              <input
-                type="email"
-                name="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full bg-transparent focus:outline-none text-[#1A1A1A] py-1"
-                placeholder="name@example.com"
-              />
-            </div>
-            <div className="border-b border-[#D4CFC4] pb-2">
-              <label className="block text-xs uppercase font-mono tracking-widest text-[#777] mb-1">Phone</label>
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                className="w-full bg-transparent focus:outline-none text-[#1A1A1A] py-1"
-                placeholder="+1 (555) 000-0000"
-              />
-            </div>
-          </div>
+export const APPROACH_STAGES = [
+  {
+    number: "01",
+    title: "Strategic Discovery & Analysis",
+    description: "In-depth review of business models, tax residency, entity structures, and cross-border strategic goals.",
+    details: "We conduct preliminary jurisdictional analysis and evaluate legal, compliance, and operational requirements."
+  },
+  {
+    number: "02",
+    title: "Jurisdictional & Structural Design",
+    description: "Tailored architecture balancing tax optimization, regulatory compliance, operational efficiency, and governance.",
+    details: "Designing optimal holding company, fund, trust, or operational entity structures across suitable global financial centers."
+  },
+  {
+    number: "03",
+    title: "Implementation & Licensing",
+    description: "End-to-end execution of company formation, regulatory licensing, banking setup, and corporate secretarial onboarding.",
+    details: "Coordinating with local regulators, financial authorities, and corporate service partners for seamless deployment."
+  },
+  {
+    number: "04",
+    title: "Ongoing Substance & Compliance",
+    description: "Long-term operational support, economic substance fulfillment, regulatory reporting, and board governance.",
+    details: "Ensuring continued compliance with FATCA, CRS, local tax filings, and institutional substance criteria."
+  }
+];
 
-          <div className="border-b border-[#D4CFC4] pb-2">
-            <label className="block text-xs uppercase font-mono tracking-widest text-[#777] mb-1">Country / Region</label>
-            <input
-              type="text"
-              name="country"
-              value={formData.country}
-              onChange={handleChange}
-              className="w-full bg-transparent focus:outline-none text-[#1A1A1A] py-1"
-              placeholder="e.g. United Arab Emirates, Singapore, Mauritius"
-            />
-          </div>
+export const INSIGHTS = [
+  {
+    id: "01",
+    slug: "navigating-economic-substance-2026",
+    title: "Navigating Economic Substance & Multi-Jurisdictional Compliance",
+    excerpt: "Essential requirements and operational benchmarks for corporate structures across Singapore, Mauritius, and Cayman Islands.",
+    category: "Regulatory & Compliance",
+    date: "October 2026",
+    readTime: "6 min read",
+    image: imgMap.insights
+  },
+  {
+    id: "02",
+    slug: "structuring-alternative-investment-funds",
+    title: "Structuring Alternative Investment Funds Across Emerging Hubs",
+    excerpt: "A comparative evaluation of fund vehicles across Mauritius, Cayman Islands, and UAE (ADGM) for private equity and venture capital.",
+    category: "Fund Advisory",
+    date: "September 2026",
+    readTime: "8 min read",
+    image: imgMap.funds
+  },
+  {
+    id: "03",
+    slug: "family-office-governance-frameworks",
+    title: "Next-Generation Family Office Governance & Wealth Succession",
+    excerpt: "Integrating international trusts, foundations, and corporate holding vehicles for long-term multi-generational preservation.",
+    category: "Private Wealth",
+    date: "September 2026",
+    readTime: "5 min read",
+    image: imgMap.trusts
+  }
+];
 
-          <div className="border-b border-[#D4CFC4] pb-2">
-            <label className="block text-xs uppercase font-mono tracking-widest text-[#777] mb-1">Area of Interest</label>
-            <select
-              name="interest"
-              value={formData.interest}
-              onChange={handleChange}
-              className="w-full bg-transparent focus:outline-none text-[#1A1A1A] py-1 cursor-pointer"
-            >
-              <option value="">Select an area of interest</option>
-              <option value="International Corporate Structuring">International Corporate Structuring</option>
-              <option value="Company Incorporation & Business Setup">Company Incorporation & Business Setup</option>
-              <option value="International Licensing">International Licensing</option>
-              <option value="Banking & Financial Infrastructure">Banking & Financial Infrastructure</option>
-              <option value="Trusts & Foundations">Trusts & Foundations</option>
-              <option value="Investment Migration Advisory">Investment Migration Advisory</option>
-              <option value="International Expansion">International Expansion</option>
-              <option value="Alternative Fund Advisory & Structuring">Alternative Fund Advisory & Structuring</option>
-            </select>
-          </div>
+export function getServiceBySlug(slug) { return SERVICES.find(s => s.slug === slug) || SERVICES[0]; }
+export function getJurisdictionBySlug(slug) { return JURISDICTIONS.find(j => j.slug === slug) || JURISDICTIONS[0]; }
+export function getInsightBySlug(slug) { return INSIGHTS.find(i => i.slug === slug) || INSIGHTS[0]; }
 
-          <div className="border-b border-[#D4CFC4] pb-2">
-            <label className="block text-xs uppercase font-mono tracking-widest text-[#777] mb-1">Message</label>
-            <textarea
-              name="message"
-              rows="3"
-              value={formData.message}
-              onChange={handleChange}
-              className="w-full bg-transparent focus:outline-none text-[#1A1A1A] py-1 resize-none"
-              placeholder="Tell us about your requirements..."
-            ></textarea>
-          </div>
-
-          <div className="pt-4">
-            <button
-              type="submit"
-              className="inline-flex items-center gap-3 bg-[#142B20] text-white px-8 py-4 text-sm uppercase tracking-wider hover:bg-[#1A382B] transition-colors"
-            >
-              Submit Inquiry <span className="text-[#C86D51]">→</span>
-            </button>
-          </div>
-        </form>
-
-        <div className="mt-16 text-xs text-[#888] font-mono">
-          CERIX GLOBAL CONSULTING — INFO@CERIXGLOBAL.COM
-        </div>
-      </div>
-    </div>
-  );
-}
+export default safeDb;
