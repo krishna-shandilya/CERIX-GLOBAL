@@ -7,10 +7,7 @@ const imgMap = {
   trusts: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1600&auto=format&fit=crop",
   migration: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1600&auto=format&fit=crop",
   expansion: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1600&auto=format&fit=crop",
-  tax: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1600&auto=format&fit=crop",
   funds: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1600&auto=format&fit=crop",
-  compliance: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1600&auto=format&fit=crop",
-  wealth: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop",
   insights: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1600&auto=format&fit=crop"
 };
 
@@ -101,10 +98,10 @@ export const WHO_WE_ADVISE = [
     name: "Family Offices & HNW Is",
     category: "Private Wealth",
     description: "Ultra-high-net-worth families seeking succession planning, foundation setups, and global wealth preservation.",
-    image: imgMap.wealth,
-    heroImage: imgMap.wealth,
-    bgImage: imgMap.wealth,
-    thumbnail: imgMap.wealth
+    image: imgMap.trusts,
+    heroImage: imgMap.trusts,
+    bgImage: imgMap.trusts,
+    thumbnail: imgMap.trusts
   },
   {
     id: "04",
@@ -715,9 +712,9 @@ export const INSIGHTS = [
     publishedAt: "2026-09-01",
     readTime: "5 min read",
     author: "Cerix Private Client Group",
-    image: imgMap.wealth,
-    heroImage: imgMap.wealth,
-    bgImage: imgMap.wealth
+    image: imgMap.trusts,
+    heroImage: imgMap.trusts,
+    bgImage: imgMap.trusts
   }
 ];
 
