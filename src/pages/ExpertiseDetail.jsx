@@ -1,10 +1,15 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getServiceBySlug, SERVICES } from '../lib/cerixData';
 
 export default function ExpertiseDetailPage() {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const service = getServiceBySlug(slug) || SERVICES[0];
+
+  const handleInitiateDiscussion = () => {
+    navigate(`/contact?interest=${encodeURIComponent(service.title)}`);
+  };
 
   return (
     <div className="min-h-screen bg-[#FDFBF7] text-[#1A1A1A]">
@@ -99,12 +104,12 @@ export default function ExpertiseDetailPage() {
             )}
 
             <div className="border-t border-[#E5E0D8] pt-6">
-              <Link
-                to={`/contact?interest=${encodeURIComponent(service.title)}`}
-                className="w-full block text-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white py-3.5 px-6 text-sm uppercase tracking-wider hover:bg-white/25 transition-all shadow-sm"
+              <button
+                onClick={handleInitiateDiscussion}
+                className="w-full text-center rounded-full bg-[#142B20] hover:bg-[#1A382B] text-white py-4 px-6 text-xs font-mono uppercase tracking-wider transition-all shadow-sm border border-white/10 cursor-pointer"
               >
                 Initiate Discussion →
-              </Link>
+              </button>
             </div>
           </div>
         </div>
