@@ -29,6 +29,49 @@ export const db = safeDb;
 export const base44 = safeDb;
 export const cerixData = safeDb;
 
+export const WHO_WE_ADVISE = [
+  {
+    id: "01",
+    num: "01",
+    title: "Multinational Corporations & Holding Groups",
+    name: "Multinational Corporations & Holding Groups",
+    category: "Corporates",
+    description: "Cross-border corporate groups requiring multi-jurisdictional holding, operational, and tax-efficient structures.",
+    image: imgMap.corporate
+  },
+  {
+    id: "02",
+    num: "02",
+    title: "Asset Managers & Investment Funds",
+    name: "Asset Managers & Investment Funds",
+    category: "Financial Institutions",
+    description: "Emerging and established investment managers establishing private equity, venture capital, or hedge fund vehicles.",
+    image: imgMap.funds
+  },
+  {
+    id: "03",
+    num: "03",
+    title: "Family Offices & HNWIs",
+    name: "Family Offices & HNWIs",
+    category: "Private Wealth",
+    description: "Ultra-high-net-worth families seeking succession planning, foundation setups, and global wealth preservation.",
+    image: imgMap.trusts
+  },
+  {
+    id: "04",
+    num: "04",
+    title: "High-Growth Tech & Scale-ups",
+    name: "High-Growth Tech & Scale-ups",
+    category: "Ventures",
+    description: "Expanding technology businesses establishing regional headquarters, IP holding entities, and global banking.",
+    image: imgMap.expansion
+  }
+];
+
+export const CLIENT_CATEGORIES = WHO_WE_ADVISE;
+export const CLIENT_TYPES = WHO_WE_ADVISE;
+export const TARGET_AUDIENCE = WHO_WE_ADVISE;
+
 export const SERVICES = [
   {
     id: "01",
