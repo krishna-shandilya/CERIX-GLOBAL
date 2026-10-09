@@ -266,7 +266,30 @@ export const SERVICES = [
     name: "International Licensing",
     category: "Regulatory",
     description: "Advisory around regulated and specialist business licences, including investment, financial, securities, and fund managers.",
-    overview: "Navigating complex financial service licensing, investment advisor authorizations, and regulatory approvals with global authorities.",
+    overview: "We advise on and coordinate regulatory licensing processes for financial, investment, digital-asset and specialized commercial activities across international jurisdictions.",
+    whoItsFor: "Financial institutions, fintechs, investment managers and commercial enterprises seeking regulated status in recognized international hubs.",
+    typicalConsiderations: [
+      { num: "01", title: "Licence type, scope of permitted activity and regulatory framework" },
+      { num: "02", title: "Substance, capital and physical presence requirements" },
+      { num: "03", title: "Fit-and-proper criteria for directors, shareholders and key personnel" },
+      { num: "04", title: "Ongoing reporting, compliance and AML/KYC obligations" }
+    ],
+    theApproach: "We assess the licensing regime against the business activity, prepare the application narrative and documentation, and coordinate with local counsel and regulators throughout the process.",
+    relatedJurisdictions: ["Mauritius", "Seychelles", "Cayman", "Belize"],
+    faqs: [
+      {
+        question: "Can you guarantee a licence will be granted?",
+        answer: "No. Licensing decisions rest with the relevant regulatory authority. Our role is to prepare the strongest possible application and coordinate the process."
+      },
+      {
+        question: "Do you advise on digital-asset licensing?",
+        answer: "Yes, in jurisdictions where such regimes exist. Suitability and availability depend on the jurisdiction and the specific activity contemplated."
+      },
+      {
+        question: "Is licensing advice a substitute for legal counsel?",
+        answer: "No. Regulated activities typically require formal legal opinion from qualified counsel in the relevant jurisdiction, which we coordinate alongside our advisory work."
+      }
+    ],
     image: imgMap.licensing,
     heroImage: imgMap.licensing,
     bgImage: imgMap.licensing,
