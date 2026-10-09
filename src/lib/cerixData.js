@@ -243,7 +243,7 @@ export const JURISDICTIONS = [
     subtitle: "EU Financial & Licensing Hub",
     description: "An EU jurisdiction offering holding structures, licensing frameworks and cross-border trading advantages.",
     coordinates: "35° 56' N  14° 22' E",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1558535452-78d1fb564478?q=80&w=1600&auto=format&fit=crop",
     highlights: ["EU Passporting Rights", "Effective Tax Refund System", "Robust Regulatory Oversight"]
   },
   {
