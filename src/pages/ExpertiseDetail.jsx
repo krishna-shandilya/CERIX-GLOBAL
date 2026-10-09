@@ -1,179 +1,114 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { SERVICES, getServiceBySlug } from '../lib/cerixData';
+import { useParams } from 'react-router-dom';
+import { getServiceBySlug, SERVICES } from '../lib/cerixData';
 
-export default function ExpertiseDetail() {
+export default function ExpertiseDetailPage() {
   const { slug } = useParams();
-  const service = getServiceBySlug(slug);
-
-  const features = service?.features || [];
-  const sections = service?.sections || [];
-  const typicalConsiderations = service?.typicalConsiderations || [];
-  const relatedJurisdictions = service?.relatedJurisdictions || [];
-  const faqs = service?.faqs || [];
+  const service = getServiceBySlug(slug) || SERVICES[0];
 
   return (
-    <div style={{ backgroundColor: '#0c0e0d', color: '#e2e8f0', minHeight: '100vh', fontFamily: 'sans-serif' }}>
-      {/* Hero Header */}
-      <div 
-        style={{
-          position: 'relative',
-          minHeight: '70vh',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          padding: '40px 60px',
-          backgroundImage: `linear-gradient(to bottom, rgba(12,14,13,0.4), rgba(12,14,13,0.95)), url(${service?.image})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          borderBottom: '1px solid rgba(255,255,255,0.1)'
-        }}
-      >
-        <div>
-          <Link to="/expertise" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase' }}>
-            ← EXPERTISE
-          </Link>
-        </div>
-
-        <div style={{ maxWidth: '900px', marginTop: '120px' }}>
-          <span style={{ color: '#64748b', fontSize: '18px', display: 'block', marginBottom: '12px', fontWeight: 'bold' }}>
-            {service?.num || "01"}
-          </span>
-          <h1 style={{ fontSize: '56px', fontWeight: '300', color: '#f8fafc', margin: 0, lineHeight: 1.1, fontFamily: 'serif' }}>
-            {service?.title}
+    <div className="min-h-screen bg-[#FDFBF7] text-[#1A1A1A]">
+      {/* Hero Header Section */}
+      <section className="pt-32 pb-20 px-6 md:px-12 lg:px-24 bg-[#FDFBF7] border-b border-[#E5E0D8]">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="h-px w-8 bg-[#C86D51]"></span>
+            <span className="text-[#C86D51] font-mono uppercase tracking-widest text-xs">
+              {service.category || "Advisory"} — {service.num || "01"}
+            </span>
+          </div>
+          <h1 className="font-serif text-4xl md:text-6xl font-normal leading-tight text-[#1A1A1A] mb-6">
+            {service.title}
           </h1>
+          <p className="text-[#555] text-lg md:text-xl font-light max-w-3xl leading-relaxed">
+            {service.description}
+          </p>
         </div>
-      </div>
+      </section>
 
-      {/* Overview Section */}
-      <div style={{ padding: '80px 60px', maxWidth: '1200px', margin: '0 auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', gap: '40px', alignItems: 'start' }}>
-          <div style={{ textTransform: 'uppercase', fontSize: '12px', letterSpacing: '2px', color: '#94a3b8', paddingTop: '8px' }}>
-            OVERVIEW
+      {/* Overview & Core Details Grid */}
+      <section className="max-w-7xl mx-auto px-6 md:px-12 py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+          <div className="lg:col-span-8 space-y-12">
+            <div>
+              <h2 className="font-serif text-3xl text-[#1A1A1A] mb-6">Overview</h2>
+              <p className="text-[#444] text-lg font-light leading-relaxed">
+                {service.overview || service.description}
+              </p>
+            </div>
+
+            {service.typicalConsiderations && service.typicalConsiderations.length > 0 && (
+              <div>
+                <h3 className="font-serif text-2xl text-[#1A1A1A] mb-6">Typical Considerations</h3>
+                <div className="space-y-6">
+                  {service.typicalConsiderations.map((item, idx) => (
+                    <div key={idx} className="border-t border-[#E5E0D8] pt-4 flex gap-4 items-baseline">
+                      <span className="text-[#C86D51] font-mono text-xs uppercase tracking-widest">{item.num || `0${idx + 1}`}</span>
+                      <p className="text-[#333] font-light text-base">{item.title || item}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {service.theApproach && (
+              <div>
+                <h3 className="font-serif text-2xl text-[#1A1A1A] mb-4">The Approach</h3>
+                <p className="text-[#444] text-lg font-light leading-relaxed">
+                  {service.theApproach}
+                </p>
+              </div>
+            )}
           </div>
-          <div>
-            <p style={{ fontSize: '24px', lineHeight: '1.6', color: '#e2e8f0', fontWeight: '300', margin: 0 }}>
-              {service?.overview || service?.description}
-            </p>
+
+          {/* Sidebar / Who It's For */}
+          <div className="lg:col-span-4 bg-white p-8 border border-[#E5E0D8] shadow-sm space-y-8">
+            <div>
+              <h4 className="text-xs uppercase font-mono tracking-widest text-[#C86D51] mb-2">Who It's For</h4>
+              <p className="text-[#555] text-sm font-light leading-relaxed">
+                {service.whoItsFor || "Multinational groups, holding companies, investment platforms and businesses requiring bespoke cross-border advisory."}
+              </p>
+            </div>
+
+            {service.relatedJurisdictions && service.relatedJurisdictions.length > 0 && (
+              <div className="border-t border-[#E5E0D8] pt-6">
+                <h4 className="text-xs uppercase font-mono tracking-widest text-[#C86D51] mb-3">Related Jurisdictions</h4>
+                <div className="flex flex-wrap gap-2">
+                  {service.relatedJurisdictions.map((jur, i) => (
+                    <span key={i} className="text-xs font-mono bg-[#FDFBF7] border border-[#E5E0D8] px-3 py-1 text-[#333]">
+                      {jur}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="border-t border-[#E5E0D8] pt-6">
+              <a
+                href="/contact"
+                className="w-full block text-center bg-[#142B20] text-white py-3.5 px-6 text-sm uppercase tracking-wider hover:bg-[#1A382B] transition-colors"
+              >
+                Initiate Discussion →
+              </a>
+            </div>
           </div>
         </div>
+      </section>
 
-        {/* Who It's For */}
-        {service?.whoItsFor && (
-          <div style={{ marginTop: '80px', display: 'grid', gridTemplateColumns: '200px 1fr', gap: '40px', alignItems: 'start', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '60px' }}>
-            <div style={{ textTransform: 'uppercase', fontSize: '12px', letterSpacing: '2px', color: '#94a3b8', paddingTop: '4px' }}>
-              WHO IT'S FOR
-            </div>
-            <div>
-              <p style={{ fontSize: '18px', lineHeight: '1.6', color: '#cbd5e1', margin: 0 }}>
-                {service.whoItsFor}
-              </p>
-            </div>
-          </div>
-        )}
-
-        {/* Typical Considerations */}
-        {typicalConsiderations.length > 0 && (
-          <div style={{ marginTop: '80px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '60px' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', gap: '40px', alignItems: 'start' }}>
-              <div style={{ textTransform: 'uppercase', fontSize: '12px', letterSpacing: '2px', color: '#94a3b8', paddingTop: '4px' }}>
-                TYPICAL CONSIDERATIONS
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                {typicalConsiderations.map((item, idx) => (
-                  <div key={idx} style={{ display: 'flex', gap: '20px', alignItems: 'baseline', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '20px' }}>
-                    <span style={{ color: '#84a98c', fontSize: '14px', fontFamily: 'monospace' }}>{item.num || `0${idx+1}`}</span>
-                    <span style={{ fontSize: '18px', color: '#e2e8f0' }}>{item.title}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* The Cerix Approach */}
-        {service?.theApproach && (
-          <div style={{ marginTop: '80px', display: 'grid', gridTemplateColumns: '200px 1fr', gap: '40px', alignItems: 'start', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '60px' }}>
-            <div style={{ textTransform: 'uppercase', fontSize: '12px', letterSpacing: '2px', color: '#94a3b8', paddingTop: '4px' }}>
-              THE CERIX APPROACH
-            </div>
-            <div>
-              <p style={{ fontSize: '18px', lineHeight: '1.6', color: '#cbd5e1', margin: 0 }}>
-                {service.theApproach}
-              </p>
-            </div>
-          </div>
-        )}
-
-        {/* Related Jurisdictions */}
-        {relatedJurisdictions.length > 0 && (
-          <div style={{ marginTop: '80px', display: 'grid', gridTemplateColumns: '200px 1fr', gap: '40px', alignItems: 'start', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '60px' }}>
-            <div style={{ textTransform: 'uppercase', fontSize: '12px', letterSpacing: '2px', color: '#94a3b8', paddingTop: '4px' }}>
-              RELATED JURISDICTIONS
-            </div>
-            <div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '16px' }}>
-                {relatedJurisdictions.map((j, idx) => (
-                  <span key={idx} style={{ background: '#141715', border: '1px solid rgba(255,255,255,0.1)', padding: '8px 16px', borderRadius: '4px', fontSize: '14px', color: '#f8fafc' }}>
-                    {j}
-                  </span>
-                ))}
-              </div>
-              <p style={{ fontSize: '12px', color: '#64748b', fontStyle: 'italic', margin: 0 }}>
-                Jurisdiction suitability depends on individual circumstances and applicable laws. The above is illustrative, not a recommendation.
-              </p>
-            </div>
-          </div>
-        )}
-
-        {/* Frequently Asked Questions */}
-        {faqs.length > 0 && (
-          <div style={{ marginTop: '100px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '60px' }}>
-            <h3 style={{ fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', color: '#94a3b8', marginBottom: '40px' }}>
-              FREQUENTLY ASKED
-            </h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
-              {faqs.map((faq, idx) => (
-                <div key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '30px' }}>
-                  <h4 style={{ fontSize: '20px', color: '#f8fafc', fontWeight: '400', marginBottom: '12px' }}>{faq.question}</h4>
-                  <p style={{ fontSize: '16px', color: '#94a3b8', lineHeight: '1.6', margin: 0 }}>{faq.answer}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Core Capabilities Grid */}
-        {features.length > 0 && (
-          <div style={{ marginTop: '100px' }}>
-            <h3 style={{ fontSize: '14px', letterSpacing: '2px', textTransform: 'uppercase', color: '#94a3b8', marginBottom: '30px' }}>
-              CORE CAPABILITIES
-            </h3>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
-              {features.map((item, idx) => (
-                <div key={idx} style={{ background: '#141715', padding: '24px', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)' }}>
-                  <div style={{ color: '#84a98c', fontSize: '14px', fontWeight: 'bold', marginBottom: '8px' }}>
-                    0{idx + 1}
-                  </div>
-                  <div style={{ color: '#f1f5f9', fontSize: '16px' }}>{item}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Detailed Sections */}
-        {sections.length > 0 && (
-          <div style={{ marginTop: '80px' }}>
-            {sections.map((sec, i) => (
-              <div key={i} style={{ borderTop: '1px solid rgba(255,255,255,0.1)', padding: '40px 0' }}>
-                <h2 style={{ fontSize: '28px', color: '#f8fafc', marginBottom: '16px', fontWeight: '400' }}>{sec.title}</h2>
-                <p style={{ fontSize: '16px', color: '#94a3b8', lineHeight: '1.7', maxWidth: '800px' }}>{sec.description}</p>
+      {/* FAQs Section */}
+      {service.faqs && service.faqs.length > 0 && (
+        <section className="max-w-7xl mx-auto px-6 md:px-12 py-20 border-t border-[#E5E0D8]">
+          <h3 className="font-serif text-3xl text-[#1A1A1A] mb-12">Frequently Asked Questions</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {service.faqs.map((faq, idx) => (
+              <div key={idx} className="space-y-3">
+                <h4 className="font-serif text-xl text-[#1A1A1A]">{faq.question}</h4>
+                <p className="text-[#555] font-light leading-relaxed">{faq.answer}</p>
               </div>
             ))}
           </div>
-        )}
-      </div>
+        </section>
+      )}
     </div>
   );
 }
