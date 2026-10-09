@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { SERVICES, WHO_WE_ADVISE, APPROACH_STAGES, JURISDICTIONS, IMAGES } from '../lib/cerixData';
+import { SERVICES, APPROACH_STAGES, JURISDICTIONS, IMAGES } from '../lib/cerixData';
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState('Corporate Structuring');
