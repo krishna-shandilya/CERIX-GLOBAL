@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getServiceBySlug, SERVICES } from '../lib/cerixData';
 
 export default function ExpertiseDetailPage() {
@@ -8,8 +8,8 @@ export default function ExpertiseDetailPage() {
 
   return (
     <div className="min-h-screen bg-[#FDFBF7] text-[#1A1A1A]">
-      {/* Hero Header Section */}
-      <section className="pt-32 pb-20 px-6 md:px-12 lg:px-24 bg-[#FDFBF7] border-b border-[#E5E0D8]">
+      {/* Hero Section */}
+      <section className="pt-32 pb-20 px-6 md:px-12 lg:px-24 bg-[#142B20] text-white">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-4">
             <span className="h-px w-8 bg-[#C86D51]"></span>
@@ -17,18 +17,19 @@ export default function ExpertiseDetailPage() {
               {service.category || "Advisory"} — {service.num || "01"}
             </span>
           </div>
-          <h1 className="font-serif text-4xl md:text-6xl font-normal leading-tight text-[#1A1A1A] mb-6">
+          <h1 className="font-serif text-4xl md:text-6xl font-normal leading-tight text-white mb-6">
             {service.title}
           </h1>
-          <p className="text-[#555] text-lg md:text-xl font-light max-w-3xl leading-relaxed">
+          <p className="text-[#E2DDD5] text-lg md:text-xl font-light max-w-3xl leading-relaxed">
             {service.description}
           </p>
         </div>
       </section>
 
-      {/* Overview & Core Details Grid */}
+      {/* Main Content & Sidebar */}
       <section className="max-w-7xl mx-auto px-6 md:px-12 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+          {/* Left Column: Overview, Considerations, Approach & FAQs */}
           <div className="lg:col-span-8 space-y-12">
             <div>
               <h2 className="font-serif text-3xl text-[#1A1A1A] mb-6">Overview</h2>
@@ -59,10 +60,24 @@ export default function ExpertiseDetailPage() {
                 </p>
               </div>
             )}
+
+            {service.faqs && service.faqs.length > 0 && (
+              <div className="border-t border-[#E5E0D8] pt-12">
+                <h3 className="font-serif text-2xl text-[#1A1A1A] mb-6">Frequently Asked Questions</h3>
+                <div className="space-y-8">
+                  {service.faqs.map((faq, idx) => (
+                    <div key={idx} className="bg-white p-6 border border-[#E5E0D8]">
+                      <h4 className="font-serif text-lg text-[#1A1A1A] mb-2">{faq.question}</h4>
+                      <p className="text-[#555] font-light text-sm leading-relaxed">{faq.answer}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
-          {/* Sidebar / Who It's For */}
-          <div className="lg:col-span-4 bg-white p-8 border border-[#E5E0D8] shadow-sm space-y-8">
+          {/* Right Sidebar */}
+          <div className="lg:col-span-4 bg-white p-8 border border-[#E5E0D8] shadow-sm space-y-8 sticky top-32">
             <div>
               <h4 className="text-xs uppercase font-mono tracking-widest text-[#C86D51] mb-2">Who It's For</h4>
               <p className="text-[#555] text-sm font-light leading-relaxed">
@@ -84,31 +99,16 @@ export default function ExpertiseDetailPage() {
             )}
 
             <div className="border-t border-[#E5E0D8] pt-6">
-              <a
-                href="/contact"
-                className="w-full block text-center bg-[#142B20] text-white py-3.5 px-6 text-sm uppercase tracking-wider hover:bg-[#1A382B] transition-colors"
+              <Link
+                to={`/contact?interest=${encodeURIComponent(service.title)}`}
+                className="w-full block text-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white py-3.5 px-6 text-sm uppercase tracking-wider hover:bg-white/25 transition-all shadow-sm"
               >
                 Initiate Discussion →
-              </a>
+              </Link>
             </div>
           </div>
         </div>
       </section>
-
-      {/* FAQs Section */}
-      {service.faqs && service.faqs.length > 0 && (
-        <section className="max-w-7xl mx-auto px-6 md:px-12 py-20 border-t border-[#E5E0D8]">
-          <h3 className="font-serif text-3xl text-[#1A1A1A] mb-12">Frequently Asked Questions</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {service.faqs.map((faq, idx) => (
-              <div key={idx} className="space-y-3">
-                <h4 className="font-serif text-xl text-[#1A1A1A]">{faq.question}</h4>
-                <p className="text-[#555] font-light leading-relaxed">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
     </div>
   );
 }
