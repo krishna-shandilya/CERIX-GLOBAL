@@ -501,7 +501,30 @@ export const SERVICES = [
     name: "Alternative Fund Advisory & Structuring",
     category: "Funds",
     description: "Structuring private equity, venture capital, and hedge funds across global hubs.",
-    overview: "Turnkey fund formation and fund administration workflows for alternative asset managers.",
+    overview: "We advise on and coordinate the structuring, formation and regulatory setup of alternative investment funds — including private equity, venture capital and hedge funds — across major international jurisdictions.",
+    whoItsFor: "Emerging and established asset managers, fund sponsors, and institutional investors establishing alternative investment vehicles.",
+    typicalConsiderations: [
+      { num: "01", title: "Fund vehicle type — corporate, limited partnership, unit trust" },
+      { num: "02", title: "Regulatory licensing, registration and exemptions" },
+      { num: "03", title: "Service provider ecosystem — administrator, custodian, auditor" },
+      { num: "04", title: "Investor onboarding, AML/KYC and subscription architecture" }
+    ],
+    theApproach: "We design the fund architecture, align regulatory and compliance requirements, and coordinate setup with local counsel, administrators, and regulatory authorities.",
+    relatedJurisdictions: ["Mauritius", "Cayman Islands", "BVI"],
+    faqs: [
+      {
+        question: "Do you provide fund administration services directly?",
+        answer: "No. We provide advisory and coordination services, partnering with licensed, specialized fund administrators in the chosen jurisdiction."
+      },
+      {
+        question: "Which fund structures do you support?",
+        answer: "We support private equity funds, venture capital vehicles, closed-ended and open-ended hedge funds across leading fund jurisdictions."
+      },
+      {
+        question: "How long does alternative fund setup take?",
+        answer: "Timeframes vary depending on regulatory requirements and whether the fund is registered, authorized, or exempt, typically ranging from several weeks to months."
+      }
+    ],
     image: imgMap.funds,
     heroImage: imgMap.funds,
     bgImage: imgMap.funds,
