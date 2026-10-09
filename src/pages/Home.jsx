@@ -6,7 +6,7 @@ import WhatWeDo from "@/components/home/WhatWeDo";
 import Approach from "@/components/home/Approach";
 import WhyCerix from "@/components/home/WhyCerix";
 import WhoWeAdvise from "@/components/home/WhoWeAdvise";
-import AboutPreview from "@/components/home/AboutPreview";
+import JurisdictionExplorer from "@/components/home/JurisdictionExplorer";
 import ContactSection from "@/components/home/ContactSection";
 
 export default function Home() {
@@ -19,7 +19,7 @@ export default function Home() {
       <WhyCerix />
       <ClientExperiences />
       <WhoWeAdvise />
-      <AboutPreview />
+      <JurisdictionExplorer />
       <ContactSection />
     </>
   );
