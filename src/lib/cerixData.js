@@ -560,7 +560,7 @@ export const JURISDICTIONS = [
     subtitle: "EU Financial & Licensing Hub",
     description: "An EU jurisdiction offering holding structures, licensing frameworks and cross-border trading advantages.",
     coordinates: "35° 56' N  14° 22' E",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=1600&auto=format&fit=crop",
     highlights: ["EU Passporting Rights", "Effective Tax Refund System", "Robust Regulatory Oversight"]
   },
   {
@@ -669,55 +669,31 @@ export const INSIGHTS = [
     id: "01",
     slug: "navigating-economic-substance-2026",
     title: "Navigating Economic Substance & Multi-Jurisdictional Compliance",
-    heading: "Navigating Economic Substance & Multi-Jurisdictional Compliance",
     excerpt: "Essential requirements and operational benchmarks for corporate structures across Singapore, Mauritius, and Cayman Islands.",
-    summary: "Essential requirements and operational benchmarks for corporate structures across Singapore, Mauritius, and Cayman Islands.",
-    description: "An overview of international economic substance laws, directorship expectations, and nexus verification for holding companies.",
-    content: "International regulatory bodies continue to increase scrutiny on cross-border corporate entity substance. Operating entities and holding structures must demonstrate local management control, physical presence, and adequate operational expenditures.",
     category: "Regulatory & Compliance",
     date: "October 2026",
-    publishedAt: "2026-10-01",
     readTime: "6 min read",
-    author: "Cerix Advisory Team",
-    image: imgMap.compliance,
-    heroImage: imgMap.compliance,
-    bgImage: imgMap.compliance
+    image: imgMap.insights
   },
   {
     id: "02",
     slug: "structuring-alternative-investment-funds",
     title: "Structuring Alternative Investment Funds Across Emerging Hubs",
-    heading: "Structuring Alternative Investment Funds Across Emerging Hubs",
     excerpt: "A comparative evaluation of fund vehicles across Mauritius, Cayman Islands, and UAE (ADGM) for private equity and venture capital.",
-    summary: "A comparative evaluation of fund vehicles across Mauritius, Cayman Islands, and UAE (ADGM) for private equity and venture capital.",
-    description: "Key trade-offs between speed-to-market, regulatory oversight, investor familiarity, and double tax agreements.",
-    content: "Selecting the optimal domicile for private capital funds requires balancing investor jurisdiction requirements, licensing timeframes, and double taxation treaty benefits.",
     category: "Fund Advisory",
     date: "September 2026",
-    publishedAt: "2026-09-15",
     readTime: "8 min read",
-    author: "Cerix Funds Advisory",
-    image: imgMap.funds,
-    heroImage: imgMap.funds,
-    bgImage: imgMap.funds
+    image: imgMap.funds
   },
   {
     id: "03",
     slug: "family-office-governance-frameworks",
     title: "Next-Generation Family Office Governance & Wealth Succession",
-    heading: "Next-Generation Family Office Governance & Wealth Succession",
     excerpt: "Integrating international trusts, foundations, and corporate holding vehicles for long-term multi-generational preservation.",
-    summary: "Integrating international trusts, foundations, and corporate holding vehicles for long-term multi-generational preservation.",
-    description: "Designing succession governance protocols and private trust structures across top-tier international financial centers.",
-    content: "Modern wealth structuring requires clear governance protocols, family constitutions, and robust trust/foundation legal structures capable of navigating global asset protection requirements.",
     category: "Private Wealth",
     date: "September 2026",
-    publishedAt: "2026-09-01",
     readTime: "5 min read",
-    author: "Cerix Private Client Group",
-    image: imgMap.wealth,
-    heroImage: imgMap.wealth,
-    bgImage: imgMap.wealth
+    image: imgMap.trusts
   }
 ];
 
@@ -727,107 +703,8 @@ export const NEWS = INSIGHTS;
 export const RESOURCES = INSIGHTS;
 export const PUBLICATIONS = INSIGHTS;
 
-export const TESTIMONIALS = [
-  {
-    quote: "Cerix Global delivered exceptional clarity and precision when restructuring our cross-border investment holding framework.",
-    author: "Managing Director",
-    company: "Swiss Alternative Asset Management Firm",
-    role: "Chief Executive Officer"
-  },
-  {
-    quote: "Their team handled our fund setup and regulatory licensing seamlessly across multiple jurisdictions.",
-    author: "General Partner",
-    company: "Pan-Asian Venture Capital Fund",
-    role: "Founding Partner"
-  }
-];
-
-export const REVIEWS = TESTIMONIALS;
-export const CASE_STUDIES = INSIGHTS;
-export const STORIES = INSIGHTS;
-
-export const FAQS = [
-  {
-    question: "Which jurisdiction is right for my holding entity?",
-    answer: "The choice depends on your operating countries, treaty network requirements, tax efficiency targets, and investor preferences."
-  },
-  {
-    question: "How long does company setup and licensing take?",
-    answer: "Standard company incorporation typically takes 3 to 10 business days depending on jurisdiction, while regulatory licensing spans 4 to 12 weeks."
-  }
-];
-
-export const FAQ = FAQS;
-export const QUESTIONS = FAQS;
-
-export const COMPANY_INFO = {
-  name: "Cerix Global",
-  legalName: "Cerix Global Advisory Services",
-  email: "contact@cerixglobal.com",
-  phone: "+44 20 7946 0912",
-  address: "International Financial Centre, Global Headquarters",
-  tagline: "Cross-Border Corporate & Fund Advisory"
-};
-
-export const CONTACT_INFO = COMPANY_INFO;
-export const SITE_CONFIG = COMPANY_INFO;
-
-const universalSafeHandler = {
-  get(target, prop) {
-    if (prop === Symbol.iterator || prop === 'constructor' || prop === 'then' || prop === 'toJSON' || prop === 'length') {
-      return target[prop];
-    }
-    if (prop === 'split') {
-      return function(separator, limit) {
-        const str = typeof target === 'string' ? target : String(target || "");
-        return str.split(separator, limit);
-      };
-    }
-    if (prop in target) {
-      const val = target[prop];
-      if (val === undefined || val === null) {
-        return (prop === 'features' || prop === 'highlights' || prop === 'sections' || prop === 'subServices' || prop === 'capabilities' || prop === 'deliverables' || prop === 'categories') ? [] : "";
-      }
-      if (typeof val === 'object' && val !== null) {
-        if (Array.isArray(val)) {
-          return val.map(item => (typeof item === 'object' && item !== null ? new Proxy(item, universalSafeHandler) : item));
-        }
-        return new Proxy(val, universalSafeHandler);
-      }
-      return val;
-    }
-    if (prop === 'features' || prop === 'highlights' || prop === 'sections' || prop === 'subServices' || prop === 'capabilities' || prop === 'deliverables' || prop === 'categories') {
-      return [];
-    }
-    return "";
-  }
-};
-
-export function getServiceBySlug(slug) {
-  for (var i = 0; i < SERVICES.length; i++) {
-    if (SERVICES[i].slug === slug) {
-      return new Proxy(SERVICES[i], universalSafeHandler);
-    }
-  }
-  return new Proxy(SERVICES[0], universalSafeHandler);
-}
-
-export function getJurisdictionBySlug(slug) {
-  for (var i = 0; JURISDICTIONS && i < JURISDICTIONS.length; i++) {
-    if (JURISDICTIONS[i].slug === slug) {
-      return new Proxy(JURISDICTIONS[i], universalSafeHandler);
-    }
-  }
-  return new Proxy(JURISDICTIONS[0], universalSafeHandler);
-}
-
-export function getInsightBySlug(slug) {
-  for (var i = 0; INSIGHTS && INSIGHTS.length && i < INSIGHTS.length; i++) {
-    if (INSIGHTS[i].slug === slug) {
-      return new Proxy(INSIGHTS[i], universalSafeHandler);
-    }
-  }
-  return new Proxy(INSIGHTS[0], universalSafeHandler);
-}
+export function getServiceBySlug(slug) { return SERVICES.find(s => s.slug === slug) || SERVICES[0]; }
+export function getJurisdictionBySlug(slug) { return JURISDICTIONS.find(j => j.slug === slug) || JURISDICTIONS[0]; }
+export function getInsightBySlug(slug) { return INSIGHTS.find(i => i.slug === slug) || INSIGHTS[0]; }
 
 export default safeDb;
