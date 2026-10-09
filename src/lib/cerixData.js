@@ -352,7 +352,30 @@ export const SERVICES = [
     name: "Trusts & Foundations",
     category: "Private Wealth",
     description: "International trust and foundation structuring for asset protection, estate planning, and private governance.",
-    overview: "Tailored private asset protection frameworks and generational estate structures engineered across top trust jurisdictions.",
+    overview: "We advise on and coordinate the establishment of international trusts, foundations and private wealth vehicles for succession planning, asset protection and multi-generational governance.",
+    whoItsFor: "Families, principals and private clients considering succession, asset protection and multi-generational planning across borders.",
+    typicalConsiderations: [
+      { num: "01", title: "Trust vs. foundation vs. holding structure" },
+      { num: "02", title: "Jurisdiction, governing law and enforceability" },
+      { num: "03", title: "Trustee, protector and beneficiary architecture" },
+      { num: "04", title: "Tax and reporting implications for the settlor and beneficiaries" }
+    ],
+    theApproach: "We begin with the family's objectives, map the structural options, and coordinate establishment with qualified trustees and counsel — ensuring the structure is coherent and the family understands its operation.",
+    relatedJurisdictions: ["Mauritius", "Cyprus", "Malta", "Seychelles", "BVI"],
+    faqs: [
+      {
+        question: "Is a trust right for every family?",
+        answer: "No. A trust is one of several structures; foundations, holding companies and private trust companies may be more appropriate depending on objectives and jurisdiction."
+      },
+      {
+        question: "Do you act as trustee?",
+        answer: "No. We are an advisory and coordination firm. We coordinate with licensed, regulated trustees and counsel in the relevant jurisdiction."
+      },
+      {
+        question: "Does a trust eliminate tax?",
+        answer: "No. Trusts have tax and reporting consequences for settlors and beneficiaries that vary by jurisdiction. Specific tax advice is essential."
+      }
+    ],
     image: imgMap.trusts,
     heroImage: imgMap.trusts,
     bgImage: imgMap.trusts,
