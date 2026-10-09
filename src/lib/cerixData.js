@@ -395,7 +395,30 @@ export const SERVICES = [
     name: "Investment Migration Advisory",
     category: "Mobility",
     description: "Advisory for internationally mobile business leaders and families on residency and citizenship programs.",
-    overview: "Strategic residency and citizenship planning through qualified business investment and real estate programs.",
+    overview: "We advise internationally mobile individuals and families on investment migration programmes — residency and citizenship pathways by investment — coordinating with licensed agents and immigration counsel in the relevant jurisdiction.",
+    whoItsFor: "Individuals and families seeking alternative residency or citizenship through investment, for mobility, optionality or long-term planning.",
+    typicalConsiderations: [
+      { num: "01", title: "Programme objectives — mobility, optionality, residency" },
+      { num: "02", title: "Investment threshold and structure of the programme" },
+      { num: "03", title: "Due diligence, source-of-funds and eligibility" },
+      { num: "04", title: "Timeline, renewals and ongoing obligations" }
+    ],
+    theApproach: "We help families clarify their objectives, compare programmes against those objectives, and coordinate the application with licensed, regulated agents in the chosen jurisdiction.",
+    relatedJurisdictions: ["Cyprus", "St. Kitts & Nevis", "Malta", "UAE"],
+    faqs: [
+      {
+        question: "Do you operate the migration programme directly?",
+        answer: "No. We are advisory. Applications are handled by licensed, regulated agents and immigration counsel in the relevant jurisdiction, which we coordinate."
+      },
+      {
+        question: "Is investment migration the same as tax avoidance?",
+        answer: "No. Investment migration is about residency and citizenship optionality. It has independent tax and reporting consequences that require qualified professional advice."
+      },
+      {
+        question: "Which programme is best?",
+        answer: "There is no universal answer. Suitability depends on the individual's objectives, profile and circumstances. We help compare options against objectives."
+      }
+    ],
     image: imgMap.migration,
     heroImage: imgMap.migration,
     bgImage: imgMap.migration,
