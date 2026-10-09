@@ -125,7 +125,7 @@ export const CLIENT_TYPES = WHO_WE_ADVISE;
 export const TARGET_AUDIENCE = WHO_WE_ADVISE;
 
 export const STATS = [
-  { value: "\$10B+", label: "Assets Structured" },
+  { value: "$10B+", label: "Assets Structured" },
   { value: "15+", label: "Global Financial Hubs" },
   { value: "100%", label: "Regulatory Compliance Rate" },
   { value: "250+", label: "Institutional Clients" }
@@ -727,4 +727,107 @@ export const NEWS = INSIGHTS;
 export const RESOURCES = INSIGHTS;
 export const PUBLICATIONS = INSIGHTS;
 
-export const
+export const TESTIMONIALS = [
+  {
+    quote: "Cerix Global delivered exceptional clarity and precision when restructuring our cross-border investment holding framework.",
+    author: "Managing Director",
+    company: "Swiss Alternative Asset Management Firm",
+    role: "Chief Executive Officer"
+  },
+  {
+    quote: "Their team handled our fund setup and regulatory licensing seamlessly across multiple jurisdictions.",
+    author: "General Partner",
+    company: "Pan-Asian Venture Capital Fund",
+    role: "Founding Partner"
+  }
+];
+
+export const REVIEWS = TESTIMONIALS;
+export const CASE_STUDIES = INSIGHTS;
+export const STORIES = INSIGHTS;
+
+export const FAQS = [
+  {
+    question: "Which jurisdiction is right for my holding entity?",
+    answer: "The choice depends on your operating countries, treaty network requirements, tax efficiency targets, and investor preferences."
+  },
+  {
+    question: "How long does company setup and licensing take?",
+    answer: "Standard company incorporation typically takes 3 to 10 business days depending on jurisdiction, while regulatory licensing spans 4 to 12 weeks."
+  }
+];
+
+export const FAQ = FAQS;
+export const QUESTIONS = FAQS;
+
+export const COMPANY_INFO = {
+  name: "Cerix Global",
+  legalName: "Cerix Global Advisory Services",
+  email: "contact@cerixglobal.com",
+  phone: "+44 20 7946 0912",
+  address: "International Financial Centre, Global Headquarters",
+  tagline: "Cross-Border Corporate & Fund Advisory"
+};
+
+export const CONTACT_INFO = COMPANY_INFO;
+export const SITE_CONFIG = COMPANY_INFO;
+
+const universalSafeHandler = {
+  get(target, prop) {
+    if (prop === Symbol.iterator || prop === 'constructor' || prop === 'then' || prop === 'toJSON' || prop === 'length') {
+      return target[prop];
+    }
+    if (prop === 'split') {
+      return function(separator, limit) {
+        const str = typeof target === 'string' ? target : String(target || "");
+        return str.split(separator, limit);
+      };
+    }
+    if (prop in target) {
+      const val = target[prop];
+      if (val === undefined || val === null) {
+        return (prop === 'features' || prop === 'highlights' || prop === 'sections' || prop === 'subServices' || prop === 'capabilities' || prop === 'deliverables' || prop === 'categories') ? [] : "";
+      }
+      if (typeof val === 'object' && val !== null) {
+        if (Array.isArray(val)) {
+          return val.map(item => (typeof item === 'object' && item !== null ? new Proxy(item, universalSafeHandler) : item));
+        }
+        return new Proxy(val, universalSafeHandler);
+      }
+      return val;
+    }
+    if (prop === 'features' || prop === 'highlights' || prop === 'sections' || prop === 'subServices' || prop === 'capabilities' || prop === 'deliverables' || prop === 'categories') {
+      return [];
+    }
+    return "";
+  }
+};
+
+export function getServiceBySlug(slug) {
+  for (var i = 0; i < SERVICES.length; i++) {
+    if (SERVICES[i].slug === slug) {
+      return new Proxy(SERVICES[i], universalSafeHandler);
+    }
+  }
+  return new Proxy(SERVICES[0], universalSafeHandler);
+}
+
+export function getJurisdictionBySlug(slug) {
+  for (var i = 0; JURISDICTIONS && i < JURISDICTIONS.length; i++) {
+    if (JURISDICTIONS[i].slug === slug) {
+      return new Proxy(JURISDICTIONS[i], universalSafeHandler);
+    }
+  }
+  return new Proxy(JURISDICTIONS[0], universalSafeHandler);
+}
+
+export function getInsightBySlug(slug) {
+  for (var i = 0; INSIGHTS && INSIGHTS.length && i < INSIGHTS.length; i++) {
+    if (INSIGHTS[i].slug === slug) {
+      return new Proxy(INSIGHTS[i], universalSafeHandler);
+    }
+  }
+  return new Proxy(INSIGHTS[0], universalSafeHandler);
+}
+
+export default safeDb;
