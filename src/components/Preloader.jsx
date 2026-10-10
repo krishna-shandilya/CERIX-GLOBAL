@@ -4,10 +4,8 @@ export default function Preloader({ onComplete }) {
   const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
-    // Timer to start fade out after 1.6 seconds
     const timer = setTimeout(() => {
       setFadeOut(true);
-      // Remove preloader from DOM after transition completes
       const removeTimer = setTimeout(() => {
         if (onComplete) onComplete();
       }, 500);
@@ -19,12 +17,8 @@ export default function Preloader({ onComplete }) {
 
   return (
     <div className={`fixed inset-0 z-[9999] flex items-center justify-center bg-[#142B20] transition-opacity duration-500 ${fadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-      {/* Frosted Glass Dotted Globe Container */}
       <div className="relative w-[380px] h-[380px] rounded-full bg-white/[0.04] backdrop-blur-2xl border border-white/15 p-8 flex items-center justify-center shadow-2xl animate-pulse">
-        {/* Ambient Glow */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#C86D51]/20 to-transparent blur-3xl rounded-full"></div>
-        
-        {/* Glowing Dotted Globe SVG */}
         <div className="absolute inset-0 bg-[radial-gradient(#C86D51_1.5px,transparent_1.5px)] [background-size:18px_18px] opacity-50 rounded-full"></div>
         <svg className="relative z-10 w-48 h-48 text-[#C86D51] animate-spin-slow opacity-90" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="100" cy="100" r="85" stroke="currentColor" strokeWidth="0.75" strokeDasharray="3 3"/>
