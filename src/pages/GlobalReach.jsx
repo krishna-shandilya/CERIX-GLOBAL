@@ -1,119 +1,71 @@
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { getServiceBySlug, SERVICES } from '../lib/cerixData';
+import { Link } from 'react-router-dom';
+import { JURISDICTIONS } from '../lib/cerixData';
 import DottedMapBackground from '@/components/DottedMapBackground';
 
-export default function ExpertiseDetailPage() {
-  const { slug } = useParams();
-  const navigate = useNavigate();
-  const service = getServiceBySlug(slug) || SERVICES[0];
-
-  const handleInitiateDiscussion = () => {
-    navigate(`/contact?interest=${encodeURIComponent(service.title)}`);
-  };
-
+export default function GlobalReachPage() {
   return (
     <div className="min-h-screen bg-[#FDFBF7] text-[#1A1A1A]">
-      {/* Hero Section */}
+      {/* Hero Section - Solid Dark Green matching Expertise */}
       <section className="relative pt-32 pb-20 px-6 md:px-12 lg:px-24 bg-[#142B20] text-white overflow-hidden">
         <DottedMapBackground />
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-4">
             <span className="h-px w-8 bg-[#C86D51]"></span>
             <span className="text-[#C86D51] font-mono uppercase tracking-widest text-xs">
-              {service.category || "Advisory"} — {service.num || "01"}
+              Global Reach
             </span>
           </div>
           <h1 className="font-serif text-4xl md:text-6xl font-normal leading-tight text-white mb-6">
-            {service.title}
+            A network across jurisdictions.
           </h1>
-          <p className="text-[#E2DDD5] text-lg md:text-xl font-light max-w-3xl leading-relaxed">
-            {service.description}
+          <p className="text-[#E2DDD5] text-lg md:text-xl font-light max-w-2xl leading-relaxed">
+            We work across a curated network of jurisdictions — each selected for its relevance to specific objectives. No jurisdiction is universally suitable; every recommendation begins with the client.
           </p>
         </div>
       </section>
 
-      {/* Main Content & Sidebar */}
+      {/* Jurisdictions Grid */}
       <section className="max-w-7xl mx-auto px-6 md:px-12 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-          {/* Left Column: Overview, Considerations, Approach & FAQs */}
-          <div className="lg:col-span-8 space-y-12">
-            <div>
-              <h2 className="font-serif text-3xl text-[#1A1A1A] mb-6">Overview</h2>
-              <p className="text-[#444] text-lg font-light leading-relaxed">
-                {service.overview || service.description}
-              </p>
-            </div>
-
-            {service.typicalConsiderations && service.typicalConsiderations.length > 0 && (
-              <div>
-                <h3 className="font-serif text-2xl text-[#1A1A1A] mb-6">Typical Considerations</h3>
-                <div className="space-y-6">
-                  {service.typicalConsiderations.map((item, idx) => (
-                    <div key={idx} className="border-t border-[#E5E0D8] pt-4 flex gap-4 items-baseline">
-                      <span className="text-[#C86D51] font-mono text-xs uppercase tracking-widest">{item.num || `0${idx + 1}`}</span>
-                      <p className="text-[#333] font-light text-base">{item.title || item}</p>
-                    </div>
-                  ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {JURISDICTIONS.map((jur, idx) => (
+            <div key={jur.slug || idx} className="bg-white border border-[#E5E0D8] shadow-sm flex flex-col justify-between overflow-hidden group hover:border-[#C86D51] transition-colors">
+              {jur.image && (
+                <div className="h-52 overflow-hidden relative">
+                  <img src={jur.image} alt={jur.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+                </div>
+              )}
+              <div className="p-8">
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-[#C86D51] font-mono text-xs uppercase tracking-widest">{jur.region}</span>
+                  <span className="text-xs font-mono text-[#888]">{jur.coordinates}</span>
+                </div>
+                <h3 className="font-serif text-2xl text-[#1A1A1A] mb-2">{jur.name}</h3>
+                <p className="text-sm text-[#C86D51] font-medium mb-4">{jur.subtitle}</p>
+                <p className="text-[#555] text-sm font-light leading-relaxed mb-6">{jur.description}</p>
+                
+                <div className="border-t border-[#E5E0D8] pt-4 mb-2">
+                  <p className="text-xs font-mono uppercase tracking-widest text-[#777] mb-2">Key Highlights:</p>
+                  <ul className="space-y-1">
+                    {jur.highlights?.map((h, i) => (
+                      <li key={i} className="text-xs text-[#444] flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#C86D51]"></span> {h}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
-            )}
-
-            {service.theApproach && (
-              <div>
-                <h3 className="font-serif text-2xl text-[#1A1A1A] mb-4">The Approach</h3>
-                <p className="text-[#444] text-lg font-light leading-relaxed">
-                  {service.theApproach}
-                </p>
+              <div className="px-8 pb-8 pt-0">
+                <Link
+                  to={`/contact?jurisdiction=${jur.slug}`}
+                  className="block w-full text-center rounded-full bg-[#142B20] text-white py-3.5 px-4 text-xs font-mono uppercase tracking-wider hover:bg-[#1A382B] transition-colors shadow-sm"
+                >
+                  Discuss this Jurisdiction →
+                </Link>
               </div>
-            )}
-
-            {service.faqs && service.faqs.length > 0 && (
-              <div className="border-t border-[#E5E0D8] pt-12">
-                <h3 className="font-serif text-2xl text-[#1A1A1A] mb-6">Frequently Asked Questions</h3>
-                <div className="space-y-8">
-                  {service.faqs.map((faq, idx) => (
-                    <div key={idx} className="bg-white p-6 border border-[#E5E0D8]">
-                      <h4 className="font-serif text-lg text-[#1A1A1A] mb-2">{faq.question}</h4>
-                      <p className="text-[#555] font-light text-sm leading-relaxed">{faq.answer}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Right Sidebar */}
-          <div className="lg:col-span-4 bg-white p-8 border border-[#E5E0D8] shadow-sm space-y-8 sticky top-32">
-            <div>
-              <h4 className="text-xs uppercase font-mono tracking-widest text-[#C86D51] mb-2">Who It's For</h4>
-              <p className="text-[#555] text-sm font-light leading-relaxed">
-                {service.whoItsFor || "Multinational groups, holding companies, investment platforms and businesses requiring bespoke cross-border advisory."}
-              </p>
             </div>
-
-            {service.relatedJurisdictions && service.relatedJurisdictions.length > 0 && (
-              <div className="border-t border-[#E5E0D8] pt-6">
-                <h4 className="text-xs uppercase font-mono tracking-widest text-[#C86D51] mb-3">Related Jurisdictions</h4>
-                <div className="flex flex-wrap gap-2">
-                  {service.relatedJurisdictions.map((jur, i) => (
-                    <span key={i} className="text-xs font-mono bg-[#FDFBF7] border border-[#E5E0D8] px-3 py-1 text-[#333]">
-                      {jur}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            <div className="border-t border-[#E5E0D8] pt-6">
-              <button
-                onClick={handleInitiateDiscussion}
-                className="w-full text-center rounded-full bg-[#142B20] hover:bg-[#1A382B] text-white py-4 px-6 text-xs font-mono uppercase tracking-wider transition-all shadow-sm border border-white/10 cursor-pointer"
-              >
-                Initiate Discussion →
-              </button>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
     </div>
