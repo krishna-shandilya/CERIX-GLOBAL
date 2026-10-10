@@ -5,15 +5,15 @@ export default function Preloader() {
   const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
-    // Start fade out after 2.2 seconds
+    // Initiate smooth fade-out at 2.4s
     const fadeTimer = setTimeout(() => {
       setFadeOut(true);
-    }, 2200);
+    }, 2400);
 
-    // Completely unmount preloader after transition
+    // Completely unmount preloader at 3.0s
     const removeTimer = setTimeout(() => {
       setLoading(false);
-    }, 2800);
+    }, 3000);
 
     return () => {
       clearTimeout(fadeTimer);
@@ -25,72 +25,72 @@ export default function Preloader() {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#142B20] transition-opacity duration-700 ease-in-out ${
+      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#142B20]/80 backdrop-blur-3xl transition-opacity duration-700 ease-in-out ${
         fadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
-      {/* Larger Logo Mark Container */}
-      <div className="relative w-48 h-48 flex items-center justify-center">
+      {/* Central Emblem Container */}
+      <div className="relative w-44 h-44 flex items-center justify-center">
         <svg
           viewBox="0 0 200 200"
-          className="w-full h-full drop-shadow-lg"
+          className="w-full h-full drop-shadow-xl overflow-visible"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/* Central 13-Dot Matrix */}
-          <g className="animate-pulse">
+          {/* Phase 1: Central 13-Dot Matrix (Fades & Scales in First) */}
+          <g className="animate-dot-matrix-in">
             {/* Center Dot */}
-            <circle cx="100" cy="100" r="4" fill="#C86D51" />
-            
-            {/* Inner Ring (4 dots) */}
-            <circle cx="83" cy="100" r="3.2" fill="#C86D51" opacity="0.9" />
-            <circle cx="117" cy="100" r="3.2" fill="#C86D51" opacity="0.9" />
-            <circle cx="100" cy="83" r="3.2" fill="#C86D51" opacity="0.9" />
-            <circle cx="100" cy="117" r="3.2" fill="#C86D51" opacity="0.9" />
+            <circle cx="100" cy="100" r="4.5" fill="#C86D51" />
 
-            {/* Corner / Diagonal Dots (4 dots) */}
-            <circle cx="85" cy="85" r="2.8" fill="#C86D51" opacity="0.8" />
-            <circle cx="115" cy="85" r="2.8" fill="#C86D51" opacity="0.8" />
-            <circle cx="85" cy="115" r="2.8" fill="#C86D51" opacity="0.8" />
-            <circle cx="115" cy="115" r="2.8" fill="#C86D51" opacity="0.8" />
+            {/* Inner Cross Dots (4) */}
+            <circle cx="80" cy="100" r="3.5" fill="#C86D51" opacity="0.9" />
+            <circle cx="120" cy="100" r="3.5" fill="#C86D51" opacity="0.9" />
+            <circle cx="100" cy="80" r="3.5" fill="#C86D51" opacity="0.9" />
+            <circle cx="100" cy="120" r="3.5" fill="#C86D51" opacity="0.9" />
 
-            {/* Outer Flanking Extremities (4 dots) */}
-            <circle cx="68" cy="100" r="2.8" fill="#C86D51" opacity="0.65" />
-            <circle cx="132" cy="100" r="2.8" fill="#C86D51" opacity="0.65" />
-            <circle cx="100" cy="68" r="2.8" fill="#C86D51" opacity="0.65" />
-            <circle cx="100" cy="132" r="2.8" fill="#C86D51" opacity="0.65" />
+            {/* Inner Diagonal Dots (4) */}
+            <circle cx="86" cy="86" r="3" fill="#C86D51" opacity="0.8" />
+            <circle cx="114" cy="86" r="3" fill="#C86D51" opacity="0.8" />
+            <circle cx="86" cy="114" r="3" fill="#C86D51" opacity="0.8" />
+            <circle cx="114" cy="114" r="3" fill="#C86D51" opacity="0.8" />
+
+            {/* Outer Flanking Extremities (4) */}
+            <circle cx="64" cy="100" r="3" fill="#C86D51" opacity="0.65" />
+            <circle cx="136" cy="100" r="3" fill="#C86D51" opacity="0.65" />
+            <circle cx="100" cy="64" r="3" fill="#C86D51" opacity="0.65" />
+            <circle cx="100" cy="136" r="3" fill="#C86D51" opacity="0.65" />
           </g>
 
-          {/* Primary Terracotta Interlocking Loop */}
+          {/* Phase 2: Outer Vertical Petal Loop (Terra Cotta) */}
           <path
-            d="M 100,22 C 128,22 142,48 152,72 C 172,68 188,85 182,105 C 188,125 172,142 152,138 C 142,162 128,188 100,188 C 72,188 58,162 48,138 C 28,142 12,125 18,105 C 12,85 28,68 48,72 C 58,48 72,22 100,22 Z"
+            d="M 100,16 C 122,16 138,40 138,72 C 138,88 152,100 168,100 C 190,100 190,132 168,132 C 152,132 138,144 138,160 C 138,192 122,184 100,184 C 78,184 62,192 62,160 C 62,144 48,132 32,132 C 10,132 10,100 32,100 C 48,100 62,88 62,72 C 62,40 78,16 100,16 Z"
             fill="none"
             stroke="#C86D51"
             strokeWidth="3.5"
             strokeLinecap="round"
             strokeLinejoin="round"
-            strokeDasharray="650"
-            strokeDashoffset="650"
-            className="animate-draw-loop"
+            strokeDasharray="700"
+            strokeDashoffset="700"
+            className="animate-draw-petal-1"
           />
 
-          {/* Secondary Forest Green Interlocking Loop */}
+          {/* Phase 2: Interlocking Horizontal Petal Loop (Sage / Deep Forest) */}
           <path
-            d="M 178,72 C 162,88 148,102 148,120 C 148,152 128,178 100,178 C 72,178 52,152 52,120 C 52,102 38,88 22,72 C 8,58 8,35 25,22 C 42,8 65,8 78,22 C 94,38 108,52 125,52 C 152,52 172,65 178,72 Z"
+            d="M 184,100 C 184,122 160,138 128,138 C 112,138 100,152 100,168 C 100,190 68,190 68,168 C 68,152 56,138 40,138 C 8,138 16,122 16,100 C 16,78 8,62 40,62 C 56,62 68,48 68,32 C 68,10 100,10 100,32 C 100,48 112,62 128,62 C 160,62 184,78 184,100 Z"
             fill="none"
-            stroke="#6B8E7B"
+            stroke="#A3B899"
             strokeWidth="3.5"
             strokeLinecap="round"
             strokeLinejoin="round"
-            strokeDasharray="650"
-            strokeDashoffset="650"
-            className="animate-draw-loop-delayed"
+            strokeDasharray="700"
+            strokeDashoffset="700"
+            className="animate-draw-petal-2"
           />
         </svg>
       </div>
 
-      {/* Brand Title Lockup */}
-      <div className="mt-8 text-center space-y-1.5">
-        <h2 className="font-serif text-xl tracking-[0.25em] text-white uppercase font-normal">
+      {/* Brand Title Lockup (Fades in softly) */}
+      <div className="mt-8 text-center space-y-2 animate-fade-in-up">
+        <h2 className="font-serif text-2xl tracking-[0.25em] text-white uppercase font-normal">
           Cerix Global
         </h2>
         <p className="font-mono text-[10px] tracking-[0.35em] text-[#C86D51] uppercase">
