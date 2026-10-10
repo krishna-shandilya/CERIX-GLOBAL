@@ -3,28 +3,59 @@ import { useParams, Link } from 'react-router-dom';
 import { getInsightBySlug, INSIGHTS } from '../lib/cerixData';
 import DottedMapBackground from '@/components/DottedMapBackground';
 
+// Static curated fallback updates strictly relevant to Cerix Global
+const CURATED_BULLETINS = [
+  {
+    title: "OECD Global Minimum Tax (Pillar Two): Compliance Considerations for Cross-Border Groups",
+    date: "Recent Update",
+    category: "Corporate Structuring",
+    link: "https://www.oecd.org/tax/beps/"
+  },
+  {
+    title: "EU Economic Substance Benchmarks: Regulatory Guidelines Across Holding Jurisdictions",
+    date: "Regulatory Alert",
+    category: "Governance & Compliance",
+    link: "https://ec.europa.eu/taxation_customs/index_en"
+  },
+  {
+    title: "Evolution of International Trusts & Foundations for Family Office Wealth Preservation",
+    date: "Industry Insight",
+    category: "Trusts & Foundations",
+    link: "/insights"
+  }
+];
+
 export default function InsightDetailPage() {
   const { slug } = useParams();
   const article = getInsightBySlug(slug) || INSIGHTS[0];
 
-  // State for real-time news feed
   const [news, setNews] = useState([]);
   const [loadingNews, setLoadingNews] = useState(true);
 
   useEffect(() => {
-    // Fetch live business/regulatory news
     const fetchLiveNews = async () => {
       try {
-        // Fetching global financial & regulatory RSS feed converted to JSON
+        const query = encodeURIComponent('"corporate structuring" OR "cross-border compliance" OR "economic substance" OR "investment migration"');
         const response = await fetch(
-          'https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=cross-border+corporate+compliance+regulation&hl=en-US&gl=US&ceid=US:en'
+          `https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=${query}&hl=en-US&gl=US&ceid=US:en`
         );
         const data = await response.json();
-        if (data.items && data.items.length > 0) {
-          setNews(data.items.slice(0, 3)); // Display top 3 live updates
+        
+        if (data.status === 'ok' && data.items && data.items.length > 0) {
+          const formattedItems = data.items.slice(0, 3).map(item => ({
+            title: item.title,
+            date: new Date(item.pubDate).toLocaleDateString(),
+            category: "Live Industry Update",
+            link: item.link
+          }));
+          setNews(formattedItems);
+        } else {
+          // Use curated fallback if feed is empty
+          setNews(CURATED_BULLETINS);
         }
       } catch (err) {
-        console.error('Error fetching live news:', err);
+        console.warn('Live news API fetch failed. Loading curated bulletins fallback.', err);
+        setNews(CURATED_BULLETINS);
       } finally {
         setLoadingNews(false);
       }
@@ -66,7 +97,7 @@ export default function InsightDetailPage() {
           <p>{article.content || "Detailed analysis and regulatory context regarding multi-jurisdictional compliance, economic substance benchmarks, and corporate structuring frameworks designed for international operations."}</p>
         </div>
 
-        {/* Real-Time Industry News Sidebar / Feed */}
+        {/* Real-Time / Curated Industry Bulletins Section */}
         <div className="mt-16 pt-12 border-t border-[#E5E0D8]">
           <div className="flex items-center gap-3 mb-6">
             <span className="h-px w-6 bg-[#C86D51]"></span>
@@ -76,32 +107,33 @@ export default function InsightDetailPage() {
           </div>
 
           {loadingNews ? (
-            <p className="text-xs font-mono text-[#888]">Loading live regulatory feed...</p>
+            <p className="text-xs font-mono text-[#888]">Loading industry bulletins...</p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {news.length > 0 ? (
-                news.map((item, idx) => (
-                  <a
-                    key={idx}
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-5 bg-white border border-[#E5E0D8] hover:border-[#C86D51] transition-colors block group"
-                  >
-                    <span className="text-[10px] font-mono text-[#888] uppercase block mb-2">
-                      {new Date(item.pubDate).toLocaleDateString()}
+              {news.map((item, idx) => (
+                <a
+                  key={idx}
+                  href={item.link}
+                  target={item.link.startsWith('http') ? "_blank" : "_self"}
+                  rel="noopener noreferrer"
+                  className="p-5 bg-white border border-[#E5E0D8] hover:border-[#C86D51] transition-colors block group"
+                >
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-[10px] font-mono text-[#C86D51] uppercase">
+                      {item.category}
                     </span>
-                    <h4 className="font-serif text-sm text-[#1A1A1A] group-hover:text-[#C86D51] transition-colors line-clamp-2 mb-2">
-                      {item.title}
-                    </h4>
-                    <span className="text-[11px] font-mono text-[#C86D51] uppercase tracking-wider block">
-                      Read Source →
+                    <span className="text-[10px] font-mono text-[#888]">
+                      {item.date}
                     </span>
-                  </a>
-                ))
-              ) : (
-                <p className="text-sm text-[#666] font-light">No live updates available at this moment.</p>
-              )}
+                  </div>
+                  <h4 className="font-serif text-sm text-[#1A1A1A] group-hover:text-[#C86D51] transition-colors line-clamp-3 mb-3 leading-snug">
+                    {item.title}
+                  </h4>
+                  <span className="text-[11px] font-mono text-[#C86D51] uppercase tracking-wider block">
+                    Read Update →
+                  </span>
+                </a>
+              ))}
             </div>
           )}
         </div>
