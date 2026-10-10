@@ -1,58 +1,128 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useRef } from "react";
+import { Link } from "react-router-dom";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { ArrowRight, ArrowDown } from "lucide-react";
+import { introShouldRun } from "@/lib/intro";
+import MagneticButton from "@/components/MagneticButton";
+import HeroMap from "@/components/home/HeroMap";
 
 export default function Hero() {
+  const ref = useRef(null);
+  const prefersReduced = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const yText = useTransform(scrollYProgress, [0, 1], prefersReduced ? [0, 0] : [0, -60]);
+  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+
+  const baseDelay = introShouldRun() ? 3.2 : 0;
+  const words = ["BUILD", "BEYOND", "BORDERS."];
+
   return (
-    <section className="relative min-h-[92vh] flex flex-col justify-between bg-[#142B20] text-white px-6 md:px-12 lg:px-24 pt-36 pb-16 overflow-hidden">
-      {/* Glassmorphic Glowing Globe & Map Overlay */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-full lg:w-3/6 h-full opacity-35 pointer-events-none flex items-center justify-end pr-12">
-        <div className="relative w-[500px] h-[500px] rounded-full bg-gradient-to-br from-[#C86D51]/20 to-transparent blur-3xl animate-pulse"></div>
-        <svg className="absolute w-[450px] h-[450px] text-[#C86D51] animate-spin-slow opacity-60" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="100" cy="100" r="90" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4"/>
-          <circle cx="100" cy="100" r="70" stroke="currentColor" strokeWidth="0.5" opacity="0.4"/>
-          <path d="M30 100 Q 100 30, 170 100 Q 100 170, 30 100 Z" stroke="currentColor" strokeWidth="1" opacity="0.8"/>
-          <path d="M100 30 Q 170 100, 100 170 Q 30 100, 100 30 Z" stroke="currentColor" strokeWidth="1" opacity="0.8"/>
-          <circle cx="140" cy="80" r="4" fill="currentColor" className="animate-ping"/>
-          <circle cx="70" cy="130" r="3" fill="currentColor"/>
-        </svg>
-      </div>
-
-      {/* Hero Content with Smooth Quick Dissolve / Fade-In */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full my-auto space-y-6 transition-all duration-500 ease-out opacity-100 transform translate-y-0">
-        <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/15">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#C86D51] animate-ping"></span>
-          <span className="text-[#C86D51] font-mono uppercase tracking-widest text-[11px]">
-            Global Business & Corporate Structuring
-          </span>
-        </div>
-        
-        <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-normal leading-tight tracking-tight text-white max-w-4xl drop-shadow-sm">
-          Build Beyond Borders.
-        </h1>
-        
-        <p className="text-[#D4CFC4] text-base md:text-lg font-light max-w-xl leading-relaxed">
-          Strategic international advisory for businesses, investors and families navigating global structures, jurisdictions and opportunity.
-        </p>
-        
-        <div className="pt-4 flex flex-wrap gap-4 items-center">
-          <Link
-            to="/expertise"
-            className="rounded-full bg-white text-[#142B20] hover:bg-[#FDFBF7] px-8 py-4 text-xs font-mono uppercase tracking-wider transition-all shadow-sm flex items-center gap-2 font-medium"
+    <section ref={ref} data-theme="dark" className="relative bg-forest">
+      <div className="px-3 sm:px-4 lg:px-6 pt-3 sm:pt-4 lg:pt-6">
+        <div className="relative bg-forest rounded-[32px] overflow-hidden flex flex-col lg:block lg:min-h-[640px]">
+          {/* Text — in flow on mobile, absolute over the map on desktop */}
+          <motion.div
+            style={{ y: yText, opacity }}
+            className="relative lg:absolute lg:inset-0 lg:h-full z-10 flex flex-col justify-end pt-20 pb-16 px-6 sm:px-10 lg:px-20 max-w-[1500px]"
           >
-            Explore Our Expertise →
-          </Link>
-          <Link
-            to="/contact"
-            className="rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 px-8 py-4 text-xs font-mono uppercase tracking-wider transition-all flex items-center gap-2 shadow-sm"
-          >
-            Talk to Cerix Global →
-          </Link>
-        </div>
-      </div>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: baseDelay + 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="eyebrow text-ivory/80 mb-6 flex items-center gap-4"
+            >
+              <span className="h-px w-12 bg-terracotta-on-dark-small/80" />
+              Global Business &amp; Corporate Structuring
+            </motion.p>
 
-      <div className="relative z-10 max-w-7xl mx-auto w-full pt-8 flex justify-center">
-        <span className="text-xs font-mono tracking-widest text-[#888] animate-pulse">SCROLL ↓</span>
+            <h1 className="font-serif leading-[0.92] tracking-tight">
+              {words.map((w, i) => (
+                <span key={i} className="block overflow-hidden pb-[0.08em] -mb-[0.08em]">
+                  <motion.span
+                    initial={{ y: "110%" }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 1.2, delay: baseDelay + 0.5 + i * 0.14, ease: [0.22, 1, 0.36, 1] }}
+                    className="inline-block text-ivory"
+                    style={{ fontSize: "clamp(2.5rem, 7vw, 7rem)" }}
+                  >
+                    {w}
+                  </motion.span>
+                </span>
+              ))}
+            </h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: baseDelay + 1.1, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-7 font-sans text-lg lg:text-xl text-ivory/85 max-w-[520px] leading-relaxed font-light"
+            >
+              Strategic international advisory for businesses, investors and families navigating global structures, jurisdictions and opportunity.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: baseDelay + 1.4, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-9 flex flex-col sm:flex-row gap-4"
+            >
+              <MagneticButton strength={0.2}>
+                <Link
+                  to="/expertise"
+                  className="group inline-flex items-center justify-center gap-3 bg-ivory text-forest font-sans text-sm tracking-[0.14em] uppercase font-medium rounded-full hover:bg-parchment transition-colors duration-300"
+                  style={{ padding: "1rem 2.25rem" }}
+                >
+                  Explore Our Expertise
+                  <ArrowRight size={16} strokeWidth={1.5} className="group-hover:translate-x-1 transition-transform duration-300" />
+                </Link>
+              </MagneticButton>
+              <MagneticButton strength={0.15}>
+                <a
+                  href="https://wa.me/919731709711?text=Hello%20Cerix%20Global%2C%20I%20would%20like%20to%20get%20in%20touch."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center justify-center gap-3 text-ivory font-sans text-sm tracking-[0.14em] uppercase font-medium rounded-full border border-ivory/45 hover:bg-ivory/10 transition-colors duration-300"
+                  style={{ padding: "1rem 2.25rem" }}
+                >
+                  Talk to Cerix Global
+                  <ArrowRight size={16} strokeWidth={1.5} className="group-hover:translate-x-1 transition-transform duration-300" />
+                </a>
+              </MagneticButton>
+            </motion.div>
+          </motion.div>
+
+          {/* Map — full-bleed behind text (desktop) / edge-to-edge band below text (mobile) */}
+          <div className="relative w-full aspect-[16/10] lg:aspect-auto lg:absolute lg:inset-0 z-0">
+            <HeroMap />
+            {/* Left-to-right scrim over the map, under the text — desktop only */}
+            <div
+              className="hidden lg:block absolute inset-0 z-[1] pointer-events-none"
+              style={{ background: "linear-gradient(to right, rgba(23,35,31,0.96), rgba(23,35,31,0) 48%)" }}
+            />
+          </div>
+
+          {/* Local scrim so the scroll indicator never sits over land dots */}
+          <div
+            className="hidden lg:block absolute bottom-0 left-1/2 -translate-x-1/2 w-40 h-28 pointer-events-none z-[2]"
+            style={{ background: "radial-gradient(ellipse 50% 70% at center bottom, rgba(23,35,31,0.7), transparent 70%)" }}
+          />
+
+          {/* Scroll indicator — bottom centre, over the scrim, clear of buttons */}
+          <motion.div
+            style={{ opacity }}
+            className="hidden lg:flex absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex-col items-center gap-2 text-ivory/70"
+          >
+            <span className="font-mono text-[0.6rem] tracking-[0.3em] uppercase">Scroll</span>
+            <motion.div
+              animate={prefersReduced ? {} : { y: [0, 6, 0] }}
+              transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <ArrowDown size={14} strokeWidth={1.5} />
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
 }
+
