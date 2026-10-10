@@ -5,24 +5,24 @@
 @layer base {
   :root {
     /* Territorial Tones — Cerix Global */
-    --near-black: #0B0F0D;       /* Near Black — hero & footer */
+    --near-black: #0B0F0D;        /* Near Black — hero & footer */
     --obsidian: #0B0F0D;          /* alias of near-black */
     --forest: #17231F;           /* Deep Forest — high-contrast bands */
     --forest-deep: #17231F;
     --charcoal: #2A2D28;          /* Charcoal Slate */
-    --parchment: #F2E8D8;         /* Warm Parchment */
+    --parchment: #F2E8D8;          /* Warm Parchment */
     --parchment-soft: #EDE2CF;    /* Lifted parchment */
-    --ivory: #FAF8F3;             /* Warm Ivory — airy content background */
-    --olive: #6E6B3A;             /* Weathered Olive */
+    --ivory: #FAF8F3;              /* Warm Ivory — airy content background */
+    --olive: #6E6B3A;              /* Weathered Olive */
     --olive-soft: #8A8755;
-    --olive-deep: #55613A;        /* Deep olive — hover fill */
-    --sage: #E6E9DA;              /* Soft sage tint */
-    --terracotta: #7A3120;        /* Deep Terracotta — light surfaces */
-    --terracotta-soft: #DE8E76;   /* Terracotta on dark — small text */
+    --olive-deep: #55613A;         /* Deep olive — hover fill */
+    --sage: #E6E9DA;               /* Soft sage tint */
+    --terracotta: #7A3120;         /* Deep Terracotta — light surfaces */
+    --terracotta-soft: #DE8E76;    /* Terracotta on dark — small text */
     --terracotta-on-dark: #B54D3A;  /* Terracotta on dark — large text/graphics */
     --terracotta-on-dark-small: #DE8E76;  /* Terracotta on dark — small text */
-    --stone: #9A988C;             /* Muted stone */
-    --warm-grey: #6B6A62;         /* Soft warm grey */
+    --stone: #9A988C;              /* Muted stone */
+    --warm-grey: #6B6A62;          /* Soft warm grey */
 
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
@@ -285,6 +285,24 @@
 @keyframes intro-fade-out { to { opacity: 0; } }
 @keyframes intro-tint-out { to { opacity: 0; } }
 
+/* Preloader SVG path drawing animations */
+@keyframes drawLoop {
+  0% {
+    stroke-dashoffset: 500;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-draw-loop {
+  animation: drawLoop 1.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.animate-draw-loop-delayed {
+  animation: drawLoop 1.8s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
+}
+
 /* Hero-only palette and native animation loops. */
 :root, .dark {
   --hero-accent: var(--terracotta-on-dark);
@@ -348,7 +366,7 @@
     transform: none;
   }
 }
-CSS
+
 #base44-badge, .base44-badge, [class*="base44-badge"], a[href*="base44.app"] {
   display: none !important;
   visibility: hidden !important;
