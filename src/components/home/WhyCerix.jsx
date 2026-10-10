@@ -9,7 +9,7 @@ const STATS = [
   { value: "10+", label: "Years of experience", type: "counter" },
   { value: "Global", label: "Jurisdiction network", type: "text" },
   { value: "End-to-end", label: "Advisory approach", type: "text" },
-  { value: "Multidisciplinary", label: "Professional network", type: "text" },
+  { value: "Unified", label: "Professional network", type: "text" },
 ];
 
 export default function WhyCerix() {
