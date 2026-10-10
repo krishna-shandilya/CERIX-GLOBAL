@@ -29,23 +29,23 @@ export default function Preloader() {
         fadeOut ? 'opacity-0 scale-105 pointer-events-none' : 'opacity-100 scale-100'
       }`}
       style={{
-        background: 'radial-gradient(circle at 50% 50%, rgba(18, 38, 28, 0.94), rgba(8, 12, 10, 0.99))',
-        backdropFilter: 'blur(48px) saturate(160%)',
-        WebkitBackdropFilter: 'blur(48px) saturate(160%)',
+        background: 'radial-gradient(circle at 50% 50%, rgba(26, 52, 38, 0.62), rgba(12, 24, 17, 0.82))',
+        backdropFilter: 'blur(60px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(60px) saturate(180%)',
       }}
     >
       <style>{`
-        /* Smooth Pulsing Animation for the Enlarged Dot Matrix */
-        @keyframes dotMatrixPulse {
+        /* Smooth Breathing Glow-Pulse for Large Dots */
+        @keyframes largeDotPulse {
           0%, 100% {
-            transform: scale(0.92);
-            opacity: 0.75;
-            filter: drop-shadow(0 0 12px rgba(200, 109, 81, 0.35));
+            transform: scale(0.95);
+            opacity: 0.8;
+            filter: drop-shadow(0 0 25px rgba(200, 109, 81, 0.45));
           }
           50% {
             transform: scale(1.08);
             opacity: 1;
-            filter: drop-shadow(0 0 30px rgba(200, 109, 81, 0.65));
+            filter: drop-shadow(0 0 50px rgba(200, 109, 81, 0.8));
           }
         }
 
@@ -53,7 +53,7 @@ export default function Preloader() {
         @keyframes fadeInUp {
           0% {
             opacity: 0;
-            transform: translateY(10px);
+            transform: translateY(12px);
           }
           100% {
             opacity: 1;
@@ -61,9 +61,9 @@ export default function Preloader() {
           }
         }
 
-        .animate-dot-matrix-pulse {
+        .animate-large-dots {
           transform-origin: center;
-          animation: dotMatrixPulse 2.4s ease-in-out infinite;
+          animation: largeDotPulse 2.6s ease-in-out infinite;
         }
 
         .animate-fade-in-up {
@@ -72,40 +72,39 @@ export default function Preloader() {
         }
       `}</style>
 
-      {/* Larger, Prominent Pulsing Dot Matrix */}
-      <div className="relative w-48 h-48 sm:w-56 sm:h-56 flex items-center justify-center animate-dot-matrix-pulse">
+      {/* Much Larger, Prominent Pulsing Dot Matrix */}
+      <div className="relative w-56 h-56 sm:w-64 sm:h-64 flex items-center justify-center animate-large-dots">
         <svg
           viewBox="0 0 200 200"
           className="w-full h-full overflow-visible"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/* Expanded 13-Dot Matrix with Larger Radii */}
-          {/* Center Focal Point */}
-          <circle cx="100" cy="100" r="7" fill="#C86D51" />
+          {/* Center Focal Point (Enlarged) */}
+          <circle cx="100" cy="100" r="11" fill="#C86D51" />
 
           {/* Inner Cross Points (4) */}
-          <circle cx="72" cy="100" r="5.5" fill="#C86D51" opacity="0.9" />
-          <circle cx="128" cy="100" r="5.5" fill="#C86D51" opacity="0.9" />
-          <circle cx="100" cy="72" r="5.5" fill="#C86D51" opacity="0.9" />
-          <circle cx="100" cy="128" r="5.5" fill="#C86D51" opacity="0.9" />
+          <circle cx="68" cy="100" r="9" fill="#C86D51" opacity="0.92" />
+          <circle cx="132" cy="100" r="9" fill="#C86D51" opacity="0.92" />
+          <circle cx="100" cy="68" r="9" fill="#C86D51" opacity="0.92" />
+          <circle cx="100" cy="132" r="9" fill="#C86D51" opacity="0.92" />
 
           {/* Inner Diagonal Matrix Points (4) */}
-          <circle cx="80" cy="80" r="4.5" fill="#C86D51" opacity="0.8" />
-          <circle cx="120" cy="80" r="4.5" fill="#C86D51" opacity="0.8" />
-          <circle cx="80" cy="120" r="4.5" fill="#C86D51" opacity="0.8" />
-          <circle cx="120" cy="120" r="4.5" fill="#C86D51" opacity="0.8" />
+          <circle cx="76" cy="76" r="7.5" fill="#C86D51" opacity="0.82" />
+          <circle cx="124" cy="76" r="7.5" fill="#C86D51" opacity="0.82" />
+          <circle cx="76" cy="124" r="7.5" fill="#C86D51" opacity="0.82" />
+          <circle cx="124" cy="124" r="7.5" fill="#C86D51" opacity="0.82" />
 
           {/* Outer Flank Points (4) */}
-          <circle cx="50" cy="100" r="4.5" fill="#C86D51" opacity="0.65" />
-          <circle cx="150" cy="100" r="4.5" fill="#C86D51" opacity="0.65" />
-          <circle cx="100" cy="50" r="4.5" fill="#C86D51" opacity="0.65" />
-          <circle cx="100" cy="150" r="4.5" fill="#C86D51" opacity="0.65" />
+          <circle cx="42" cy="100" r="7.5" fill="#C86D51" opacity="0.68" />
+          <circle cx="158" cy="100" r="7.5" fill="#C86D51" opacity="0.68" />
+          <circle cx="100" cy="42" r="7.5" fill="#C86D51" opacity="0.68" />
+          <circle cx="100" cy="158" r="7.5" fill="#C86D51" opacity="0.68" />
         </svg>
       </div>
 
       {/* Brand Title Lockup */}
       <div className="mt-8 text-center space-y-2 animate-fade-in-up">
-        <h2 className="font-serif text-2xl tracking-[0.28em] text-[#FAF8F3] uppercase font-normal">
+        <h2 className="font-serif text-2xl tracking-[0.3em] text-[#FAF8F3] uppercase font-normal">
           Cerix Global
         </h2>
         <p className="font-mono text-[10px] tracking-[0.4em] text-[#C86D51] uppercase">
