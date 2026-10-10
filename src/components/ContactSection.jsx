@@ -12,7 +12,7 @@ export default function ContactSection() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic or integration here
+    // Connect your form handler API or service (e.g. Formspree/Web3Forms)
     alert('Thank you. Your inquiry has been submitted successfully.');
   };
 
@@ -48,9 +48,9 @@ export default function ContactSection() {
             Direct Channels
           </p>
           <div className="flex flex-wrap gap-3">
-            {/* WhatsApp Link */}
+            {/* WhatsApp Link with Direct Number */}
             <a
-              href="https://wa.me/YOUR_PHONE_NUMBER" // Replace with your WhatsApp link
+              href="https://wa.me/919731709711"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-white text-[#0D2418] px-5 py-2.5 rounded-full text-xs font-mono font-medium tracking-wider uppercase hover:bg-[#FAF8F3] transition-all duration-300 shadow-sm hover:shadow"
@@ -61,7 +61,7 @@ export default function ContactSection() {
 
             {/* Telegram Link */}
             <a
-              href="https://t.me/YOUR_TELEGRAM_USERNAME" // Replace with your Telegram link
+              href="https://t.me/YOUR_TELEGRAM_USERNAME" // Replace with your Telegram handle
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-white text-[#0D2418] px-5 py-2.5 rounded-full text-xs font-mono font-medium tracking-wider uppercase hover:bg-[#FAF8F3] transition-all duration-300 shadow-sm hover:shadow"
