@@ -17,56 +17,66 @@ import InsightDetail from '@/pages/InsightDetail';
 import About from '@/pages/About';
 import Contact from '@/pages/Contact';
 import Legal from '@/pages/Legal';
-import Preloader from '@/components/Preloader';
-import React, { useState } from 'react';
-
 // Add page imports here
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
-  const [showPreloader, setShowPreloader] = useState(true);
 
-  // Show loading spinner or preloader while checking app public settings or auth
+  // Show loading spinner while checking app public settings or auth
   if (isLoadingPublicSettings || isLoadingAuth) {
     return (
-      <div className="min-h-screen bg-[#142B20] flex items-center justify-center">
-        <Preloader onComplete={() => setShowPreloader(false)} />
+      <div className="fixed inset-0 flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-slate-200 border-t-slate-800 rounded-full animate-spin"></div>
       </div>
     );
   }
 
+  // Handle authentication errors
+  if (authError) {
+    if (authError.type === 'user_not_registered') {
+      return <UserNotRegisteredError />;
+    } else if (authError.type === 'auth_required') {
+      // Redirect to login automatically
+      navigateToLogin();
+      return null;
+    }
+  }
+
+  // Render the main app
   return (
-    <>
-      {showPreloader && <Preloader onComplete={() => setShowPreloader(false)} />}
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/expertise" element={<Expertise />} />
-          <Route path="/expertise/:id" element={<ExpertiseDetail />} />
-          <Route path="/global-reach" element={<GlobalReach />} />
-          <Route path="/approach" element={<ApproachPage />} />
-          <Route path="/insights" element={<Insights />} />
-          <Route path="/insights/:id" element={<InsightDetail />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/legal" element={<Legal />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </Layout>
-    </>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/expertise" element={<Expertise />} />
+        <Route path="/expertise/:slug" element={<ExpertiseDetail />} />
+        <Route path="/global-reach" element={<GlobalReach />} />
+        <Route path="/approach" element={<ApproachPage />} />
+        <Route path="/insights" element={<Insights />} />
+        <Route path="/insights/:slug" element={<InsightDetail />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy" element={<Legal />} />
+        <Route path="/terms" element={<Legal />} />
+        <Route path="/disclaimer" element={<Legal />} />
+      </Route>
+      <Route path="*" element={<PageNotFound />} />
+    </Routes>
   );
 };
 
-export default function App() {
+function App() {
+
   return (
-    <QueryClientProvider client={queryClientInstance}>
-      <AuthProvider>
+    <AuthProvider>
+      <QueryClientProvider client={queryClientInstance}>
         <Router>
           <ScrollToTop />
           <AuthenticatedApp />
-          <Toaster />
         </Router>
-      </AuthProvider>
-    </QueryClientProvider>
-  );
+        <Toaster />
+      </QueryClientProvider>
+    </AuthProvider>
+  )
 }
+
+export default App
