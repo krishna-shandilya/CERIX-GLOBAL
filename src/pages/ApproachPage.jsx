@@ -1,11 +1,14 @@
 import React from 'react';
 import { APPROACH_STAGES } from '../lib/cerixData';
+import DottedMapBackground from '@/components/DottedMapBackground';
 
 export default function ApproachPage() {
   return (
     <div className="min-h-screen bg-[#FDFBF7] text-[#1A1A1A]">
-      <section className="pt-32 pb-20 px-6 md:px-12 lg:px-24 bg-[#142B20] text-white">
-        <div className="max-w-7xl mx-auto">
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 px-6 md:px-12 lg:px-24 bg-[#142B20] text-white overflow-hidden">
+        <DottedMapBackground />
+        <div className="relative z-10 max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-4">
             <span className="h-px w-8 bg-[#C86D51]"></span>
             <span className="text-[#C86D51] font-mono uppercase tracking-widest text-xs">
@@ -21,6 +24,7 @@ export default function ApproachPage() {
         </div>
       </section>
 
+      {/* Stages Section */}
       <section className="max-w-7xl mx-auto px-6 md:px-12 py-20">
         <div className="space-y-16">
           {APPROACH_STAGES.map((stage, idx) => (
