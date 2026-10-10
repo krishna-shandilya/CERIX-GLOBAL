@@ -7,7 +7,7 @@ import Approach from "@/components/home/Approach";
 import WhyCerix from "@/components/home/WhyCerix";
 import WhoWeAdvise from "@/components/home/WhoWeAdvise";
 import JurisdictionExplorer from "@/components/home/JurisdictionExplorer";
-import ContactSection from "@/components/home/ContactSection";
+import ContactSection from "@/components/ContactSection";
 
 export default function Home() {
   return (
