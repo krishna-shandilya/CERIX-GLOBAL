@@ -25,59 +25,146 @@ export default function Preloader() {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-[#12261C] transition-opacity duration-700 ${
-        fadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
+      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center transition-all duration-700 ease-in-out ${
+        fadeOut ? 'opacity-0 scale-105 pointer-events-none' : 'opacity-100 scale-100'
       }`}
+      style={{
+        background: 'radial-gradient(circle at 50% 50%, rgba(18, 38, 28, 0.72), rgba(8, 12, 10, 0.88))',
+        backdropFilter: 'blur(80px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(80px) saturate(180%)',
+      }}
     >
-      {/* Frosty white glass container */}
-      <div className="relative px-12 py-10 rounded-3xl bg-white/[0.08] backdrop-blur-2xl border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] flex flex-col items-center">
-        
-        {/* 15-Dot Matrix Brand Emblem Animation */}
-        <div className="grid grid-cols-5 gap-2.5 mb-6 items-center justify-items-center">
-          {/* Row 1 */}
-          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
-          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
-          <div className="w-2 h-2 rounded-full bg-[#C86D51] animate-pulse" />
-          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
-          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
+      <style>{`
+        /* Ultra-Smooth Wave Breath Keyframes */
+        @keyframes centerPulse {
+          0%, 100% {
+            transform: scale(0.92);
+            opacity: 0.85;
+          }
+          50% {
+            transform: scale(1.12);
+            opacity: 1;
+          }
+        }
 
-          {/* Row 2 */}
-          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
-          <div className="w-2 h-2 rounded-full bg-[#C86D51]/70 animate-pulse [animation-delay:150ms]" />
-          <div className="w-2.5 h-2.5 rounded-full bg-[#C86D51] animate-pulse [animation-delay:300ms]" />
-          <div className="w-2 h-2 rounded-full bg-[#C86D51]/70 animate-pulse [animation-delay:150ms]" />
-          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
+        @keyframes innerCrossWave {
+          0%, 100% {
+            transform: scale(0.94);
+            opacity: 0.75;
+          }
+          50% {
+            transform: scale(1.08);
+            opacity: 1;
+          }
+        }
 
-          {/* Row 3 (Center) */}
-          <div className="w-2 h-2 rounded-full bg-[#C86D51] animate-ping" />
-          <div className="w-2.5 h-2.5 rounded-full bg-[#C86D51] animate-pulse [animation-delay:300ms]" />
-          <div className="w-3.5 h-3.5 rounded-full bg-white shadow-[0_0_15px_rgba(200,109,81,0.9)] animate-pulse" />
-          <div className="w-2.5 h-2.5 rounded-full bg-[#C86D51] animate-pulse [animation-delay:300ms]" />
-          <div className="w-2 h-2 rounded-full bg-[#C86D51] animate-ping" />
+        @keyframes diagonalWave {
+          0%, 100% {
+            transform: scale(0.92);
+            opacity: 0.65;
+          }
+          50% {
+            transform: scale(1.06);
+            opacity: 0.95;
+          }
+        }
 
-          {/* Row 4 */}
-          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
-          <div className="w-2 h-2 rounded-full bg-[#C86D51]/70 animate-pulse [animation-delay:150ms]" />
-          <div className="w-2.5 h-2.5 rounded-full bg-[#C86D51] animate-pulse [animation-delay:300ms]" />
-          <div className="w-2 h-2 rounded-full bg-[#C86D51]/70 animate-pulse [animation-delay:150ms]" />
-          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
+        @keyframes outerFlankWave {
+          0%, 100% {
+            transform: scale(0.90);
+            opacity: 0.45;
+          }
+          50% {
+            transform: scale(1.05);
+            opacity: 0.85;
+          }
+        }
 
-          {/* Row 5 */}
-          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
-          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
-          <div className="w-2 h-2 rounded-full bg-[#C86D51] animate-pulse" />
-          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
-          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
-        </div>
+        /* Title Lockup Entrance */
+        @keyframes fadeInUp {
+          0% {
+            opacity: 0;
+            transform: translateY(12px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
 
-        {/* Brand Typography */}
-        <h1 className="text-lg font-serif tracking-[0.3em] text-white uppercase mb-1">
+        .dot-center {
+          transform-origin: 100px 100px;
+          animation: centerPulse 2.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+        }
+
+        .dots-inner-cross {
+          transform-origin: 100px 100px;
+          animation: innerCrossWave 2.8s cubic-bezier(0.45, 0, 0.55, 1) 0.25s infinite;
+        }
+
+        .dots-diagonal {
+          transform-origin: 100px 100px;
+          animation: diagonalWave 2.8s cubic-bezier(0.45, 0, 0.55, 1) 0.45s infinite;
+        }
+
+        .dots-outer-flank {
+          transform-origin: 100px 100px;
+          animation: outerFlankWave 2.8s cubic-bezier(0.45, 0, 0.55, 1) 0.65s infinite;
+        }
+
+        .animate-fade-in-up {
+          animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+          opacity: 0;
+        }
+      `}</style>
+
+      {/* Prominent SVG Vector Container */}
+      <div className="relative w-80 h-80 sm:w-96 sm:h-96 flex items-center justify-center">
+        <svg
+          viewBox="0 0 200 200"
+          className="w-full h-full overflow-visible"
+          xmlns="http://www.w3.org/2000/svg"
+          shapeRendering="geometricPrecision"
+        >
+          {/* Layer 1: Center Focal Point */}
+          <g className="dot-center">
+            <circle cx="100" cy="100" r="14" fill="#C86D51" />
+          </g>
+
+          {/* Layer 2: Inner Cross Points (4) */}
+          <g className="dots-inner-cross">
+            <circle cx="60" cy="100" r="11" fill="#C86D51" />
+            <circle cx="140" cy="100" r="11" fill="#C86D51" />
+            <circle cx="100" cy="60" r="11" fill="#C86D51" />
+            <circle cx="100" cy="140" r="11" fill="#C86D51" />
+          </g>
+
+          {/* Layer 3: Diagonal Matrix Points (4) */}
+          <g className="dots-diagonal">
+            <circle cx="72" cy="72" r="9.5" fill="#C86D51" />
+            <circle cx="128" cy="72" r="9.5" fill="#C86D51" />
+            <circle cx="72" cy="128" r="9.5" fill="#C86D51" />
+            <circle cx="128" cy="128" r="9.5" fill="#C86D51" />
+          </g>
+
+          {/* Layer 4: Outer Flank Points (4) */}
+          <g className="dots-outer-flank">
+            <circle cx="28" cy="100" r="9.5" fill="#C86D51" />
+            <circle cx="172" cy="100" r="9.5" fill="#C86D51" />
+            <circle cx="100" cy="28" r="9.5" fill="#C86D51" />
+            <circle cx="100" cy="172" r="9.5" fill="#C86D51" />
+          </g>
+        </svg>
+      </div>
+
+      {/* Brand Title Lockup */}
+      <div className="mt-6 text-center space-y-2 animate-fade-in-up">
+        <h2 className="font-serif text-2xl sm:text-3xl tracking-[0.3em] text-[#FAF8F3] uppercase font-normal">
           Cerix Global
-        </h1>
-        <p className="text-[9px] font-mono tracking-[0.4em] text-[#C86D51] uppercase">
+        </h2>
+        <p className="font-mono text-[10px] sm:text-[11px] tracking-[0.4em] text-[#C86D51] uppercase">
           International Advisory
         </p>
-
       </div>
     </div>
   );
