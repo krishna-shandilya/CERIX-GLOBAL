@@ -1,84 +1,75 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function Preloader({ onComplete }) {
-  const [isVisible, setIsVisible] = useState(true);
-  const [isFadingOut, setIsFadingOut] = useState(false);
+  const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
-    // Timer to trigger fade out after animation sequence finishes (e.g. 2.2s)
-    const fadeTimer = setTimeout(() => {
-      setIsFadingOut(true);
-    }, 2000);
+    // Timer to trigger fade-out transition after animation plays
+    const timer = setTimeout(() => {
+      setFadeOut(true);
+      setTimeout(() => {
+        if (onComplete) onComplete();
+      }, 700); // Matches transition duration
+    }, 2200);
 
-    // Timer to completely remove preloader from DOM
-    const removeTimer = setTimeout(() => {
-      setIsVisible(false);
-      if (onComplete) onComplete();
-    }, 2600);
-
-    return () => {
-      clearTimeout(fadeTimer);
-      clearTimeout(removeTimer);
-    };
+    return () => clearTimeout(timer);
   }, [onComplete]);
-
-  if (!isVisible) return null;
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex flex-col items-center justify-center transition-all duration-700 ease-in-out ${
-        isFadingOut ? 'opacity-0 scale-105 pointer-events-none' : 'opacity-100 scale-100'
+      className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#12261C]/90 backdrop-blur-2xl transition-opacity duration-700 ${
+        fadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
-      {/* Deep Hero Green Background Layer (faintly visible underneath) */}
-      <div className="absolute inset-0 bg-[#12261C]" />
+      {/* Frosty glass container card */}
+      <div className="relative p-10 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-2xl flex flex-col items-center">
+        
+        {/* 15-Dot Matrix Brand Emblem Animation */}
+        <div className="grid grid-cols-5 gap-2 mb-6 items-center justify-items-center">
+          {/* Row 1 */}
+          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
+          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
+          <div className="w-2 h-2 rounded-full bg-[#C86D51] animate-pulse" />
+          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
+          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
 
-      {/* Frosted Glass Overlay with Backdrop Blur */}
-      <div className="absolute inset-0 bg-white/75 backdrop-blur-2xl border border-white/40 shadow-2xl" />
+          {/* Row 2 */}
+          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
+          <div className="w-2 h-2 rounded-full bg-[#C86D51]/70 animate-pulse delay-100" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#C86D51] animate-pulse delay-150" />
+          <div className="w-2 h-2 rounded-full bg-[#C86D51]/70 animate-pulse delay-200" />
+          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
 
-      {/* Content Container */}
-      <div className="relative z-10 flex flex-col items-center space-y-8 animate-fade-in">
-        {/* 15-Dot Matrix Emblem */}
-        <div className="relative w-28 h-28 flex items-center justify-center">
-          <svg className="w-full h-full animate-pulse-slow" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {/* 15-Dot Matrix Layout (Cross + 3-Dot Center Cluster) */}
-            {/* Top vertical stem */}
-            <circle cx="60" cy="14" r="5" fill="#C86D51" className="animate-fade-in-delayed-1" />
-            <circle cx="60" cy="28" r="5" fill="#C86D51" className="animate-fade-in-delayed-1" />
-            <circle cx="60" cy="42" r="5" fill="#C86D51" className="animate-fade-in-delayed-2" />
-            
-            {/* Bottom vertical stem */}
-            <circle cx="60" cy="78" r="5" fill="#C86D51" className="animate-fade-in-delayed-2" />
-            <circle cx="60" cy="92" r="5" fill="#C86D51" className="animate-fade-in-delayed-3" />
-            <circle cx="60" cy="106" r="5" fill="#C86D51" className="animate-fade-in-delayed-3" />
+          {/* Row 3 (Center) */}
+          <div className="w-2 h-2 rounded-full bg-[#C86D51] animate-ping" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#C86D51] animate-pulse delay-300" />
+          <div className="w-3.5 h-3.5 rounded-full bg-white shadow-[0_0_15px_rgba(200,109,81,0.8)] animate-pulse" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#C86D51] animate-pulse delay-300" />
+          <div className="w-2 h-2 rounded-full bg-[#C86D51] animate-ping" />
 
-            {/* Horizontal arms */}
-            <circle cx="14" cy="60" r="5" fill="#C86D51" className="animate-fade-in-delayed-1" />
-            <circle cx="28" cy="60" r="5" fill="#C86D51" className="animate-fade-in-delayed-1" />
-            <circle cx="92" cy="60" r="5" fill="#C86D51" className="animate-fade-in-delayed-1" />
-            <circle cx="106" cy="60" r="5" fill="#C86D51" className="animate-fade-in-delayed-1" />
+          {/* Row 4 */}
+          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
+          <div className="w-2 h-2 rounded-full bg-[#C86D51]/70 animate-pulse delay-200" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#C86D51] animate-pulse delay-150" />
+          <div className="w-2 h-2 rounded-full bg-[#C86D51]/70 animate-pulse delay-100" />
+          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
 
-            {/* Diagonal secondary points */}
-            <circle cx="39" cy="39" r="5" fill="#C86D51" className="animate-fade-in-delayed-2" />
-            <circle cx="81" cy="39" r="5" fill="#C86D51" className="animate-fade-in-delayed-2" />
-            <circle cx="39" cy="81" r="5" fill="#C86D51" className="animate-fade-in-delayed-2" />
-            <circle cx="81" cy="81" r="5" fill="#C86D51" className="animate-fade-in-delayed-2" />
-
-            {/* Center 3-dot cluster */}
-            <circle cx="52" cy="60" r="5" fill="#C86D51" className="animate-fade-in-delayed-3" />
-            <circle cx="68" cy="60" r="5" fill="#C86D51" className="animate-fade-in-delayed-3" />
-          </svg>
+          {/* Row 5 */}
+          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
+          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
+          <div className="w-2 h-2 rounded-full bg-[#C86D51] animate-pulse" />
+          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
+          <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
         </div>
 
-        {/* Brand Typography with Smooth Fade-in */}
-        <div className="text-center space-y-2 transform transition-all duration-1000 translate-y-0 opacity-100">
-          <h1 className="font-serif text-2xl sm:text-3xl tracking-[0.2em] text-[#12261C] font-normal uppercase">
-            Cerix Global
-          </h1>
-          <p className="text-[10px] font-mono tracking-[0.35em] text-[#C86D51] uppercase">
-            International Advisory
-          </p>
-        </div>
+        {/* Brand Text Typography */}
+        <h1 className="text-xl font-serif tracking-[0.25em] text-white uppercase mb-1">
+          Cerix Global
+        </h1>
+        <p className="text-[10px] font-mono tracking-[0.4em] text-[#C86D51] uppercase">
+          International Advisory
+        </p>
+
       </div>
     </div>
   );
