@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import Logo from "./Logo";
+import BrandEmblem from "@/components/BrandEmblem";
 import { useHeaderTheme } from "@/hooks/useHeaderTheme";
 
 const NAV_LINKS = [
@@ -14,10 +14,6 @@ const NAV_LINKS = [
   { label: "Contact", to: "/contact" },
 ];
 
-// Header theme follows the real background under the header (useHeaderTheme).
-// Dark area → dark glass, ivory text, reversed logo, terracotta START #7A3120.
-// Light area → ivory glass, Deep Forest text, standard logo, standard terracotta START.
-// Glass, text and logo colours crossfade over 300ms. The open mobile sheet stays ivory.
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -34,7 +30,6 @@ export default function Navigation() {
 
   useEffect(() => { setOpen(false); }, [location.pathname]);
 
-  // Body scroll lock + Escape while the sheet is open.
   useEffect(() => {
     if (!open) return;
     const prev = document.body.style.overflow;
@@ -58,7 +53,6 @@ export default function Navigation() {
   const startCls = dark
     ? "bg-[#7A3120] text-ivory border border-ivory/28 hover:bg-olive-deep"
     : "bg-terracotta text-ivory hover:bg-olive-deep";
-  const logoVariant = dark ? "light" : "dark";
 
   return (
     <>
@@ -71,8 +65,13 @@ export default function Navigation() {
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               style={{ pointerEvents: scrolled ? "none" : "auto" }}
             >
-              <Link to="/" aria-label="Cerix Global home">
-                <Logo variant={logoVariant} />
+              <Link to="/" aria-label="Cerix Global home" className="flex items-center gap-3 group">
+                <div className="scale-[0.4] origin-left -my-4">
+                  <BrandEmblem size="sm" animate={true} />
+                </div>
+                <span className={`font-serif tracking-[0.2em] text-sm uppercase font-semibold transition-colors duration-300 ${dark ? 'text-ivory' : 'text-obsidian'}`}>
+                  Cerix Global
+                </span>
               </Link>
             </motion.div>
 
@@ -143,8 +142,13 @@ export default function Navigation() {
               maxWidth: "calc(100% - 140px)",
             }}
           >
-            <Link to="/" aria-label="Cerix Global home">
-              <Logo variant={logoVariant} compact />
+            <Link to="/" aria-label="Cerix Global home" className="flex items-center gap-2">
+              <div className="scale-[0.35] origin-left -my-4">
+                <BrandEmblem size="sm" animate={true} />
+              </div>
+              <span className={`font-serif tracking-[0.15em] text-xs uppercase font-semibold ${dark ? 'text-ivory' : 'text-obsidian'}`}>
+                Cerix Global
+              </span>
             </Link>
           </motion.div>
 
@@ -200,7 +204,14 @@ export default function Navigation() {
               }}
             >
               <div className="flex items-center justify-between px-5 pt-4">
-                <Logo variant="dark" />
+                <Link to="/" onClick={() => setOpen(false)} className="flex items-center gap-2">
+                  <div className="scale-[0.35] origin-left -my-4">
+                    <BrandEmblem size="sm" animate={true} />
+                  </div>
+                  <span className="font-serif tracking-[0.15em] text-xs uppercase font-semibold text-obsidian">
+                    Cerix Global
+                  </span>
+                </Link>
                 <button
                   onClick={() => setOpen(false)}
                   className="w-11 h-11 rounded-full glass-ivory flex items-center justify-center text-obsidian"
