@@ -65,7 +65,7 @@ export default function Navigation() {
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               style={{ pointerEvents: scrolled ? "none" : "auto" }}
             >
-              <Link to="/" aria-label="Cerix Global home" className="inline-flex items-center gap-3.5 group ml-2">
+              <Link to="/" aria-label="Cerix Global home" className="inline-flex items-center gap-2 group pl-1">
                 <div className="inline-flex items-center justify-center scale-[0.35] -my-4">
                   <BrandEmblem size="sm" animate={true} />
                 </div>
@@ -176,7 +176,7 @@ export default function Navigation() {
               }}
             >
               <div className="flex items-center justify-between px-5 pt-4">
-                <Link to="/" onClick={() => setOpen(false)} className="inline-flex items-center gap-3">
+                <Link to="/" onClick={() => setOpen(false)} className="inline-flex items-center gap-2">
                   <div className="inline-flex items-center justify-center scale-[0.35] -my-4">
                     <BrandEmblem size="sm" animate={true} />
                   </div>
