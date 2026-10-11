@@ -38,8 +38,8 @@ export default function Preloader() {
           50% { transform: scale(1.2); opacity: 1; }
         }
         @keyframes coreGlow {
-          0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(200,109,81,0.6); }
-          50% { transform: scale(1.15); box-shadow: 0 0 25px rgba(255,255,255,0.9); }
+          0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(200,109,81,0.7); }
+          50% { transform: scale(1.15); box-shadow: 0 0 30px rgba(255,255,255,0.95); }
         }
         .dot-animate {
           animation: emblemPulse 1.8s infinite ease-in-out;
@@ -49,40 +49,40 @@ export default function Preloader() {
         }
       `}</style>
 
-      {/* 15-Dot Matrix Brand Emblem Animation */}
+      {/* Exact 15-Dot Diamond Layout (1 top, 3 upper-mid, 5 center, 3 lower-mid, 1 bottom) */}
       <div className="flex flex-col items-center gap-3.5 mb-8">
         
         {/* Row 1: 1 dot */}
         <div className="flex justify-center w-full">
-          <div className="w-3.5 h-3.5 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0s' }} />
+          <div className="w-5 h-5 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0s' }} />
         </div>
 
         {/* Row 2: 3 dots */}
-        <div className="flex items-center gap-3.5">
-          <div className="w-3.5 h-3.5 rounded-full bg-[#C86D51]/80 dot-animate" style={{ animationDelay: '0.2s' }} />
-          <div className="w-4 h-4 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0.3s' }} />
-          <div className="w-3.5 h-3.5 rounded-full bg-[#C86D51]/80 dot-animate" style={{ animationDelay: '0.2s' }} />
+        <div className="flex items-center gap-4">
+          <div className="w-5 h-5 rounded-full bg-[#C86D51]/80 dot-animate" style={{ animationDelay: '0.2s' }} />
+          <div className="w-6 h-6 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0.3s' }} />
+          <div className="w-5 h-5 rounded-full bg-[#C86D51]/80 dot-animate" style={{ animationDelay: '0.2s' }} />
         </div>
 
-        {/* Row 3: 5 dots (Center Core) */}
-        <div className="flex items-center gap-3.5">
-          <div className="w-3.5 h-3.5 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0.4s' }} />
-          <div className="w-4 h-4 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0.5s' }} />
-          <div className="w-5 h-5 rounded-full bg-white dot-core" />
-          <div className="w-4 h-4 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0.5s' }} />
-          <div className="w-3.5 h-3.5 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0.4s' }} />
+        {/* Row 3: 5 dots (Center Core with glowing white center) */}
+        <div className="flex items-center gap-4">
+          <div className="w-5 h-5 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0.4s' }} />
+          <div className="w-6 h-6 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0.5s' }} />
+          <div className="w-7 h-7 rounded-full bg-white dot-core" />
+          <div className="w-6 h-6 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0.5s' }} />
+          <div className="w-5 h-5 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0.4s' }} />
         </div>
 
         {/* Row 4: 3 dots */}
-        <div className="flex items-center gap-3.5">
-          <div className="w-3.5 h-3.5 rounded-full bg-[#C86D51]/80 dot-animate" style={{ animationDelay: '0.2s' }} />
-          <div className="w-4 h-4 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0.3s' }} />
-          <div className="w-3.5 h-3.5 rounded-full bg-[#C86D51]/80 dot-animate" style={{ animationDelay: '0.2s' }} />
+        <div className="flex items-center gap-4">
+          <div className="w-5 h-5 rounded-full bg-[#C86D51]/80 dot-animate" style={{ animationDelay: '0.2s' }} />
+          <div className="w-6 h-6 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0.3s' }} />
+          <div className="w-5 h-5 rounded-full bg-[#C86D51]/80 dot-animate" style={{ animationDelay: '0.2s' }} />
         </div>
 
         {/* Row 5: 1 dot */}
         <div className="flex justify-center w-full">
-          <div className="w-3.5 h-3.5 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0s' }} />
+          <div className="w-5 h-5 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0s' }} />
         </div>
 
       </div>
