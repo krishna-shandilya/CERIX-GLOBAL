@@ -49,7 +49,7 @@ export default function Preloader() {
         }
       `}</style>
 
-      {/* Exact 15-Dot Diamond Layout (1 top, 3 upper-mid, 5 center, 3 lower-mid, 1 bottom) */}
+      {/* Exactly 15 Dots: 1 + 4 + 5 + 4 + 1 = 15 */}
       <div className="flex flex-col items-center gap-3.5 mb-8">
         
         {/* Row 1: 1 dot */}
@@ -57,14 +57,15 @@ export default function Preloader() {
           <div className="w-5 h-5 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0s' }} />
         </div>
 
-        {/* Row 2: 3 dots */}
+        {/* Row 2: 4 dots */}
         <div className="flex items-center gap-4">
           <div className="w-5 h-5 rounded-full bg-[#C86D51]/80 dot-animate" style={{ animationDelay: '0.2s' }} />
+          <div className="w-6 h-6 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0.3s' }} />
           <div className="w-6 h-6 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0.3s' }} />
           <div className="w-5 h-5 rounded-full bg-[#C86D51]/80 dot-animate" style={{ animationDelay: '0.2s' }} />
         </div>
 
-        {/* Row 3: 5 dots (Center Core with glowing white center) */}
+        {/* Row 3: 5 dots (Center Core) */}
         <div className="flex items-center gap-4">
           <div className="w-5 h-5 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0.4s' }} />
           <div className="w-6 h-6 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0.5s' }} />
@@ -73,9 +74,10 @@ export default function Preloader() {
           <div className="w-5 h-5 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0.4s' }} />
         </div>
 
-        {/* Row 4: 3 dots */}
+        {/* Row 4: 4 dots */}
         <div className="flex items-center gap-4">
           <div className="w-5 h-5 rounded-full bg-[#C86D51]/80 dot-animate" style={{ animationDelay: '0.2s' }} />
+          <div className="w-6 h-6 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0.3s' }} />
           <div className="w-6 h-6 rounded-full bg-[#C86D51] dot-animate" style={{ animationDelay: '0.3s' }} />
           <div className="w-5 h-5 rounded-full bg-[#C86D51]/80 dot-animate" style={{ animationDelay: '0.2s' }} />
         </div>
