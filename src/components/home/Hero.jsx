@@ -5,6 +5,7 @@ import { ArrowRight, ArrowDown } from "lucide-react";
 import { introShouldRun } from "@/lib/intro";
 import MagneticButton from "@/components/MagneticButton";
 import HeroMap from "@/components/home/HeroMap";
+import BrandEmblem from "@/components/BrandEmblem";
 
 export default function Hero() {
   const ref = useRef(null);
@@ -25,15 +26,17 @@ export default function Hero() {
             style={{ y: yText, opacity }}
             className="relative lg:absolute lg:inset-0 lg:h-full z-10 flex flex-col justify-end pt-20 pb-16 px-6 sm:px-10 lg:px-20 max-w-[1500px]"
           >
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: baseDelay + 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="eyebrow text-ivory/80 mb-6 flex items-center gap-4"
             >
-              <span className="h-px w-12 bg-terracotta-on-dark-small/80" />
-              Global Business &amp; Corporate Structuring
-            </motion.p>
+              <div className="scale-[0.45] origin-left -ml-2 -my-2">
+                <BrandEmblem size="sm" animate={true} />
+              </div>
+              <span className="tracking-widest uppercase text-xs">Global Business &amp; Corporate Structuring</span>
+            </motion.div>
 
             <h1 className="font-serif leading-[0.92] tracking-tight">
               {words.map((w, i) => (
@@ -125,4 +128,3 @@ export default function Hero() {
     </section>
   );
 }
-
