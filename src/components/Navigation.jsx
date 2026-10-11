@@ -58,15 +58,15 @@ export default function Navigation() {
     <>
       <header className="fixed top-0 inset-x-0 z-50">
         {/* Desktop */}
-        <div className="hidden lg:block mx-auto max-w-[1500px] px-8 pt-4">
+        <div className="mx-auto max-w-[1500px] px-8 pt-4">
           <div className="flex items-center justify-between">
             <motion.div
               animate={{ opacity: scrolled ? 0 : 1, y: scrolled ? -10 : 0 }}
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               style={{ pointerEvents: scrolled ? "none" : "auto" }}
             >
-              <Link to="/" aria-label="Cerix Global home" className="flex items-center gap-3 group">
-                <div className="scale-[0.4] origin-left -my-4">
+              <Link to="/" aria-label="Cerix Global home" className="inline-flex items-center gap-3 group">
+                <div className="scale-[0.38] origin-center -my-4">
                   <BrandEmblem size="sm" animate={true} />
                 </div>
                 <span className={`font-serif tracking-[0.2em] text-sm uppercase font-semibold transition-colors duration-300 ${dark ? 'text-ivory' : 'text-obsidian'}`}>
@@ -77,7 +77,7 @@ export default function Navigation() {
 
             <motion.nav
               layout
-              className={`flex items-center gap-1 rounded-full pl-5 pr-2 py-2 ${glass} transition-colors duration-300`}
+              className={`hidden lg:flex items-center gap-1 rounded-full pl-5 pr-2 py-2 ${glass} transition-colors duration-300`}
             >
               <AnimatePresence>
                 {!scrolled && (
@@ -125,55 +125,27 @@ export default function Navigation() {
                 )}
               </AnimatePresence>
             </motion.nav>
-          </div>
-        </div>
 
-        {/* Mobile — fixed compact logo (left) + fixed glass capsule (right) */}
-        <div className="lg:hidden">
-          <motion.div
-            animate={{ opacity: scrolled ? 0 : 1 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              pointerEvents: scrolled ? "none" : "auto",
-              position: "fixed",
-              left: "calc(12px + env(safe-area-inset-left))",
-              top: "calc(12px + env(safe-area-inset-top))",
-              zIndex: 50,
-              maxWidth: "calc(100% - 140px)",
-            }}
-          >
-            <Link to="/" aria-label="Cerix Global home" className="flex items-center gap-2">
-              <div className="scale-[0.35] origin-left -my-4">
-                <BrandEmblem size="sm" animate={true} />
+            {/* Mobile menu trigger when navbar is inline */}
+            <div className="lg:hidden flex items-center gap-2">
+              <div
+                className={`flex items-center gap-1 rounded-full pl-2 pr-2 py-2 ${glass} transition-colors duration-300`}
+              >
+                <Link
+                  to="/contact"
+                  className={`inline-flex items-center font-sans text-[0.66rem] tracking-[0.1em] uppercase font-medium px-3 py-2 rounded-full transition-colors duration-300 whitespace-nowrap ${startCls}`}
+                >
+                  Start
+                </Link>
+                <button
+                  onClick={() => setOpen(true)}
+                  aria-label="Open menu"
+                  className={`w-11 h-11 rounded-full flex items-center justify-center transition-colors duration-300 ${menuIcon}`}
+                >
+                  <Menu size={18} strokeWidth={1.5} />
+                </button>
               </div>
-              <span className={`font-serif tracking-[0.15em] text-xs uppercase font-semibold ${dark ? 'text-ivory' : 'text-obsidian'}`}>
-                Cerix Global
-              </span>
-            </Link>
-          </motion.div>
-
-          <div
-            className={`flex items-center gap-1 rounded-full pl-2 pr-2 py-2 ${glass} transition-colors duration-300`}
-            style={{
-              position: "fixed",
-              right: "calc(12px + env(safe-area-inset-right))",
-              top: "calc(12px + env(safe-area-inset-top))",
-              zIndex: 50,
-            }}
-          >
-            <Link
-              to="/contact"
-              className={`inline-flex items-center font-sans text-[0.66rem] tracking-[0.1em] uppercase font-medium px-3 py-2 rounded-full transition-colors duration-300 whitespace-nowrap ${startCls}`}
-            >
-              Start
-            </Link>
-            <button
-              onClick={() => setOpen(true)}
-              aria-label="Open menu"
-              className={`w-11 h-11 rounded-full flex items-center justify-center transition-colors duration-300 ${menuIcon}`}
-            >
-              <Menu size={18} strokeWidth={1.5} />
-            </button>
+            </div>
           </div>
         </div>
       </header>
@@ -204,8 +176,8 @@ export default function Navigation() {
               }}
             >
               <div className="flex items-center justify-between px-5 pt-4">
-                <Link to="/" onClick={() => setOpen(false)} className="flex items-center gap-2">
-                  <div className="scale-[0.35] origin-left -my-4">
+                <Link to="/" onClick={() => setOpen(false)} className="inline-flex items-center gap-2">
+                  <div className="scale-[0.35] origin-center -my-4">
                     <BrandEmblem size="sm" animate={true} />
                   </div>
                   <span className="font-serif tracking-[0.15em] text-xs uppercase font-semibold text-obsidian">
