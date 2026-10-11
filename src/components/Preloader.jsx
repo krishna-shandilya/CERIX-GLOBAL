@@ -29,9 +29,13 @@ export default function Preloader() {
         fadeOut ? 'opacity-0 scale-105 pointer-events-none' : 'opacity-100 scale-100'
       }`}
       style={{
-        background: 'radial-gradient(circle at 50% 50%, rgba(18, 38, 28, 0.72), rgba(8, 12, 10, 0.88))',
-        backdropFilter: 'blur(80px) saturate(180%)',
-        WebkitBackdropFilter: 'blur(80px) saturate(180%)',
+        {
+  background: 'radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.12), rgba(18, 38, 28, 0.65))',
+  backdropFilter: 'blur(90px) saturate(200%)',
+  WebkitBackdropFilter: 'blur(90px) saturate(200%)',
+  border: '1px solid rgba(255, 255, 255, 0.25)',
+  boxShadow: '0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)'
+}
       }}
     >
       <style>{`
@@ -107,6 +111,16 @@ export default function Preloader() {
           animation: diagonalWave 2.8s cubic-bezier(0.45, 0, 0.55, 1) 0.45s infinite;
         }
 
+        .dots-diagonal {
+          transform-origin: 100px 100px;
+          animation: diagonalWave 2.8s cubic-bezier(0.45, 0, 0.55, 1) 0.45s infinite;
+        }
+
+          .dots-diagonal {
+          transform-origin: 100px 100px;
+          animation: diagonalWave 2.8s cubic-bezier(0.45, 0, 0.55, 1) 0.45s infinite;
+        }
+        
         .dots-outer-flank {
           transform-origin: 100px 100px;
           animation: outerFlankWave 2.8s cubic-bezier(0.45, 0, 0.55, 1) 0.65s infinite;
