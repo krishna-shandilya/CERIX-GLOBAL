@@ -42,6 +42,43 @@ export const IMAGES = imgMap;
 export const IMAGE_ALT = {};
 export const SITE_IMAGES = imgMap;
 
+const safeAuth = {
+  isAuthenticated: async function() { return false; },
+  me: async function() { return null; },
+  getUser: async function() { return null; },
+  useMe: function() { return { data: null, isLoading: false, error: null }; },
+  useUser: function() { return { data: null, isLoading: false, error: null }; },
+  useAuth: function() { return { user: null, isAuthenticated: false, isLoading: false }; },
+  login: async function() {},
+  logout: async function() {},
+  redirectToLogin: function() {},
+  getToken: async function() { return null; },
+  getAccessToken: async function() { return null; }
+};
+
+export const APPROACH_STAGES = [
+  {
+    step: "01",
+    title: "Diagnostic & Strategic Mapping",
+    description: "Evaluating operational footprints, commercial goals, and tax residency requirements to design an optimal cross-border architecture."
+  },
+  {
+    step: "02",
+    title: "Jurisdictional Selection",
+    description: "Selecting the precise combination of financial centers, holding entities, and regulatory frameworks aligned with your objectives."
+  },
+  {
+    step: "03",
+    title: "Structuring & Incorporation",
+    description: "Executing precise entity setup, drafting constitutional documents, and establishing robust governance structures."
+  },
+  {
+    step: "04",
+    title: "Operational Integration",
+    description: "Securing necessary licenses, establishing premier banking infrastructure, and ensuring seamless ongoing compliance."
+  }
+];
+
 export const SERVICES = [
   {
     id: "corporate-structuring",
