@@ -56,6 +56,25 @@ const safeAuth = {
   getAccessToken: async function() { return null; }
 };
 
+export const WHO_WE_ADVISE = [
+  {
+    title: "Multinational Enterprises & Tech Founders",
+    description: "Designing multi-jurisdictional IP holding, regional operational hubs, and international growth vehicles."
+  },
+  {
+    title: "Asset Managers & Investment Funds",
+    description: "Structuring offshore fund entities, feeder funds, and cross-border investment platforms."
+  },
+  {
+    title: "High-Net-Worth Individuals & Family Offices",
+    description: "Establishing wealth preservation trusts, foundations, and investment migration residency pathways."
+  },
+  {
+    title: "Institutional Clients & Trading Groups",
+    description: "Securing specialized financial service licenses and establishing multi-currency treasury infrastructure."
+  }
+];
+
 export const APPROACH_STAGES = [
   {
     step: "01",
