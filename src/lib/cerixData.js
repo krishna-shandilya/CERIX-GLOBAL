@@ -56,6 +56,69 @@ const safeAuth = {
   getAccessToken: async function() { return null; }
 };
 
+export const SERVICES = [
+  {
+    id: "corporate-structuring",
+    slug: "corporate-structuring",
+    title: "Corporate Structuring",
+    description: "Designing efficient cross-border holding architectures and entity frameworks.",
+    image: corpImg
+  },
+  {
+    id: "company-setup",
+    slug: "company-setup",
+    title: "Company Setup & Formation",
+    description: "End-to-end entity incorporation across leading international financial hubs.",
+    image: setupImg
+  },
+  {
+    id: "licensing",
+    slug: "licensing",
+    title: "Licensing & Regulatory Compliance",
+    description: "Securing financial, fund management, and specialized operational licenses.",
+    image: licensingImg
+  },
+  {
+    id: "banking-infrastructure",
+    slug: "banking-infrastructure",
+    title: "Banking Infrastructure",
+    description: "Facilitating multi-currency account opening with premier global banking institutions.",
+    image: bankingImg
+  },
+  {
+    id: "trusts-foundations",
+    slug: "trusts-foundations",
+    title: "Trusts & Foundations",
+    description: "Private wealth planning, asset protection vehicles, and family office setup.",
+    image: trustsImg
+  },
+  {
+    id: "investment-migration",
+    slug: "investment-migration",
+    title: "Investment Migration",
+    description: "Residence and citizenship planning for global founders and high-net-worth investors.",
+    image: migrationImg
+  },
+  {
+    id: "international-expansion",
+    slug: "international-expansion",
+    title: "International Expansion",
+    description: "Strategic entry models for scaling operations into key regional markets.",
+    image: expansionImg
+  },
+  {
+    id: "tax-compliance",
+    slug: "tax-compliance",
+    title: "Tax & Advisory Services",
+    description: "Navigating cross-border tax considerations, substance rules, and reporting standards.",
+    image: taxImg
+  }
+];
+
+export function getServiceBySlug(slug) {
+  return SERVICES.find(s => s.slug === slug || s.id === slug) || SERVICES[0];
+}
+
 export const WHO_WE_ADVISE = [
   {
     title: "Multinational Enterprises & Tech Founders",
@@ -95,57 +158,6 @@ export const APPROACH_STAGES = [
     step: "04",
     title: "Operational Integration",
     description: "Securing necessary licenses, establishing premier banking infrastructure, and ensuring seamless ongoing compliance."
-  }
-];
-
-export const SERVICES = [
-  {
-    id: "corporate-structuring",
-    title: "Corporate Structuring",
-    description: "Designing efficient cross-border holding architectures and entity frameworks.",
-    image: corpImg
-  },
-  {
-    id: "company-setup",
-    title: "Company Setup & Formation",
-    description: "End-to-end entity incorporation across leading international financial hubs.",
-    image: setupImg
-  },
-  {
-    id: "licensing",
-    title: "Licensing & Regulatory Compliance",
-    description: "Securing financial, fund management, and specialized operational licenses.",
-    image: licensingImg
-  },
-  {
-    id: "banking-infrastructure",
-    title: "Banking Infrastructure",
-    description: "Facilitating multi-currency account opening with premier global banking institutions.",
-    image: bankingImg
-  },
-  {
-    id: "trusts-foundations",
-    title: "Trusts & Foundations",
-    description: "Private wealth planning, asset protection vehicles, and family office setup.",
-    image: trustsImg
-  },
-  {
-    id: "investment-migration",
-    title: "Investment Migration",
-    description: "Residence and citizenship planning for global founders and high-net-worth investors.",
-    image: migrationImg
-  },
-  {
-    id: "international-expansion",
-    title: "International Expansion",
-    description: "Strategic entry models for scaling operations into key regional markets.",
-    image: expansionImg
-  },
-  {
-    id: "tax-compliance",
-    title: "Tax & Advisory Services",
-    description: "Navigating cross-border tax considerations, substance rules, and reporting standards.",
-    image: taxImg
   }
 ];
 
