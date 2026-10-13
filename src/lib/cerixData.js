@@ -8,7 +8,7 @@ import migrationImg from "../assets/services/06-investment-migration.png";
 import expansionImg from "../assets/services/07-international-expansion.png";
 import taxImg from "../assets/services/08-tax-compliance.png";
 
-// Jurisdiction Image Imports (.png) - Matching src/assets/services/jurisdictions/
+// Jurisdiction Image Imports (.png)
 import singaporeImg from "../assets/services/jurisdictions/singapore.png";
 import mauritiusImg from "../assets/services/jurisdictions/mauritius.png";
 import maltaImg from "../assets/services/jurisdictions/malta.png";
@@ -18,7 +18,7 @@ import uaeImg from "../assets/services/jurisdictions/uae.png";
 import cyprusImg from "../assets/services/jurisdictions/cyprus.png";
 import stkittsImg from "../assets/services/jurisdictions/st-kitts-nevis.png";
 
-// Temporary fallbacks for missing assets (replace once uploaded)
+// Temporary fallbacks for missing assets
 import caymanImg from "../assets/services/jurisdictions/bvi.png";
 import seychellesImg from "../assets/services/jurisdictions/mauritius.png";
 
@@ -42,19 +42,56 @@ export const IMAGES = imgMap;
 export const IMAGE_ALT = {};
 export const SITE_IMAGES = imgMap;
 
-const safeAuth = {
-  isAuthenticated: async function() { return false; },
-  me: async function() { return null; },
-  getUser: async function() { return null; },
-  useMe: function() { return { data: null, isLoading: false, error: null }; },
-  useUser: function() { return { data: null, isLoading: false, error: null }; },
-  useAuth: function() { return { user: null, isAuthenticated: false, isLoading: false }; },
-  login: async function() {},
-  logout: async function() {},
-  redirectToLogin: function() {},
-  getToken: async function() { return null; },
-  getAccessToken: async function() { return null; }
-};
+export const SERVICES = [
+  {
+    id: "corporate-structuring",
+    title: "Corporate Structuring",
+    description: "Designing efficient cross-border holding architectures and entity frameworks.",
+    image: corpImg
+  },
+  {
+    id: "company-setup",
+    title: "Company Setup & Formation",
+    description: "End-to-end entity incorporation across leading international financial hubs.",
+    image: setupImg
+  },
+  {
+    id: "licensing",
+    title: "Licensing & Regulatory Compliance",
+    description: "Securing financial, fund management, and specialized operational licenses.",
+    image: licensingImg
+  },
+  {
+    id: "banking-infrastructure",
+    title: "Banking Infrastructure",
+    description: "Facilitating multi-currency account opening with premier global banking institutions.",
+    image: bankingImg
+  },
+  {
+    id: "trusts-foundations",
+    title: "Trusts & Foundations",
+    description: "Private wealth planning, asset protection vehicles, and family office setup.",
+    image: trustsImg
+  },
+  {
+    id: "investment-migration",
+    title: "Investment Migration",
+    description: "Residence and citizenship planning for global founders and high-net-worth investors.",
+    image: migrationImg
+  },
+  {
+    id: "international-expansion",
+    title: "International Expansion",
+    description: "Strategic entry models for scaling operations into key regional markets.",
+    image: expansionImg
+  },
+  {
+    id: "tax-compliance",
+    title: "Tax & Advisory Services",
+    description: "Navigating cross-border tax considerations, substance rules, and reporting standards.",
+    image: taxImg
+  }
+];
 
 export const JURISDICTIONS = [
   {
