@@ -119,6 +119,29 @@ export function getServiceBySlug(slug) {
   return SERVICES.find(s => s.slug === slug || s.id === slug) || SERVICES[0];
 }
 
+export const INSIGHTS = [
+  {
+    id: "cross-border-tax-evolution",
+    title: "Cross-Border Tax Evolution & Substance Requirements",
+    slug: "cross-border-tax-evolution",
+    category: "Tax & Compliance",
+    date: "October 2026",
+    readTime: "5 min read",
+    summary: "An analysis of global economic substance rules and how multinational structures must adapt.",
+    image: corpImg
+  },
+  {
+    id: "banking-infrastructure-trends",
+    title: "Navigating Global Multi-Currency Banking Infrastructure",
+    slug: "banking-infrastructure-trends",
+    category: "Banking",
+    date: "September 2026",
+    readTime: "4 min read",
+    summary: "Key considerations for establishing robust treasury accounts across premier financial centers.",
+    image: bankingImg
+  }
+];
+
 export const WHO_WE_ADVISE = [
   {
     title: "Multinational Enterprises & Tech Founders",
