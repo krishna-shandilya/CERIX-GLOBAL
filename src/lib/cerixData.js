@@ -14,13 +14,11 @@ import mauritiusImg from "../assets/services/jurisdictions/mauritius.png";
 import maltaImg from "../assets/services/jurisdictions/malta.png";
 import belizeImg from "../assets/services/jurisdictions/belize.png";
 import bviImg from "../assets/services/jurisdictions/bvi.png";
+import caymanImg from "../assets/services/jurisdictions/cayman-islands.png";
 import uaeImg from "../assets/services/jurisdictions/uae.png";
 import cyprusImg from "../assets/services/jurisdictions/cyprus.png";
+import seychellesImg from "../assets/services/jurisdictions/seychelles.png";
 import stkittsImg from "../assets/services/jurisdictions/st-kitts-nevis.png";
-
-// Temporary fallbacks for missing assets
-import caymanImg from "../assets/services/jurisdictions/bvi.png";
-import seychellesImg from "../assets/services/jurisdictions/mauritius.png";
 
 const imgMap = {
   whyCerix: corpImg,
@@ -141,6 +139,10 @@ export const INSIGHTS = [
     image: bankingImg
   }
 ];
+
+export function getInsightBySlug(slug) {
+  return INSIGHTS.find(i => i.slug === slug || i.id === slug) || INSIGHTS[0];
+}
 
 export const WHO_WE_ADVISE = [
   {
