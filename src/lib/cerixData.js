@@ -59,56 +59,168 @@ export const SERVICES = [
     id: "corporate-structuring",
     slug: "corporate-structuring",
     title: "Corporate Structuring",
+    subtitle: "Cross-Border Entity Architecture",
     description: "Designing efficient cross-border holding architectures and entity frameworks.",
+    fullDescription: "Cross-border corporate structuring forms the foundational architecture for international enterprises, holding groups, and scaling technology companies. We design and implement multi-jurisdictional holding structures, intellectual property holding entities, and operational subsidiaries optimized for asset protection, international expansion, and substance requirements.",
+    features: [
+      "Multi-jurisdictional holding architecture design",
+      "IP holding and licensing vehicle structuring",
+      "Group reorganization and equity restructuring",
+      "Substance and economic presence compliance alignment"
+    ],
+    benefits: [
+      "Optimized global operational tax efficiency",
+      "Enhanced asset protection across multiple jurisdictions",
+      "Frictionless cross-border capital and dividend flows",
+      "Full alignment with international substance regulations"
+    ],
     image: corpImg
   },
   {
     id: "company-setup",
     slug: "company-setup",
     title: "Company Setup & Formation",
+    subtitle: "International Entity Incorporation",
     description: "End-to-end entity incorporation across leading international financial hubs.",
+    fullDescription: "We provide end-to-end entity incorporation and corporate setup services across premier international financial centers and free zones. From initial name clearance and drafting constitutional documents to registry filings and initial resolution drafting, we manage the entire lifecycle of your new corporate entity.",
+    features: [
+      "Jurisdictional advisory and entity type selection",
+      "Drafting Memorandum & Articles of Association",
+      "Registry filings and corporate secretarial setup",
+      "Registered office and local directorship provisions"
+    ],
+    benefits: [
+      "Rapid, error-free incorporation timelines",
+      "Complete compliance with local statutory obligations",
+      "Seamless setup without physical travel requirements",
+      "Immediate readiness for banking and operations"
+    ],
     image: setupImg
   },
   {
     id: "licensing",
     slug: "licensing",
     title: "Licensing & Regulatory Compliance",
+    subtitle: "Financial & Operational Permits",
     description: "Securing financial, fund management, and specialized operational licenses.",
+    fullDescription: "Navigating complex regulatory frameworks requires precise application strategies and robust compliance architectures. We assist fintech groups, investment managers, payment service providers, and trading houses in securing financial, fund management, and specialized commercial licenses across tier-one jurisdictions.",
+    features: [
+      "Regulatory roadmap formulation and jurisdiction matching",
+      "Comprehensive license application dossier preparation",
+      "Liaison with regulatory authorities and central banks",
+      "Ongoing compliance monitoring and AML/KYC frameworks"
+    ],
+    benefits: [
+      "Maximized regulatory approval success rates",
+      "Accelerated time-to-market for regulated ventures",
+      "Robust defense against regulatory and audit scrutiny",
+      "Institutional credibility with banking partners"
+    ],
     image: licensingImg
   },
   {
     id: "banking-infrastructure",
     slug: "banking-infrastructure",
     title: "Banking Infrastructure",
+    subtitle: "Multi-Currency Treasury Accounts",
     description: "Facilitating multi-currency account opening with premier global banking institutions.",
+    fullDescription: "Access to robust, multi-currency banking and treasury infrastructure is vital for international commerce. We leverage direct institutional relationships with premier global banks and electronic money institutions (EMIs) to secure operational accounts, corporate credit lines, and specialized treasury solutions.",
+    features: [
+      "Multi-currency corporate account structuring",
+      "Private banking and wealth management introductions",
+      "Merchant processing and payment gateway connectivity",
+      "Correspondent banking and treasury optimization"
+    ],
+    benefits: [
+      "Access to tier-one international banking partners",
+      "Multi-currency liquidity management capabilities",
+      "Streamlined onboarding bypassing common friction points",
+      "Competitive foreign exchange and wire transfer terms"
+    ],
     image: bankingImg
   },
   {
     id: "trusts-foundations",
     slug: "trusts-foundations",
     title: "Trusts & Foundations",
+    subtitle: "Wealth Preservation & Succession",
     description: "Private wealth planning, asset protection vehicles, and family office setup.",
+    fullDescription: "Protecting family wealth and securing generational succession requires sophisticated legal structures. We establish international trusts, private foundations, and family office vehicles tailored to safeguard assets against geopolitical and creditor risks while ensuring orderly estate transition.",
+    features: [
+      "Discretionary and asset protection trust formation",
+      "Private foundation setup across civil and common law hubs",
+      "Family office governance and advisory structures",
+      "Protectorate and trustee appointment advisory"
+    ],
+    benefits: [
+      "Absolute asset segregation and risk insulation",
+      "Seamless multi-generational estate succession",
+      "Enhanced privacy and confidentiality protection",
+      "Optimized philanthropic and wealth distribution vehicles"
+    ],
     image: trustsImg
   },
   {
     id: "investment-migration",
     slug: "investment-migration",
     title: "Investment Migration",
+    subtitle: "Global Mobility & Residency",
     description: "Residence and citizenship planning for global founders and high-net-worth investors.",
+    fullDescription: "Secure global mobility, tax residency diversification, and alternative citizenship for you and your family. We navigate premier residency-by-investment and citizenship-by-investment programs across Europe, the Caribbean, and Asia-Pacific.",
+    features: [
+      "Residency and citizenship portfolio planning",
+      "Golden visa and investor program application management",
+      "Real estate and government bond investment coordination",
+      "Tax residency transition and advisory support"
+    ],
+    benefits: [
+      "Visa-free global mobility for family members",
+      "Strategic backup residency options in stable jurisdictions",
+      "Favorable tax residency structuring opportunities",
+      "First-class educational and lifestyle environments"
+    ],
     image: migrationImg
   },
   {
     id: "international-expansion",
     slug: "international-expansion",
     title: "International Expansion",
+    subtitle: "Cross-Border Market Entry",
     description: "Strategic entry models for scaling operations into key regional markets.",
+    fullDescription: "Scaling an enterprise across international borders demands localized expertise and strategic entity positioning. We guide businesses through market entry diagnostics, branch vs. subsidiary evaluations, and operational setup to ensure smooth international growth.",
+    features: [
+      "Market entry feasibility and structural analysis",
+      "Branch office vs. subsidiary incorporation modeling",
+      "Local employment and payroll advisory coordination",
+      "Commercial contract and partner vetting support"
+    ],
+    benefits: [
+      "Mitigated cross-border operational and legal risks",
+      "Accelerated regional market penetration",
+      "Optimized capital allocation for foreign expansion",
+      "Compliant local employment and contracting framework"
+    ],
     image: expansionImg
   },
   {
     id: "tax-compliance",
     slug: "tax-compliance",
     title: "Tax & Advisory Services",
+    subtitle: "Substance & Regulatory Reporting",
     description: "Navigating cross-border tax considerations, substance rules, and reporting standards.",
+    fullDescription: "In an era of transparent international taxation and rigorous economic substance requirements, proactive tax advisory is essential. We help multinational groups navigate transfer pricing, double tax treaty networks, FATCA/CRS compliance, and local tax filings.",
+    features: [
+      "Double Tax Avoidance Agreement (DTAA) optimization",
+      "Economic substance test reviews and advisory",
+      "Transfer pricing documentation and support",
+      "FATCA, CRS, and Country-by-Country reporting assistance"
+    ],
+    benefits: [
+      "Full compliance with evolving global tax standards",
+      "Minimized effective tax burden through legitimate treaties",
+      "Elimination of penalty and audit exposures",
+      "Complete transparency and defensibility of tax posture"
+    ],
     image: taxImg
   }
 ];
