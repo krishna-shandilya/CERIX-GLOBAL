@@ -8,17 +8,19 @@ import migrationImg from "../assets/services/06-investment-migration.png";
 import expansionImg from "../assets/services/07-international-expansion.png";
 import taxImg from "../assets/services/08-tax-compliance.png";
 
-// Jurisdiction Image Imports (.png)
-import singaporeImg from "../assets/jurisdictions/singapore.png";
-import mauritiusImg from "../assets/jurisdictions/mauritius.png";
-import maltaImg from "../assets/jurisdictions/malta.png";
-import belizeImg from "../assets/jurisdictions/belize.png";
-import bviImg from "../assets/jurisdictions/bvi.png";
-import caymanImg from "../assets/jurisdictions/cayman-islands.png";
-import uaeImg from "../assets/jurisdictions/uae.png";
-import cyprusImg from "../assets/jurisdictions/cyprus.png";
-import seychellesImg from "../assets/jurisdictions/seychelles.png";
-import stkittsImg from "../assets/jurisdictions/st-kitts-nevis.png";
+// Jurisdiction Image Imports (.png) - Matching src/assets/services/jurisdictions/
+import singaporeImg from "../assets/services/jurisdictions/singapore.png";
+import mauritiusImg from "../assets/services/jurisdictions/mauritius.png";
+import maltaImg from "../assets/services/jurisdictions/malta.png";
+import belizeImg from "../assets/services/jurisdictions/belize.png";
+import bviImg from "../assets/services/jurisdictions/bvi.png";
+import uaeImg from "../assets/services/jurisdictions/uae.png";
+import cyprusImg from "../assets/services/jurisdictions/cyprus.png";
+import stkittsImg from "../assets/services/jurisdictions/st-kitts-nevis.png";
+
+// Temporary fallbacks for missing assets (replace once uploaded)
+import caymanImg from "../assets/services/jurisdictions/bvi.png";
+import seychellesImg from "../assets/services/jurisdictions/mauritius.png";
 
 const imgMap = {
   whyCerix: corpImg,
