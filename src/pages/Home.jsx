@@ -25,11 +25,11 @@ export default function Home() {
       {/* 5. Why Cerix */}
       <WhyCerix />
 
-      {/* 6. Contact */}
-      <ContactSection />
-
-      {/* Private Stacked Ledger Component */}
+      {/* 6. Selected Engagements (Grounded Stacked Ledger Section) */}
       <ClientExperiencesLedger />
+
+      {/* 7. Contact Section */}
+      <ContactSection />
     </main>
   );
 }
