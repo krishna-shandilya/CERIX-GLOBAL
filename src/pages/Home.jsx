@@ -6,7 +6,7 @@ import Approach from '@/components/home/Approach';
 import WhyCerix from '@/components/home/WhyCerix';
 import GlobalScale from '@/components/home/GlobalScale';
 import ContactSection from '@/components/home/ContactSection';
-import SitemapFooter from '@/components/SitemapFooter';
+import Footer from '@/components/Footer';
 import FloatingClientExperiences from '@/components/home/FloatingClientExperiences';
 
 export default function Home() {
@@ -33,8 +33,8 @@ export default function Home() {
       {/* 7. Contact */}
       <ContactSection />
 
-      {/* 8. Sitemap / Footer */}
-      <SitemapFooter />
+      {/* 8. Footer */}
+      <Footer />
 
       {/* Floating Glass Pop-up Widget for Client Experiences */}
       <FloatingClientExperiences />
