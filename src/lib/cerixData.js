@@ -117,6 +117,8 @@ export const SERVICES = [
   {
     id: "licensing",
     slug: "licensing",
+    category: "Advisory",
+    num: "03",
     title: "Licensing & Regulatory Compliance",
     subtitle: "Financial & Operational Permits",
     description: "Securing financial, fund management, and specialized operational licenses.",
@@ -141,6 +143,8 @@ export const SERVICES = [
   {
     id: "banking-infrastructure",
     slug: "banking-infrastructure",
+    category: "Advisory",
+    num: "04",
     title: "Banking Infrastructure",
     subtitle: "Multi-Currency Treasury Accounts",
     description: "Facilitating multi-currency account opening with premier global banking institutions.",
@@ -165,6 +169,8 @@ export const SERVICES = [
   {
     id: "trusts-foundations",
     slug: "trusts-foundations",
+    category: "Advisory",
+    num: "05",
     title: "Trusts & Foundations",
     subtitle: "Wealth Preservation & Succession",
     description: "Private wealth planning, asset protection vehicles, and family office setup.",
@@ -189,6 +195,8 @@ export const SERVICES = [
   {
     id: "investment-migration",
     slug: "investment-migration",
+    category: "Advisory",
+    num: "06",
     title: "Investment Migration",
     subtitle: "Global Mobility & Residency",
     description: "Residence and citizenship planning for global founders and high-net-worth investors.",
@@ -213,6 +221,8 @@ export const SERVICES = [
   {
     id: "international-expansion",
     slug: "international-expansion",
+    category: "Advisory",
+    num: "07",
     title: "International Expansion",
     subtitle: "Cross-Border Market Entry",
     description: "Strategic entry models for scaling operations into key regional markets.",
@@ -237,6 +247,8 @@ export const SERVICES = [
   {
     id: "tax-compliance",
     slug: "tax-compliance",
+    category: "Advisory",
+    num: "08",
     title: "Tax & Advisory Services",
     subtitle: "Substance & Regulatory Reporting",
     description: "Navigating cross-border tax considerations, substance rules, and reporting standards.",
