@@ -25,7 +25,7 @@ export default function WhatWeDo() {
           From the global to the practical — the disciplines that make a structure real.
         </motion.p>
         <SectionHeading
-          eyebrow="03 — What We Do"
+          eyebrow="What We Do"
           title="From complexity to structure."
           intro="Cerix Global brings together the disciplines required to design, establish and operate international structures — coordinated, considered and built around the objective."
         />
