@@ -1,17 +1,42 @@
+// Service Image Imports (.png)
+import corpImg from "../assets/services/01-corporate-structuring.png";
+import setupImg from "../assets/services/02-company-setup.png";
+import licensingImg from "../assets/services/03-licensing.png";
+import bankingImg from "../assets/services/04-banking-infrastructure.png";
+import trustsImg from "../assets/services/05-trusts-foundations.png";
+import migrationImg from "../assets/services/06-investment-migration.png";
+import expansionImg from "../assets/services/07-international-expansion.png";
+import taxImg from "../assets/services/08-tax-compliance.png";
+
+// Jurisdiction Image Imports (.png)
+import singaporeImg from "../assets/services/jurisdictions/singapore.png";
+import mauritiusImg from "../assets/services/jurisdictions/mauritius.png";
+import maltaImg from "../assets/services/jurisdictions/malta.png";
+import belizeImg from "../assets/services/jurisdictions/belize.png";
+import bviImg from "../assets/services/jurisdictions/bvi.png";
+import caymanImg from "../assets/services/jurisdictions/cayman-islands.png";
+import uaeImg from "../assets/services/jurisdictions/uae.png";
+import cyprusImg from "../assets/services/jurisdictions/cyprus.png";
+import seychellesImg from "../assets/services/jurisdictions/seychelles.png";
+import stkittsImg from "../assets/services/jurisdictions/st-kitts-nevis.png";
+
+// Why Cerix Image Import (Directly under src/assets/why-cerix.png)
+import whyCerixImg from "../assets/why-cerix.png";
+
 const imgMap = {
-  whyCerix: "/assets/why-cerix.png",
-  corporate: "/assets/services/01-corporate-structuring.png",
-  setup: "/assets/services/02-company-setup.png",
-  licensing: "/assets/services/03-licensing.png",
-  banking: "/assets/services/04-banking-infrastructure.png",
-  trusts: "/assets/services/05-trusts-foundations.png",
-  migration: "/assets/services/06-investment-migration.png",
-  expansion: "/assets/services/07-international-expansion.png",
-  tax: "/assets/services/08-tax-compliance.png",
-  funds: "/assets/services/08-tax-compliance.png",
-  compliance: "/assets/services/03-licensing.png",
-  wealth: "/assets/services/05-trusts-foundations.png",
-  insights: "/assets/services/01-corporate-structuring.png"
+  whyCerix: whyCerixImg,
+  corporate: corpImg,
+  setup: setupImg,
+  licensing: licensingImg,
+  banking: bankingImg,
+  trusts: trustsImg,
+  migration: migrationImg,
+  expansion: expansionImg,
+  tax: taxImg,
+  funds: taxImg,
+  compliance: licensingImg,
+  wealth: trustsImg,
+  insights: corpImg
 };
 
 export const IMAGES = imgMap;
@@ -61,7 +86,7 @@ export const SERVICES = [
     ],
     whoItsFor: "Multinational groups, holding companies, investment platforms and businesses requiring bespoke cross-border advisory.",
     relatedJurisdictions: ["Singapore", "Mauritius", "Malta", "BVI", "Cayman Islands", "UAE"],
-    image: imgMap.corporate
+    image: corpImg
   },
   {
     id: "company-setup",
@@ -87,7 +112,7 @@ export const SERVICES = [
     ],
     whoItsFor: "Founders, expanding enterprises, and international groups establishing new operational or holding entities.",
     relatedJurisdictions: ["Singapore", "UAE", "Mauritius", "Cyprus", "Belize"],
-    image: imgMap.setup
+    image: setupImg
   },
   {
     id: "licensing",
@@ -111,7 +136,7 @@ export const SERVICES = [
     ],
     whoItsFor: "Fintech startups, payment institutions, asset managers, and regulated trading enterprises.",
     relatedJurisdictions: ["Singapore", "Malta", "Mauritius", "Cayman Islands", "UAE"],
-    image: imgMap.licensing
+    image: licensingImg
   },
   {
     id: "banking-infrastructure",
@@ -135,7 +160,7 @@ export const SERVICES = [
     ],
     whoItsFor: "Corporate groups, trading companies, and high-net-worth clients requiring robust global banking access.",
     relatedJurisdictions: ["Singapore", "Mauritius", "UAE", "Malta", "Switzerland"],
-    image: imgMap.banking
+    image: bankingImg
   },
   {
     id: "trusts-foundations",
@@ -159,7 +184,7 @@ export const SERVICES = [
     ],
     whoItsFor: "High-net-worth individuals, multi-generational families, and private family offices.",
     relatedJurisdictions: ["BVI", "Mauritius", "St. Kitts & Nevis", "Singapore", "Cyprus"],
-    image: imgMap.trusts
+    image: trustsImg
   },
   {
     id: "investment-migration",
@@ -183,7 +208,7 @@ export const SERVICES = [
     ],
     whoItsFor: "Global entrepreneurs, investors, and families seeking enhanced international mobility and security.",
     relatedJurisdictions: ["Malta", "UAE", "St. Kitts & Nevis", "Cyprus", "Mauritius"],
-    image: imgMap.migration
+    image: migrationImg
   },
   {
     id: "international-expansion",
@@ -207,7 +232,7 @@ export const SERVICES = [
     ],
     whoItsFor: "Scaling enterprises, technology companies, and commercial groups expanding into new global markets.",
     relatedJurisdictions: ["Singapore", "UAE", "Mauritius", "Malta", "Cyprus"],
-    image: imgMap.expansion
+    image: expansionImg
   },
   {
     id: "tax-compliance",
@@ -231,7 +256,7 @@ export const SERVICES = [
     ],
     whoItsFor: "Multinational groups, holding companies, and cross-border trading entities.",
     relatedJurisdictions: ["Mauritius", "Singapore", "Cyprus", "Malta", "UAE"],
-    image: imgMap.tax
+    image: taxImg
   }
 ];
 
@@ -248,7 +273,7 @@ export const INSIGHTS = [
     date: "October 2026",
     readTime: "5 min read",
     summary: "An analysis of global economic substance rules and how multinational structures must adapt.",
-    image: imgMap.corporate
+    image: corpImg
   },
   {
     id: "banking-infrastructure-trends",
@@ -258,7 +283,7 @@ export const INSIGHTS = [
     date: "September 2026",
     readTime: "4 min read",
     summary: "Key considerations for establishing robust treasury accounts across premier financial centers.",
-    image: imgMap.banking
+    image: bankingImg
   }
 ];
 
@@ -318,7 +343,7 @@ export const JURISDICTIONS = [
     subtitle: "Asian Financial & Holding Hub",
     description: "A globally recognised financial centre for holding structures, regional headquarters and treasury operations.",
     coordinates: "1° 21' N  103° 49' E",
-    image: "/assets/services/jurisdictions/singapore.png",
+    image: singaporeImg,
     highlights: ["17% Corporate Tax Rate", "Over 90 Tax Treaties", "No Capital Gains Tax"]
   },
   {
@@ -330,7 +355,7 @@ export const JURISDICTIONS = [
     subtitle: "International Financial Centre",
     description: "A treaty-network jurisdiction used for holding, investment and trust structures with global fund credentials.",
     coordinates: "20° 10' S  57° 31' E",
-    image: "/assets/services/jurisdictions/mauritius.png",
+    image: mauritiusImg,
     highlights: ["Partial Exemption Regime", "No Withholding Taxes", "Extensive DTAA Network"]
   },
   {
@@ -342,7 +367,7 @@ export const JURISDICTIONS = [
     subtitle: "EU Financial & Licensing Hub",
     description: "An EU jurisdiction offering holding structures, licensing frameworks and cross-border trading advantages.",
     coordinates: "35° 56' N  14° 22' E",
-    image: "/assets/services/jurisdictions/malta.png",
+    image: maltaImg,
     highlights: ["EU Passporting Rights", "Effective Tax Refund System", "Robust Regulatory Oversight"]
   },
   {
@@ -354,7 +379,7 @@ export const JURISDICTIONS = [
     subtitle: "International Business Companies",
     description: "An international business company jurisdiction used for holding structures.",
     coordinates: "17° 15' N  88° 46' W",
-    image: "/assets/services/jurisdictions/belize.png",
+    image: belizeImg,
     highlights: ["Fast Registration", "Full Exemption from Local Taxes", "Asset Protection"]
   },
   {
@@ -366,7 +391,7 @@ export const JURISDICTIONS = [
     subtitle: "Global Corporate Structuring Hub",
     description: "A well-established jurisdiction for holding structures, investment funds and international business companies.",
     coordinates: "18° 25' N  64° 37' W",
-    image: "/assets/services/jurisdictions/bvi.png",
+    image: bviImg,
     highlights: ["Simple Maintenance", "Worldwide Acceptance", "Confidentiality & Security"]
   },
   {
@@ -378,7 +403,7 @@ export const JURISDICTIONS = [
     subtitle: "Global Investment Fund Hub",
     description: "A leading jurisdiction for investment funds, structured finance and corporate vehicles with an increasingly formal transparency framework.",
     coordinates: "19° 18' N  81° 14' W",
-    image: "/assets/services/jurisdictions/cayman-islands.png",
+    image: caymanImg,
     highlights: ["Tax-Neutral Jurisdiction", "Flexible Fund Structures", "Recognized by Global Regulators"]
   },
   {
@@ -390,7 +415,7 @@ export const JURISDICTIONS = [
     subtitle: "Middle East Financial Heartland",
     description: "A major international hub for corporate structuring, licensing and regional operations, with free-zone and mainland frameworks.",
     coordinates: "24° 28' N  54° 22' E",
-    image: "/assets/services/jurisdictions/uae.png",
+    image: uaeImg,
     highlights: ["0% Personal Income Tax", "100% Foreign Ownership", "Common Law System"]
   },
   {
@@ -402,7 +427,7 @@ export const JURISDICTIONS = [
     subtitle: "EU Holding & IP Destination",
     description: "An EU jurisdiction with a broad treaty network, used for holding, trading and shipping structures.",
     coordinates: "35° 10' N  33° 25' E",
-    image: "/assets/services/jurisdictions/cyprus.png",
+    image: cyprusImg,
     highlights: ["12.5% Corporate Tax", "IP Box Regime", "EU Regulatory Standards"]
   },
   {
@@ -414,7 +439,7 @@ export const JURISDICTIONS = [
     subtitle: "International Business & Asset Protection",
     description: "An international business company jurisdiction used for holding and trading structures.",
     coordinates: "4° 40' S  55° 28' E",
-    image: "/assets/services/jurisdictions/seychelles.png",
+    image: seychellesImg,
     highlights: ["High Privacy Standards", "Fast Incorporation", "Competitive Fees"]
   },
   {
@@ -426,7 +451,7 @@ export const JURISDICTIONS = [
     subtitle: "Asset Protection & Trust Domicile",
     description: "A jurisdiction with established trust and investment migration frameworks.",
     coordinates: "17° 21' N  62° 47' W",
-    image: "/assets/services/jurisdictions/st-kitts-nevis.png",
+    image: stkittsImg,
     highlights: ["Premier Asset Protection", "LLC & Trust Options", "Established Reputation"]
   }
 ];
