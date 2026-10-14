@@ -10,17 +10,17 @@ export default function Footer() {
         {/* Brand & Mission Column */}
         <div className="lg:col-span-5 space-y-6">
           
-          {/* Brand Logo with BrandEmblem component */}
-          <Link to="/" className="inline-flex flex-col gap-1 group">
+          {/* Brand Logo & Tagline */}
+          <Link to="/" className="inline-flex flex-col gap-1.5 group">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 text-[#C5A059] group-hover:scale-110 transition-transform duration-300">
+              <div className="w-6 h-6 shrink-0 text-[#C5A059] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <BrandEmblem />
               </div>
               <span className="font-serif text-xl tracking-wider text-white group-hover:text-[#C5A059] transition-colors duration-300">
                 CERIX GLOBAL
               </span>
             </div>
-            <span className="text-xs tracking-[0.25em] text-gray-400 uppercase font-light pl-11">
+            <span className="text-xs tracking-[0.25em] text-gray-400 uppercase font-light pl-9 block">
               ONE. WORLD.
             </span>
           </Link>
