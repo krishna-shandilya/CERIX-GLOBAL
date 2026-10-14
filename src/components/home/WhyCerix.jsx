@@ -3,7 +3,7 @@ import { IMAGES } from '@/lib/cerixData';
 
 export default function WhyCerix() {
   const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
+  const cardRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -12,26 +12,23 @@ export default function WhyCerix() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.15 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (cardRef.current) {
+        observer.unobserve(cardRef.current);
       }
     };
   }, []);
 
   return (
-    <section 
-      ref={sectionRef}
-      className="relative w-full bg-[#07130E] py-20 px-4 md:px-12 flex flex-col items-center justify-center overflow-hidden"
-    >
-      {/* 1. Main Section Header */}
+    <section className="relative w-full bg-[#07130E] py-20 px-4 md:px-12 flex flex-col items-center justify-center overflow-hidden">
+      {/* 1. Main Header */}
       <div className="max-w-4xl text-center mb-12">
         <span className="text-xs font-semibold tracking-widest text-[#C5A059] uppercase mb-3 block">
           Strategic Advantage
@@ -44,58 +41,59 @@ export default function WhyCerix() {
         </p>
       </div>
 
-      {/* 2. Visual Container */}
-      <div className="relative w-full max-w-7xl rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#0b1d16]">
-        
+      {/* 2. Uncropped Graphic Container */}
+      <div className="relative w-full max-w-7xl rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#0b1d16] mb-10">
         <img
           src={IMAGES.whyCerix}
           alt="Why Cerix Global Network"
           className="w-full h-auto object-contain block"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+      </div>
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-
-        {/* 3. Frosted Glass Pop-Up Card */}
-        <div 
-          style={{
-            transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.98)',
-            opacity: isVisible ? 1 : 0,
-            transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
-          }}
-          className="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:max-w-xl backdrop-blur-2xl bg-black/75 border border-white/20 p-6 md:p-8 rounded-2xl shadow-2xl z-20"
-        >
-          <span className="text-xs font-semibold tracking-widest text-[#C5A059] uppercase mb-2 block">
+      {/* 3. Frosted Glass Content Block - Scroll Triggered Pop Up */}
+      <div 
+        ref={cardRef}
+        style={{
+          transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(45px) scale(0.97)',
+          opacity: isVisible ? 1 : 0,
+          transition: 'transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1)'
+        }}
+        className="w-full max-w-7xl rounded-3xl border border-white/15 bg-black/40 backdrop-blur-xl p-8 md:p-14 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10 shadow-2xl"
+      >
+        <div className="max-w-lg">
+          <span className="text-xs font-semibold tracking-widest text-[#C5A059] uppercase mb-3 block">
             Why Cerix Global
           </span>
-          
-          <h3 className="text-2xl md:text-4xl font-serif text-white mb-3 tracking-tight">
+          <h3 className="text-3xl md:text-5xl font-serif text-white tracking-tight">
             Experience across borders.
           </h3>
-          
-          <p className="text-sm md:text-base text-gray-300 leading-relaxed mb-6 pb-6 border-b border-white/15">
+        </div>
+
+        <div className="flex-1 lg:max-w-xl">
+          <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-8 pb-8 border-b border-white/10">
             Our practice is built on coordinated, multidisciplinary advisory — drawing on a network of professionals and partners across multiple jurisdictions to address the full complexity of international structuring.
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div>
-              <div className="text-xl md:text-2xl font-serif text-white mb-1">10+</div>
-              <div className="text-[9px] md:text-[10px] tracking-wider text-[#C5A059] uppercase">Years Experience</div>
+              <div className="text-2xl md:text-3xl font-serif text-white mb-1">10+</div>
+              <div className="text-[10px] md:text-xs tracking-wider text-[#C5A059] uppercase">Years of Experience</div>
             </div>
             <div>
-              <div className="text-xl md:text-2xl font-serif text-white mb-1">Global</div>
-              <div className="text-[9px] md:text-[10px] tracking-wider text-[#C5A059] uppercase">Jurisdiction Net</div>
+              <div className="text-2xl md:text-3xl font-serif text-white mb-1">Global</div>
+              <div className="text-[10px] md:text-xs tracking-wider text-[#C5A059] uppercase">Jurisdiction Network</div>
             </div>
             <div>
-              <div className="text-xl md:text-2xl font-serif text-white mb-1">End-to-End</div>
-              <div className="text-[9px] md:text-[10px] tracking-wider text-[#C5A059] uppercase">Advisory Approach</div>
+              <div className="text-2xl md:text-3xl font-serif text-white mb-1">End-to-End</div>
+              <div className="text-[10px] md:text-xs tracking-wider text-[#C5A059] uppercase">Advisory Approach</div>
             </div>
             <div>
-              <div className="text-xl md:text-2xl font-serif text-white mb-1">Unified</div>
-              <div className="text-[9px] md:text-[10px] tracking-wider text-[#C5A059] uppercase">Professional Net</div>
+              <div className="text-2xl md:text-3xl font-serif text-white mb-1">Unified</div>
+              <div className="text-[10px] md:text-xs tracking-wider text-[#C5A059] uppercase">Professional Network</div>
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );
