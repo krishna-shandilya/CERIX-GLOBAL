@@ -332,4 +332,148 @@ export const WHO_WE_ADVISE = [
   }
 ];
 
-export
+export const APPROACH_STAGES = [
+  {
+    step: "01",
+    title: "Diagnostic & Strategic Mapping",
+    description: "Evaluating operational footprints, commercial goals, and tax residency requirements to design an optimal cross-border architecture."
+  },
+  {
+    step: "02",
+    title: "Jurisdictional Selection",
+    description: "Selecting the precise combination of financial centers, holding entities, and regulatory frameworks aligned with your objectives."
+  },
+  {
+    step: "03",
+    title: "Structuring & Incorporation",
+    description: "Executing precise entity setup, drafting constitutional documents, and establishing robust governance structures."
+  },
+  {
+    step: "04",
+    title: "Operational Integration",
+    description: "Securing necessary licenses, establishing premier banking infrastructure, and ensuring seamless ongoing compliance."
+  }
+];
+
+export const JURISDICTIONS = [
+  {
+    id: "singapore",
+    slug: "singapore",
+    name: "Singapore",
+    region: "Asia-Pacific",
+    title: "Singapore",
+    subtitle: "Asian Financial & Holding Hub",
+    description: "A globally recognised financial centre for holding structures, regional headquarters and treasury operations.",
+    coordinates: "1° 21' N  103° 49' E",
+    image: singaporeImg,
+    highlights: ["17% Corporate Tax Rate", "Over 90 Tax Treaties", "No Capital Gains Tax"]
+  },
+  {
+    id: "mauritius",
+    slug: "mauritius",
+    name: "Mauritius",
+    region: "Africa & Asia Gateway",
+    title: "Mauritius",
+    subtitle: "International Financial Centre",
+    description: "A treaty-network jurisdiction used for holding, investment and trust structures with global fund credentials.",
+    coordinates: "20° 10' S  57° 31' E",
+    image: mauritiusImg,
+    highlights: ["Partial Exemption Regime", "No Withholding Taxes", "Extensive DTAA Network"]
+  },
+  {
+    id: "malta",
+    slug: "malta",
+    name: "Malta",
+    region: "Europe",
+    title: "Malta",
+    subtitle: "EU Financial & Licensing Hub",
+    description: "An EU jurisdiction offering holding structures, licensing frameworks and cross-border trading advantages.",
+    coordinates: "35° 56' N  14° 22' E",
+    image: maltaImg,
+    highlights: ["EU Passporting Rights", "Effective Tax Refund System", "Robust Regulatory Oversight"]
+  },
+  {
+    id: "belize",
+    slug: "belize",
+    name: "Belize",
+    region: "Americas",
+    title: "Belize",
+    subtitle: "International Business Companies",
+    description: "An international business company jurisdiction used for holding structures.",
+    coordinates: "17° 15' N  88° 46' W",
+    image: belizeImg,
+    highlights: ["Fast Registration", "Full Exemption from Local Taxes", "Asset Protection"]
+  },
+  {
+    id: "bvi",
+    slug: "bvi",
+    name: "BVI",
+    region: "Americas & Caribbean",
+    title: "BVI",
+    subtitle: "Global Corporate Structuring Hub",
+    description: "A well-established jurisdiction for holding structures, investment funds and international business companies.",
+    coordinates: "18° 25' N  64° 37' W",
+    image: bviImg,
+    highlights: ["Simple Maintenance", "Worldwide Acceptance", "Confidentiality & Security"]
+  },
+  {
+    id: "cayman-islands",
+    slug: "cayman-islands",
+    name: "Cayman Islands",
+    region: "Americas & Caribbean",
+    title: "Cayman Islands",
+    subtitle: "Global Investment Fund Hub",
+    description: "A leading jurisdiction for investment funds, structured finance and corporate vehicles with an increasingly formal transparency framework.",
+    coordinates: "19° 18' N  81° 14' W",
+    image: caymanImg,
+    highlights: ["Tax-Neutral Jurisdiction", "Flexible Fund Structures", "Recognized by Global Regulators"]
+  },
+  {
+    id: "uae",
+    slug: "uae",
+    name: "UAE",
+    region: "Middle East",
+    title: "UAE",
+    subtitle: "Middle East Financial Heartland",
+    description: "A major international hub for corporate structuring, licensing and regional operations, with free-zone and mainland frameworks.",
+    coordinates: "24° 28' N  54° 22' E",
+    image: uaeImg,
+    highlights: ["0% Personal Income Tax", "100% Foreign Ownership", "Common Law System"]
+  },
+  {
+    id: "cyprus",
+    slug: "cyprus",
+    name: "Cyprus",
+    region: "Europe & Middle East",
+    title: "Cyprus",
+    subtitle: "EU Holding & IP Destination",
+    description: "An EU jurisdiction with a broad treaty network, used for holding, trading and shipping structures.",
+    coordinates: "35° 10' N  33° 25' E",
+    image: cyprusImg,
+    highlights: ["12.5% Corporate Tax", "IP Box Regime", "EU Regulatory Standards"]
+  },
+  {
+    id: "seychelles",
+    slug: "seychelles",
+    name: "Seychelles",
+    region: "Indian Ocean",
+    title: "Seychelles",
+    subtitle: "International Business & Asset Protection",
+    description: "An international business company jurisdiction used for holding and trading structures.",
+    coordinates: "4° 40' S  55° 28' E",
+    image: seychellesImg,
+    highlights: ["High Privacy Standards", "Fast Incorporation", "Competitive Fees"]
+  },
+  {
+    id: "st-kitts-nevis",
+    slug: "st-kitts-nevis",
+    name: "St. Kitts & Nevis",
+    region: "Caribbean",
+    title: "St. Kitts & Nevis",
+    subtitle: "Asset Protection & Trust Domicile",
+    description: "A jurisdiction with established trust and investment migration frameworks.",
+    coordinates: "17° 21' N  62° 47' W",
+    image: stkittsImg,
+    highlights: ["Premier Asset Protection", "LLC & Trust Options", "Established Reputation"]
+  }
+];
