@@ -8,46 +8,69 @@ export default function ClientExperiencesLedger() {
   const activeExp = CLIENT_EXPERIENCES[activePageIndex];
 
   return (
-    <>
-      {/* 1. Closed Stacked-Book Trigger (Fixed Bottom-Left) */}
-      <div className="fixed bottom-6 left-6 z-40">
-        <button
+    <section className="w-full bg-[#050C09] py-20 px-6 md:px-12 border-t border-white/10 relative overflow-hidden">
+      {/* Background Subtle Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#07130E] to-[#050C09] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center text-center">
+        
+        {/* Section Header */}
+        <span className="text-xs font-semibold tracking-[0.25em] text-[#C5A059] uppercase block mb-3">
+          Confidential Casebook
+        </span>
+        <h2 className="text-3xl md:text-5xl font-serif text-white mb-4 tracking-tight">
+          Selected Engagements
+        </h2>
+        <p className="text-sm md:text-base text-gray-400 max-w-xl mx-auto mb-12 leading-relaxed">
+          Anonymized structural records reflecting cross-border architecture, entity setup, and execution outcomes across global jurisdictions.
+        </p>
+
+        {/* ============================================================ */}
+        {/* GROUNDED STACKED-BOOK CONTAINER (Click to Open)            */}
+        {/* ============================================================ */}
+        <div 
           onClick={() => setIsOpen(true)}
-          className="group relative flex items-center gap-3 bg-[#0B1A14]/90 backdrop-blur-md border border-[#C5A059]/30 rounded-xl px-4 py-3 shadow-2xl hover:border-[#C5A059]/70 hover:bg-[#0B1A14] transition-all duration-300"
-          aria-label="Open Client Experiences Ledger"
+          className="group cursor-pointer relative w-full max-w-2xl bg-[#091510] border border-[#C5A059]/30 rounded-2xl p-8 md:p-10 shadow-2xl hover:border-[#C5A059]/70 transition-all duration-500 text-left flex flex-col md:flex-row items-start md:items-center justify-between gap-6"
         >
-          {/* Stacked Ledger Visual Animation */}
-          <div className="relative w-5 h-6 shrink-0">
-            <div className="absolute inset-0 translate-x-1.5 -translate-y-1 bg-[#8C3A2B]/40 border border-[#C5A059]/20 rounded-sm transition-transform duration-300 group-hover:translate-x-2 group-hover:-translate-y-1.5" />
-            <div className="absolute inset-0 translate-x-0.5 -translate-y-0.5 bg-[#C5A059]/30 border border-[#C5A059]/30 rounded-sm transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-            <div className="absolute inset-0 bg-[#0E241B] border border-[#C5A059]/60 rounded-sm flex items-center justify-center shadow-sm">
-              <span className="font-serif text-[10px] text-[#C5A059] font-bold">C</span>
+          {/* Visual Stacked Pages Effect */}
+          <div className="absolute -top-2 left-6 right-6 h-2 bg-[#8C3A2B]/30 border border-[#C5A059]/20 rounded-t-lg -z-10 group-hover:-top-3 transition-all duration-300" />
+          <div className="absolute -top-1 left-3 right-3 h-2 bg-[#C5A059]/20 border border-[#C5A059]/30 rounded-t-lg -z-10 group-hover:-top-1.5 transition-all duration-300" />
+
+          {/* Left Side Info */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-[#C5A059]" />
+              <span className="text-xs font-mono text-[#C5A059] uppercase tracking-widest">
+                Private Ledger · 04 Records
+              </span>
             </div>
+            <h3 className="text-xl md:text-2xl font-serif text-white group-hover:text-[#C5A059] transition-colors duration-300">
+              Cross-Border & Advisory Portfolio
+            </h3>
+            <p className="text-xs text-gray-400">
+              Singapore · Mauritius · BVI · Cayman Islands · UAE · Switzerland
+            </p>
           </div>
 
-          <div className="flex flex-col text-left">
-            <span className="text-[10px] tracking-[0.2em] text-[#C5A059] uppercase font-semibold">
-              Private Ledger
-            </span>
-            <span className="text-xs font-serif text-[#EFECE4] tracking-wide group-hover:text-white transition-colors">
-              Selected Engagements
-            </span>
+          {/* Right Action Button */}
+          <div className="shrink-0 flex items-center gap-3 px-5 py-3 rounded-xl bg-[#0E241B] border border-[#C5A059]/40 text-xs font-serif text-[#EFECE4] group-hover:bg-[#C5A059] group-hover:text-black transition-all duration-300">
+            <span>Inspect Ledger</span>
+            <span>→</span>
           </div>
+        </div>
 
-          <span className="ml-2 text-xs text-[#C5A059] group-hover:translate-x-0.5 transition-transform duration-300">
-            →
-          </span>
-        </button>
       </div>
 
-      {/* 2. Expanded Interactive Casebook Modal */}
+      {/* ============================================================ */}
+      {/* FULL-SCREEN EXPANDED CASEBOOK MODAL                          */}
+      {/* ============================================================ */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/80 backdrop-blur-md transition-opacity duration-500">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/85 backdrop-blur-md transition-opacity duration-500">
           <div className="absolute inset-0" onClick={() => setIsOpen(false)} />
 
-          <div className="relative w-full max-w-4xl bg-[#091510] border border-[#C5A059]/30 rounded-2xl shadow-2xl overflow-hidden z-10 flex flex-col md:flex-row min-h-[520px] max-h-[90vh]">
+          <div className="relative w-full max-w-4xl bg-[#091510] border border-[#C5A059]/40 rounded-2xl shadow-2xl overflow-hidden z-10 flex flex-col md:flex-row min-h-[520px] max-h-[90vh]">
             
-            {/* Left Sidebar Index */}
+            {/* Sidebar Index */}
             <div className="w-full md:w-80 bg-[#050C09] border-b md:border-b-0 md:border-r border-[#C5A059]/20 p-6 flex flex-col justify-between shrink-0">
               <div>
                 <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#C5A059]/20">
@@ -97,7 +120,7 @@ export default function ClientExperiencesLedger() {
               </div>
             </div>
 
-            {/* Right Content Panel */}
+            {/* Main Content Page */}
             <div className="flex-1 bg-[#091510] p-6 md:p-10 flex flex-col justify-between overflow-y-auto relative">
               <button
                 onClick={() => setIsOpen(false)}
@@ -159,7 +182,7 @@ export default function ClientExperiencesLedger() {
                 )}
               </div>
 
-              {/* Pagination Footer */}
+              {/* Pagination Bar */}
               <div className="pt-8 mt-6 border-t border-white/10 flex items-center justify-between text-xs text-gray-400">
                 <span>
                   Case <strong className="text-white">0{activePageIndex + 1}</strong> of 0{CLIENT_EXPERIENCES.length}
@@ -187,6 +210,6 @@ export default function ClientExperiencesLedger() {
           </div>
         </div>
       )}
-    </>
+    </section>
   );
 }
