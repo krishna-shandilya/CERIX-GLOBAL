@@ -24,16 +24,16 @@ export default function Home() {
       <Approach />
 
       {/* 5. Why Cerix */}
-      <WhyCerix />
-
+      <WhyCerix /> 
+      
+      {/* Floating Glass Pop-up Widget for Client Experiences */}
+      <FloatingClientExperiences /> 
+      
       {/* 6. Contact */}
       <ContactSection />
 
       {/* 7. Footer */}
-      <Footer />
-
-      {/* Floating Glass Pop-up Widget for Client Experiences */}
-      <FloatingClientExperiences />
+      <Footer /> 
     </main>
   );
 }
