@@ -13,7 +13,7 @@ export default function WhoWeAdvise() {
           <Reveal>
             <div className="eyebrow text-terracotta mb-8 flex items-center gap-4">
               <span className="h-px w-10 bg-terracotta/60" />
-              06 — Who We Advise
+               Who We Advise
             </div>
           </Reveal>
           <MotionText
