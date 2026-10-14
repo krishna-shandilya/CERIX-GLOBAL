@@ -13,67 +13,73 @@ const STATS = [
 
 export default function WhyCerix() {
   return (
-    <section className="relative bg-[#FDFBF7] py-20 lg:py-32 overflow-hidden border-t border-obsidian/10">
-      <div className="mx-auto max-w-[1500px] px-6 lg:px-12">
+    <section className="relative w-full bg-[#07130E] py-16 sm:py-24 lg:py-32 overflow-hidden border-t border-white/10">
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-12">
         
-        {/* Full Landscape Artwork Container (Optimized for Mobile + Desktop) */}
-        <div className="relative w-full rounded-[20px] sm:rounded-[28px] overflow-hidden shadow-xl border border-obsidian/10 bg-obsidian aspect-[4/3] sm:aspect-[16/9] mb-12 lg:mb-16">
-          <img
-            src={IMAGES.whyCerix}
-            alt="Why Cerix Global — Global Network & Strategy"
-            className="w-full h-full object-cover sm:object-cover object-center"
-          />
-        </div>
-
-        {/* Narrative & Metrics Below Artwork */}
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-20 items-start">
-          
-          {/* Left Column: Heading */}
-          <div className="lg:col-span-5">
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="eyebrow text-terracotta mb-4 flex items-center gap-3"
-            >
-              <span className="h-px w-8 bg-terracotta/60" />
-              Why Cerix Global
-            </motion.div>
-            <MotionText
-              text="Experience across borders."
-              as="h2"
-              className="font-serif text-3xl sm:text-5xl lg:text-6xl text-obsidian leading-tight"
+        {/* Uncropped Full View Artwork Container */}
+        <div className="relative w-full rounded-[24px] sm:rounded-[32px] overflow-hidden bg-black/40 border border-white/10 shadow-2xl p-2 sm:p-4 mb-10 lg:mb-16">
+          <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden rounded-[20px] sm:rounded-[26px]">
+            <img
+              src={IMAGES.whyCerix}
+              alt="Why Cerix Global — Cross-Border Network"
+              className="w-full h-full object-contain bg-[#07130E]"
             />
           </div>
-
-          {/* Right Column: Description & Stats Grid */}
-          <div className="lg:col-span-7 space-y-8">
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-sans text-base sm:text-lg text-obsidian/75 leading-relaxed font-light"
-            >
-              Our practice is built on coordinated, multidisciplinary advisory — drawing on a network of professionals and partners across multiple jurisdictions to address the full complexity of international structuring.
-            </motion.p>
-
-            <Stagger interval={0.12} delay={0.3} className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-obsidian/15">
-              {STATS.map((s, i) => (
-                <StaggerItem key={i} className="relative">
-                  <div className="font-serif text-2xl sm:text-3xl lg:text-4xl text-obsidian leading-none">
-                    {s.type === "counter" ? <Counter to={10} duration={2.5} suffix="+" /> : s.value}
-                  </div>
-                  <div className="mt-2.5 font-mono text-[0.62rem] sm:text-[0.68rem] tracking-[0.18em] uppercase text-obsidian/60">
-                    {s.label}
-                  </div>
-                </StaggerItem>
-              ))}
-            </Stagger>
-          </div>
-
         </div>
+
+        {/* Frosted Glass Content Panel Below Artwork */}
+        <div className="p-8 sm:p-12 lg:p-16 rounded-[28px] bg-white/[0.04] backdrop-blur-2xl border border-white/15 text-[#E2DDD5] shadow-2xl">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+            
+            {/* Left Header */}
+            <div className="lg:col-span-5">
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="eyebrow text-[#C86D51] mb-4 flex items-center gap-3"
+              >
+                <span className="h-px w-8 bg-[#C86D51]/60" />
+                Why Cerix Global
+              </motion.div>
+
+              <MotionText
+                text="Experience across borders."
+                as="h2"
+                className="font-serif text-3xl sm:text-5xl lg:text-6xl text-white leading-tight"
+              />
+            </div>
+
+            {/* Right Copy & Metrics */}
+            <div className="lg:col-span-7 space-y-8">
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="font-sans text-base sm:text-lg text-[#E2DDD5]/80 leading-relaxed font-light"
+              >
+                Our practice is built on coordinated, multidisciplinary advisory — drawing on a network of professionals and partners across multiple jurisdictions to address the full complexity of international structuring.
+              </motion.p>
+
+              <Stagger interval={0.12} delay={0.3} className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-white/15">
+                {STATS.map((s, i) => (
+                  <StaggerItem key={i} className="relative">
+                    <div className="font-serif text-2xl sm:text-3xl lg:text-4xl text-white leading-none">
+                      {s.type === "counter" ? <Counter to={10} duration={2.5} suffix="+" /> : s.value}
+                    </div>
+                    <div className="mt-2.5 font-mono text-[0.62rem] sm:text-[0.68rem] tracking-[0.18em] uppercase text-[#C86D51]">
+                      {s.label}
+                    </div>
+                  </StaggerItem>
+                ))}
+              </Stagger>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </section>
   );
