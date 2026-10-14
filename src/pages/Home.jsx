@@ -11,29 +11,14 @@ import FloatingClientExperiences from '@/components/home/FloatingClientExperienc
 export default function Home() {
   return (
     <main className="bg-[#FDFBF7] min-h-screen relative">
-      {/* 1. Hero */}
       <Hero />
-
-      {/* 2. What We Do */}
       <WhatWeDo />
-
-      {/* 3. Who We Advise */}
       <WhoWeAdvise />
-
-      {/* 4. Approach */}
       <Approach />
-
-      {/* 5. Why Cerix */}
-      <WhyCerix /> 
-      
-      {/* Floating Glass Pop-up Widget for Client Experiences */}
-      <FloatingClientExperiences /> 
-      
-      {/* 6. Contact */}
+      <WhyCerix />
       <ContactSection />
-
-      {/* 7. Footer */}
-      <Footer /> 
+      <Footer />
+      <FloatingClientExperiences />
     </main>
   );
 }
