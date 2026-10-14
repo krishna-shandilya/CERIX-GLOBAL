@@ -20,8 +20,11 @@ import cyprusImg from "../assets/services/jurisdictions/cyprus.png";
 import seychellesImg from "../assets/services/jurisdictions/seychelles.png";
 import stkittsImg from "../assets/services/jurisdictions/st-kitts-nevis.png";
 
+// New Why Cerix Image Import
+import whyCerixImg from "../assets/why-cerix.png";
+
 const imgMap = {
-  whyCerix: corpImg,
+  whyCerix: whyCerixImg,
   corporate: corpImg,
   setup: setupImg,
   licensing: licensingImg,
