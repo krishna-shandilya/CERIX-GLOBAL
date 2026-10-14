@@ -1,104 +1,113 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Linkedin, Mail } from "lucide-react";
-import Logo from "./Logo";
-
-const NAV = [
-  { label: "Expertise", to: "/expertise" },
-  { label: "Global Reach", to: "/global-reach" },
-  { label: "Approach", to: "/approach" },
-  { label: "Insights", to: "/insights" },
-  { label: "About", to: "/about" },
-  { label: "Contact", to: "/contact" },
-];
-
-const LEGAL = [
-  { label: "Privacy Policy", to: "/privacy" },
-  { label: "Terms", to: "/terms" },
-  { label: "Disclaimer", to: "/disclaimer" },
-];
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className="bg-obsidian text-parchment relative overflow-hidden" data-theme="dark">
-      <div className="coord-grid absolute inset-0 opacity-20" />
-      <div className="relative mx-auto max-w-[1500px] px-6 lg:px-12 py-20 lg:py-28">
-        <div className="grid lg:grid-cols-12 gap-16 lg:gap-12">
-          {/* Brand & Animated Logo */}
-          <div className="lg:col-span-5">
-            <Logo variant="light" showTagline />
-            <p className="mt-8 font-serif text-2xl lg:text-3xl leading-[1.15] text-parchment/90 max-w-md text-balance">
-              Global Business &amp; Corporate Structuring
-            </p>
-            <p className="mt-4 font-sans text-sm text-parchment/55 max-w-sm leading-relaxed font-light">
-              Strategic international advisory for businesses, investors and families navigating global structures, jurisdictions and opportunity.
-            </p>
-            <div className="mt-8 flex items-center gap-4">
-              <a
-                href="https://www.linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="w-10 h-10 rounded-full border border-parchment/20 flex items-center justify-center text-parchment/65 hover:border-[#C86D51] hover:text-[#C86D51] transition-colors duration-300"
-              >
-                <Linkedin size={15} strokeWidth={1.5} />
-              </a>
-              <a
-                href="mailto:info@cerixglobal.com"
-                aria-label="Email"
-                className="w-10 h-10 rounded-full border border-parchment/20 flex items-center justify-center text-parchment/65 hover:border-[#C86D51] hover:text-[#C86D51] transition-colors duration-300"
-              >
-                <Mail size={15} strokeWidth={1.5} />
-              </a>
+    <footer className="w-full bg-[#050C09] text-white pt-16 pb-8 px-6 md:px-12 border-t border-white/10">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 pb-12 border-b border-white/10">
+        
+        {/* Brand & Mission Column */}
+        <div className="lg:col-span-5 space-y-6">
+          
+          {/* Animated Brand Emblem & Title */}
+          <Link to="/" className="inline-flex items-center gap-3 group">
+            <div className="relative w-10 h-10 rounded-full bg-gradient-to-tr from-[#C5A059] to-[#EFECE4] p-[1px] shadow-lg shadow-[#C5A059]/10 group-hover:shadow-[#C5A059]/30 transition-all duration-500">
+              <div className="w-full h-full bg-[#07130E] rounded-full flex items-center justify-center overflow-hidden">
+                <span className="font-serif text-[#C5A059] font-bold text-lg group-hover:scale-110 transition-transform duration-500">
+                  C
+                </span>
+              </div>
             </div>
-          </div>
 
-          {/* Navigation Links */}
-          <div className="lg:col-span-3 lg:col-start-7">
-            <p className="eyebrow text-[#C86D51] mb-6">Navigation</p>
-            <ul className="space-y-3">
-              {NAV.map((l) => (
-                <li key={l.to}>
-                  <Link to={l.to} className="font-sans text-sm text-parchment/65 hover:text-white transition-colors duration-300">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+            <div className="flex flex-col">
+              <span className="font-serif text-xl tracking-wider text-white group-hover:text-[#C5A059] transition-colors duration-300">
+                CERIX <span className="font-sans text-sm tracking-widest text-[#C5A059]">GLOBAL</span>
+              </span>
+              <span className="text-[10px] tracking-widest text-gray-400 uppercase italic">
+                One. World.
+              </span>
+            </div>
+          </Link>
 
-          {/* Legal & Contact */}
-          <div className="lg:col-span-3">
-            <p className="eyebrow text-[#C86D51] mb-6">Legal</p>
-            <ul className="space-y-3 mb-8">
-              {LEGAL.map((l) => (
-                <li key={l.to}>
-                  <Link to={l.to} className="font-sans text-sm text-parchment/65 hover:text-white transition-colors duration-300">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <p className="eyebrow text-[#C86D51] mb-3">Contact</p>
-            <p className="font-sans text-sm text-parchment/65 leading-relaxed font-light">
-              Cerix Global Consulting<br />
-              Bengaluru, India<br />
-              <a href="mailto:info@cerixglobal.com" className="text-parchment hover:text-[#C86D51] transition-colors duration-300 underline-offset-4 hover:underline">
-                info@cerixglobal.com
-              </a>
-            </p>
+          <h3 className="text-2xl md:text-3xl font-serif text-white/90 leading-tight">
+            Global Business &<br />Corporate Structuring
+          </h3>
+
+          <p className="text-sm text-gray-400 leading-relaxed max-w-sm">
+            Strategic international advisory for businesses, investors, and families navigating global structures, jurisdictions, and opportunity.
+          </p>
+
+          {/* Social Links */}
+          <div className="flex items-center gap-3 pt-2">
+            <a 
+              href="https://linkedin.com" 
+              target="_blank" 
+              rel="noreferrer"
+              className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-xs text-gray-300 hover:text-white hover:border-[#C5A059] hover:bg-[#C5A059]/10 transition-all duration-300"
+              aria-label="LinkedIn"
+            >
+              in
+            </a>
+            <a 
+              href="mailto:info@cerixglobal.com" 
+              className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-xs text-gray-300 hover:text-white hover:border-[#C5A059] hover:bg-[#C5A059]/10 transition-all duration-300"
+              aria-label="Email"
+            >
+              ✉
+            </a>
           </div>
         </div>
 
-        {/* Disclaimer & Copyright */}
-        <div className="mt-16 pt-8 border-t border-parchment/10">
-          <p className="font-sans text-xs text-parchment/40 leading-relaxed max-w-4xl font-light">
-            Cerix Global provides consulting and coordination services. Specific legal, tax, regulatory, immigration and investment matters may require advice from appropriately qualified professionals in the relevant jurisdiction.
-          </p>
-          <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <p className="font-sans text-xs text-parchment/35">© {new Date().getFullYear()} Cerix Global. All rights reserved.</p>
-            <p className="font-mono text-[0.6rem] tracking-[0.25em] text-parchment/25 uppercase">12° 58′ N · 77° 35′ E</p>
+        {/* Navigation Column */}
+        <div className="lg:col-span-3 space-y-4">
+          <span className="text-xs font-semibold tracking-widest text-[#C5A059] uppercase block mb-4">
+            Navigation
+          </span>
+          <ul className="space-y-3 text-sm text-gray-300">
+            <li><Link to="/services" className="hover:text-[#C5A059] transition-colors">Expertise</Link></li>
+            <li><Link to="/jurisdictions" className="hover:text-[#C5A059] transition-colors">Global Reach</Link></li>
+            <li><Link to="/approach" className="hover:text-[#C5A059] transition-colors">Approach</Link></li>
+            <li><Link to="/insights" className="hover:text-[#C5A059] transition-colors">Insights</Link></li>
+            <li><Link to="/about" className="hover:text-[#C5A059] transition-colors">About</Link></li>
+            <li><Link to="/contact" className="hover:text-[#C5A059] transition-colors">Contact</Link></li>
+          </ul>
+        </div>
+
+        {/* Legal & Contact Column */}
+        <div className="lg:col-span-4 space-y-8">
+          <div>
+            <span className="text-xs font-semibold tracking-widest text-[#C5A059] uppercase block mb-4">
+              Legal
+            </span>
+            <ul className="space-y-3 text-sm text-gray-300">
+              <li><Link to="/privacy" className="hover:text-[#C5A059] transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="hover:text-[#C5A059] transition-colors">Terms</Link></li>
+              <li><Link to="/disclaimer" className="hover:text-[#C5A059] transition-colors">Disclaimer</Link></li>
+            </ul>
           </div>
+
+          <div>
+            <span className="text-xs font-semibold tracking-widest text-[#C5A059] uppercase block mb-2">
+              Contact
+            </span>
+            <p className="text-sm text-gray-300">Cerix Global Consulting</p>
+            <p className="text-sm text-gray-400">Bengaluru, India</p>
+            <a href="mailto:info@cerixglobal.com" className="text-sm text-[#C5A059] hover:underline mt-1 block">
+              info@cerixglobal.com
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      {/* Legal Disclaimer & Copyright Bottom Bar */}
+      <div className="max-w-7xl mx-auto pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs text-gray-500">
+        <p className="max-w-3xl leading-relaxed">
+          Cerix Global provides consulting and coordination services. Specific legal, tax, regulatory, immigration and investment matters may require advice from appropriately qualified professionals in the relevant jurisdiction.
+        </p>
+        <div className="flex items-center gap-6 shrink-0">
+          <span>© 2026 Cerix Global. All rights reserved.</span>
+          <span className="text-[10px] tracking-widest text-gray-600 font-mono">12° 58' N · 77° 35' E</span>
         </div>
       </div>
     </footer>
