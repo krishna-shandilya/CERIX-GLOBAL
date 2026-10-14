@@ -35,7 +35,7 @@ export default function WhyCerix() {
               className="eyebrow text-terracotta-soft mb-4 flex items-center gap-3"
             >
               <span className="h-px w-8 bg-terracotta-soft/60" />
-              05 — Why Cerix Global
+              Why Cerix Global
             </motion.div>
 
             <MotionText
