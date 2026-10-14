@@ -4,7 +4,6 @@ import WhatWeDo from '@/components/home/WhatWeDo';
 import WhoWeAdvise from '@/components/home/WhoWeAdvise';
 import Approach from '@/components/home/Approach';
 import WhyCerix from '@/components/home/WhyCerix';
-import GlobalScale from '@/components/home/GlobalScale';
 import ContactSection from '@/components/home/ContactSection';
 import Footer from '@/components/Footer';
 import FloatingClientExperiences from '@/components/home/FloatingClientExperiences';
@@ -27,13 +26,10 @@ export default function Home() {
       {/* 5. Why Cerix */}
       <WhyCerix />
 
-      {/* 6. Jurisdiction Strategy (Global Scale) */}
-      <GlobalScale />
-
-      {/* 7. Contact */}
+      {/* 6. Contact */}
       <ContactSection />
 
-      {/* 8. Footer */}
+      {/* 7. Footer */}
       <Footer />
 
       {/* Floating Glass Pop-up Widget for Client Experiences */}
