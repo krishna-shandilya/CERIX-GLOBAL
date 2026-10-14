@@ -1,93 +1,425 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
-import { SERVICES, IMAGES } from "@/lib/cerixData";
-import SectionHeading from "@/components/SectionHeading";
-import Reveal from "@/components/Reveal";
-import { Image } from "@/components/ui/image";
-import { motion } from "framer-motion";
+// Service Image Imports (.png)
+import corpImg from "../assets/services/01-corporate-structuring.png";
+import setupImg from "../assets/services/02-company-setup.png";
+import licensingImg from "../assets/services/03-licensing.png";
+import bankingImg from "../assets/services/04-banking-infrastructure.png";
+import trustsImg from "../assets/services/05-trusts-foundations.png";
+import migrationImg from "../assets/services/06-investment-migration.png";
+import expansionImg from "../assets/services/07-international-expansion.png";
+import taxImg from "../assets/services/08-tax-compliance.png";
 
-const CARDS = [
-  ...SERVICES.slice(0, 7),
+// Jurisdiction Image Imports (.png)
+import singaporeImg from "../assets/services/jurisdictions/singapore.png";
+import mauritiusImg from "../assets/services/jurisdictions/mauritius.png";
+import maltaImg from "../assets/services/jurisdictions/malta.png";
+import belizeImg from "../assets/services/jurisdictions/belize.png";
+import bviImg from "../assets/services/jurisdictions/bvi.png";
+import caymanImg from "../assets/services/jurisdictions/cayman-islands.png";
+import uaeImg from "../assets/services/jurisdictions/uae.png";
+import cyprusImg from "../assets/services/jurisdictions/cyprus.png";
+import seychellesImg from "../assets/services/jurisdictions/seychelles.png";
+import stkittsImg from "../assets/services/jurisdictions/st-kitts-nevis.png";
+
+// Why Cerix Image Import (Directly under src/assets/why-cerix.png)
+import whyCerixImg from "../assets/why-cerix.png";
+
+const imgMap = {
+  whyCerix: whyCerixImg,
+  corporate: corpImg,
+  setup: setupImg,
+  licensing: licensingImg,
+  banking: bankingImg,
+  trusts: trustsImg,
+  migration: migrationImg,
+  expansion: expansionImg,
+  tax: taxImg,
+  funds: taxImg,
+  compliance: taxImg,
+  wealth: trustsImg,
+  insights: corpImg
+};
+
+export const IMAGES = imgMap;
+export const IMAGE_ALT = {};
+export const SITE_IMAGES = imgMap;
+
+const safeAuth = {
+  isAuthenticated: async function() { return false; },
+  me: async function() { return null; },
+  getUser: async function() { return null; },
+  useMe: function() { return { data: null, isLoading: false, error: null }; },
+  useUser: function() { return { data: null, isLoading: false, error: null }; },
+  useAuth: function() { return { user: null, isAuthenticated: false, isLoading: false }; },
+  login: async function() {},
+  logout: async function() {},
+  redirectToLogin: function() {},
+  getToken: async function() { return null; },
+  getAccessToken: async function() { return null; }
+};
+
+export const SERVICES = [
   {
+    id: "corporate-structuring",
     slug: "corporate-structuring",
-    title: "International Corporate Structuring",
-    short: "Cross-border corporate architecture designed around commercial, operational and strategic objectives.",
-    image: IMAGES.corporate,
-    label: "08",
+    title: "Corporate Structuring",
+    subtitle: "Cross-Border Entity Architecture",
+    description: "Designing efficient cross-border holding architectures and entity frameworks.",
+    fullDescription: "Cross-border corporate structuring forms the foundational architecture for international enterprises, holding groups, and scaling technology companies. We design and implement multi-jurisdictional holding structures, intellectual property holding entities, and operational subsidiaries optimized for asset protection, international expansion, and substance requirements.",
+    features: [
+      "Multi-jurisdictional holding architecture design",
+      "IP holding and licensing vehicle structuring",
+      "Group reorganization and equity restructuring",
+      "Substance and economic presence compliance alignment"
+    ],
+    benefits: [
+      "Optimized global operational tax efficiency",
+      "Enhanced asset protection across multiple jurisdictions",
+      "Frictionless cross-border capital and dividend flows",
+      "Full alignment with international substance regulations"
+    ],
+    image: corpImg
   },
+  {
+    id: "company-setup",
+    slug: "company-setup",
+    title: "Company Setup & Formation",
+    subtitle: "International Entity Incorporation",
+    description: "End-to-end entity incorporation across leading international financial hubs.",
+    fullDescription: "We provide end-to-end entity incorporation and corporate setup services across premier international financial centers and free zones. From initial name clearance and drafting constitutional documents to registry filings and initial resolution drafting, we manage the entire lifecycle of your new corporate entity.",
+    features: [
+      "Jurisdictional advisory and entity type selection",
+      "Drafting Memorandum & Articles of Association",
+      "Registry filings and corporate secretarial setup",
+      "Registered office and local directorship provisions"
+    ],
+    benefits: [
+      "Rapid, error-free incorporation timelines",
+      "Complete compliance with local statutory obligations",
+      "Seamless setup without physical travel requirements",
+      "Immediate readiness for banking and operations"
+    ],
+    image: setupImg
+  },
+  {
+    id: "licensing",
+    slug: "licensing",
+    title: "Licensing & Regulatory Compliance",
+    subtitle: "Financial & Operational Permits",
+    description: "Securing financial, fund management, and specialized operational licenses.",
+    fullDescription: "Navigating complex regulatory frameworks requires precise application strategies and robust compliance architectures. We assist fintech groups, investment managers, payment service providers, and trading houses in securing financial, fund management, and specialized commercial licenses across tier-one jurisdictions.",
+    features: [
+      "Regulatory roadmap formulation and jurisdiction matching",
+      "Comprehensive license application dossier preparation",
+      "Liaison with regulatory authorities and central banks",
+      "Ongoing compliance monitoring and AML/KYC frameworks"
+    ],
+    benefits: [
+      "Maximized regulatory approval success rates",
+      "Accelerated time-to-market for regulated ventures",
+      "Robust defense against regulatory and audit scrutiny",
+      "Institutional credibility with banking partners"
+    ],
+    image: licensingImg
+  },
+  {
+    id: "banking-infrastructure",
+    slug: "banking-infrastructure",
+    title: "Banking Infrastructure",
+    subtitle: "Multi-Currency Treasury Accounts",
+    description: "Facilitating multi-currency account opening with premier global banking institutions.",
+    fullDescription: "Access to robust, multi-currency banking and treasury infrastructure is vital for international commerce. We leverage direct institutional relationships with premier global banks and electronic money institutions (EMIs) to secure operational accounts, corporate credit lines, and specialized treasury solutions.",
+    features: [
+      "Multi-currency corporate account structuring",
+      "Private banking and wealth management introductions",
+      "Merchant processing and payment gateway connectivity",
+      "Correspondent banking and treasury optimization"
+    ],
+    benefits: [
+      "Access to tier-one international banking partners",
+      "Multi-currency liquidity management capabilities",
+      "Streamlined onboarding bypassing common friction points",
+      "Competitive foreign exchange and wire transfer terms"
+    ],
+    image: bankingImg
+  },
+  {
+    id: "trusts-foundations",
+    slug: "trusts-foundations",
+    title: "Trusts & Foundations",
+    subtitle: "Wealth Preservation & Succession",
+    description: "Private wealth planning, asset protection vehicles, and family office setup.",
+    fullDescription: "Protecting family wealth and securing generational succession requires sophisticated legal structures. We establish international trusts, private foundations, and family office vehicles tailored to safeguard assets against geopolitical and creditor risks while ensuring orderly estate transition.",
+    features: [
+      "Discretionary and asset protection trust formation",
+      "Private foundation setup across civil and common law hubs",
+      "Family office governance and advisory structures",
+      "Protectorate and trustee appointment advisory"
+    ],
+    benefits: [
+      "Absolute asset segregation and risk insulation",
+      "Seamless multi-generational estate succession",
+      "Enhanced privacy and confidentiality protection",
+      "Optimized philanthropic and wealth distribution vehicles"
+    ],
+    image: trustsImg
+  },
+  {
+    id: "investment-migration",
+    slug: "investment-migration",
+    title: "Investment Migration",
+    subtitle: "Global Mobility & Residency",
+    description: "Residence and citizenship planning for global founders and high-net-worth investors.",
+    fullDescription: "Secure global mobility, tax residency diversification, and alternative citizenship for you and your family. We navigate premier residency-by-investment and citizenship-by-investment programs across Europe, the Caribbean, and Asia-Pacific.",
+    features: [
+      "Residency and citizenship portfolio planning",
+      "Golden visa and investor program application management",
+      "Real estate and government bond investment coordination",
+      "Tax residency transition and advisory support"
+    ],
+    benefits: [
+      "Visa-free global mobility for family members",
+      "Strategic backup residency options in stable jurisdictions",
+      "Favorable tax residency structuring opportunities",
+      "First-class educational and lifestyle environments"
+    ],
+    image: migrationImg
+  },
+  {
+    id: "international-expansion",
+    slug: "international-expansion",
+    title: "International Expansion",
+    subtitle: "Cross-Border Market Entry",
+    description: "Strategic entry models for scaling operations into key regional markets.",
+    fullDescription: "Scaling an enterprise across international borders demands localized expertise and strategic entity positioning. We guide businesses through market entry diagnostics, branch vs. subsidiary evaluations, and operational setup to ensure smooth international growth.",
+    features: [
+      "Market entry feasibility and structural analysis",
+      "Branch office vs. subsidiary incorporation modeling",
+      "Local employment and payroll advisory coordination",
+      "Commercial contract and partner vetting support"
+    ],
+    benefits: [
+      "Mitigated cross-border operational and legal risks",
+      "Accelerated regional market penetration",
+      "Optimized capital allocation for foreign expansion",
+      "Compliant local employment and contracting framework"
+    ],
+    image: expansionImg
+  },
+  {
+    id: "tax-compliance",
+    slug: "tax-compliance",
+    title: "Tax & Advisory Services",
+    subtitle: "Substance & Regulatory Reporting",
+    description: "Navigating cross-border tax considerations, substance rules, and reporting standards.",
+    fullDescription: "In an era of transparent international taxation and rigorous economic substance requirements, proactive tax advisory is essential. We help multinational groups navigate transfer pricing, double tax treaty networks, FATCA/CRS compliance, and local tax filings.",
+    features: [
+      "Double Tax Avoidance Agreement (DTAA) optimization",
+      "Economic substance test reviews and advisory",
+      "Transfer pricing documentation and support",
+      "FATCA, CRS, and Country-by-Country reporting assistance"
+    ],
+    benefits: [
+      "Full compliance with evolving global tax standards",
+      "Minimized effective tax burden through legitimate treaties",
+      "Elimination of penalty and audit exposures",
+      "Complete transparency and defensibility of tax posture"
+    ],
+    image: taxImg
+  }
 ];
 
-export default function WhatWeDo() {
-  return (
-    <section className="relative bg-ivory py-28 lg:py-40">
-      <div className="mx-auto max-w-[1500px] px-6 lg:px-12">
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-10% 0px" }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="font-serif text-xl lg:text-2xl text-obsidian/40 italic max-w-2xl mb-12 lg:mb-16"
-        >
-          From the global to the practical — the disciplines that make a structure real.
-        </motion.p>
-        <SectionHeading
-          eyebrow="03 — What We Do"
-          title="From complexity to structure."
-          intro="Cerix Global brings together the disciplines required to design, establish and operate international structures — coordinated, considered and built around the objective."
-        />
-
-        <div className="group/grid mt-16 lg:mt-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {CARDS.map((s, i) => (
-            <ServiceCard key={i} service={s} index={i} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+export function getServiceBySlug(slug) {
+  return SERVICES.find(s => s.slug === slug || s.id === slug) || SERVICES[0];
 }
 
-function ServiceCard({ service, index }) {
-  const stagger = (index % 4) * 0.08;
-  return (
-    <Reveal variant="mask" delay={stagger}>
-      <Link
-        to={`/expertise/${service.slug}`}
-        className="group relative block overflow-hidden rounded-[20px] bg-obsidian/5 aspect-[3/4] transition-opacity duration-500 group-hover/grid:opacity-85 hover:!opacity-100"
-      >
-        <Image
-          src={service.image}
-          alt={service.title}
-          fittingType="fill"
-          className="w-full h-full object-cover transition-transform duration-[600ms] ease-out group-hover:scale-[1.04]"
-        />
-        {/* readability scrim - limited to bottom */}
-        <div className="absolute inset-0 bg-gradient-to-t from-obsidian/40 via-transparent to-transparent pointer-events-none" />
-        {/* olive tint overlay on hover */}
-        <div className="absolute inset-0 bg-olive-deep opacity-0 group-hover:opacity-35 transition-opacity duration-500" />
-        {/* glass panel — anchored 16px from bottom with balanced padding */}
-        <div className="absolute inset-x-4 bottom-4 rounded-[16px] overflow-hidden">
-          <div className="glass-frost-deep absolute inset-0 transition-opacity duration-500 group-hover:opacity-0 bg-black/25 backdrop-blur-md" />
-          <div className="absolute inset-0 bg-olive-deep opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="relative p-4 lg:p-5">
-            <div className="flex items-center justify-between">
-              <span className="font-mono text-[0.62rem] tracking-[0.25em] text-terracotta-soft group-hover:text-parchment/80 transition-colors duration-500">
-                {service.label || service.num}
-              </span>
-              <span className="inline-flex items-center gap-1.5 font-sans text-[0.68rem] tracking-[0.18em] uppercase font-medium text-parchment/80">
-                Explore
-                <ArrowUpRight size={13} strokeWidth={1.5} className="group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-400" />
-              </span>
-            </div>
-            <h3 className="mt-2.5 font-serif text-[1.35rem] lg:text-[1.5rem] leading-tight text-parchment">
-              {service.title}
-            </h3>
-            <p className="mt-1.5 font-sans text-[0.78rem] lg:text-[0.82rem] text-parchment/75 group-hover:text-parchment/90 leading-relaxed line-clamp-2 transition-colors duration-500">
-              {service.short || service.description}
-            </p>
-          </div>
-        </div>
-      </Link>
-    </Reveal>
-  );
+export const INSIGHTS = [
+  {
+    id: "cross-border-tax-evolution",
+    title: "Cross-Border Tax Evolution & Substance Requirements",
+    slug: "cross-border-tax-evolution",
+    category: "Tax & Compliance",
+    date: "October 2026",
+    readTime: "5 min read",
+    summary: "An analysis of global economic substance rules and how multinational structures must adapt.",
+    image: corpImg
+  },
+  {
+    id: "banking-infrastructure-trends",
+    title: "Navigating Global Multi-Currency Banking Infrastructure",
+    slug: "banking-infrastructure-trends",
+    category: "Banking",
+    date: "September 2026",
+    readTime: "4 min read",
+    summary: "Key considerations for establishing robust treasury accounts across premier financial centers.",
+    image: bankingImg
+  }
+];
+
+export function getInsightBySlug(slug) {
+  return INSIGHTS.find(i => i.slug === slug || i.id === slug) || INSIGHTS[0];
 }
+
+export const WHO_WE_ADVISE = [
+  {
+    title: "Multinational Enterprises & Tech Founders",
+    description: "Designing multi-jurisdictional IP holding, regional operational hubs, and international growth vehicles."
+  },
+  {
+    title: "Asset Managers & Investment Funds",
+    description: "Structuring offshore fund entities, feeder funds, and cross-border investment platforms."
+  },
+  {
+    title: "High-Net-Worth Individuals & Family Offices",
+    description: "Establishing wealth preservation trusts, foundations, and investment migration residency pathways."
+  },
+  {
+    title: "Institutional Clients & Trading Groups",
+    description: "Securing specialized financial service licenses and establishing multi-currency treasury infrastructure."
+  }
+];
+
+export const APPROACH_STAGES = [
+  {
+    step: "01",
+    title: "Diagnostic & Strategic Mapping",
+    description: "Evaluating operational footprints, commercial goals, and tax residency requirements to design an optimal cross-border architecture."
+  },
+  {
+    step: "02",
+    title: "Jurisdictional Selection",
+    description: "Selecting the precise combination of financial centers, holding entities, and regulatory frameworks aligned with your objectives."
+  },
+  {
+    step: "03",
+    title: "Structuring & Incorporation",
+    description: "Executing precise entity setup, drafting constitutional documents, and establishing robust governance structures."
+  },
+  {
+    step: "04",
+    title: "Operational Integration",
+    description: "Securing necessary licenses, establishing premier banking infrastructure, and ensuring seamless ongoing compliance."
+  }
+];
+
+export const JURISDICTIONS = [
+  {
+    id: "singapore",
+    slug: "singapore",
+    name: "Singapore",
+    region: "Asia-Pacific",
+    title: "Singapore",
+    subtitle: "Asian Financial & Holding Hub",
+    description: "A globally recognised financial centre for holding structures, regional headquarters and treasury operations.",
+    coordinates: "1° 21' N  103° 49' E",
+    image: singaporeImg,
+    highlights: ["17% Corporate Tax Rate", "Over 90 Tax Treaties", "No Capital Gains Tax"]
+  },
+  {
+    id: "mauritius",
+    slug: "mauritius",
+    name: "Mauritius",
+    region: "Africa & Asia Gateway",
+    title: "Mauritius",
+    subtitle: "International Financial Centre",
+    description: "A treaty-network jurisdiction used for holding, investment and trust structures with global fund credentials.",
+    coordinates: "20° 10' S  57° 31' E",
+    image: mauritiusImg,
+    highlights: ["Partial Exemption Regime", "No Withholding Taxes", "Extensive DTAA Network"]
+  },
+  {
+    id: "malta",
+    slug: "malta",
+    name: "Malta",
+    region: "Europe",
+    title: "Malta",
+    subtitle: "EU Financial & Licensing Hub",
+    description: "An EU jurisdiction offering holding structures, licensing frameworks and cross-border trading advantages.",
+    coordinates: "35° 56' N  14° 22' E",
+    image: maltaImg,
+    highlights: ["EU Passporting Rights", "Effective Tax Refund System", "Robust Regulatory Oversight"]
+  },
+  {
+    id: "belize",
+    slug: "belize",
+    name: "Belize",
+    region: "Americas",
+    title: "Belize",
+    subtitle: "International Business Companies",
+    description: "An international business company jurisdiction used for holding structures.",
+    coordinates: "17° 15' N  88° 46' W",
+    image: belizeImg,
+    highlights: ["Fast Registration", "Full Exemption from Local Taxes", "Asset Protection"]
+  },
+  {
+    id: "bvi",
+    slug: "bvi",
+    name: "BVI",
+    region: "Americas & Caribbean",
+    title: "BVI",
+    subtitle: "Global Corporate Structuring Hub",
+    description: "A well-established jurisdiction for holding structures, investment funds and international business companies.",
+    coordinates: "18° 25' N  64° 37' W",
+    image: bviImg,
+    highlights: ["Simple Maintenance", "Worldwide Acceptance", "Confidentiality & Security"]
+  },
+  {
+    id: "cayman-islands",
+    slug: "cayman-islands",
+    name: "Cayman Islands",
+    region: "Americas & Caribbean",
+    title: "Cayman Islands",
+    subtitle: "Global Investment Fund Hub",
+    description: "A leading jurisdiction for investment funds, structured finance and corporate vehicles with an increasingly formal transparency framework.",
+    coordinates: "19° 18' N  81° 14' W",
+    image: caymanImg,
+    highlights: ["Tax-Neutral Jurisdiction", "Flexible Fund Structures", "Recognized by Global Regulators"]
+  },
+  {
+    id: "uae",
+    slug: "uae",
+    name: "UAE",
+    region: "Middle East",
+    title: "UAE",
+    subtitle: "Middle East Financial Heartland",
+    description: "A major international hub for corporate structuring, licensing and regional operations, with free-zone and mainland frameworks.",
+    coordinates: "24° 28' N  54° 22' E",
+    image: uaeImg,
+    highlights: ["0% Personal Income Tax", "100% Foreign Ownership", "Common Law System"]
+  },
+  {
+    id: "cyprus",
+    slug: "cyprus",
+    name: "Cyprus",
+    region: "Europe & Middle East",
+    title: "Cyprus",
+    subtitle: "EU Holding & IP Destination",
+    description: "An EU jurisdiction with a broad treaty network, used for holding, trading and shipping structures.",
+    coordinates: "35° 10' N  33° 25' E",
+    image: cyprusImg,
+    highlights: ["12.5% Corporate Tax", "IP Box Regime", "EU Regulatory Standards"]
+  },
+  {
+    id: "seychelles",
+    slug: "seychelles",
+    name: "Seychelles",
+    region: "Indian Ocean",
+    title: "Seychelles",
+    subtitle: "International Business & Asset Protection",
+    description: "An international business company jurisdiction used for holding and trading structures.",
+    coordinates: "4° 40' S  55° 28' E",
+    image: seychellesImg,
+    highlights: ["High Privacy Standards", "Fast Incorporation", "Competitive Fees"]
+  },
+  {
+    id: "st-kitts-nevis",
+    slug: "st-kitts-nevis",
+    name: "St. Kitts & Nevis",
+    region: "Caribbean",
+    title: "St. Kitts & Nevis",
+    subtitle: "Asset Protection & Trust Domicile",
+    description: "A jurisdiction with established trust and investment migration frameworks.",
+    coordinates: "17° 21' N  62° 47' W",
+    image: stkittsImg,
+    highlights: ["Premier Asset Protection", "LLC & Trust Options", "Established Reputation"]
+  }
+];
