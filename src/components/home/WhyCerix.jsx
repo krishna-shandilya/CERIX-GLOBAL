@@ -9,7 +9,7 @@ const STATS = [
   { value: "10+", label: "Years of experience", type: "counter" },
   { value: "Global", label: "Jurisdiction network", type: "text" },
   { value: "End-to-end", label: "Advisory approach", type: "text" },
-  { value: "Unified", label: "Professional network", type: "text" },
+  { value: "Multidisciplinary", label: "Professional network", type: "text" },
 ];
 
 export default function WhyCerix() {
@@ -17,11 +17,11 @@ export default function WhyCerix() {
     <section className="relative bg-sage py-40 lg:py-56 overflow-hidden">
       <div className="mx-auto max-w-[1500px] px-6 lg:px-12">
         <div className="grid lg:grid-cols-12 gap-16 lg:gap-20 items-center">
-          {/* Image with parallax + clip reveal */}
+          {/* Image with parallax + clip reveal — using IMAGES.whyCerix */}
           <div className="lg:col-span-6 order-2 lg:order-1">
             <ParallaxImage
-              src={IMAGES.corporate}
-              alt="Modern geometric glass building facade with reflective windows"
+              src={IMAGES.whyCerix}
+              alt="Experience across borders - global network and strategy"
               parallax={50}
               direction="up"
               className="aspect-[4/5]"
