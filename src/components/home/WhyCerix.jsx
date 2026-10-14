@@ -12,7 +12,7 @@ export default function WhyCerix() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.3 } // Triggers when 30% of section is scrolled into view
+      { threshold: 0.2 }
     );
 
     if (sectionRef.current) {
@@ -31,7 +31,7 @@ export default function WhyCerix() {
       ref={sectionRef}
       className="relative w-full bg-[#07130E] py-20 px-4 md:px-12 flex flex-col items-center justify-center overflow-hidden"
     >
-      {/* 1. Main Section Header & Details */}
+      {/* 1. Main Section Header */}
       <div className="max-w-4xl text-center mb-12">
         <span className="text-xs font-semibold tracking-widest text-[#C5A059] uppercase mb-3 block">
           Strategic Advantage
@@ -44,22 +44,22 @@ export default function WhyCerix() {
         </p>
       </div>
 
-      {/* 2. Main Visual Box with Stretched Image */}
-      <div className="relative w-full max-w-7xl h-[60vh] md:h-[75vh] min-h-[500px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+      {/* 2. Uncropped Full Image Visual Container */}
+      <div className="relative w-full max-w-7xl rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#0b1d16]">
         
-        {/* Edge-to-edge Stretched Graphic */}
+        {/* Full Image Display without cropping */}
         <img
           src={IMAGES.whyCerix}
           alt="Why Cerix Global Network"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="w-full h-auto object-contain block"
         />
 
-        {/* Ambient Dark Gradient Vignette */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+        {/* Ambient Dark Gradient Vignette for bottom contrast */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
 
         {/* 3. Scroll-Triggered Frosted Glass Pop-Up Card */}
         <div 
-          className={`absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-auto md:max-w-lg backdrop-blur-xl bg-black/55 border border-white/20 p-6 md:p-8 rounded-2xl shadow-2xl transition-all duration-1000 ease-out transform ${
+          className={`absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-auto md:max-w-lg backdrop-blur-xl bg-black/60 border border-white/20 p-6 md:p-8 rounded-2xl shadow-2xl transition-all duration-1000 ease-out transform ${
             isVisible 
               ? 'translate-y-0 opacity-100 scale-100' 
               : 'translate-y-16 opacity-0 scale-95 pointer-events-none'
@@ -89,6 +89,43 @@ export default function WhyCerix() {
           </div>
         </div>
 
+      </div>
+
+      {/* 4. Experience Across Borders Content Card (from second reference image) */}
+      <div className="w-full max-w-7xl mt-12 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-md p-8 md:p-14 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10 shadow-2xl">
+        <div className="max-w-lg">
+          <span className="text-xs font-semibold tracking-widest text-[#C5A059] uppercase mb-3 block">
+            Why Cerix Global
+          </span>
+          <h3 className="text-3xl md:text-5xl font-serif text-white tracking-tight">
+            Experience across borders.
+          </h3>
+        </div>
+
+        <div className="flex-1 lg:max-w-xl">
+          <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-8 pb-8 border-b border-white/10">
+            Our practice is built on coordinated, multidisciplinary advisory — drawing on a network of professionals and partners across multiple jurisdictions to address the full complexity of international structuring.
+          </p>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div>
+              <div className="text-2xl md:text-3xl font-serif text-white mb-1">10+</div>
+              <div className="text-[10px] md:text-xs tracking-wider text-[#C5A059] uppercase">Years of Experience</div>
+            </div>
+            <div>
+              <div className="text-2xl md:text-3xl font-serif text-white mb-1">Global</div>
+              <div className="text-[10px] md:text-xs tracking-wider text-[#C5A059] uppercase">Jurisdiction Network</div>
+            </div>
+            <div>
+              <div className="text-2xl md:text-3xl font-serif text-white mb-1">End-to-End</div>
+              <div className="text-[10px] md:text-xs tracking-wider text-[#C5A059] uppercase">Advisory Approach</div>
+            </div>
+            <div>
+              <div className="text-2xl md:text-3xl font-serif text-white mb-1">Unified</div>
+              <div className="text-[10px] md:text-xs tracking-wider text-[#C5A059] uppercase">Professional Network</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
