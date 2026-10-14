@@ -3,8 +3,10 @@ import { IMAGES } from '@/lib/cerixData';
 
 export default function WhyCerix() {
   const [isVisible, setIsVisible] = useState(false);
+  const [yearsCount, setYearsCount] = useState(1);
   const cardRef = useRef(null);
 
+  // Intersection Observer for Scroll Trigger
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -26,6 +28,26 @@ export default function WhyCerix() {
     };
   }, []);
 
+  // Count-up animation for "10+" years
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let start = 1;
+    const end = 10;
+    const duration = 1000; // 1 second total count duration
+    const stepTime = duration / (end - start);
+
+    const timer = setInterval(() => {
+      start += 1;
+      setYearsCount(start);
+      if (start >= end) {
+        clearInterval(timer);
+      }
+    }, stepTime);
+
+    return () => clearInterval(timer);
+  }, [isVisible]);
+
   return (
     <section className="relative w-full bg-[#07130E] py-20 px-4 md:px-12 flex flex-col items-center justify-center overflow-hidden">
       {/* 1. Main Header */}
@@ -34,7 +56,7 @@ export default function WhyCerix() {
           Strategic Advantage
         </span>
         <h2 className="text-3xl md:text-5xl font-serif text-white mb-6 tracking-tight">
-          Why Cerix
+          Why Cerix Global
         </h2>
         <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto">
           We combine deep jurisdictional structuring expertise with direct institutional access, enabling global businesses, family offices, and funds to navigate multi-region complexities seamlessly.
@@ -62,9 +84,6 @@ export default function WhyCerix() {
         className="w-full max-w-7xl rounded-3xl border border-white/15 bg-black/40 backdrop-blur-xl p-8 md:p-14 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10 shadow-2xl"
       >
         <div className="max-w-lg">
-          <span className="text-xs font-semibold tracking-widest text-[#C5A059] uppercase mb-3 block">
-            Why Cerix Global
-          </span>
           <h3 className="text-3xl md:text-5xl font-serif text-white tracking-tight">
             Experience across borders.
           </h3>
@@ -77,20 +96,30 @@ export default function WhyCerix() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div>
-              <div className="text-2xl md:text-3xl font-serif text-white mb-1">10+</div>
-              <div className="text-[10px] md:text-xs tracking-wider text-[#C5A059] uppercase">Years of Experience</div>
+              <div className="text-2xl md:text-3xl font-serif text-white mb-1">
+                {yearsCount}+
+              </div>
+              <div className="text-[10px] md:text-xs tracking-wider text-[#C5A059] uppercase">
+                Years of Experience
+              </div>
             </div>
             <div>
               <div className="text-2xl md:text-3xl font-serif text-white mb-1">Global</div>
-              <div className="text-[10px] md:text-xs tracking-wider text-[#C5A059] uppercase">Jurisdiction Network</div>
+              <div className="text-[10px] md:text-xs tracking-wider text-[#C5A059] uppercase">
+                Jurisdiction Network
+              </div>
             </div>
             <div>
               <div className="text-2xl md:text-3xl font-serif text-white mb-1">End-to-End</div>
-              <div className="text-[10px] md:text-xs tracking-wider text-[#C5A059] uppercase">Advisory Approach</div>
+              <div className="text-[10px] md:text-xs tracking-wider text-[#C5A059] uppercase">
+                Advisory Approach
+              </div>
             </div>
             <div>
               <div className="text-2xl md:text-3xl font-serif text-white mb-1">Unified</div>
-              <div className="text-[10px] md:text-xs tracking-wider text-[#C5A059] uppercase">Professional Network</div>
+              <div className="text-[10px] md:text-xs tracking-wider text-[#C5A059] uppercase">
+                Professional Network
+              </div>
             </div>
           </div>
         </div>
