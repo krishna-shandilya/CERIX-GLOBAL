@@ -5,7 +5,7 @@ import WhoWeAdvise from '@/components/home/WhoWeAdvise';
 import Approach from '@/components/home/Approach';
 import WhyCerix from '@/components/home/WhyCerix';
 import ContactSection from '@/components/home/ContactSection';
-import FloatingClientExperiences from '@/components/home/FloatingClientExperiences';
+import ClientExperiencesLedger from '@/components/ClientExperiencesLedger';
 
 export default function Home() {
   return (
@@ -28,8 +28,8 @@ export default function Home() {
       {/* 6. Contact */}
       <ContactSection />
 
-      {/* Floating Glass Pop-up Widget for Client Experiences */}
-      <FloatingClientExperiences />
+      {/* Private Stacked Ledger Component */}
+      <ClientExperiencesLedger />
     </main>
   );
 }
