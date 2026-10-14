@@ -12,7 +12,7 @@ export default function WhyCerix() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) {
@@ -44,26 +44,25 @@ export default function WhyCerix() {
         </p>
       </div>
 
-      {/* 2. Uncropped Full Image Visual Container */}
+      {/* 2. Visual Container */}
       <div className="relative w-full max-w-7xl rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#0b1d16]">
         
-        {/* Full Image Display without cropping */}
         <img
           src={IMAGES.whyCerix}
           alt="Why Cerix Global Network"
           className="w-full h-auto object-contain block"
         />
 
-        {/* Ambient Dark Gradient Vignette for bottom contrast */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
 
-        {/* 3. Comprehensive Scroll-Triggered Frosted Glass Pop-Up Card */}
+        {/* 3. Frosted Glass Pop-Up Card */}
         <div 
-          className={`absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:max-w-xl backdrop-blur-2xl bg-black/75 border border-white/20 p-6 md:p-8 rounded-2xl shadow-2xl transition-all duration-1000 ease-out transform ${
-            isVisible 
-              ? 'translate-y-0 opacity-100 scale-100' 
-              : 'translate-y-16 opacity-0 scale-95 pointer-events-none'
-          }`}
+          style={{
+            transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.98)',
+            opacity: isVisible ? 1 : 0,
+            transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
+          }}
+          className="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:max-w-xl backdrop-blur-2xl bg-black/75 border border-white/20 p-6 md:p-8 rounded-2xl shadow-2xl z-20"
         >
           <span className="text-xs font-semibold tracking-widest text-[#C5A059] uppercase mb-2 block">
             Why Cerix Global
