@@ -49,6 +49,48 @@ export const IMAGES = imgMap;
 export const IMAGE_ALT = {};
 export const SITE_IMAGES = imgMap;
 
+// ==========================================
+// CLIENT EXPERIENCES / PRIVATE LEDGER DATA
+// ==========================================
+export const CLIENT_EXPERIENCES = [
+  {
+    id: 'exp-1',
+    category: 'Fund & Asset Structuring',
+    headline: 'Cross-Border Holding Structure & Entity Governance',
+    jurisdictions: ['Singapore', 'Mauritius', 'BVI'],
+    outcome:
+      'Engineered a multi-jurisdictional holding framework aligning institutional capital inflow with tax-efficient substance requirements across South and Southeast Asia.',
+    metric: 'USD 120M+ Capital Structured',
+  },
+  {
+    id: 'exp-2',
+    category: 'Regulatory & Licensing',
+    headline: 'Offshore Investment Manager Licensing & Compliance',
+    jurisdictions: ['Cayman Islands', 'UAE (DIFC)'],
+    outcome:
+      'Guided a private investment group through dual-region regulatory authorization, establishing operational substance and compliant board oversight.',
+    metric: '100% Substance Compliance Audit',
+  },
+  {
+    id: 'exp-3',
+    category: 'Family Office Advisory',
+    headline: 'Intergenerational Asset Protection & Succession Trust',
+    jurisdictions: ['Switzerland', 'Singapore', 'UK'],
+    outcome:
+      'Architected a ring-fenced family trust and governance charter to preserve cross-border real estate and alternative investment portfolios.',
+    metric: '3-Generation Governance Framework',
+  },
+  {
+    id: 'exp-4',
+    category: 'Corporate Restructuring',
+    headline: 'Multi-Entity Migration & Inward Banking Remittance',
+    jurisdictions: ['Mauritius', 'India', 'UK'],
+    outcome:
+      'Coordinated seamless entity re-domiciliation and regulatory clearances to facilitate cross-border capital repatriation and banking channels.',
+    metric: 'Zero Operational Downtime',
+  },
+];
+
 const safeAuth = {
   isAuthenticated: async function() { return false; },
   me: async function() { return null; },
