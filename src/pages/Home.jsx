@@ -1,26 +1,43 @@
-import React from "react";
-import Hero from "@/components/home/Hero";
-import GlobalScale from "@/components/home/GlobalScale";
-import ClientExperiences from "@/components/home/ClientExperiences";
-import WhatWeDo from "@/components/home/WhatWeDo";
-import Approach from "@/components/home/Approach";
-import WhyCerix from "@/components/home/WhyCerix";
-import WhoWeAdvise from "@/components/home/WhoWeAdvise";
-import JurisdictionExplorer from "@/components/home/JurisdictionExplorer";
-import ContactSection from "@/components/ContactSection";
+import React from 'react';
+import Hero from '@/components/home/Hero';
+import WhatWeDo from '@/components/home/WhatWeDo';
+import WhoWeAdvisePreview from '@/components/home/WhoWeAdvisePreview';
+import Approach from '@/components/home/Approach';
+import WhyCerix from '@/components/home/WhyCerix';
+import GlobalScale from '@/components/home/GlobalScale';
+import ContactSection from '@/components/home/ContactSection';
+import SitemapFooter from '@/components/SitemapFooter';
+import FloatingClientExperiences from '@/components/home/FloatingClientExperiences';
 
 export default function Home() {
   return (
-    <>
+    <main className="bg-[#FDFBF7] min-h-screen relative">
+      {/* 1. Hero */}
       <Hero />
-      <GlobalScale />
+
+      {/* 2. What We Do */}
       <WhatWeDo />
+
+      {/* 3. Who We Advise */}
+      <WhoWeAdvisePreview />
+
+      {/* 4. Approach */}
       <Approach />
+
+      {/* 5. Why Cerix */}
       <WhyCerix />
-      <ClientExperiences />
-      <WhoWeAdvise />
-      <JurisdictionExplorer />
+
+      {/* 6. Jurisdiction Strategy (Global Scale) */}
+      <GlobalScale />
+
+      {/* 7. Contact */}
       <ContactSection />
-    </>
+
+      {/* 8. Sitemap / Footer */}
+      <SitemapFooter />
+
+      {/* Floating Glass Pop-up Widget for Client Experiences */}
+      <FloatingClientExperiences />
+    </main>
   );
 }
