@@ -10,15 +10,16 @@ export default function Footer() {
         {/* Brand & Mission Column */}
         <div className="lg:col-span-5 space-y-6">
           
-          {/* Brand Emblem & Logo Container - Strict Layout Separation */}
-          <Link to="/" className="inline-flex items-center gap-4 group">
-            {/* Rigid container bounding BrandEmblem from overflowing */}
-            <div className="relative w-10 h-10 min-w-[40px] shrink-0 flex items-center justify-center overflow-hidden">
+          {/* Brand Emblem & Shifted Text Block */}
+          <Link to="/" className="inline-flex items-center gap-5 group">
+            {/* Unconstrained emblem container for full glow */}
+            <div className="relative w-14 h-14 shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
               <BrandEmblem />
             </div>
 
+            {/* Shifted text container to accommodate the emblem */}
             <div className="flex flex-col justify-center">
-              <span className="font-serif text-xl tracking-wider text-white group-hover:text-[#C5A059] transition-colors duration-300 leading-none mb-1">
+              <span className="font-serif text-xl tracking-wider text-white group-hover:text-[#C5A059] transition-colors duration-300 leading-none mb-1.5">
                 CERIX GLOBAL
               </span>
               <span className="text-[10px] tracking-[0.25em] text-gray-400 uppercase font-light leading-none">
