@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import BrandEmblem from './BrandEmblem';
 
 export default function Footer() {
   return (
@@ -9,27 +10,22 @@ export default function Footer() {
         {/* Brand & Mission Column */}
         <div className="lg:col-span-5 space-y-6">
           
-          {/* Animated Brand Emblem & Title */}
-          <Link to="/" className="inline-flex items-center gap-3 group">
-            <div className="relative w-10 h-10 rounded-full bg-gradient-to-tr from-[#C5A059] to-[#EFECE4] p-[1px] shadow-lg shadow-[#C5A059]/10 group-hover:shadow-[#C5A059]/30 transition-all duration-500">
-              <div className="w-full h-full bg-[#07130E] rounded-full flex items-center justify-center overflow-hidden">
-                <span className="font-serif text-[#C5A059] font-bold text-lg group-hover:scale-110 transition-transform duration-500">
-                  C
-                </span>
+          {/* Brand Logo with BrandEmblem component */}
+          <Link to="/" className="inline-flex flex-col gap-1 group">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 text-[#C5A059] group-hover:scale-110 transition-transform duration-300">
+                <BrandEmblem />
               </div>
-            </div>
-
-            <div className="flex flex-col">
               <span className="font-serif text-xl tracking-wider text-white group-hover:text-[#C5A059] transition-colors duration-300">
-                CERIX <span className="font-sans text-sm tracking-widest text-[#C5A059]">GLOBAL</span>
-              </span>
-              <span className="text-[10px] tracking-widest text-gray-400 uppercase italic">
-                One. World.
+                CERIX GLOBAL
               </span>
             </div>
+            <span className="text-xs tracking-[0.25em] text-gray-400 uppercase font-light pl-11">
+              ONE. WORLD.
+            </span>
           </Link>
 
-          <h3 className="text-2xl md:text-3xl font-serif text-white/90 leading-tight">
+          <h3 className="text-2xl md:text-3xl font-serif text-white/90 leading-tight pt-2">
             Global Business &<br />Corporate Structuring
           </h3>
 
