@@ -306,19 +306,23 @@ export function getInsightBySlug(slug) {
 export const WHO_WE_ADVISE = [
   {
     title: "Multinational Enterprises & Tech Founders",
-    description: "Designing multi-jurisdictional IP holding, regional operational hubs, and international growth vehicles."
+    description: "Designing multi-jurisdictional IP holding, regional operational hubs, and international growth vehicles.",
+    image: corpImg
   },
   {
     title: "Asset Managers & Investment Funds",
-    description: "Structuring offshore fund entities, feeder funds, and cross-border investment platforms."
+    description: "Structuring offshore fund entities, feeder funds, and cross-border investment platforms.",
+    image: setupImg
   },
   {
     title: "High-Net-Worth Individuals & Family Offices",
-    description: "Establishing wealth preservation trusts, foundations, and investment migration residency pathways."
+    description: "Establishing wealth preservation trusts, foundations, and investment migration residency pathways.",
+    image: trustsImg
   },
   {
     title: "Institutional Clients & Trading Groups",
-    description: "Securing specialized financial service licenses and establishing multi-currency treasury infrastructure."
+    description: "Securing specialized financial service licenses and establishing multi-currency treasury infrastructure.",
+    image: licensingImg
   }
 ];
 
