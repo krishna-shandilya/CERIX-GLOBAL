@@ -10,19 +10,21 @@ export default function Footer() {
         {/* Brand & Mission Column */}
         <div className="lg:col-span-5 space-y-6">
           
-          {/* Brand Logo & Tagline */}
-          <Link to="/" className="inline-flex flex-col gap-1.5 group">
-            <div className="flex items-center gap-3">
-              <div className="w-6 h-6 shrink-0 text-[#C5A059] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <BrandEmblem />
-              </div>
-              <span className="font-serif text-xl tracking-wider text-white group-hover:text-[#C5A059] transition-colors duration-300">
+          {/* Brand Emblem & Logo Container - Strict Layout Separation */}
+          <Link to="/" className="inline-flex items-center gap-4 group">
+            {/* Rigid container bounding BrandEmblem from overflowing */}
+            <div className="relative w-10 h-10 min-w-[40px] shrink-0 flex items-center justify-center overflow-hidden">
+              <BrandEmblem />
+            </div>
+
+            <div className="flex flex-col justify-center">
+              <span className="font-serif text-xl tracking-wider text-white group-hover:text-[#C5A059] transition-colors duration-300 leading-none mb-1">
                 CERIX GLOBAL
               </span>
+              <span className="text-[10px] tracking-[0.25em] text-gray-400 uppercase font-light leading-none">
+                ONE. WORLD.
+              </span>
             </div>
-            <span className="text-xs tracking-[0.25em] text-gray-400 uppercase font-light pl-9 block">
-              ONE. WORLD.
-            </span>
           </Link>
 
           <h3 className="text-2xl md:text-3xl font-serif text-white/90 leading-tight pt-2">
