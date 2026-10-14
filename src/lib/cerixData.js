@@ -9,10 +9,10 @@ import expansionImg from "@/assets/services/07-international-expansion.png";
 import taxImg from "@/assets/services/08-tax-compliance.png";
 
 // Who We Advise Image Imports (.png)
-import multinationalImg from "@/assets/whoweadvise/multinational.png";
-import assetManagersImg from "@/assets/whoweadvise/asset-managers.png";
-import familyOfficeImg from "@/assets/whoweadvise/family-office.png";
-import institutionalImg from "@/assets/whoweadvise/institutional.png";
+import multinationalImg from "@/assets/whoweadvise/multinational-enterprises.png";
+import assetManagersImg from "@/assets/whoweadvise/asset-managers..png";
+import familyOfficeImg from "@/assets/whoweadvise/high-net-worth.png";
+import institutionalImg from "@/assets/whoweadvise/institutional-clients.png";
 
 // Jurisdiction Image Imports (.png)
 import singaporeImg from "@/assets/services/jurisdictions/singapore.png";
