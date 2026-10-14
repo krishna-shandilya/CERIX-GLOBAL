@@ -30,7 +30,7 @@ export default function Approach() {
               className="eyebrow text-terracotta mb-8 flex items-center gap-4"
             >
               <span className="h-px w-10 bg-terracotta/60" />
-              04 — The Cerix Approach
+               The Cerix Approach
             </motion.div>
             <MotionText
               text="One objective. One strategic path."
