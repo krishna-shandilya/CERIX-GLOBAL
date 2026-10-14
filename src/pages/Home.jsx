@@ -1,7 +1,7 @@
 import React from 'react';
 import Hero from '@/components/home/Hero';
 import WhatWeDo from '@/components/home/WhatWeDo';
-import WhoWeAdvisePreview from '@/components/home/WhoWeAdvisePreview';
+import WhoWeAdvise from '@/components/home/WhoWeAdvise';
 import Approach from '@/components/home/Approach';
 import WhyCerix from '@/components/home/WhyCerix';
 import GlobalScale from '@/components/home/GlobalScale';
@@ -19,7 +19,7 @@ export default function Home() {
       <WhatWeDo />
 
       {/* 3. Who We Advise */}
-      <WhoWeAdvisePreview />
+      <WhoWeAdvise />
 
       {/* 4. Approach */}
       <Approach />
