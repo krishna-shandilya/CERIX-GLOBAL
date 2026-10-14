@@ -42,7 +42,7 @@ export default function JurisdictionExplorer() {
             className="eyebrow text-terracotta mb-8 flex items-center gap-4"
           >
             <span className="h-px w-10 bg-terracotta/60" />
-            07 — Jurisdiction Strategy
+            Jurisdiction Strategy
           </motion.div>
           <MotionText
             text="The Global Jurisdiction Explorer."
