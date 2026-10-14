@@ -53,7 +53,7 @@ function ServiceCard({ service, index }) {
     <Reveal variant="mask" delay={stagger}>
       <Link
         to={`/expertise/${service.slug}`}
-        className="group relative block overflow-hidden rounded-[20px] bg-obsidian/5 aspect-[4/5] transition-opacity duration-500 group-hover/grid:opacity-85 hover:!opacity-100"
+        className="group relative block overflow-hidden rounded-[20px] bg-obsidian/5 aspect-[3/4] transition-opacity duration-500 group-hover/grid:opacity-85 hover:!opacity-100"
       >
         <Image
           src={service.image}
@@ -61,15 +61,15 @@ function ServiceCard({ service, index }) {
           fittingType="fill"
           className="w-full h-full object-cover transition-transform duration-[600ms] ease-out group-hover:scale-[1.04]"
         />
-        {/* readability scrim */}
-        <div className="absolute inset-0 bg-gradient-to-t from-obsidian/55 to-transparent" style={{ maskImage: "linear-gradient(to top, black 35%, transparent 100%)" }} />
+        {/* readability scrim - limited to bottom */}
+        <div className="absolute inset-0 bg-gradient-to-t from-obsidian/40 via-transparent to-transparent pointer-events-none" />
         {/* olive tint overlay on hover */}
-        <div className="absolute inset-0 bg-olive-deep opacity-0 group-hover:opacity-45 transition-opacity duration-500" />
-        {/* glass panel — anchored 16px from bottom */}
-        <div className="absolute inset-x-4 bottom-4 rounded-[20px] overflow-hidden">
-          <div className="glass-frost-deep absolute inset-0 transition-opacity duration-500 group-hover:opacity-0" />
+        <div className="absolute inset-0 bg-olive-deep opacity-0 group-hover:opacity-35 transition-opacity duration-500" />
+        {/* glass panel — anchored 16px from bottom with balanced padding */}
+        <div className="absolute inset-x-4 bottom-4 rounded-[16px] overflow-hidden">
+          <div className="glass-frost-deep absolute inset-0 transition-opacity duration-500 group-hover:opacity-0 bg-black/25 backdrop-blur-md" />
           <div className="absolute inset-0 bg-olive-deep opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="relative p-5">
+          <div className="relative p-4 lg:p-5">
             <div className="flex items-center justify-between">
               <span className="font-mono text-[0.62rem] tracking-[0.25em] text-terracotta-soft group-hover:text-parchment/80 transition-colors duration-500">
                 {service.label || service.num}
@@ -79,10 +79,10 @@ function ServiceCard({ service, index }) {
                 <ArrowUpRight size={13} strokeWidth={1.5} className="group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-400" />
               </span>
             </div>
-            <h3 className="mt-3 font-serif text-[1.5rem] lg:text-[1.7rem] leading-tight text-parchment">
+            <h3 className="mt-2.5 font-serif text-[1.35rem] lg:text-[1.5rem] leading-tight text-parchment">
               {service.title}
             </h3>
-            <p className="mt-2 font-sans text-[0.82rem] lg:text-[0.86rem] text-parchment/75 group-hover:text-parchment/90 leading-relaxed line-clamp-3 transition-colors duration-500">
+            <p className="mt-1.5 font-sans text-[0.78rem] lg:text-[0.82rem] text-parchment/75 group-hover:text-parchment/90 leading-relaxed line-clamp-2 transition-colors duration-500">
               {service.short || service.description}
             </p>
           </div>
