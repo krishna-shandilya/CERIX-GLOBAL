@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    darkMode: ["class"],
-    content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
+	darkMode: ["class"],
+	content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
   	extend: {
   		opacity: Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `${i / 100}`])),
@@ -26,11 +26,11 @@ module.exports = {
   				deep: '#55613A'
   			},
   			sage: '#E6E9DA',
-  			terracotta: {
-  				DEFAULT: '#7A3120',
-  				soft: '#DE8E76',
-  				onDark: '#B54D3A',
-  				onDarkSmall: '#DE8E76'
+  			gold: {
+  				DEFAULT: '#C5A059',
+  				soft: '#D4B06A',
+  				onDark: '#C5A059',
+  				onDarkSmall: '#D4B06A'
   			},
   			stone: '#9A988C',
   			'warm-grey': '#6B6A62',
