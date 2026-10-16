@@ -3,6 +3,7 @@ import { CLIENT_EXPERIENCES } from '@/lib/cerixData';
 
 export default function ClientExperiencesLedger() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [activePageIndex, setActivePageIndex] = useState(0);
 
   const activeExp = CLIENT_EXPERIENCES[activePageIndex];
@@ -24,7 +25,7 @@ export default function ClientExperiencesLedger() {
 
         {/* Heading */}
         <h2 className="text-3xl md:text-5xl font-serif text-[#FDFBF7] mb-4 tracking-tight font-normal leading-tight">
-          Selected Engagements
+          Client Testimonials
         </h2>
 
         <p className="text-sm md:text-base text-gray-300/80 max-w-xl mx-auto mb-16 font-sans leading-relaxed">
@@ -32,16 +33,18 @@ export default function ClientExperiencesLedger() {
         </p>
 
         {/* ============================================================ */}
-        {/* STACKED DECK WITH STAGGERED HOVER SLIDE EFFECT               */}
+        {/* STACKED DECK WITH REACT STATE HOVER FAN-OUT                  */}
         {/* ============================================================ */}
         <div 
           onClick={() => setIsOpen(true)}
-          className="group cursor-pointer relative w-full max-w-xl h-[440px] mx-auto flex flex-col items-center justify-center pt-6"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="cursor-pointer relative w-full max-w-xl h-[460px] mx-auto flex flex-col items-center justify-center pt-6"
         >
           {/* Stacked Cards Wrapper */}
           <div className="relative w-72 md:w-80 h-96">
             {CLIENT_EXPERIENCES.map((exp, idx) => {
-              // Resting state: tightly stacked on top of each other with minor offsets
+              // Resting state positions
               const restingTransforms = [
                 'translate-x-0 translate-y-0 rotate-0',
                 'translate-x-2.5 translate-y-2 rotate-[0.5deg]',
@@ -49,7 +52,7 @@ export default function ClientExperiencesLedger() {
                 'translate-x-7.5 translate-y-6 rotate-[1.5deg]',
               ];
 
-              // Hover state: staggered sliding out cleanly to left and right
+              // Fanned hover state positions
               const hoverTransforms = [
                 '-translate-x-36 md:-translate-x-48 -translate-y-3 -rotate-6',
                 '-translate-x-12 md:-translate-x-16 -translate-y-5 -rotate-2',
@@ -69,9 +72,11 @@ export default function ClientExperiencesLedger() {
                   key={exp.id}
                   style={{ 
                     zIndex: idx + 1,
-                    transitionDelay: `${idx * 50}ms` // Creates the sequential slide-out cascade
+                    transitionDelay: `${idx * 40}ms`
                   }}
-                  className={`absolute inset-0 rounded-2xl bg-gradient-to-b ${cardTints[idx]} border border-[#C5A059]/30 p-6 md:p-8 text-left shadow-2xl backdrop-blur-xl transition-all duration-500 ease-out flex flex-col justify-between transform ${restingTransforms[idx]} group-hover:${hoverTransforms[idx]} group-hover:scale-[1.03]`}
+                  className={`absolute inset-0 rounded-2xl bg-gradient-to-b ${cardTints[idx]} border border-[#C5A059]/30 p-6 md:p-8 text-left shadow-2xl backdrop-blur-xl transition-all duration-500 ease-out flex flex-col justify-between transform ${
+                    isHovered ? hoverTransforms[idx] + ' scale-[1.03]' : restingTransforms[idx]
+                  }`}
                 >
                   {/* Card Top */}
                   <div>
@@ -103,9 +108,9 @@ export default function ClientExperiencesLedger() {
             })}
           </div>
 
-          {/* Action Button positioned cleanly below stack */}
-          <div className="absolute bottom-2 z-30 px-6 py-3 rounded-full bg-[#C5A059] text-black text-xs font-sans tracking-wider uppercase group-hover:bg-[#d4b06a] transition-all duration-300 shadow-xl font-medium flex items-center gap-2">
-            <span>Inspect Private Ledger</span>
+          {/* Action Button */}
+          <div className="absolute bottom-2 z-30 px-6 py-3 rounded-full bg-[#C5A059] text-black text-xs font-sans tracking-wider uppercase hover:bg-[#d4b06a] transition-all duration-300 shadow-xl font-medium flex items-center gap-2">
+            <span>Read more</span>
             <span>→</span>
           </div>
         </div>
