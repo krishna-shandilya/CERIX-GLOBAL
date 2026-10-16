@@ -62,7 +62,7 @@ export default function ClientExperiencesLedger() {
           </span>
         </div>
 
-        {/* Refined Main Heading */}
+        {/* Main Heading */}
         <h2 className="text-3xl md:text-5xl font-serif text-[#FDFBF7] mb-4 tracking-tight font-normal leading-tight">
           Trusted by Founders, Funds & Families
         </h2>
@@ -72,18 +72,51 @@ export default function ClientExperiencesLedger() {
         </p>
 
         {/* ============================================================ */}
-        {/* STACKED DECK WITH FROSTED GLASS & HOVER FAN-OUT              */}
+        {/* MOBILE VIEW: Clean Vertical Stack List                        */}
+        {/* ============================================================ */}
+        <div className="block md:hidden w-full space-y-4 text-left mb-8">
+          {CLIENT_TESTIMONIALS.map((exp, idx) => (
+            <div
+              key={exp.id}
+              onClick={() => {
+                setActivePageIndex(idx);
+                setIsOpen(true);
+              }}
+              className="bg-[#091510]/90 border border-[#C5A059]/30 rounded-xl p-5 shadow-lg active:border-[#C5A059] cursor-pointer"
+            >
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-mono tracking-widest text-[#C5A059] uppercase">
+                  CG-0{idx + 1}
+                </span>
+                <span className="text-[10px] uppercase tracking-widest text-gray-400 font-mono">
+                  {exp.category}
+                </span>
+              </div>
+              <h4 className="text-sm font-serif text-[#FDFBF7] mb-3 leading-snug">
+                {exp.headline}
+              </h4>
+              <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+                <span className="text-[#C5A059] truncate max-w-[180px]">
+                  {exp.jurisdictions.join(' · ')}
+                </span>
+                <span className="text-[#C5A059] font-medium">Read →</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* ============================================================ */}
+        {/* DESKTOP VIEW: Interactive Stacked Hover Fan-Out Deck         */}
         {/* ============================================================ */}
         <div 
           onClick={() => setIsOpen(true)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="cursor-pointer relative w-full max-w-xl h-[460px] mx-auto flex flex-col items-center justify-center pt-6"
+          className="hidden md:flex cursor-pointer relative w-full max-w-xl h-[460px] mx-auto flex-col items-center justify-center pt-6"
         >
           {/* Stacked Cards Wrapper */}
-          <div className="relative w-72 md:w-80 h-96">
+          <div className="relative w-80 h-96">
             {CLIENT_TESTIMONIALS.map((exp, idx) => {
-              // Resting state positions
               const restingTransforms = [
                 'translate-x-0 translate-y-0 rotate-0',
                 'translate-x-2.5 translate-y-2 rotate-[0.5deg]',
@@ -91,12 +124,11 @@ export default function ClientExperiencesLedger() {
                 'translate-x-7.5 translate-y-6 rotate-[1.5deg]',
               ];
 
-              // Fanned hover state positions
               const hoverTransforms = [
-                '-translate-x-36 md:-translate-x-48 -translate-y-3 -rotate-6',
-                '-translate-x-12 md:-translate-x-16 -translate-y-5 -rotate-2',
-                'translate-x-12 md:translate-x-16 -translate-y-5 rotate-2',
-                'translate-x-36 md:translate-x-48 -translate-y-3 rotate-6',
+                '-translate-x-48 -translate-y-3 -rotate-6',
+                '-translate-x-16 -translate-y-5 -rotate-2',
+                'translate-x-16 -translate-y-5 rotate-2',
+                'translate-x-48 -translate-y-3 rotate-6',
               ];
 
               return (
@@ -106,14 +138,12 @@ export default function ClientExperiencesLedger() {
                     zIndex: idx + 1,
                     transitionDelay: `${idx * 40}ms`
                   }}
-                  className={`absolute inset-0 rounded-2xl bg-[#091510]/80 backdrop-blur-2xl border border-[#C5A059]/30 p-6 md:p-8 text-left shadow-2xl transition-all duration-500 ease-out flex flex-col justify-between transform ${
+                  className={`absolute inset-0 rounded-2xl bg-[#091510]/80 backdrop-blur-2xl border border-[#C5A059]/30 p-8 text-left shadow-2xl transition-all duration-500 ease-out flex flex-col justify-between transform ${
                     isHovered ? hoverTransforms[idx] + ' scale-[1.03] border-[#C5A059]/60 bg-[#0B1A14]/90 shadow-[#C5A059]/10' : restingTransforms[idx]
                   }`}
                 >
-                  {/* Subtle inner top highlight for glass feel */}
                   <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[#C5A059]/40 to-transparent rounded-t-2xl" />
 
-                  {/* Card Top */}
                   <div>
                     <div className="flex items-center justify-between mb-4">
                       <span className="text-[10px] font-mono tracking-widest text-[#C5A059] uppercase">
@@ -124,12 +154,11 @@ export default function ClientExperiencesLedger() {
                     <span className="text-[10px] uppercase tracking-widest text-gray-400 block mb-2 font-mono">
                       {exp.category}
                     </span>
-                    <h4 className="text-sm md:text-base font-serif text-[#FDFBF7] leading-snug">
+                    <h4 className="text-base font-serif text-[#FDFBF7] leading-snug">
                       {exp.headline}
                     </h4>
                   </div>
 
-                  {/* Card Bottom */}
                   <div className="pt-4 border-t border-white/10">
                     <span className="text-[9px] font-mono text-gray-400 uppercase tracking-widest block mb-1">
                       Hubs
@@ -149,6 +178,14 @@ export default function ClientExperiencesLedger() {
             <span>→</span>
           </div>
         </div>
+
+        {/* Mobile Read More CTA */}
+        <button
+          onClick={() => setIsOpen(true)}
+          className="block md:hidden px-6 py-3 rounded-full bg-[#C5A059] text-black text-xs font-sans tracking-wider uppercase font-medium shadow-xl"
+        >
+          Read Testimonials →
+        </button>
 
       </div>
 
@@ -206,7 +243,7 @@ export default function ClientExperiencesLedger() {
                 </div>
               </div>
 
-              <div className="pt-6 border-t border-white/10 text-[11px] text-gray-400 leading-relaxed mt-4">
+              <div className="pt-6 border-t border-white/10 text-[11px] text-gray-400 leading-relaxed mt-4 hidden md:block">
                 Verified feedback from leaders and principals across international jurisdictions.
               </div>
             </div>
@@ -221,18 +258,18 @@ export default function ClientExperiencesLedger() {
                 ✕
               </button>
 
-              <div className="space-y-8 pr-6">
+              <div className="space-y-6 md:space-y-8 pr-6">
                 <div className="flex items-center gap-4">
                   <span className="text-xs font-semibold tracking-widest text-[#C5A059] uppercase">
                     {activeExp.category}
                   </span>
                   <span className="text-xs text-gray-600">|</span>
                   <span className="text-xs font-mono text-gray-400 tracking-wider">
-                    TESTIMONIAL REF: CG-{activeExp.id.toUpperCase()}
+                    REF: CG-{activeExp.id.toUpperCase()}
                   </span>
                 </div>
 
-                <h3 className="text-2xl md:text-3xl font-serif text-[#FDFBF7] leading-tight font-normal">
+                <h3 className="text-xl md:text-3xl font-serif text-[#FDFBF7] leading-tight font-normal">
                   {activeExp.headline}
                 </h3>
 
@@ -256,7 +293,7 @@ export default function ClientExperiencesLedger() {
                   <span className="text-[10px] tracking-widest text-gray-400 uppercase block mb-2 font-mono">
                     Client Feedback
                   </span>
-                  <p className="text-base text-gray-300 font-sans leading-relaxed italic">
+                  <p className="text-sm md:text-base text-gray-300 font-sans leading-relaxed italic">
                     {activeExp.outcome}
                   </p>
                 </div>
@@ -274,7 +311,7 @@ export default function ClientExperiencesLedger() {
               </div>
 
               {/* Pagination Bar */}
-              <div className="pt-8 mt-6 border-t border-white/10 flex items-center justify-between text-xs text-gray-400">
+              <div className="pt-6 md:pt-8 mt-6 border-t border-white/10 flex items-center justify-between text-xs text-gray-400">
                 <span>
                   Testimonial <strong className="text-white">0{activePageIndex + 1}</strong> of 0{CLIENT_TESTIMONIALS.length}
                 </span>
@@ -285,7 +322,7 @@ export default function ClientExperiencesLedger() {
                     onClick={() => setActivePageIndex((prev) => prev - 1)}
                     className="px-3 py-1.5 rounded-lg border border-white/15 disabled:opacity-30 disabled:cursor-not-allowed hover:border-[#C5A059] transition-colors"
                   >
-                    ← Previous
+                    ← Prev
                   </button>
                   <button
                     disabled={activePageIndex === CLIENT_TESTIMONIALS.length - 1}
