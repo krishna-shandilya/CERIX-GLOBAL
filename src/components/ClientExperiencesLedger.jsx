@@ -32,29 +32,29 @@ export default function ClientExperiencesLedger() {
         </p>
 
         {/* ============================================================ */}
-        {/* TRUE STACK-ON-TOP HOVER FAN CONTAINER                        */}
+        {/* STACKED DECK WITH STAGGERED HOVER SLIDE EFFECT               */}
         {/* ============================================================ */}
         <div 
           onClick={() => setIsOpen(true)}
-          className="group cursor-pointer relative w-full max-w-xl h-[420px] mx-auto flex flex-col items-center justify-center pt-8"
+          className="group cursor-pointer relative w-full max-w-xl h-[440px] mx-auto flex flex-col items-center justify-center pt-6"
         >
           {/* Stacked Cards Wrapper */}
           <div className="relative w-72 md:w-80 h-96">
             {CLIENT_EXPERIENCES.map((exp, idx) => {
-              // Offsets to create the stacked deck look in resting state vs hover fan state
-              // We use tailwind group-hover transforms to fan them out smoothly
+              // Resting state: tightly stacked on top of each other with minor offsets
               const restingTransforms = [
                 'translate-x-0 translate-y-0 rotate-0',
-                'translate-x-3 translate-y-2 rotate-1',
-                'translate-x-6 translate-y-4 rotate-2',
-                'translate-x-9 translate-y-6 rotate-3',
+                'translate-x-2.5 translate-y-2 rotate-[0.5deg]',
+                'translate-x-5 translate-y-4 rotate-[1deg]',
+                'translate-x-7.5 translate-y-6 rotate-[1.5deg]',
               ];
 
+              // Hover state: staggered sliding out cleanly to left and right
               const hoverTransforms = [
-                '-translate-x-32 md:-translate-x-44 -translate-y-4 -rotate-6',
-                '-translate-x-10 md:-translate-x-14 -translate-y-6 -rotate-2',
-                'translate-x-10 md:translate-x-14 -translate-y-6 rotate-2',
-                'translate-x-32 md:translate-x-44 -translate-y-4 rotate-6',
+                '-translate-x-36 md:-translate-x-48 -translate-y-3 -rotate-6',
+                '-translate-x-12 md:-translate-x-16 -translate-y-5 -rotate-2',
+                'translate-x-12 md:translate-x-16 -translate-y-5 rotate-2',
+                'translate-x-36 md:translate-x-48 -translate-y-3 rotate-6',
               ];
 
               const cardTints = [
@@ -67,8 +67,11 @@ export default function ClientExperiencesLedger() {
               return (
                 <div
                   key={exp.id}
-                  style={{ zIndex: idx + 1 }}
-                  className={`absolute inset-0 rounded-2xl bg-gradient-to-b ${cardTints[idx]} border border-[#C5A059]/30 p-6 md:p-8 text-left shadow-2xl backdrop-blur-xl transition-all duration-700 ease-out flex flex-col justify-between transform ${restingTransforms[idx]} group-hover:${hoverTransforms[idx]} group-hover:scale-105`}
+                  style={{ 
+                    zIndex: idx + 1,
+                    transitionDelay: `${idx * 50}ms` // Creates the sequential slide-out cascade
+                  }}
+                  className={`absolute inset-0 rounded-2xl bg-gradient-to-b ${cardTints[idx]} border border-[#C5A059]/30 p-6 md:p-8 text-left shadow-2xl backdrop-blur-xl transition-all duration-500 ease-out flex flex-col justify-between transform ${restingTransforms[idx]} group-hover:${hoverTransforms[idx]} group-hover:scale-[1.03]`}
                 >
                   {/* Card Top */}
                   <div>
@@ -100,7 +103,7 @@ export default function ClientExperiencesLedger() {
             })}
           </div>
 
-          {/* Floating Action Button below stack */}
+          {/* Action Button positioned cleanly below stack */}
           <div className="absolute bottom-2 z-30 px-6 py-3 rounded-full bg-[#C5A059] text-black text-xs font-sans tracking-wider uppercase group-hover:bg-[#d4b06a] transition-all duration-300 shadow-xl font-medium flex items-center gap-2">
             <span>Inspect Private Ledger</span>
             <span>→</span>
