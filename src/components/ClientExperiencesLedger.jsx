@@ -1,12 +1,51 @@
 import React, { useState } from 'react';
-import { CLIENT_EXPERIENCES } from '@/lib/cerixData';
+
+// Self-contained Client Testimonials data
+const CLIENT_TESTIMONIALS = [
+  {
+    id: 'exp-1',
+    category: 'Fund & Asset Structuring',
+    headline: 'Seamless Cross-Border Holding & Capital Inflow',
+    jurisdictions: ['Singapore', 'Mauritius', 'BVI'],
+    outcome:
+      '“Cerix Global engineered our entire multi-jurisdictional holding framework with exceptional precision. Their strategic guidance allowed our expansion across Asia to proceed seamlessly without a hitch.”',
+    metric: 'USD 120M+ Capital Structured',
+  },
+  {
+    id: 'exp-2',
+    category: 'Regulatory & Licensing',
+    headline: 'Flawless Licensing & Regulatory Authorization',
+    jurisdictions: ['Cayman Islands', 'UAE (DIFC)'],
+    outcome:
+      '“Navigating dual-region regulatory compliance felt effortless with their team. They secured our investment manager licensing ahead of schedule and established robust substance right from day one.”',
+    metric: '100% Substance Compliance Audit',
+  },
+  {
+    id: 'exp-3',
+    category: 'Family Office Advisory',
+    headline: 'Generational Wealth Protection & Succession Trust',
+    jurisdictions: ['Switzerland', 'Singapore', 'UK'],
+    outcome:
+      '“Our family required an absolute ring-fenced governance charter for our multi-region assets. The discretion, sophistication, and private-client care provided were truly top-tier.”',
+    metric: '3-Generation Governance Framework',
+  },
+  {
+    id: 'exp-4',
+    category: 'Corporate Restructuring',
+    headline: 'Immaculate Entity Migration & Banking Channels',
+    jurisdictions: ['Mauritius', 'India', 'UK'],
+    outcome:
+      '“Re-domiciling our corporate entities and aligning our multi-currency banking infrastructure was handled with zero downtime. An absolute masterclass in corporate advisory.”',
+    metric: 'Zero Operational Downtime',
+  },
+];
 
 export default function ClientExperiencesLedger() {
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [activePageIndex, setActivePageIndex] = useState(0);
 
-  const activeExp = CLIENT_EXPERIENCES[activePageIndex];
+  const activeExp = CLIENT_TESTIMONIALS[activePageIndex];
 
   return (
     <section className="w-full bg-[#0B1A14] py-28 px-6 md:px-12 border-t border-white/10 relative overflow-hidden text-white">
@@ -19,7 +58,7 @@ export default function ClientExperiencesLedger() {
         <div className="flex items-center gap-3 mb-4">
           <span className="w-8 h-[1px] bg-[#C5A059]" />
           <span className="text-[11px] font-semibold tracking-[0.25em] text-[#C5A059] uppercase">
-            Confidential Casebook
+            Client Testimonials
           </span>
         </div>
 
@@ -29,11 +68,11 @@ export default function ClientExperiencesLedger() {
         </h2>
 
         <p className="text-sm md:text-base text-gray-300/80 max-w-xl mx-auto mb-16 font-sans leading-relaxed">
-          Anonymized structural records reflecting cross-border architecture, entity setup, and execution outcomes across global jurisdictions.
+          Reflections from founders, family offices, and institutional partners who place their trust in our advisory and cross-border execution.
         </p>
 
         {/* ============================================================ */}
-        {/* STACKED DECK WITH REACT STATE HOVER FAN-OUT                  */}
+        {/* STACKED DECK WITH FROSTED GLASS & HOVER FAN-OUT              */}
         {/* ============================================================ */}
         <div 
           onClick={() => setIsOpen(true)}
@@ -43,7 +82,7 @@ export default function ClientExperiencesLedger() {
         >
           {/* Stacked Cards Wrapper */}
           <div className="relative w-72 md:w-80 h-96">
-            {CLIENT_EXPERIENCES.map((exp, idx) => {
+            {CLIENT_TESTIMONIALS.map((exp, idx) => {
               // Resting state positions
               const restingTransforms = [
                 'translate-x-0 translate-y-0 rotate-0',
@@ -60,13 +99,6 @@ export default function ClientExperiencesLedger() {
                 'translate-x-36 md:translate-x-48 -translate-y-3 rotate-6',
               ];
 
-              const cardTints = [
-                "from-[#0F261D] to-[#07130E]",
-                "from-[#132E22] to-[#081510]",
-                "from-[#173628] to-[#091711]",
-                "from-[#1B3E2E] to-[#0A1A12]"
-              ];
-
               return (
                 <div
                   key={exp.id}
@@ -74,10 +106,13 @@ export default function ClientExperiencesLedger() {
                     zIndex: idx + 1,
                     transitionDelay: `${idx * 40}ms`
                   }}
-                  className={`absolute inset-0 rounded-2xl bg-gradient-to-b ${cardTints[idx]} border border-[#C5A059]/30 p-6 md:p-8 text-left shadow-2xl backdrop-blur-xl transition-all duration-500 ease-out flex flex-col justify-between transform ${
-                    isHovered ? hoverTransforms[idx] + ' scale-[1.03]' : restingTransforms[idx]
+                  className={`absolute inset-0 rounded-2xl bg-[#091510]/80 backdrop-blur-2xl border border-[#C5A059]/30 p-6 md:p-8 text-left shadow-2xl transition-all duration-500 ease-out flex flex-col justify-between transform ${
+                    isHovered ? hoverTransforms[idx] + ' scale-[1.03] border-[#C5A059]/60 bg-[#0B1A14]/90 shadow-[#C5A059]/10' : restingTransforms[idx]
                   }`}
                 >
+                  {/* Subtle inner top highlight for glass feel */}
+                  <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[#C5A059]/40 to-transparent rounded-t-2xl" />
+
                   {/* Card Top */}
                   <div>
                     <div className="flex items-center justify-between mb-4">
@@ -118,7 +153,7 @@ export default function ClientExperiencesLedger() {
       </div>
 
       {/* ============================================================ */}
-      {/* EXPANDED CASEBOOK MODAL                                      */}
+      {/* EXPANDED TESTIMONIALS MODAL                                  */}
       {/* ============================================================ */}
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/85 backdrop-blur-md transition-opacity duration-500">
@@ -133,16 +168,16 @@ export default function ClientExperiencesLedger() {
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-[#C5A059]" />
                     <span className="text-xs font-semibold tracking-widest text-[#C5A059] uppercase">
-                      Client Ledger
+                      Client Testimonials
                     </span>
                   </div>
                   <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">
-                    Confidential
+                    Verified
                   </span>
                 </div>
 
                 <div className="space-y-2">
-                  {CLIENT_EXPERIENCES.map((exp, idx) => {
+                  {CLIENT_TESTIMONIALS.map((exp, idx) => {
                     const isActive = idx === activePageIndex;
                     return (
                       <button
@@ -172,7 +207,7 @@ export default function ClientExperiencesLedger() {
               </div>
 
               <div className="pt-6 border-t border-white/10 text-[11px] text-gray-400 leading-relaxed mt-4">
-                Fully anonymized advisory records reflecting structure design, cross-border compliance, and execution outcomes.
+                Verified feedback from leaders and principals across international jurisdictions.
               </div>
             </div>
 
@@ -181,7 +216,7 @@ export default function ClientExperiencesLedger() {
               <button
                 onClick={() => setIsOpen(false)}
                 className="absolute top-6 right-6 w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-gray-400 hover:text-white hover:border-[#C5A059] transition-all duration-300"
-                aria-label="Close Ledger"
+                aria-label="Close Testimonials"
               >
                 ✕
               </button>
@@ -193,7 +228,7 @@ export default function ClientExperiencesLedger() {
                   </span>
                   <span className="text-xs text-gray-600">|</span>
                   <span className="text-xs font-mono text-gray-400 tracking-wider">
-                    RECORD REF: CG-{activeExp.id.toUpperCase()}
+                    TESTIMONIAL REF: CG-{activeExp.id.toUpperCase()}
                   </span>
                 </div>
 
@@ -219,10 +254,10 @@ export default function ClientExperiencesLedger() {
 
                 <div className="pt-4 border-t border-white/10">
                   <span className="text-[10px] tracking-widest text-gray-400 uppercase block mb-2 font-mono">
-                    Advisory Outcome & Execution
+                    Client Feedback
                   </span>
-                  <p className="text-base text-gray-300 font-sans leading-relaxed">
-                    "{activeExp.outcome}"
+                  <p className="text-base text-gray-300 font-sans leading-relaxed italic">
+                    {activeExp.outcome}
                   </p>
                 </div>
 
@@ -241,7 +276,7 @@ export default function ClientExperiencesLedger() {
               {/* Pagination Bar */}
               <div className="pt-8 mt-6 border-t border-white/10 flex items-center justify-between text-xs text-gray-400">
                 <span>
-                  Case <strong className="text-white">0{activePageIndex + 1}</strong> of 0{CLIENT_EXPERIENCES.length}
+                  Testimonial <strong className="text-white">0{activePageIndex + 1}</strong> of 0{CLIENT_TESTIMONIALS.length}
                 </span>
 
                 <div className="flex items-center gap-2">
@@ -253,7 +288,7 @@ export default function ClientExperiencesLedger() {
                     ← Previous
                   </button>
                   <button
-                    disabled={activePageIndex === CLIENT_EXPERIENCES.length - 1}
+                    disabled={activePageIndex === CLIENT_TESTIMONIALS.length - 1}
                     onClick={() => setActivePageIndex((prev) => prev + 1)}
                     className="px-3 py-1.5 rounded-lg border border-white/15 disabled:opacity-30 disabled:cursor-not-allowed hover:border-[#C5A059] transition-colors"
                   >
