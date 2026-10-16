@@ -36,7 +36,7 @@ export default function Preloader() {
       <h1 className="text-2xl font-serif tracking-[0.4em] text-white uppercase mb-2">
         Cerix Global
       </h1>
-      <p className="text-xs font-mono tracking-[0.5em] text-[#C86D51] uppercase">
+      <p className="text-xs font-mono tracking-[0.5em] text-[#C5A059] uppercase">
         International Advisory
       </p>
     </div>
