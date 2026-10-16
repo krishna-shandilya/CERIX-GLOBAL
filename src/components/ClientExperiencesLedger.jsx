@@ -8,9 +8,9 @@ export default function ClientExperiencesLedger() {
   const activeExp = CLIENT_EXPERIENCES[activePageIndex];
 
   return (
-    <section className="w-full bg-[#07130E] py-28 px-6 md:px-12 border-t border-white/10 relative overflow-hidden text-white">
+    <section className="w-full bg-[#0B1A14] py-28 px-6 md:px-12 border-t border-white/10 relative overflow-hidden text-white">
       {/* Background Ambience */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0B1A14]/50 to-[#07130E] pointer-events-none" />
+      <div className="absolute inset-0 bg-[#07130E] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center text-center">
         
@@ -32,55 +32,66 @@ export default function ClientExperiencesLedger() {
         </p>
 
         {/* ============================================================ */}
-        {/* FROSTED GLASS HORIZONTAL OVERLAPPING STACK                   */}
+        {/* TRUE STACK-ON-TOP HOVER FAN CONTAINER                        */}
         {/* ============================================================ */}
         <div 
           onClick={() => setIsOpen(true)}
-          className="group cursor-pointer relative w-full max-w-4xl py-6 px-4 md:px-8 bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl hover:border-[#C5A059]/50 transition-all duration-500"
+          className="group cursor-pointer relative w-full max-w-xl h-[420px] mx-auto flex flex-col items-center justify-center pt-8"
         >
-          {/* Subtle top gold highlight glow */}
-          <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-[#C5A059]/40 to-transparent" />
-
-          {/* Fan-out Cards Container */}
-          <div className="flex items-center justify-center -space-x-12 md:-space-x-16 py-4 overflow-x-auto">
+          {/* Stacked Cards Wrapper */}
+          <div className="relative w-72 md:w-80 h-96">
             {CLIENT_EXPERIENCES.map((exp, idx) => {
-              // Different dark corporate background tints for each card in the stack
+              // Offsets to create the stacked deck look in resting state vs hover fan state
+              // We use tailwind group-hover transforms to fan them out smoothly
+              const restingTransforms = [
+                'translate-x-0 translate-y-0 rotate-0',
+                'translate-x-3 translate-y-2 rotate-1',
+                'translate-x-6 translate-y-4 rotate-2',
+                'translate-x-9 translate-y-6 rotate-3',
+              ];
+
+              const hoverTransforms = [
+                '-translate-x-32 md:-translate-x-44 -translate-y-4 -rotate-6',
+                '-translate-x-10 md:-translate-x-14 -translate-y-6 -rotate-2',
+                'translate-x-10 md:translate-x-14 -translate-y-6 rotate-2',
+                'translate-x-32 md:translate-x-44 -translate-y-4 rotate-6',
+              ];
+
               const cardTints = [
-                "from-[#0E241B] to-[#07130E]",
-                "from-[#11281F] to-[#081510]",
-                "from-[#142C22] to-[#091711]",
-                "from-[#183226] to-[#0A1A12]"
+                "from-[#0F261D] to-[#07130E]",
+                "from-[#132E22] to-[#081510]",
+                "from-[#173628] to-[#091711]",
+                "from-[#1B3E2E] to-[#0A1A12]"
               ];
 
               return (
                 <div
                   key={exp.id}
                   style={{ zIndex: idx + 1 }}
-                  className={`w-52 md:w-64 h-72 md:h-80 rounded-2xl bg-gradient-to-b ${cardTints[idx % cardTints.length]} border border-[#C5A059]/30 p-5 md:p-6 text-left shadow-2xl transition-all duration-500 group-hover:translate-x-[calc(var(--index)*8px)] md:group-hover:translate-x-[calc(var(--index)*14px)] group-hover:-translate-y-2 flex flex-col justify-between backdrop-blur-md relative overflow-hidden`}
-                  style={{ '--index': idx - 1.5 }}
+                  className={`absolute inset-0 rounded-2xl bg-gradient-to-b ${cardTints[idx]} border border-[#C5A059]/30 p-6 md:p-8 text-left shadow-2xl backdrop-blur-xl transition-all duration-700 ease-out flex flex-col justify-between transform ${restingTransforms[idx]} group-hover:${hoverTransforms[idx]} group-hover:scale-105`}
                 >
-                  {/* Card Header */}
+                  {/* Card Top */}
                   <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-[9px] font-mono tracking-widest text-[#C5A059] uppercase">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-[10px] font-mono tracking-widest text-[#C5A059] uppercase">
                         CG-0{idx + 1}
                       </span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059]" />
+                      <span className="w-2 h-2 rounded-full bg-[#C5A059]" />
                     </div>
-                    <span className="text-[10px] uppercase tracking-wider text-gray-400 block mb-1">
+                    <span className="text-[10px] uppercase tracking-widest text-gray-400 block mb-2 font-mono">
                       {exp.category}
                     </span>
-                    <h4 className="text-xs md:text-sm font-serif text-[#FDFBF7] line-clamp-3 leading-snug">
+                    <h4 className="text-sm md:text-base font-serif text-[#FDFBF7] leading-snug">
                       {exp.headline}
                     </h4>
                   </div>
 
-                  {/* Card Footer / Jurisdictions */}
-                  <div className="pt-3 border-t border-white/10">
+                  {/* Card Bottom */}
+                  <div className="pt-4 border-t border-white/10">
                     <span className="text-[9px] font-mono text-gray-400 uppercase tracking-widest block mb-1">
                       Hubs
                     </span>
-                    <p className="text-[11px] text-[#C5A059] font-sans truncate">
+                    <p className="text-xs text-[#C5A059] font-sans truncate">
                       {exp.jurisdictions.join(' · ')}
                     </p>
                   </div>
@@ -89,8 +100,8 @@ export default function ClientExperiencesLedger() {
             })}
           </div>
 
-          {/* Action Prompt */}
-          <div className="mt-8 inline-flex items-center gap-3 px-6 py-3 rounded-full bg-[#C5A059] text-black text-xs font-sans tracking-wider uppercase group-hover:bg-[#d4b06a] transition-all duration-300 shadow-xl font-medium">
+          {/* Floating Action Button below stack */}
+          <div className="absolute bottom-2 z-30 px-6 py-3 rounded-full bg-[#C5A059] text-black text-xs font-sans tracking-wider uppercase group-hover:bg-[#d4b06a] transition-all duration-300 shadow-xl font-medium flex items-center gap-2">
             <span>Inspect Private Ledger</span>
             <span>→</span>
           </div>
