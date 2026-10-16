@@ -62,9 +62,9 @@ export default function ClientExperiencesLedger() {
           </span>
         </div>
 
-        {/* Heading */}
+        {/* Refined Main Heading */}
         <h2 className="text-3xl md:text-5xl font-serif text-[#FDFBF7] mb-4 tracking-tight font-normal leading-tight">
-          Client Testimonials
+          Trusted by Founders, Funds & Families
         </h2>
 
         <p className="text-sm md:text-base text-gray-300/80 max-w-xl mx-auto mb-16 font-sans leading-relaxed">
