@@ -18,6 +18,7 @@ import InsightDetail from '@/pages/InsightDetail';
 import About from '@/pages/About';
 import Contact from '@/pages/Contact';
 import Legal from '@/pages/Legal';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -76,6 +77,7 @@ function App() {
           <AuthenticatedApp />
         </Router>
         <Toaster />
+        <SpeedInsights />
       </QueryClientProvider>
     </AuthProvider>
   )
