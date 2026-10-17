@@ -14,8 +14,8 @@ export default function AboutPage() {
         {/* Hero Content */}
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-4">
-            <span className="h-px w-8 bg-[#C86D51]"></span>
-            <span className="text-[#C86D51] font-mono uppercase tracking-widest text-xs">
+            <span className="h-px w-8 bg-[#B8860B]"></span>
+            <span className="text-[#B8860B] font-mono uppercase tracking-widest text-xs">
               About Cerix Global
             </span>
           </div>
@@ -35,8 +35,8 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3 mb-4">
-              <span className="h-px w-8 bg-[#C86D51]"></span>
-              <span className="text-[#C86D51] font-mono uppercase tracking-widest text-xs">
+              <span className="h-px w-8 bg-[#B8860B]"></span>
+              <span className="text-[#B8860B] font-mono uppercase tracking-widest text-xs">
                 Our Network
               </span>
             </div>
@@ -58,8 +58,8 @@ export default function AboutPage() {
       <section className="max-w-7xl mx-auto px-6 md:px-12 py-20 border-t border-[#E5E0D8]">
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">
-            <span className="h-px w-8 bg-[#C86D51]"></span>
-            <span className="text-[#C86D51] font-mono uppercase tracking-widest text-xs">
+            <span className="h-px w-8 bg-[#B8860B]"></span>
+            <span className="text-[#B8860B] font-mono uppercase tracking-widest text-xs">
               Principles
             </span>
           </div>
@@ -67,21 +67,21 @@ export default function AboutPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
-            <span className="text-[#C86D51] font-mono text-sm block mb-3">01</span>
+            <span className="text-[#B8860B] font-mono text-sm block mb-3">01</span>
             <h3 className="font-serif text-2xl text-[#1A1A1A] mb-3">Discretion</h3>
             <p className="text-[#666] font-light leading-relaxed">
               We operate with the confidentiality the subject matter demands.
             </p>
           </div>
           <div>
-            <span className="text-[#C86D51] font-mono text-sm block mb-3">02</span>
+            <span className="text-[#B8860B] font-mono text-sm block mb-3">02</span>
             <h3 className="font-serif text-2xl text-[#1A1A1A] mb-3">Coordination</h3>
             <p className="text-[#666] font-light leading-relaxed">
               We hold the strategic picture while local professionals execute the detail.
             </p>
           </div>
           <div>
-            <span className="text-[#C86D51] font-mono text-sm block mb-3">03</span>
+            <span className="text-[#B8860B] font-mono text-sm block mb-3">03</span>
             <h3 className="font-serif text-2xl text-[#1A1A1A] mb-3">No presumption</h3>
             <p className="text-[#666] font-light leading-relaxed">
               No jurisdiction is presumed suitable. Every structure begins with the objective.
@@ -99,7 +99,7 @@ export default function AboutPage() {
             to="/contact" 
             className="inline-flex items-center gap-3 rounded-full bg-white/10 backdrop-blur-md border border-white/25 text-white px-8 py-4 text-sm uppercase tracking-wider hover:bg-white/20 transition-all shadow-sm"
           >
-            Start a Conversation <span className="text-[#C86D51]">→</span>
+            Start a Conversation <span className="text-[#B8860B]">→</span>
           </Link>
         </div>
       </section>
