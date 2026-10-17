@@ -27,10 +27,10 @@ module.exports = {
   			},
   			sage: '#E6E9DA',
   			gold: {
-  				DEFAULT: '#C5A059',
-  				soft: '#D4B06A',
-  				onDark: '#C5A059',
-  				onDarkSmall: '#D4B06A'
+  				DEFAULT: '#B8860B',
+  				soft: '#C5A059',
+  				onDark: '#B8860B',
+  				onDarkSmall: '#C5A059'
   			},
   			stone: '#9A988C',
   			'warm-grey': '#6B6A62',
