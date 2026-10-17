@@ -71,8 +71,8 @@ export default function InsightDetailPage() {
         <DottedMapBackground />
         <div className="relative z-10 max-w-4xl mx-auto">
           <div className="flex items-center gap-3 mb-4">
-            <span className="h-px w-8 bg-[#C86D51]"></span>
-            <span className="text-[#C86D51] font-mono uppercase tracking-widest text-xs">
+            <span className="h-px w-8 bg-[#B8860B]"></span>
+            <span className="text-[#B8860B] font-mono uppercase tracking-widest text-xs">
               {article.category} — {article.date}
             </span>
           </div>
@@ -100,8 +100,8 @@ export default function InsightDetailPage() {
         {/* Real-Time / Curated Industry Bulletins Section */}
         <div className="mt-16 pt-12 border-t border-[#E5E0D8]">
           <div className="flex items-center gap-3 mb-6">
-            <span className="h-px w-6 bg-[#C86D51]"></span>
-            <h3 className="text-xs uppercase font-mono tracking-widest text-[#C86D51]">
+            <span className="h-px w-6 bg-[#B8860B]"></span>
+            <h3 className="text-xs uppercase font-mono tracking-widest text-[#B8860B]">
               Live Industry Bulletins
             </h3>
           </div>
@@ -116,20 +116,20 @@ export default function InsightDetailPage() {
                   href={item.link}
                   target={item.link.startsWith('http') ? "_blank" : "_self"}
                   rel="noopener noreferrer"
-                  className="p-5 bg-white border border-[#E5E0D8] hover:border-[#C86D51] transition-colors block group"
+                  className="p-5 bg-white border border-[#E5E0D8] hover:border-[#B8860B] transition-colors block group"
                 >
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-[10px] font-mono text-[#C86D51] uppercase">
+                    <span className="text-[10px] font-mono text-[#B8860B] uppercase">
                       {item.category}
                     </span>
                     <span className="text-[10px] font-mono text-[#888]">
                       {item.date}
                     </span>
                   </div>
-                  <h4 className="font-serif text-sm text-[#1A1A1A] group-hover:text-[#C86D51] transition-colors line-clamp-3 mb-3 leading-snug">
+                  <h4 className="font-serif text-sm text-[#1A1A1A] group-hover:text-[#B8860B] transition-colors line-clamp-3 mb-3 leading-snug">
                     {item.title}
                   </h4>
-                  <span className="text-[11px] font-mono text-[#C86D51] uppercase tracking-wider block">
+                  <span className="text-[11px] font-mono text-[#B8860B] uppercase tracking-wider block">
                     Read Update →
                   </span>
                 </a>
@@ -139,7 +139,7 @@ export default function InsightDetailPage() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-[#E5E0D8]">
-          <Link to="/insights" className="font-mono text-xs uppercase tracking-wider text-[#C86D51] hover:underline">
+          <Link to="/insights" className="font-mono text-xs uppercase tracking-wider text-[#B8860B] hover:underline">
             ← Back to Insights
           </Link>
         </div>
