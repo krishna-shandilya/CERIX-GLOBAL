@@ -19,8 +19,8 @@ export default function ExpertiseDetailPage() {
         <DottedMapBackground />
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-4">
-            <span className="h-px w-8 bg-[#C86D51]"></span>
-            <span className="text-[#C86D51] font-mono uppercase tracking-widest text-xs">
+            <span className="h-px w-8 bg-[#B8860B]"></span>
+            <span className="text-[#B8860B] font-mono uppercase tracking-widest text-xs">
               {service.category || "Advisory"} — {service.num || "01"}
             </span>
           </div>
@@ -51,7 +51,7 @@ export default function ExpertiseDetailPage() {
                 <div className="space-y-6">
                   {service.typicalConsiderations.map((item, idx) => (
                     <div key={idx} className="border-t border-[#E5E0D8] pt-4 flex gap-4 items-baseline">
-                      <span className="text-[#C86D51] font-mono text-xs uppercase tracking-widest">{item.num || `0${idx + 1}`}</span>
+                      <span className="text-[#B8860B] font-mono text-xs uppercase tracking-widest">{item.num || `0${idx + 1}`}</span>
                       <p className="text-[#333] font-light text-base">{item.title || item}</p>
                     </div>
                   ))}
@@ -86,7 +86,7 @@ export default function ExpertiseDetailPage() {
           {/* Right Sidebar */}
           <div className="lg:col-span-4 bg-white p-8 border border-[#E5E0D8] shadow-sm space-y-8 sticky top-32">
             <div>
-              <h4 className="text-xs uppercase font-mono tracking-widest text-[#C86D51] mb-2">Who It's For</h4>
+              <h4 className="text-xs uppercase font-mono tracking-widest text-[#B8860B] mb-2">Who It's For</h4>
               <p className="text-[#555] text-sm font-light leading-relaxed">
                 {service.whoItsFor || "Multinational groups, holding companies, investment platforms and businesses requiring bespoke cross-border advisory."}
               </p>
@@ -94,10 +94,10 @@ export default function ExpertiseDetailPage() {
 
             {service.relatedJurisdictions && service.relatedJurisdictions.length > 0 && (
               <div className="border-t border-[#E5E0D8] pt-6">
-                <h4 className="text-xs uppercase font-mono tracking-widest text-[#C86D51] mb-3">Related Jurisdictions</h4>
-                <div className="flex flex-wrap gap-2">
+                <h4 className="text-xs uppercase font-mono tracking-widest text-[#B8860B] mb-3">Related Jurisdictions</h4>
+                <div className="p-4 rounded-xl bg-[#17231F]/90 backdrop-blur-md border border-[#B8860B]/30 shadow-lg flex flex-wrap gap-2">
                   {service.relatedJurisdictions.map((jur, i) => (
-                    <span key={i} className="text-xs font-mono bg-[#FDFBF7] border border-[#E5E0D8] px-3 py-1 text-[#333]">
+                    <span key={i} className="text-xs font-mono bg-[#17231F] border border-[#B8860B]/40 px-3 py-1.5 rounded text-ivory/90">
                       {jur}
                     </span>
                   ))}
@@ -108,7 +108,7 @@ export default function ExpertiseDetailPage() {
             <div className="border-t border-[#E5E0D8] pt-6">
               <button
                 onClick={handleInitiateDiscussion}
-                className="w-full text-center rounded-full bg-[#142B20] hover:bg-[#1A382B] text-white py-4 px-6 text-xs font-mono uppercase tracking-wider transition-all shadow-sm border border-white/10 cursor-pointer"
+                className="w-full text-center rounded-full bg-[#17231F] hover:bg-[#1A382B] text-white py-4 px-6 text-xs font-mono uppercase tracking-wider transition-all shadow-sm border border-[#B8860B]/40 cursor-pointer"
               >
                 Initiate Discussion →
               </button>
