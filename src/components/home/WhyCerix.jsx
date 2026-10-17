@@ -1,4 +1,5 @@
 import React from 'react';
+import whyCerixBg from '../../assets/whycerix.png'; // Adjust path if your assets folder is located elsewhere
 
 const PILLARS = [
   {
@@ -22,7 +23,7 @@ export default function WhyCerix() {
   return (
     <section 
       className="py-28 px-6 md:px-12 lg:px-24 bg-[#142B20] text-white border-t border-white/10 relative overflow-hidden bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: `linear-gradient(rgba(20, 43, 32, 0.9), rgba(20, 43, 32, 0.9)), url('/whycerix.png')` }}
+      style={{ backgroundImage: `linear-gradient(rgba(20, 43, 32, 0.88), rgba(20, 43, 32, 0.88)), url(${whyCerixBg})` }}
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-start relative z-10">
         
