@@ -11,8 +11,8 @@ export default function GlobalReachPage() {
         <DottedMapBackground />
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-4">
-            <span className="h-px w-8 bg-[#C86D51]"></span>
-            <span className="text-[#C86D51] font-mono uppercase tracking-widest text-xs">
+            <span className="h-px w-8 bg-[#B8860B]"></span>
+            <span className="text-[#B8860B] font-mono uppercase tracking-widest text-xs">
               Global Reach
             </span>
           </div>
@@ -29,7 +29,7 @@ export default function GlobalReachPage() {
       <section className="max-w-7xl mx-auto px-6 md:px-12 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {JURISDICTIONS.map((jur, idx) => (
-            <div key={jur.slug || idx} className="bg-white border border-[#E5E0D8] shadow-sm flex flex-col justify-between overflow-hidden group hover:border-[#C86D51] transition-colors">
+            <div key={jur.slug || idx} className="bg-white border border-[#E5E0D8] shadow-sm flex flex-col justify-between overflow-hidden group hover:border-[#B8860B] transition-colors">
               {jur.image && (
                 <div className="h-52 overflow-hidden relative">
                   <img src={jur.image} alt={jur.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -38,11 +38,11 @@ export default function GlobalReachPage() {
               )}
               <div className="p-8">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-[#C86D51] font-mono text-xs uppercase tracking-widest">{jur.region}</span>
+                  <span className="text-[#B8860B] font-mono text-xs uppercase tracking-widest">{jur.region}</span>
                   <span className="text-xs font-mono text-[#888]">{jur.coordinates}</span>
                 </div>
                 <h3 className="font-serif text-2xl text-[#1A1A1A] mb-2">{jur.name}</h3>
-                <p className="text-sm text-[#C86D51] font-medium mb-4">{jur.subtitle}</p>
+                <p className="text-sm text-[#B8860B] font-medium mb-4">{jur.subtitle}</p>
                 <p className="text-[#555] text-sm font-light leading-relaxed mb-6">{jur.description}</p>
                 
                 <div className="border-t border-[#E5E0D8] pt-4 mb-2">
@@ -50,7 +50,7 @@ export default function GlobalReachPage() {
                   <ul className="space-y-1">
                     {jur.highlights?.map((h, i) => (
                       <li key={i} className="text-xs text-[#444] flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#C86D51]"></span> {h}
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#B8860B]"></span> {h}
                       </li>
                     ))}
                   </ul>
