@@ -19,7 +19,7 @@ export default function BrandEmblem({ size = 'md', animate = true }) {
             50% { transform: scale(1.25); opacity: 1; }
           }
           @keyframes coreGlow {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(197,160,89,0.7); }
+            0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(184,134,11,0.7); }
             50% { transform: scale(1.2); box-shadow: 0 0 25px rgba(255,255,255,0.95); }
           }
           .brand-dot-anim { animation: emblemPulse 1.8s infinite ease-in-out; }
@@ -29,37 +29,37 @@ export default function BrandEmblem({ size = 'md', animate = true }) {
 
       {/* Row 1: 1 dot */}
       <div className="flex justify-center w-full">
-        <div className={`${currentSize.dot} rounded-full bg-[#C5A059] ${animate ? 'brand-dot-anim' : ''}`} />
+        <div className={`${currentSize.dot} rounded-full bg-[#B8860B] ${animate ? 'brand-dot-anim' : ''}`} />
       </div>
 
       {/* Row 2: 4 dots */}
       <div className={`flex items-center ${currentSize.gap}`}>
-        <div className={`${currentSize.dot} rounded-full bg-[#C5A059]/80 ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.2s' }} />
-        <div className={`${currentSize.dot} rounded-full bg-[#C5A059] ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.3s' }} />
-        <div className={`${currentSize.dot} rounded-full bg-[#C5A059] ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.3s' }} />
-        <div className={`${currentSize.dot} rounded-full bg-[#C5A059]/80 ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.2s' }} />
+        <div className={`${currentSize.dot} rounded-full bg-[#B8860B]/80 ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.2s' }} />
+        <div className={`${currentSize.dot} rounded-full bg-[#B8860B] ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.3s' }} />
+        <div className={`${currentSize.dot} rounded-full bg-[#B8860B] ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.3s' }} />
+        <div className={`${currentSize.dot} rounded-full bg-[#B8860B]/80 ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.2s' }} />
       </div>
 
       {/* Row 3: 5 dots (Center Core) */}
       <div className={`flex items-center ${currentSize.gap}`}>
-        <div className={`${currentSize.dot} rounded-full bg-[#C5A059] ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.4s' }} />
-        <div className={`${currentSize.dot} rounded-full bg-[#C5A059] ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.5s' }} />
+        <div className={`${currentSize.dot} rounded-full bg-[#B8860B] ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.4s' }} />
+        <div className={`${currentSize.dot} rounded-full bg-[#B8860B] ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.5s' }} />
         <div className={`${currentSize.core} rounded-full bg-white ${animate ? 'brand-core-anim' : ''}`} />
-        <div className={`${currentSize.dot} rounded-full bg-[#C5A059] ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.5s' }} />
-        <div className={`${currentSize.dot} rounded-full bg-[#C5A059] ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.4s' }} />
+        <div className={`${currentSize.dot} rounded-full bg-[#B8860B] ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.5s' }} />
+        <div className={`${currentSize.dot} rounded-full bg-[#B8860B] ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.4s' }} />
       </div>
 
       {/* Row 4: 4 dots */}
       <div className={`flex items-center ${currentSize.gap}`}>
-        <div className={`${currentSize.dot} rounded-full bg-[#C5A059]/80 ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.2s' }} />
-        <div className={`${currentSize.dot} rounded-full bg-[#C5A059] ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.3s' }} />
-        <div className={`${currentSize.dot} rounded-full bg-[#C5A059] ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.3s' }} />
-        <div className={`${currentSize.dot} rounded-full bg-[#C5A059]/80 ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.2s' }} />
+        <div className={`${currentSize.dot} rounded-full bg-[#B8860B]/80 ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.2s' }} />
+        <div className={`${currentSize.dot} rounded-full bg-[#B8860B] ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.3s' }} />
+        <div className={`${currentSize.dot} rounded-full bg-[#B8860B] ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.3s' }} />
+        <div className={`${currentSize.dot} rounded-full bg-[#B8860B]/80 ${animate ? 'brand-dot-anim' : ''}`} style={{ animationDelay: '0.2s' }} />
       </div>
 
       {/* Row 5: 1 dot */}
       <div className="flex justify-center w-full">
-        <div className={`${currentSize.dot} rounded-full bg-[#C5A059] ${animate ? 'brand-dot-anim' : ''}`} />
+        <div className={`${currentSize.dot} rounded-full bg-[#B8860B] ${animate ? 'brand-dot-anim' : ''}`} />
       </div>
     </div>
   );
