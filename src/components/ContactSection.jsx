@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MessageSquare, Send } from 'lucide-react';
+import DottedMapBackground from '@/components/DottedMapBackground';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -18,22 +19,18 @@ export default function ContactSection() {
 
   return (
     <section className="w-full grid grid-cols-1 lg:grid-cols-12 bg-white min-h-[650px]">
-      {/* Left Column - Deep Green Panel with Dot Grid & Direct Channels */}
+      {/* Left Column - Deep Green Panel with DottedMapBackground & Direct Channels */}
       <div className="lg:col-span-5 bg-[#0D2418] text-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between relative overflow-hidden">
-        {/* Subtle Background Dot Grid Pattern */}
-        <div className="absolute inset-0 opacity-15 pointer-events-none">
-          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="contact-dot-grid" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-                <circle cx="2" cy="2" r="1.5" fill="#FAF8F3" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#contact-dot-grid)" />
-          </svg>
-        </div>
+        <DottedMapBackground />
 
         {/* Content Heading */}
         <div className="space-y-6 relative z-10">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-8 bg-[#B8860B]"></span>
+            <span className="text-[#B8860B] font-mono uppercase tracking-widest text-xs">
+              CONTACT
+            </span>
+          </div>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-light leading-tight text-[#FAF8F3]">
             Your next move starts with a conversation.
           </h2>
@@ -44,7 +41,7 @@ export default function ContactSection() {
 
         {/* Direct Channels Action Buttons */}
         <div className="mt-12 pt-8 border-t border-white/10 relative z-10">
-          <p className="text-[10px] font-mono tracking-[0.25em] text-[#C86D51] uppercase mb-4">
+          <p className="text-[10px] font-mono tracking-[0.25em] text-[#B8860B] uppercase mb-4">
             Direct Channels
           </p>
           <div className="flex flex-wrap gap-3">
@@ -61,7 +58,7 @@ export default function ContactSection() {
 
             {/* Telegram Link */}
             <a
-              href="https://t.me/YOUR_TELEGRAM_USERNAME" // Replace with your Telegram handle
+              href="https://t.me/+919731709711"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-white text-[#0D2418] px-5 py-2.5 rounded-full text-xs font-mono font-medium tracking-wider uppercase hover:bg-[#FAF8F3] transition-all duration-300 shadow-sm hover:shadow"
@@ -87,7 +84,7 @@ export default function ContactSection() {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="name@example.com"
-                className="w-full pb-2 border-b border-gray-300 focus:border-[#0D2418] outline-none text-sm transition-colors bg-transparent text-gray-900"
+                className="w-full pb-2 border-b border-gray-300 focus:border-[#B8860B] outline-none text-sm transition-colors bg-transparent text-gray-900"
               />
             </div>
             <div className="space-y-2">
@@ -98,8 +95,8 @@ export default function ContactSection() {
                 type="tel"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                placeholder="+1 (555) 000-0000"
-                className="w-full pb-2 border-b border-gray-300 focus:border-[#0D2418] outline-none text-sm transition-colors bg-transparent text-gray-900"
+                placeholder="+91 97317 09711"
+                className="w-full pb-2 border-b border-gray-300 focus:border-[#B8860B] outline-none text-sm transition-colors bg-transparent text-gray-900"
               />
             </div>
           </div>
@@ -113,7 +110,7 @@ export default function ContactSection() {
               value={formData.country}
               onChange={(e) => setFormData({ ...formData, country: e.target.value })}
               placeholder="e.g. United Arab Emirates, Singapore, Mauritius"
-              className="w-full pb-2 border-b border-gray-300 focus:border-[#0D2418] outline-none text-sm transition-colors bg-transparent text-gray-900"
+              className="w-full pb-2 border-b border-gray-300 focus:border-[#B8860B] outline-none text-sm transition-colors bg-transparent text-gray-900"
             />
           </div>
 
@@ -124,7 +121,7 @@ export default function ContactSection() {
             <select
               value={formData.interest}
               onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
-              className="w-full pb-2 border-b border-gray-300 focus:border-[#0D2418] outline-none text-sm transition-colors bg-transparent text-gray-700"
+              className="w-full pb-2 border-b border-gray-300 focus:border-[#B8860B] outline-none text-sm transition-colors bg-transparent text-gray-700"
             >
               <option value="">Select an area of interest</option>
               <option value="structuring">Fund & Entity Structuring</option>
@@ -142,14 +139,14 @@ export default function ContactSection() {
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               placeholder="Tell us about your requirements..."
-              className="w-full pb-2 border-b border-gray-300 focus:border-[#0D2418] outline-none text-sm transition-colors bg-transparent resize-none text-gray-900"
+              className="w-full pb-2 border-b border-gray-300 focus:border-[#B8860B] outline-none text-sm transition-colors bg-transparent resize-none text-gray-900"
             />
           </div>
 
           <div>
             <button
               type="submit"
-              className="inline-flex items-center gap-3 bg-[#12261C] text-white px-8 py-3.5 rounded-full text-xs font-mono font-medium tracking-wider uppercase hover:bg-[#1B3829] transition-all duration-300 shadow-sm"
+              className="inline-flex items-center gap-3 bg-[#12261C] text-white px-8 py-3.5 rounded-full text-xs font-mono font-medium tracking-wider uppercase hover:bg-[#1B3829] transition-all duration-300 shadow-sm border border-[#B8860B]/40"
             >
               Submit Inquiry &rarr;
             </button>
