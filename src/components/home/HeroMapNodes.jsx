@@ -7,15 +7,15 @@ export default function HeroMapNodes({ jurisdictions }) {
         className="cerix-map-ring"
         r="6"
         fill="none"
-        stroke="var(--hero-pulse)"
+        stroke="#B8860B"
         strokeWidth="1"
         style={{ animationDelay: `${-index * 0.28}s` }}
       />
-      <circle r="3.5" fill="var(--hero-accent)" opacity="0.65" />
+      <circle r="3.5" fill="#B8860B" opacity="0.65" />
       <circle
         className="cerix-map-node-glow"
         r="3.5"
-        fill="var(--hero-accent)"
+        fill="#B8860B"
         style={{ animationDelay: `${-index * 0.7}s` }}
       />
     </g>
