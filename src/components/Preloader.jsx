@@ -18,14 +18,9 @@ export default function Preloader() {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center transition-all duration-700 ease-in-out ${
+      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#07130E] transition-all duration-700 ease-in-out ${
         fadeOut ? 'opacity-0 scale-105 pointer-events-none' : 'opacity-100 scale-100'
       }`}
-      style={{
-        background: 'radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.12), rgba(18, 38, 28, 0.65))',
-        backdropFilter: 'blur(90px) saturate(200%)',
-        WebkitBackdropFilter: 'blur(90px) saturate(200%)'
-      }}
     >
       {/* Significantly larger emblem for maximum visual impact */}
       <div className="mb-8">
@@ -36,7 +31,7 @@ export default function Preloader() {
       <h1 className="text-2xl font-serif tracking-[0.4em] text-white uppercase mb-2">
         Cerix Global
       </h1>
-      <p className="text-xs font-mono tracking-[0.5em] text-[#C5A059] uppercase">
+      <p className="text-xs font-mono tracking-[0.5em] text-[#B8860B] uppercase">
         International Advisory
       </p>
     </div>
