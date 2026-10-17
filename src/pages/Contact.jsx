@@ -30,8 +30,8 @@ export default function ContactPage() {
         
         <div className="relative z-10 space-y-8 pt-16">
           <div className="flex items-center gap-3">
-            <span className="h-px w-8 bg-[#C86D51]"></span>
-            <span className="text-[#C86D51] font-mono uppercase tracking-widest text-xs">
+            <span className="h-px w-8 bg-[#B8860B]"></span>
+            <span className="text-[#B8860B] font-mono uppercase tracking-widest text-xs">
               CONTACT
             </span>
           </div>
@@ -45,7 +45,7 @@ export default function ContactPage() {
 
         <div className="relative z-10 pt-16 space-y-6">
           <div className="border-t border-white/10 pt-6 space-y-3">
-            <span className="text-[#C86D51] font-mono text-xs uppercase tracking-widest block mb-4">
+            <span className="text-[#B8860B] font-mono text-xs uppercase tracking-widest block mb-4">
               Direct Channels
             </span>
             <div className="flex flex-col sm:flex-row gap-3">
@@ -91,7 +91,7 @@ export default function ContactPage() {
                 placeholder="Full Name"
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
-                className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#C86D51]"
+                className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#B8860B]"
               />
             </div>
             <div className="space-y-2">
@@ -101,7 +101,7 @@ export default function ContactPage() {
                 placeholder="Company Name"
                 value={formData.company}
                 onChange={(e) => setFormData({...formData, company: e.target.value})}
-                className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#C86D51]"
+                className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#B8860B]"
               />
             </div>
           </div>
@@ -115,7 +115,7 @@ export default function ContactPage() {
                 placeholder="name@example.com"
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#C86D51]"
+                className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#B8860B]"
               />
             </div>
             <div className="space-y-2">
@@ -125,7 +125,7 @@ export default function ContactPage() {
                 placeholder="+91 97317 09711"
                 value={formData.phone}
                 onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#C86D51]"
+                className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#B8860B]"
               />
             </div>
           </div>
@@ -137,7 +137,7 @@ export default function ContactPage() {
               placeholder="e.g. United Arab Emirates, Singapore, Mauritius"
               value={formData.country}
               onChange={(e) => setFormData({...formData, country: e.target.value})}
-              className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#C86D51]"
+              className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#B8860B]"
             />
           </div>
 
@@ -146,7 +146,7 @@ export default function ContactPage() {
             <select 
               value={formData.interest}
               onChange={(e) => setFormData({...formData, interest: e.target.value})}
-              className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] focus:outline-none focus:border-[#C86D51]"
+              className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] focus:outline-none focus:border-[#B8860B]"
             >
               <option value="">Select an area of interest</option>
               <option value="corporate">Corporate Structuring</option>
@@ -163,7 +163,7 @@ export default function ContactPage() {
               placeholder="Tell us about your requirements..."
               value={formData.message}
               onChange={(e) => setFormData({...formData, message: e.target.value})}
-              className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#C86D51] resize-none"
+              className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#B8860B] resize-none"
             ></textarea>
           </div>
 
