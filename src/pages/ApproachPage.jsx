@@ -10,8 +10,8 @@ export default function ApproachPage() {
         <DottedMapBackground />
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-4">
-            <span className="h-px w-8 bg-[#C86D51]"></span>
-            <span className="text-[#C86D51] font-mono uppercase tracking-widest text-xs">
+            <span className="h-px w-8 bg-[#B8860B]"></span>
+            <span className="text-[#B8860B] font-mono uppercase tracking-widest text-xs">
               The Approach
             </span>
           </div>
@@ -30,7 +30,7 @@ export default function ApproachPage() {
           {APPROACH_STAGES.map((stage, idx) => (
             <div key={idx} className="grid grid-cols-1 lg:grid-cols-12 gap-8 border-t border-[#E5E0D8] pt-12 items-start">
               <div className="lg:col-span-3">
-                <span className="text-[#C86D51] font-mono text-sm tracking-widest block mb-2">{stage.number}</span>
+                <span className="text-[#B8860B] font-mono text-sm tracking-widest block mb-2">{stage.number}</span>
                 <h3 className="font-serif text-3xl text-[#1A1A1A]">{stage.title}</h3>
               </div>
               <div className="lg:col-span-9 space-y-4">
