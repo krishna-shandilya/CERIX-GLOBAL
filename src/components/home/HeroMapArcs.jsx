@@ -3,12 +3,12 @@ import React from "react";
 export default function HeroMapArcs({ arcs }) {
   return arcs.map((arc, index) => (
     <g key={index}>
-      <path d={arc.d} fill="none" stroke="var(--hero-accent)" strokeWidth="1.25" strokeOpacity="0.55" />
+      <path d={arc.d} fill="none" stroke="#B8860B" strokeWidth="1.25" strokeOpacity="0.55" />
       <path
         className="cerix-map-traveller"
         d={arc.d}
         fill="none"
-        stroke="var(--hero-pulse)"
+        stroke="#B8860B"
         strokeWidth="3"
         strokeLinecap="round"
         strokeDasharray={`0.01 ${arc.length}`}
