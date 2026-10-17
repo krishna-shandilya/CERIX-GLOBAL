@@ -26,7 +26,7 @@ export default function WhyCerix() {
         <img 
           src="/whycerix.png" 
           alt="Why Cerix Background" 
-          className="w-full h-full object-cover opacity-15 filter blur-[3px] scale-105"
+          className="w-full h-full object-cover opacity-20 filter blur-[4px] scale-105"
         />
         <div className="absolute inset-0 bg-[#142B20]/85"></div>
       </div>
