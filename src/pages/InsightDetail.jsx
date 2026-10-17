@@ -50,7 +50,6 @@ export default function InsightDetailPage() {
           }));
           setNews(formattedItems);
         } else {
-          // Use curated fallback if feed is empty
           setNews(CURATED_BULLETINS);
         }
       } catch (err) {
@@ -80,7 +79,7 @@ export default function InsightDetailPage() {
             {article.title}
           </h1>
           <p className="text-[#E2DDD5] text-sm font-mono tracking-wider">
-            {article.readTime}
+            {article.readTime || "6 min read"}
           </p>
         </div>
       </section>
@@ -88,17 +87,45 @@ export default function InsightDetailPage() {
       {/* Article Content Section */}
       <section className="max-w-4xl mx-auto px-6 md:px-12 py-16">
         {article.image && (
-          <div className="mb-12 h-96 overflow-hidden border border-[#E5E0D8] shadow-sm">
+          <div className="mb-12 h-[420px] overflow-hidden border border-[#E5E0D8] shadow-sm">
             <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
           </div>
         )}
-        <div className="prose prose-lg max-w-none text-[#333] font-light leading-relaxed space-y-6">
-          <p className="text-xl font-serif text-[#1A1A1A] mb-8 leading-relaxed">{article.excerpt}</p>
-          <p>{article.content || "Detailed analysis and regulatory context regarding multi-jurisdictional compliance, economic substance benchmarks, and corporate structuring frameworks designed for international operations."}</p>
+
+        <div className="prose prose-lg max-w-none text-[#333] font-light leading-relaxed space-y-8">
+          <p className="text-xl font-serif text-[#1A1A1A] leading-relaxed border-l-2 border-[#B8860B] pl-6 py-1">
+            {article.excerpt}
+          </p>
+
+          <div className="space-y-6 pt-4">
+            <h3 className="font-serif text-2xl text-[#1A1A1A]">1. Strategic Context & Regulatory Shift</h3>
+            <p>
+              {article.content || "As international tax transparency frameworks and economic substance requirements continue to evolve across premier holding jurisdictions, multinational groups and family offices must re-evaluate their multi-tiered holding architectures. Jurisdictional selection can no longer rely solely on legacy tax efficiency without demonstrable operational substance."}
+            </p>
+          </div>
+
+          <div className="space-y-6 pt-4">
+            <h3 className="font-serif text-2xl text-[#1A1A1A]">2. Key Substance Benchmarks</h3>
+            <p>
+              Regulatory authorities across key financial centers now enforce rigorous standards regarding local management, qualified personnel, and expenditure proportional to core income-generating activities. Failure to align corporate governance with these mandates exposes entities to tax residency challenges and penalty structures.
+            </p>
+            <ul className="list-disc pl-6 space-y-2 font-light">
+              <li>Presence of qualified resident directors with decision-making authority within the jurisdiction.</li>
+              <li>Maintenance of adequate physical premises and administrative infrastructure proportionate to operations.</li>
+              <li>Execution of core income-generating activities (CIGA) locally within the operating entity.</li>
+            </ul>
+          </div>
+
+          <div className="space-y-6 pt-4">
+            <h3 className="font-serif text-2xl text-[#1A1A1A]">3. Actionable Advisory Roadmap</h3>
+            <p>
+              Structuring robust cross-border frameworks requires close coordination among legal, tax, and fiduciary professionals. Cerix Global coordinates multi-jurisdictional stakeholders to ensure compliance alignment while preserving operational agility and asset protection goals.
+            </p>
+          </div>
         </div>
 
         {/* Real-Time / Curated Industry Bulletins Section */}
-        <div className="mt-16 pt-12 border-t border-[#E5E0D8]">
+        <div className="mt-20 pt-12 border-t border-[#E5E0D8]">
           <div className="flex items-center gap-3 mb-6">
             <span className="h-px w-6 bg-[#B8860B]"></span>
             <h3 className="text-xs uppercase font-mono tracking-widest text-[#B8860B]">
@@ -116,7 +143,7 @@ export default function InsightDetailPage() {
                   href={item.link}
                   target={item.link.startsWith('http') ? "_blank" : "_self"}
                   rel="noopener noreferrer"
-                  className="p-5 bg-white border border-[#E5E0D8] hover:border-[#B8860B] transition-colors block group"
+                  className="p-5 bg-white border border-[#E5E0D8] hover:border-[#B8860B] transition-colors block group shadow-sm"
                 >
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-[10px] font-mono text-[#B8860B] uppercase">
