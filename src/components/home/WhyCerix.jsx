@@ -20,17 +20,10 @@ const PILLARS = [
 
 export default function WhyCerix() {
   return (
-    <section className="py-28 px-6 md:px-12 lg:px-24 bg-[#142B20] text-white border-t border-white/10 relative overflow-hidden">
-      {/* Foggy Background Image Layer */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <img 
-          src="/whycerix.png" 
-          alt="Why Cerix Background" 
-          className="w-full h-full object-cover opacity-20 filter blur-[4px] scale-105"
-        />
-        <div className="absolute inset-0 bg-[#142B20]/85"></div>
-      </div>
-
+    <section 
+      className="py-28 px-6 md:px-12 lg:px-24 bg-[#142B20] text-white border-t border-white/10 relative overflow-hidden bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `linear-gradient(rgba(20, 43, 32, 0.9), rgba(20, 43, 32, 0.9)), url('/whycerix.png')` }}
+    >
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-start relative z-10">
         
         {/* Left Column: Clean Editorial Typography */}
