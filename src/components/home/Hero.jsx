@@ -31,7 +31,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: baseDelay + 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="eyebrow text-ivory/80 mb-6 flex items-center gap-4 italiceyebrow"
             >
-              <span className="h-px w-12 bg-terracotta-on-dark-small/80" />
+              <span className="h-px w-12 bg-gold/80" />
               One. World
             </motion.p>
 
