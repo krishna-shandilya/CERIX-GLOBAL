@@ -11,7 +11,7 @@ export default function DottedMapBackground() {
       >
         <defs>
           <pattern id="dotted-grid" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse">
-            <circle cx="2" cy="2" r="1.5" fill="#FFFFFF" />
+            <circle cx="2" cy="2" r="1.5" fill="#B8860B" />
           </pattern>
           <radialGradient id="map-mask-grad" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stopColor="#FFFFFF" stopOpacity="1" />
