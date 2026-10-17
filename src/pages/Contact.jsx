@@ -1,165 +1,184 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { MessageSquare, Send } from 'lucide-react';
 import DottedMapBackground from '@/components/DottedMapBackground';
 
-export default function ContactSection() {
+export default function ContactPage() {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const prefilledJurisdiction = searchParams.get('jurisdiction') || '';
+
   const [formData, setFormData] = useState({
+    name: '',
+    company: '',
     email: '',
     phone: '',
     country: '',
-    interest: '',
+    interest: prefilledJurisdiction ? 'Jurisdiction Strategy: ' + prefilledJurisdiction : '',
     message: ''
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Connect your form handler API or service (e.g. Formspree/Web3Forms)
     alert('Thank you. Your inquiry has been submitted successfully.');
   };
 
   return (
-    <section className="w-full grid grid-cols-1 lg:grid-cols-12 bg-white min-h-[650px]">
-      {/* Left Column - Deep Green Panel with DottedMapBackground & Direct Channels */}
-      <div className="lg:col-span-5 bg-[#0D2418] text-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between relative overflow-hidden">
+    <div className="min-h-screen bg-[#FDFBF7] text-[#1A1A1A] flex flex-col lg:flex-row pt-36">
+      {/* Left Column: Dark Forest Green Panel with Dotted Background */}
+      <div className="relative lg:w-5/12 bg-[#142B20] text-white p-8 md:p-16 flex flex-col justify-between overflow-hidden min-h-[600px]">
         <DottedMapBackground />
-
-        {/* Content Heading */}
-        <div className="space-y-6 relative z-10">
+        
+        <div className="relative z-10 space-y-8 pt-4">
           <div className="flex items-center gap-3">
             <span className="h-px w-8 bg-[#B8860B]"></span>
             <span className="text-[#B8860B] font-mono uppercase tracking-widest text-xs">
               CONTACT
             </span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-light leading-tight text-[#FAF8F3]">
+          <h1 className="font-serif text-4xl md:text-6xl font-normal leading-tight text-white">
             Your next move starts with a conversation.
-          </h2>
-          <p className="text-gray-300 text-sm sm:text-base font-light max-w-md leading-relaxed">
-            Tell us what you're building, where you're going, and what you need to navigate.
+          </h1>
+          <p className="text-[#D4CFC4] text-lg font-light leading-relaxed">
+            Tell us what you're building, where you're going and what you need to navigate.
           </p>
         </div>
 
-        {/* Direct Channels Action Buttons */}
-        <div className="mt-12 pt-8 border-t border-white/10 relative z-10">
-          <p className="text-[10px] font-mono tracking-[0.25em] text-[#B8860B] uppercase mb-4">
-            Direct Channels
-          </p>
-          <div className="flex flex-wrap gap-3">
-            {/* WhatsApp Link with Direct Number */}
-            <a
-              href="https://wa.me/919731709711"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-white text-[#0D2418] px-5 py-2.5 rounded-full text-xs font-mono font-medium tracking-wider uppercase hover:bg-[#FAF8F3] transition-all duration-300 shadow-sm hover:shadow"
-            >
-              <MessageSquare className="w-4 h-4 text-[#0D2418]" />
-              WhatsApp
-            </a>
+        <div className="relative z-10 pt-16 space-y-4">
+          <div className="border-t border-white/10 pt-6">
+            <p className="text-[10px] font-mono tracking-[0.25em] text-[#B8860B] uppercase mb-4">
+              Direct Channels
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {/* WhatsApp Direct Link */}
+              <a
+                href="https://wa.me/919731709711"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-white text-[#142B20] px-5 py-2.5 rounded-full text-xs font-mono font-medium tracking-wider uppercase hover:bg-[#FAF8F3] transition-all duration-300 shadow-sm"
+              >
+                <MessageSquare className="w-4 h-4 text-[#142B20]" />
+                WhatsApp
+              </a>
 
-            {/* Telegram Link */}
-            <a
-              href="https://t.me/+919731709711"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-white text-[#0D2418] px-5 py-2.5 rounded-full text-xs font-mono font-medium tracking-wider uppercase hover:bg-[#FAF8F3] transition-all duration-300 shadow-sm hover:shadow"
-            >
-              <Send className="w-4 h-4 text-[#0D2418]" />
-              Telegram
-            </a>
+              {/* Telegram Direct Link */}
+              <a
+                href="https://t.me/+919731709711"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-white text-[#142B20] px-5 py-2.5 rounded-full text-xs font-mono font-medium tracking-wider uppercase hover:bg-[#FAF8F3] transition-all duration-300 shadow-sm"
+              >
+                <Send className="w-4 h-4 text-[#142B20]" />
+                Telegram
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Right Column - Inquiry Form */}
-      <div className="lg:col-span-7 p-8 sm:p-12 lg:p-16 flex flex-col justify-between bg-white">
-        <form onSubmit={handleSubmit} className="space-y-8 max-w-xl">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {/* Right Column: Form Panel */}
+      <div className="lg:w-7/12 p-8 md:p-16 lg:p-24 bg-[#FDFBF7] flex flex-col justify-between">
+        <form onSubmit={handleSubmit} className="space-y-8 max-w-2xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-2">
-              <label className="text-[10px] font-mono tracking-wider text-gray-500 uppercase">
-                Email *
-              </label>
-              <input
-                type="email"
+              <label className="text-xs font-mono uppercase tracking-wider text-[#777]">Name *</label>
+              <input 
+                type="text" 
                 required
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                placeholder="name@example.com"
-                className="w-full pb-2 border-b border-gray-300 focus:border-[#B8860B] outline-none text-sm transition-colors bg-transparent text-gray-900"
+                placeholder="Full Name"
+                value={formData.name}
+                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#B8860B]"
               />
             </div>
             <div className="space-y-2">
-              <label className="text-[10px] font-mono tracking-wider text-gray-500 uppercase">
-                Phone
-              </label>
-              <input
-                type="tel"
+              <label className="text-xs font-mono uppercase tracking-wider text-[#777]">Company</label>
+              <input 
+                type="text" 
+                placeholder="Company Name"
+                value={formData.company}
+                onChange={(e) => setFormData({...formData, company: e.target.value})}
+                className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#B8860B]"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-2">
+              <label className="text-xs font-mono uppercase tracking-wider text-[#777]">Email *</label>
+              <input 
+                type="email" 
+                required
+                placeholder="name@example.com"
+                value={formData.email}
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#B8860B]"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-xs font-mono uppercase tracking-wider text-[#777]">Phone</label>
+              <input 
+                type="tel" 
+                placeholder="Phone Number"
                 value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                placeholder="+91 97317 09711"
-                className="w-full pb-2 border-b border-gray-300 focus:border-[#B8860B] outline-none text-sm transition-colors bg-transparent text-gray-900"
+                onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#B8860B]"
               />
             </div>
           </div>
 
           <div className="space-y-2">
-            <label className="text-[10px] font-mono tracking-wider text-gray-500 uppercase">
-              Country / Region
-            </label>
-            <input
-              type="text"
-              value={formData.country}
-              onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+            <label className="text-xs font-mono uppercase tracking-wider text-[#777]">Country / Region</label>
+            <input 
+              type="text" 
               placeholder="e.g. United Arab Emirates, Singapore, Mauritius"
-              className="w-full pb-2 border-b border-gray-300 focus:border-[#B8860B] outline-none text-sm transition-colors bg-transparent text-gray-900"
+              value={formData.country}
+              onChange={(e) => setFormData({...formData, country: e.target.value})}
+              className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#B8860B]"
             />
           </div>
 
           <div className="space-y-2">
-            <label className="text-[10px] font-mono tracking-wider text-gray-500 uppercase">
-              Area of Interest
-            </label>
-            <select
+            <label className="text-xs font-mono uppercase tracking-wider text-[#777]">Area of Interest</label>
+            <select 
               value={formData.interest}
-              onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
-              className="w-full pb-2 border-b border-gray-300 focus:border-[#B8860B] outline-none text-sm transition-colors bg-transparent text-gray-700"
+              onChange={(e) => setFormData({...formData, interest: e.target.value})}
+              className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] focus:outline-none focus:border-[#B8860B]"
             >
               <option value="">Select an area of interest</option>
-              <option value="structuring">Fund & Entity Structuring</option>
-              <option value="advisory">Cross-Border Advisory</option>
-              <option value="compliance">Regulatory & Compliance</option>
+              <option value="corporate">Corporate Structuring</option>
+              <option value="fund">Fund Setup & Licensing</option>
+              <option value="wealth">Family Office & Trusts</option>
+              <option value="migration">Investment Migration</option>
             </select>
           </div>
 
           <div className="space-y-2">
-            <label className="text-[10px] font-mono tracking-wider text-gray-500 uppercase">
-              Message
-            </label>
-            <textarea
-              rows={3}
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+            <label className="text-xs font-mono uppercase tracking-wider text-[#777]">Message</label>
+            <textarea 
+              rows={4}
               placeholder="Tell us about your requirements..."
-              className="w-full pb-2 border-b border-gray-300 focus:border-[#B8860B] outline-none text-sm transition-colors bg-transparent resize-none text-gray-900"
-            />
+              value={formData.message}
+              onChange={(e) => setFormData({...formData, message: e.target.value})}
+              className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#B8860B] resize-none"
+            ></textarea>
           </div>
 
-          <div>
-            <button
-              type="submit"
-              className="inline-flex items-center gap-3 bg-[#12261C] text-white px-8 py-3.5 rounded-full text-xs font-mono font-medium tracking-wider uppercase hover:bg-[#1B3829] transition-all duration-300 shadow-sm border border-[#B8860B]/40"
+          <div className="pt-4">
+            <button 
+              type="submit" 
+              className="rounded-full bg-[#142B20] text-white px-8 py-4 text-xs font-mono uppercase tracking-wider hover:bg-[#1A382B] transition-all flex items-center gap-3 shadow-sm border border-[#B8860B]/40 cursor-pointer"
             >
-              Submit Inquiry &rarr;
+              Submit Inquiry →
             </button>
           </div>
         </form>
 
-        <div className="mt-12 pt-6 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-start sm:items-center text-[10px] font-mono text-gray-400 gap-2">
+        <div className="pt-16 mt-16 border-t border-[#E5E0D8] text-xs font-mono text-[#777] flex flex-col md:flex-row justify-between gap-4">
           <span>CERIX GLOBAL CONSULTING</span>
-          <a href="mailto:info@cerixglobal.com" className="hover:text-gray-600 transition-colors">
-            INFO@CERIXGLOBAL.COM
-          </a>
+          <a href="mailto:info@cerixglobal.com" className="hover:text-[#1A1A1A]">INFO@CERIXGLOBAL.COM</a>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
