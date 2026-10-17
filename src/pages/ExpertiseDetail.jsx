@@ -95,9 +95,12 @@ export default function ExpertiseDetailPage() {
             {service.relatedJurisdictions && service.relatedJurisdictions.length > 0 && (
               <div className="border-t border-[#E5E0D8] pt-6">
                 <h4 className="text-xs uppercase font-mono tracking-widest text-[#B8860B] mb-3">Related Jurisdictions</h4>
-                <div className="p-4 rounded-xl bg-[#17231F]/90 backdrop-blur-md border border-[#B8860B]/30 shadow-lg flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2">
                   {service.relatedJurisdictions.map((jur, i) => (
-                    <span key={i} className="text-xs font-mono bg-[#17231F] border border-[#B8860B]/40 px-3 py-1.5 rounded text-ivory/90">
+                    <span 
+                      key={i} 
+                      className="text-xs font-mono bg-[#17231F] text-ivory border border-[#B8860B]/50 px-3.5 py-1.5 rounded-md shadow-sm hover:border-[#B8860B] transition-all duration-300"
+                    >
                       {jur}
                     </span>
                   ))}
