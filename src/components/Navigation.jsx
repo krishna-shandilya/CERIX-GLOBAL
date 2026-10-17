@@ -51,8 +51,8 @@ export default function Navigation() {
   const menuIcon = dark ? "text-ivory" : "text-obsidian";
   const menuHover = dark ? "hover:bg-ivory/10" : "hover:bg-olive-deep hover:text-parchment";
   const startCls = dark
-    ? "bg-[#7A3120] text-ivory border border-ivory/28 hover:bg-olive-deep"
-    : "bg-terracotta text-ivory hover:bg-olive-deep";
+    ? "bg-[#B8860B] text-ivory border border-ivory/28 hover:bg-olive-deep"
+    : "bg-gold text-ivory hover:bg-olive-deep";
 
   return (
     <>
@@ -96,7 +96,7 @@ export default function Navigation() {
                         className={`group relative px-3 py-2 rounded-full font-sans text-[0.82rem] tracking-[0.08em] font-medium transition-colors duration-300 ${isActive(l.to) ? linkActive : linkText}`}
                       >
                         {l.label}
-                        <span className={`absolute left-1/2 -translate-x-1/2 bottom-1 h-px transition-all duration-300 ${dark ? "bg-terracotta-on-dark-small" : "bg-terracotta"} ${isActive(l.to) ? "w-3" : "w-0 group-hover:w-4"}`} />
+                        <span className={`absolute left-1/2 -translate-x-1/2 bottom-1 h-px transition-all duration-300 ${dark ? "bg-gold" : "bg-gold"} ${isActive(l.to) ? "w-3" : "w-0 group-hover:w-4"}`} />
                       </Link>
                     ))}
                   </motion.div>
@@ -202,10 +202,10 @@ export default function Navigation() {
                   >
                     <Link
                       to={l.to}
-                      className="group font-serif text-3xl text-obsidian hover:text-terracotta transition-colors duration-300 block py-2"
+                      className="group font-serif text-3xl text-obsidian hover:text-gold transition-colors duration-300 block py-2"
                     >
                       {l.label}
-                      <span className="block h-px w-0 bg-terracotta group-hover:w-12 transition-all duration-300" />
+                      <span className="block h-px w-0 bg-gold group-hover:w-12 transition-all duration-300" />
                     </Link>
                   </motion.div>
                 ))}
@@ -213,7 +213,7 @@ export default function Navigation() {
               <div className="px-7 pb-8">
                 <Link
                   to="/contact"
-                  className="inline-flex w-full items-center justify-center bg-terracotta text-ivory font-sans text-sm tracking-[0.14em] uppercase px-6 py-4 rounded-full hover:bg-olive-deep transition-colors duration-300"
+                  className="inline-flex w-full items-center justify-center bg-gold text-ivory font-sans text-sm tracking-[0.14em] uppercase px-6 py-4 rounded-full hover:bg-olive-deep transition-colors duration-300"
                 >
                   Start a Conversation
                 </Link>
