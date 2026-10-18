@@ -1,97 +1,157 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { IMAGES } from '@/lib/cerixData';
 
 export default function WhyCerix() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [yearsCount, setYearsCount] = useState(0);
+  const sectionRef = useRef(null);
+
+  // Intersection observer to trigger count and reveal
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  // Smooth count-up animation for "10+"
+  useEffect(() => {
+    if (!isVisible) return;
+    let start = 0;
+    const end = 10;
+    const duration = 1200;
+    const stepTime = Math.floor(duration / end);
+
+    const timer = setInterval(() => {
+      start += 1;
+      setYearsCount(start);
+      if (start >= end) {
+        clearInterval(timer);
+      }
+    }, stepTime);
+
+    return () => clearInterval(timer);
+  }, [isVisible]);
+
   return (
-    <section className="relative w-full bg-[#0F2218] py-32 px-6 md:px-12 lg:px-24 border-y border-[#B8860B]/20 overflow-hidden">
-      {/* Atmospheric Foggy Background Asset with Deep Vignette */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
+    <section ref={sectionRef} className="relative w-full bg-[#07130E] py-36 px-6 md:px-12 lg:px-24 overflow-hidden">
+      
+      {/* 1. Immersive Atmospheric Background Layer */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <img
           src={IMAGES.whyCerix}
-          alt="Cerix Infrastructure"
-          className="w-full h-full object-cover filter blur-[8px] scale-105"
+          alt="Cerix Global Infrastructure"
+          className="w-full h-full object-cover opacity-30 filter blur-[6px] scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0F2218] via-[#0F2218]/90 to-[#0F2218]" />
+        {/* Multi-stop radial vignette for high-end luxury depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#07130E] via-[#07130E]/80 to-[#07130E]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#07130E]/60 to-[#07130E]" />
       </div>
 
+      {/* 2. Main Container with Glowing Gold Border Frame */}
       <div className="relative z-10 max-w-7xl mx-auto">
         
-        {/* Top Header Label */}
-        <div className="flex items-center gap-3 mb-12">
-          <span className="h-px w-12 bg-[#B8860B]"></span>
-          <span className="text-xs font-mono tracking-[0.3em] text-[#C5A059] uppercase">
-            Institutional Advantage
+        {/* Top Micro-Header */}
+        <div className="flex items-center gap-3 mb-16">
+          <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C5A059]" />
+          <span className="text-xs font-mono tracking-[0.35em] text-[#C5A059] uppercase">
+            Institutional Architecture
           </span>
+          <div className="h-px w-24 bg-gradient-to-r from-[#C5A059]/40 to-transparent" />
         </div>
 
-        {/* Asymmetric Editorial Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+        {/* Floating Glass Editorial Card */}
+        <div className="relative rounded-3xl p-8 md:p-16 bg-[#0B1D16]/70 backdrop-blur-2xl border border-white/10 shadow-[0_30px_100px_rgba(0,0,0,0.6)] overflow-hidden">
           
-          {/* Left Column: Bold Sovereign Statement */}
-          <div className="lg:col-span-5 space-y-8">
-            <h2 className="font-serif text-4xl md:text-6xl text-white font-normal leading-[1.1] tracking-tight">
-              Experience across borders.
-            </h2>
-            <p className="text-[#D4CFC4] font-light text-lg md:text-xl leading-relaxed">
-              We bridge the gap between high-level strategy and granular local execution across premier global jurisdictions.
-            </p>
-            <div className="pt-4">
-              <div className="inline-flex items-center gap-4 text-xs font-mono text-[#C5A059] uppercase tracking-widest border-b border-[#C5A059]/40 pb-2">
-                <span>Multi-Jurisdictional Mastery</span>
-                <span>→</span>
-              </div>
-            </div>
-          </div>
+          {/* Subtle Corner Gold Light Bleed Accent */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#C5A059]/10 rounded-full blur-3xl pointer-events-none" />
 
-          {/* Right Column: Open Minimalist Metric Architecture (No Heavy Boxes) */}
-          <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 pt-4 lg:pt-0">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             
-            <div className="space-y-3 border-l border-[#B8860B]/40 pl-6">
-              <div className="font-serif text-5xl md:text-6xl text-white tracking-tight">
-                10+
-              </div>
-              <div className="text-xs font-mono text-[#C5A059] uppercase tracking-widest">
-                Years of Advisory Experience
-              </div>
-              <p className="text-gray-400 font-light text-sm leading-relaxed pt-1">
-                Decade-proven track record guiding complex family offices and alternative funds.
+            {/* Left Column: Striking Headline & Overview */}
+            <div className="lg:col-span-5 space-y-8">
+              <h2 className="font-serif text-4xl md:text-6xl text-white font-normal leading-[1.08] tracking-tight">
+                Experience across <span className="italic text-[#C5A059]">borders.</span>
+              </h2>
+              <p className="text-[#D4CFC4] font-light text-base md:text-lg leading-relaxed">
+                Our practice is built on coordinated, multidisciplinary advisory — drawing on a network of professionals and partners across multiple jurisdictions to address the full complexity of international structuring.
               </p>
+              <div className="pt-2">
+                <span className="inline-block text-xs font-mono tracking-widest text-[#C5A059] uppercase border-b border-[#C5A059]/30 pb-1">
+                  Global Reach &bull; Absolute Discretion
+                </span>
+              </div>
             </div>
 
-            <div className="space-y-3 border-l border-[#B8860B]/40 pl-6">
-              <div className="font-serif text-5xl md:text-6xl text-white tracking-tight">
-                Global
+            {/* Right Column: 2x2 Architectural Metric Grid with Hover Glow */}
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              
+              {/* Stat 1 */}
+              <div className="group p-8 rounded-2xl bg-black/30 border border-white/5 hover:border-[#C5A059]/40 transition-all duration-500 hover:-translate-y-1">
+                <div className="font-serif text-5xl md:text-6xl text-white mb-2 tracking-tight group-hover:text-[#C5A059] transition-colors">
+                  {yearsCount}+
+                </div>
+                <div className="text-xs font-mono text-[#C5A059] uppercase tracking-wider mb-2">
+                  Years of Experience
+                </div>
+                <p className="text-gray-400 font-light text-xs leading-relaxed">
+                  Decade-proven pedigree managing cross-border group dynamics.
+                </p>
               </div>
-              <div className="text-xs font-mono text-[#C5A059] uppercase tracking-widest">
-                Jurisdiction Network
-              </div>
-              <p className="text-gray-400 font-light text-sm leading-relaxed pt-1">
-                Seamless coordination across premier substance-driven financial hubs.
-              </p>
-            </div>
 
-            <div className="space-y-3 border-l border-[#B8860B]/40 pl-6 pt-6 border-t md:border-t-0 border-white/10">
-              <div className="font-serif text-5xl md:text-6xl text-white tracking-tight">
-                End-to-End
+              {/* Stat 2 */}
+              <div className="group p-8 rounded-2xl bg-black/30 border border-white/5 hover:border-[#C5A059]/40 transition-all duration-500 hover:-translate-y-1">
+                <div className="font-serif text-5xl md:text-6xl text-white mb-2 tracking-tight group-hover:text-[#C5A059] transition-colors">
+                  Global
+                </div>
+                <div className="text-xs font-mono text-[#C5A059] uppercase tracking-wider mb-2">
+                  Jurisdiction Network
+                </div>
+                <p className="text-gray-400 font-light text-xs leading-relaxed">
+                  Substance-aligned setups across premier international hubs.
+                </p>
               </div>
-              <div className="text-xs font-mono text-[#C5A059] uppercase tracking-widest">
-                Integrated Approach
-              </div>
-              <p className="text-gray-400 font-light text-sm leading-relaxed pt-1">
-                From conceptual architecture to absolute operational reality and compliance.
-              </p>
-            </div>
 
-            <div className="space-y-3 border-l border-[#B8860B]/40 pl-6 pt-6 border-t md:border-t-0 border-white/10">
-              <div className="font-serif text-5xl md:text-6xl text-white tracking-tight">
-                Unified
+              {/* Stat 3 */}
+              <div className="group p-8 rounded-2xl bg-black/30 border border-white/5 hover:border-[#C5A059]/40 transition-all duration-500 hover:-translate-y-1">
+                <div className="font-serif text-4xl md:text-5xl text-white mb-2 tracking-tight group-hover:text-[#C5A059] transition-colors pt-2">
+                  End-to-End
+                </div>
+                <div className="text-xs font-mono text-[#C5A059] uppercase tracking-wider mb-2">
+                  Advisory Approach
+                </div>
+                <p className="text-gray-400 font-light text-xs leading-relaxed">
+                  Coordinating legal, tax, and fiduciary execution in unison.
+                </p>
               </div>
-              <div className="text-xs font-mono text-[#C5A059] uppercase tracking-widest">
-                Professional Network
+
+              {/* Stat 4 */}
+              <div className="group p-8 rounded-2xl bg-black/30 border border-white/5 hover:border-[#C5A059]/40 transition-all duration-500 hover:-translate-y-1">
+                <div className="font-serif text-4xl md:text-5xl text-white mb-2 tracking-tight group-hover:text-[#C5A059] transition-colors pt-2">
+                  Unified
+                </div>
+                <div className="text-xs font-mono text-[#C5A059] uppercase tracking-wider mb-2">
+                  Professional Network
+                </div>
+                <p className="text-gray-400 font-light text-xs leading-relaxed">
+                  Seamless collaboration with leading local specialists worldwide.
+                </p>
               </div>
-              <p className="text-gray-400 font-light text-sm leading-relaxed pt-1">
-                Direct synchronization with premier legal, tax, and fiduciary specialists.
-              </p>
+
             </div>
 
           </div>
