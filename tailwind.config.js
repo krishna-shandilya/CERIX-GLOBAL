@@ -4,7 +4,14 @@ module.exports = {
 	content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
   	extend: {
-  		opacity: Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `${i / 100}`])),
+  		opacity: {
+  			'15': '0.15',
+  			'20': '0.20',
+  			'25': '0.25',
+  			'40': '0.40',
+  			'60': '0.60',
+  			'85': '0.85',
+  		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 1px)',
@@ -62,17 +69,12 @@ module.exports = {
   			'pulse-line': {
   				'0%, 100%': { opacity: '0.15' },
   				'50%': { opacity: '0.5' }
-  			},
-  			'drift-slow': {
-  				'0%, 100%': { transform: 'translateY(0px)' },
-  				'50%': { transform: 'translateY(-12px)' }
   			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
-  			'pulse-line': 'pulse-line 4s ease-in-out infinite',
-  			'drift-slow': 'drift-slow 8s ease-in-out infinite'
+  			'pulse-line': 'pulse-line 4s ease-in-out infinite'
   		}
   	}
   },
