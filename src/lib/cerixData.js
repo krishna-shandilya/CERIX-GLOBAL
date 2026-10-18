@@ -354,23 +354,31 @@ export function getInsightBySlug(slug) {
 export const WHO_WE_ADVISE = [
   {
     title: "Multinational Enterprises & Tech Founders",
-    description: "Designing multi-jurisdictional IP holding, regional operational hubs, and international growth vehicles.",
-    image: multinationalImg
+    desc: "Designing multi-jurisdictional IP holding, regional operational hubs, and international growth vehicles.",
+    image: multinationalImg,
+    capabilities: ["IP Migration & Royalties", "Cross-Border M&A", "Subsidiary Formation"],
+    cta: "Discuss Expansion"
   },
   {
     title: "Asset Managers & Investment Funds",
-    description: "Structuring offshore fund entities, feeder funds, and cross-border investment platforms.",
-    image: assetManagersImg
+    desc: "Structuring offshore fund entities, feeder funds, and cross-border investment platforms.",
+    image: assetManagersImg,
+    capabilities: ["Mauritius AIF Setup", "NAV Calculation", "Regulatory Compliance"],
+    cta: "Consult on Funds"
   },
   {
     title: "High-Net-Worth Individuals & Family Offices",
-    description: "Establishing wealth preservation trusts, foundations, and investment migration residency pathways.",
-    image: familyOfficeImg
+    desc: "Establishing wealth preservation trusts, foundations, and investment migration residency pathways.",
+    image: familyOfficeImg,
+    capabilities: ["Generational Wealth Trusts", "Golden Visa & Residency", "Family Office Governance"],
+    cta: "Plan Succession"
   },
   {
     title: "Institutional Clients & Trading Groups",
-    description: "Securing specialized financial service licenses and establishing multi-currency treasury infrastructure.",
-    image: institutionalImg
+    desc: "Securing specialized financial service licenses and establishing multi-currency treasury infrastructure.",
+    image: institutionalImg,
+    capabilities: ["Multi-Currency Treasury", "Financial Licensing", "Corporate Restructuring"],
+    cta: "Explore Solutions"
   }
 ];
 
