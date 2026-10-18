@@ -25,16 +25,16 @@ export default function Hero() {
             style={{ y: yText, opacity }}
             className="relative z-10 p-6 sm:p-10 lg:p-16 lg:absolute lg:inset-0 flex flex-col justify-between pointer-events-none"
           >
-            {/* Top Micro-Header */}
+            {/* Top Micro-Header: ONE. WORLD */}
             <div className="flex items-center gap-3">
               <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C5A059]" />
               <span className="text-xs font-mono tracking-[0.35em] text-[#C5A059] uppercase">
-                Advisory & Structuring
+                ONE. WORLD
               </span>
               <div className="h-px w-24 bg-gradient-to-r from-[#C5A059]/40 to-transparent" />
             </div>
 
-            {/* Left-Aligned Stacked Heading & Subtitle (Keeps text off the map) */}
+            {/* Left-Aligned Stacked Heading & Subtitle */}
             <div className="my-auto py-6 max-w-xl">
               <h1 className="font-serif tracking-tight leading-[0.92] text-5xl sm:text-6xl lg:text-[5.5rem] flex flex-col">
                 <span className="text-white">BUILD</span>
@@ -42,13 +42,13 @@ export default function Hero() {
                 <span className="italic text-[#C5A059]">BORDERS.</span>
               </h1>
 
-              {/* Restored Original Subtitle */}
+              {/* Subtitle */}
               <p className="mt-6 text-[#D4CFC4] text-sm sm:text-base font-light leading-relaxed max-w-md">
                 Strategic international advisory for businesses, investors and families navigating global structures, jurisdictions and opportunity.
               </p>
             </div>
 
-            {/* Bottom Actions - CTAs separated with gap-6 */}
+            {/* Bottom Actions */}
             <div className="pointer-events-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pt-6 border-t border-white/10">
               <div className="flex flex-wrap items-center gap-6">
                 <MagneticButton>
