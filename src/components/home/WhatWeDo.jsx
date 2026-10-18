@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { SERVICES } from "@/lib/cerixData";
-import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
 import { Image } from "@/components/ui/image";
 import { motion } from "framer-motion";
@@ -15,6 +14,8 @@ export default function WhatWeDo() {
   return (
     <section className="relative bg-ivory py-28 lg:py-40">
       <div className="mx-auto max-w-[1500px] px-6 lg:px-12">
+        
+        {/* Top Context/Quote */}
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -24,12 +25,45 @@ export default function WhatWeDo() {
         >
           From the global to the practical — the disciplines that make a structure real.
         </motion.p>
-        <SectionHeading
-          eyebrow="What We Do"
-          title="From complexity to structure."
-          intro="Cerix Global brings together the disciplines required to design, establish and operate international structures — coordinated, considered and built around the objective."
-        />
 
+        {/* New Glowing Gold Micro-Header & Title Block */}
+        <div className="max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="flex items-center gap-3 mb-8"
+          >
+            <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C5A059]" />
+            <span className="text-xs font-mono tracking-[0.35em] text-[#C5A059] uppercase">
+              What We Do
+            </span>
+            <div className="h-px w-24 bg-gradient-to-r from-[#C5A059]/40 to-transparent" />
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="font-serif text-[2.4rem] sm:text-5xl lg:text-6xl text-obsidian leading-[1.05] mb-6 tracking-tight"
+          >
+            From complexity to structure.
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="text-obsidian/70 font-light text-lg lg:text-xl leading-relaxed max-w-3xl"
+          >
+            Cerix Global brings together the disciplines required to design, establish and operate international structures — coordinated, considered and built around the objective.
+          </motion.p>
+        </div>
+
+        {/* Service Cards Grid */}
         <div className="group/grid mt-16 lg:mt-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {CARDS.map((s, i) => (
             <ServiceCard key={s.id || i} service={s} index={i} />
@@ -66,7 +100,7 @@ function ServiceCard({ service, index }) {
           <div className="absolute inset-0 bg-olive-deep opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           <div className="relative p-4 lg:p-5">
             <div className="flex items-center justify-between">
-              <span className="font-mono text-[0.62rem] tracking-[0.25em] text-terracotta-soft group-hover:text-parchment/80 transition-colors duration-500">
+              <span className="font-mono text-[0.62rem] tracking-[0.25em] text-[#C5A059] group-hover:text-parchment/80 transition-colors duration-500">
                 {labelNum}
               </span>
               <span className="inline-flex items-center gap-1.5 font-sans text-[0.68rem] tracking-[0.18em] uppercase font-medium text-parchment/80">
