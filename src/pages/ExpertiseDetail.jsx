@@ -17,9 +17,13 @@ export default function ExpertiseDetailPage() {
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-6 md:px-12 lg:px-24 bg-[#07130E] text-white overflow-hidden">
         <DottedMapBackground />
+        
+        {/* Subtle radial depth gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#07130E]/60 via-transparent to-[#07130E] pointer-events-none" />
+
         <div className="relative z-10 max-w-7xl mx-auto">
           {/* Micro-Header */}
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-center gap-3 mb-6">
             <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C5A059]" />
             <span className="text-xs font-mono tracking-[0.35em] text-[#C5A059] uppercase">
               {service.category || "Advisory"} — {service.num || "01"}
