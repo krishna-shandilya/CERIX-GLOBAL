@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { WHO_WE_ADVISE } from "@/lib/cerixData";
 import MotionText from "@/components/MotionText";
 import Reveal from "@/components/Reveal";
+import { motion } from "framer-motion";
 
 export default function WhoWeAdvise() {
   return (
@@ -13,12 +14,22 @@ export default function WhoWeAdvise() {
 
       <div className="relative mx-auto max-w-[1500px] px-6 lg:px-12">
         <div className="max-w-3xl">
-          <Reveal>
-            <div className="eyebrow text-terracotta mb-8 flex items-center gap-4">
-              <span className="h-px w-10 bg-terracotta/60" />
+          
+          {/* New Glowing Gold Micro-Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="flex items-center gap-3 mb-8"
+          >
+            <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C5A059]" />
+            <span className="text-xs font-mono tracking-[0.35em] text-[#C5A059] uppercase">
               Who We Advise
-            </div>
-          </Reveal>
+            </span>
+            <div className="h-px w-24 bg-gradient-to-r from-[#C5A059]/40 to-transparent" />
+          </motion.div>
+
           <MotionText
             text="Built for those who operate across borders."
             as="h2"
@@ -40,7 +51,9 @@ export default function WhoWeAdvise() {
                 <div className="absolute inset-x-0 bottom-0 p-7 lg:p-8">
                   <h3 className="font-serif text-2xl lg:text-3xl text-parchment leading-tight">{c.title}</h3>
                   <p className="mt-3 font-sans text-sm text-parchment/60 leading-relaxed">{c.desc}</p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 font-sans text-[0.68rem] tracking-[0.18em] uppercase text-terracotta-soft opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  
+                  {/* Updated hover text color to match gold theme */}
+                  <span className="mt-5 inline-flex items-center gap-1.5 font-sans text-[0.68rem] tracking-[0.18em] uppercase text-[#C5A059] opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     Talk to us <ArrowUpRight size={12} strokeWidth={1.5} />
                   </span>
                 </div>
