@@ -48,26 +48,26 @@ export default function Hero() {
               </p>
             </div>
 
-            {/* Bottom Actions */}
-            <div className="pointer-events-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pt-6 border-t border-white/10">
-              <div className="flex flex-wrap items-center gap-6">
+            {/* Bottom Actions - Smaller Gold Theme CTAs spaced further apart */}
+            <div className="pointer-events-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 pt-6 border-t border-white/10">
+              <div className="flex flex-wrap items-center gap-8 lg:gap-10">
                 <MagneticButton>
                   <Link
                     to="/expertise"
-                    className="inline-flex items-center gap-3 rounded-full bg-white hover:bg-white/90 text-[#07130E] font-medium px-7 py-3.5 text-xs font-mono uppercase tracking-widest transition-all duration-300 shadow-xl"
+                    className="inline-flex items-center gap-2 rounded-full bg-[#C5A059] hover:bg-[#d8b46e] text-[#07130E] font-medium px-5 py-2.5 text-[11px] font-mono uppercase tracking-widest transition-all duration-300 shadow-md"
                   >
                     <span>Explore Our Expertise</span>
-                    <ArrowRight size={14} />
+                    <ArrowRight size={12} />
                   </Link>
                 </MagneticButton>
 
                 <MagneticButton>
                   <Link
                     to="/contact"
-                    className="inline-flex items-center gap-3 rounded-full bg-transparent border border-white/20 hover:border-[#C5A059] text-white hover:text-[#C5A059] px-7 py-3.5 text-xs font-mono uppercase tracking-widest transition-all duration-300"
+                    className="inline-flex items-center gap-2 rounded-full bg-[#07130E]/60 backdrop-blur-md border border-[#C5A059]/40 hover:border-[#C5A059] text-[#C5A059] hover:text-white px-5 py-2.5 text-[11px] font-mono uppercase tracking-widest transition-all duration-300"
                   >
                     <span>Talk to Cerix Global</span>
-                    <ArrowRight size={14} />
+                    <ArrowRight size={12} />
                   </Link>
                 </MagneticButton>
               </div>
