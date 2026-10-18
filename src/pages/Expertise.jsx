@@ -2,15 +2,21 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { SERVICES } from '@/lib/cerixData';
+import DottedMapBackground from '@/components/DottedMapBackground';
 
 export default function Expertise() {
   const servicesList = SERVICES || [];
 
   return (
     <div className="min-h-screen bg-[#07130E] text-white">
-      {/* Hero Section */}
-      <section className="relative pt-36 pb-20 px-6 md:px-12 lg:px-24 border-b border-white/5">
-        <div className="max-w-7xl mx-auto">
+      {/* Hero Section with Dotted Matrix Background */}
+      <section className="relative pt-36 pb-20 px-6 md:px-12 lg:px-24 border-b border-white/5 overflow-hidden">
+        <DottedMapBackground />
+        
+        {/* Subtle radial depth gradient matching Global Reach */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#07130E]/60 via-transparent to-[#07130E] pointer-events-none" />
+
+        <div className="relative z-10 max-w-7xl mx-auto">
           {/* Micro-Header */}
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C5A059]" />
@@ -30,7 +36,7 @@ export default function Expertise() {
         </div>
       </section>
 
-      {/* Services Grid (All 8 Cards) */}
+      {/* Services Grid */}
       <section className="py-24 px-6 md:px-12 lg:px-24">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {servicesList.map((service, index) => {
