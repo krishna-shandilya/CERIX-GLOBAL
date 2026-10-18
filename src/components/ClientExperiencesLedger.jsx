@@ -9,7 +9,7 @@ const CLIENT_TESTIMONIALS = [
     jurisdictions: ['Singapore', 'Mauritius', 'BVI'],
     outcome:
       '“Cerix Global engineered our entire multi-jurisdictional holding framework with exceptional precision. Their strategic guidance allowed our expansion across Asia to proceed seamlessly without a hitch.”',
-    metric: 'USD 20M+ Capital Structured',
+    metric: 'USD 120M+ Capital Structured',
   },
   {
     id: 'exp-2',
@@ -24,7 +24,7 @@ const CLIENT_TESTIMONIALS = [
     id: 'exp-3',
     category: 'Family Office Advisory',
     headline: 'Generational Wealth Protection & Succession Trust',
-    jurisdictions: ['Switzerland', 'Singapore', 'Seychelles'],
+    jurisdictions: ['Switzerland', 'Singapore', 'UK'],
     outcome:
       '“Our family required an absolute ring-fenced governance charter for our multi-region assets. The discretion, sophistication, and private-client care provided were truly top-tier.”',
     metric: '3-Generation Governance Framework',
@@ -33,7 +33,7 @@ const CLIENT_TESTIMONIALS = [
     id: 'exp-4',
     category: 'Corporate Restructuring',
     headline: 'Immaculate Entity Migration & Banking Channels',
-    jurisdictions: ['Mauritius', 'Cayman Islands', 'Hongkong'],
+    jurisdictions: ['Mauritius', 'India', 'UK'],
     outcome:
       '“Re-domiciling our corporate entities and aligning our multi-currency banking infrastructure was handled with zero downtime. An absolute masterclass in corporate advisory.”',
     metric: 'Zero Operational Downtime',
@@ -313,4 +313,28 @@ export default function ClientExperiencesLedger() {
                   Testimonial <strong className="text-white">0{activePageIndex + 1}</strong> of 0{CLIENT_TESTIMONIALS.length}
                 </span>
 
-                <div className="flex
+                <div className="flex items-center gap-2">
+                  <button
+                    disabled={activePageIndex === 0}
+                    onClick={() => setActivePageIndex((prev) => prev - 1)}
+                    className="px-3 py-1.5 rounded-lg border border-white/15 disabled:opacity-30 disabled:cursor-not-allowed hover:border-[#C5A059] transition-colors"
+                  >
+                    ← Prev
+                  </button>
+                  <button
+                    disabled={activePageIndex === CLIENT_TESTIMONIALS.length - 1}
+                    onClick={() => setActivePageIndex((prev) => prev + 1)}
+                    className="px-3 py-1.5 rounded-lg border border-white/15 disabled:opacity-30 disabled:cursor-not-allowed hover:border-[#C5A059] transition-colors"
+                  >
+                    Next →
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
