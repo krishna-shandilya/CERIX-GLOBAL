@@ -1,12 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, memo } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowDown } from "lucide-react";
-import { introShouldRun } from "@/lib/intro";
 import MagneticButton from "@/components/MagneticButton";
 import HeroMap from "@/components/home/HeroMap";
 
-export default function Hero() {
+const Hero = memo(function Hero() {
   const ref = useRef(null);
   const prefersReduced = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
@@ -16,13 +15,16 @@ export default function Hero() {
   return (
     <section ref={ref} data-theme="dark" className="relative bg-[#07130E]">
       <div className="px-3 sm:px-4 lg:px-6 pt-3 sm:pt-4 lg:pt-6">
-        {/* Added min-h-[85vh] for mobile breathing room */}
-        <div className="relative bg-[#07130E] rounded-[32px] overflow-hidden flex flex-col lg:block min-h-[85vh] lg:min-h-[640px]">
+        {/* Added transform-gpu & will-change-transform for smooth hardware acceleration on load */}
+        <div className="relative bg-[#07130E] rounded-[32px] overflow-hidden flex flex-col lg:block min-h-[85vh] lg:min-h-[640px] transform-gpu will-change-transform">
           {/* Preserved Original Map */}
           <HeroMap />
 
-          {/* Text — added pt-28 on mobile to clear the navbar */}
+          {/* Text with slight entry delay for smooth transition */}
           <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.05 }}
             style={{ y: yText, opacity }}
             className="relative z-10 p-6 pt-28 sm:p-10 sm:pt-32 lg:p-16 lg:absolute lg:inset-0 flex flex-col justify-between pointer-events-none h-full"
           >
@@ -84,4 +86,6 @@ export default function Hero() {
       </div>
     </section>
   );
-}
+});
+
+export default Hero;
