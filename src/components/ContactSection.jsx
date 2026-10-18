@@ -3,7 +3,7 @@ import DottedMapBackground from '@/components/DottedMapBackground';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
-    name: '', // Added to match the full form style
+    name: '',
     company: '',
     email: '',
     phone: '',
@@ -65,9 +65,9 @@ export default function ContactSection() {
               WhatsApp
             </a>
 
-            {/* Telegram Direct Link */}
+            {/* Telegram Direct Link with Username */}
             <a 
-              href="https://t.me/+919731709711" 
+              href="https://t.me/Cerixglobal" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="inline-flex items-center gap-3 bg-white text-[#07130E] hover:bg-[#FDFBF7] border border-[#C5A059]/30 hover:border-[#C5A059] px-6 py-3.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all shadow-md font-medium"
@@ -131,7 +131,7 @@ export default function ContactSection() {
                 type="tel"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                placeholder="+91 97317 09711"
+                placeholder="Phone Number"
                 className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#C5A059] transition-colors"
               />
             </div>
