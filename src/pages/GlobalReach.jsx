@@ -42,7 +42,7 @@ export default function GlobalReachPage() {
           {items.map((j) => (
             <Link
               key={j.id || j.slug}
-              to={`/jurisdiction/${j.slug}`}
+              to={`/contact?interest=${encodeURIComponent(j.name)}`}
               className="group block bg-[#0B1D16] rounded-2xl overflow-hidden border border-white/10 hover:border-[#C5A059]/60 transition-all duration-300 hover:-translate-y-1.5 shadow-2xl flex flex-col justify-between"
             >
               <div>
@@ -83,7 +83,7 @@ export default function GlobalReachPage() {
 
               {/* Action */}
               <div className="px-7 pb-6 pt-3 flex items-center justify-between text-xs font-mono uppercase tracking-widest text-[#C5A059] border-t border-white/5">
-                <span>Explore Hub</span>
+                <span>Inquire About {j.name}</span>
                 <ArrowUpRight
                   size={14}
                   className="group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-300"
