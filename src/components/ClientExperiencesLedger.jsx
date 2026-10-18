@@ -135,7 +135,8 @@ export default function ClientExperiencesLedger() {
                     zIndex: idx + 1,
                     transitionDelay: `${idx * 40}ms`
                   }}
-                  className={`absolute inset-0 rounded-2xl bg-[#07130E] border border-[#C5A059]/30 p-8 text-left shadow-2xl transition-all duration-500 ease-out flex flex-col justify-between transform ${
+                  // ADDED: transform-gpu and will-change-transform for instant hardware-accelerated rendering
+                  className={`absolute inset-0 rounded-2xl bg-[#07130E] border border-[#C5A059]/30 p-8 text-left shadow-2xl transition-all duration-500 ease-out flex flex-col justify-between transform will-change-transform transform-gpu ${
                     isHovered ? hoverTransforms[idx] + ' scale-[1.03] border-[#C5A059]/60 shadow-lg shadow-[#07130E]/20' : restingTransforms[idx]
                   }`}
                 >
