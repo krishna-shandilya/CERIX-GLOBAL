@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState, memo } from "react";
 import HeroMapArcs from "@/components/home/HeroMapArcs";
 import HeroMapNodes from "@/components/home/HeroMapNodes";
 import useHeroMapLand from "@/components/home/useHeroMapLand";
@@ -11,7 +11,7 @@ import { arcs, dotsPath, jurisdictions, projection } from "@/components/home/her
 // animation loops run immediately; IntersectionObserver pauses them off-screen.
 const VB_X = -197, VB_Y = -131.5, VB_W = 1027, VB_H = 674;
 
-export default function HeroMap() {
+const HeroMap = memo(function HeroMap() {
   const section = useRef(null);
   const [paused, setPaused] = useState(false);
   const dots = useHeroMapLand(projection);
@@ -26,7 +26,7 @@ export default function HeroMap() {
   }, []);
 
   return (
-    <div ref={section} className="cerix-hero-map" data-paused={paused}>
+    <div ref={section} className="cerix-hero-map transform-gpu will-change-transform" data-paused={paused}>
       <svg
         viewBox={`${VB_X} ${VB_Y} ${VB_W} ${VB_H}`}
         preserveAspectRatio="xMidYMid slice"
@@ -52,4 +52,6 @@ export default function HeroMap() {
       </ul>
     </div>
   );
-}
+});
+
+export default HeroMap;
