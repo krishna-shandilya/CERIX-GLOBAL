@@ -6,37 +6,43 @@ export default function Jurisdictions() {
   const items = JURISDICTIONS || [];
 
   return (
-    <section style={{ padding: '80px 40px', backgroundColor: '#0c0e0d' }}>
-      <div style={{ marginBottom: '40px' }}>
-        <span style={{ color: '#84a98c', textTransform: 'uppercase', fontSize: '12px', letterSpacing: '2px' }}>
-          GLOBAL REACH
-        </span>
-        <h2 style={{ fontSize: '36px', color: '#f8fafc', marginTop: '8px', fontWeight: '300' }}>
+    <section className="bg-[#07130E] py-20 px-6 md:px-12 lg:px-24">
+      {/* Micro-Header & Title */}
+      <div className="mb-12 max-w-7xl mx-auto">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C5A059]" />
+          <span className="text-xs font-mono tracking-[0.35em] text-[#C5A059] uppercase">
+            Global Reach
+          </span>
+          <div className="h-px w-24 bg-gradient-to-r from-[#C5A059]/40 to-transparent" />
+        </div>
+        <h2 className="font-serif text-3xl md:text-5xl text-white font-light tracking-tight">
           Key Jurisdictions
         </h2>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '24px' }}>
+      {/* Grid mapping all 10 Jurisdictions */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {items.map((j) => (
           <Link
             key={j.id || j.slug}
             to={`/jurisdiction/${j.slug}`}
-            style={{
-              textDecoration: 'none',
-              display: 'block',
-              background: '#141715',
-              borderRadius: '8px',
-              overflow: 'hidden',
-              border: '1px solid rgba(255,255,255,0.08)',
-              transition: 'transform 0.2s ease, border-color 0.2s ease',
-              cursor: 'pointer'
-            }}
+            className="group block bg-[#0B1D16] rounded-xl overflow-hidden border border-white/10 hover:border-[#C5A059]/60 transition-all duration-300 hover:-translate-y-1 shadow-lg"
           >
-            <div style={{ height: '180px', backgroundImage: `url(${j.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
-            <div style={{ padding: '24px' }}>
-              <span style={{ color: '#84a98c', fontSize: '12px', textTransform: 'uppercase' }}>{j.region}</span>
-              <h3 style={{ fontSize: '20px', color: '#f8fafc', margin: '6px 0 12px' }}>{j.name}</h3>
-              <p style={{ fontSize: '14px', color: '#94a3b8', margin: 0, lineHeight: 1.5 }}>{j.description}</p>
+            <div
+              className="h-44 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+              style={{ backgroundImage: `url(${j.image})` }}
+            />
+            <div className="p-6 space-y-2">
+              <span className="text-[11px] font-mono tracking-widest text-[#C5A059] uppercase block">
+                {j.region}
+              </span>
+              <h3 className="font-serif text-xl text-white tracking-tight group-hover:text-[#C5A059] transition-colors duration-300">
+                {j.name}
+              </h3>
+              <p className="text-sm text-gray-300 font-light leading-relaxed line-clamp-3">
+                {j.description}
+              </p>
             </div>
           </Link>
         ))}
