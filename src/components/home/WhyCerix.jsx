@@ -69,7 +69,7 @@ export default function WhyCerix() {
         <div className="flex items-center gap-3 mb-16">
           <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C5A059]" />
           <span className="text-xs font-mono tracking-[0.35em] text-[#C5A059] uppercase">
-            Institutional Architecture
+            Why Cerix Global
           </span>
           <div className="h-px w-24 bg-gradient-to-r from-[#C5A059]/40 to-transparent" />
         </div>
