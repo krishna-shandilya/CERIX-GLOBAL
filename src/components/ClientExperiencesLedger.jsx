@@ -48,7 +48,7 @@ export default function ClientExperiencesLedger() {
   const activeExp = CLIENT_TESTIMONIALS[activePageIndex];
 
   return (
-    <section className="w-full bg-[#FDFBF7] py-28 px-6 md:px-12 border-t border-[#E5E0D8] relative overflow-hidden text-[#1A1A1A]">
+    <section className="w-full bg-[#F0ECE1] py-28 px-6 md:px-12 border-t border-[#D4CFC4] relative overflow-hidden text-[#1A1A1A]">
       <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center text-center">
         
         {/* Eyebrow */}
@@ -170,7 +170,7 @@ export default function ClientExperiencesLedger() {
           </div>
 
           {/* Action Button */}
-          <div className="absolute bottom-2 z-30 px-6 py-3 rounded-full bg-[#C5A059] text-black text-xs font-sans tracking-wider uppercase hover:bg-[#d4b06a] transition-all duration-300 shadow-xl font-medium flex items-center gap-2">
+          <div className="absolute bottom-2 z-30 px-6 py-3 rounded-full bg-[#C5A059] text-[#07130E] text-xs font-sans tracking-wider uppercase hover:bg-[#d4b06a] transition-all duration-300 shadow-xl font-medium flex items-center gap-2">
             <span>Read more</span>
             <span>→</span>
           </div>
@@ -179,7 +179,7 @@ export default function ClientExperiencesLedger() {
         {/* Mobile Read More CTA */}
         <button
           onClick={() => setIsOpen(true)}
-          className="block md:hidden px-6 py-3 rounded-full bg-[#C5A059] text-black text-xs font-sans tracking-wider uppercase font-medium shadow-xl mt-4"
+          className="block md:hidden px-6 py-3 rounded-full bg-[#C5A059] text-[#07130E] text-xs font-sans tracking-wider uppercase font-medium shadow-xl mt-4"
         >
           Read Testimonials →
         </button>
@@ -219,7 +219,7 @@ export default function ClientExperiencesLedger() {
                         onClick={() => setActivePageIndex(idx)}
                         className={`w-full text-left p-3.5 rounded-xl border transition-all duration-300 flex items-start justify-between gap-3 ${
                           isActive
-                            ? 'bg-[#0E241B] border-[#C5A059]/60 shadow-lg'
+                            ? 'bg-[#0a1811] border-[#C5A059]/60 shadow-lg'
                             : 'bg-transparent border-white/5 hover:border-white/15 hover:bg-white/[0.02]'
                         }`}
                       >
