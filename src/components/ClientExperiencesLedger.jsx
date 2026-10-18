@@ -9,7 +9,7 @@ const CLIENT_TESTIMONIALS = [
     jurisdictions: ['Singapore', 'Mauritius', 'BVI'],
     outcome:
       '“Cerix Global engineered our entire multi-jurisdictional holding framework with exceptional precision. Their strategic guidance allowed our expansion across Asia to proceed seamlessly without a hitch.”',
-    metric: 'USD 120M+ Capital Structured',
+    metric: 'USD 20M+ Capital Structured',
   },
   {
     id: 'exp-2',
@@ -24,7 +24,7 @@ const CLIENT_TESTIMONIALS = [
     id: 'exp-3',
     category: 'Family Office Advisory',
     headline: 'Generational Wealth Protection & Succession Trust',
-    jurisdictions: ['Switzerland', 'Singapore', 'UK'],
+    jurisdictions: ['Switzerland', 'Singapore', 'Seychelles'],
     outcome:
       '“Our family required an absolute ring-fenced governance charter for our multi-region assets. The discretion, sophistication, and private-client care provided were truly top-tier.”',
     metric: '3-Generation Governance Framework',
@@ -33,7 +33,7 @@ const CLIENT_TESTIMONIALS = [
     id: 'exp-4',
     category: 'Corporate Restructuring',
     headline: 'Immaculate Entity Migration & Banking Channels',
-    jurisdictions: ['Mauritius', 'India', 'UK'],
+    jurisdictions: ['Mauritius', 'Cayman Islands', 'Hongkong'],
     outcome:
       '“Re-domiciling our corporate entities and aligning our multi-currency banking infrastructure was handled with zero downtime. An absolute masterclass in corporate advisory.”',
     metric: 'Zero Operational Downtime',
@@ -48,10 +48,7 @@ export default function ClientExperiencesLedger() {
   const activeExp = CLIENT_TESTIMONIALS[activePageIndex];
 
   return (
-    <section className="w-full bg-[#0B1A14] py-28 px-6 md:px-12 border-t border-white/10 relative overflow-hidden text-white">
-      {/* Background Ambience */}
-      <div className="absolute inset-0 bg-[#07130E] pointer-events-none" />
-
+    <section className="w-full bg-[#FDFBF7] py-28 px-6 md:px-12 border-t border-[#E5E0D8] relative overflow-hidden text-[#1A1A1A]">
       <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center text-center">
         
         {/* Eyebrow */}
@@ -63,11 +60,11 @@ export default function ClientExperiencesLedger() {
         </div>
 
         {/* Main Heading */}
-        <h2 className="text-3xl md:text-5xl font-serif text-[#FDFBF7] mb-4 tracking-tight font-normal leading-tight">
+        <h2 className="text-3xl md:text-5xl font-serif text-[#1A1A1A] mb-4 tracking-tight font-normal leading-tight">
           Trusted by Founders, Funds & Families
         </h2>
 
-        <p className="text-sm md:text-base text-gray-300/80 max-w-xl mx-auto mb-16 font-sans leading-relaxed">
+        <p className="text-sm md:text-base text-gray-600 max-w-xl mx-auto mb-16 font-sans leading-relaxed">
           Reflections from founders, family offices, and institutional partners who place their trust in our advisory and cross-border execution.
         </p>
 
@@ -82,7 +79,7 @@ export default function ClientExperiencesLedger() {
                 setActivePageIndex(idx);
                 setIsOpen(true);
               }}
-              className="bg-[#091510]/90 border border-[#C5A059]/30 rounded-xl p-5 shadow-lg active:border-[#C5A059] cursor-pointer"
+              className="bg-[#07130E] border border-[#C5A059]/30 rounded-xl p-5 shadow-lg active:border-[#C5A059] cursor-pointer"
             >
               <div className="flex items-center justify-between mb-2">
                 <span className="text-[10px] font-mono tracking-widest text-[#C5A059] uppercase">
@@ -138,8 +135,8 @@ export default function ClientExperiencesLedger() {
                     zIndex: idx + 1,
                     transitionDelay: `${idx * 40}ms`
                   }}
-                  className={`absolute inset-0 rounded-2xl bg-[#091510]/80 backdrop-blur-2xl border border-[#C5A059]/30 p-8 text-left shadow-2xl transition-all duration-500 ease-out flex flex-col justify-between transform ${
-                    isHovered ? hoverTransforms[idx] + ' scale-[1.03] border-[#C5A059]/60 bg-[#0B1A14]/90 shadow-[#C5A059]/10' : restingTransforms[idx]
+                  className={`absolute inset-0 rounded-2xl bg-[#07130E] border border-[#C5A059]/30 p-8 text-left shadow-2xl transition-all duration-500 ease-out flex flex-col justify-between transform ${
+                    isHovered ? hoverTransforms[idx] + ' scale-[1.03] border-[#C5A059]/60 shadow-lg shadow-[#07130E]/20' : restingTransforms[idx]
                   }`}
                 >
                   <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[#C5A059]/40 to-transparent rounded-t-2xl" />
@@ -182,7 +179,7 @@ export default function ClientExperiencesLedger() {
         {/* Mobile Read More CTA */}
         <button
           onClick={() => setIsOpen(true)}
-          className="block md:hidden px-6 py-3 rounded-full bg-[#C5A059] text-black text-xs font-sans tracking-wider uppercase font-medium shadow-xl"
+          className="block md:hidden px-6 py-3 rounded-full bg-[#C5A059] text-black text-xs font-sans tracking-wider uppercase font-medium shadow-xl mt-4"
         >
           Read Testimonials →
         </button>
@@ -258,7 +255,7 @@ export default function ClientExperiencesLedger() {
                 ✕
               </button>
 
-              <div className="space-y-6 md:space-y-8 pr-6">
+              <div className="space-y-6 md:space-y-8 pr-6 mt-8 md:mt-0">
                 <div className="flex items-center gap-4">
                   <span className="text-xs font-semibold tracking-widest text-[#C5A059] uppercase">
                     {activeExp.category}
@@ -316,28 +313,4 @@ export default function ClientExperiencesLedger() {
                   Testimonial <strong className="text-white">0{activePageIndex + 1}</strong> of 0{CLIENT_TESTIMONIALS.length}
                 </span>
 
-                <div className="flex items-center gap-2">
-                  <button
-                    disabled={activePageIndex === 0}
-                    onClick={() => setActivePageIndex((prev) => prev - 1)}
-                    className="px-3 py-1.5 rounded-lg border border-white/15 disabled:opacity-30 disabled:cursor-not-allowed hover:border-[#C5A059] transition-colors"
-                  >
-                    ← Prev
-                  </button>
-                  <button
-                    disabled={activePageIndex === CLIENT_TESTIMONIALS.length - 1}
-                    onClick={() => setActivePageIndex((prev) => prev + 1)}
-                    className="px-3 py-1.5 rounded-lg border border-white/15 disabled:opacity-30 disabled:cursor-not-allowed hover:border-[#C5A059] transition-colors"
-                  >
-                    Next →
-                  </button>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      )}
-    </section>
-  );
-}
+                <div className="flex
