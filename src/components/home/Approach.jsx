@@ -22,16 +22,22 @@ export default function Approach() {
         <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
           {/* Header */}
           <div className="pt-32 lg:pt-36 px-6 lg:px-12 max-w-[1500px] mx-auto w-full">
+            
+            {/* New Glowing Gold Micro-Header */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="eyebrow text-terracotta mb-8 flex items-center gap-4"
+              className="flex items-center gap-3 mb-8"
             >
-              <span className="h-px w-10 bg-terracotta/60" />
-               The Cerix Approach
+              <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C5A059]" />
+              <span className="text-xs font-mono tracking-[0.35em] text-[#C5A059] uppercase">
+                The Cerix Approach
+              </span>
+              <div className="h-px w-24 bg-gradient-to-r from-[#C5A059]/40 to-transparent" />
             </motion.div>
+
             <MotionText
               text="One objective. One strategic path."
               as="h2"
@@ -52,7 +58,7 @@ export default function Approach() {
           {/* Progress line */}
           <div className="px-6 lg:px-12 pb-14 max-w-[1500px] mx-auto w-full">
             <div className="relative h-px w-full bg-obsidian/12">
-              <motion.div style={{ width: lineWidth }} className="absolute top-0 left-0 h-px bg-terracotta" />
+              <motion.div style={{ width: lineWidth }} className="absolute top-0 left-0 h-px bg-[#C5A059]" />
             </div>
             <div className="mt-4 flex justify-between font-mono text-[0.6rem] tracking-[0.2em] text-obsidian/40 uppercase">
               <span>Understand</span>
@@ -97,7 +103,7 @@ function StageCard({ stage, index }) {
         whileInView={{ scaleX: 1 }}
         viewport={{ once: true, margin: "-15% 0px" }}
         transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-7 h-px w-16 bg-terracotta origin-left"
+        className="mt-7 h-px w-16 bg-[#C5A059] origin-left"
       />
       <motion.p
         initial={{ opacity: 0, y: 20 }}
