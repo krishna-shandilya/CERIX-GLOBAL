@@ -4,18 +4,25 @@ import HeroMapNodes from "@/components/home/HeroMapNodes";
 import useHeroMapLand from "@/components/home/useHeroMapLand";
 import { arcs, dotsPath, jurisdictions, projection } from "@/components/home/heroMapGeometry";
 
-// Full-bleed world map: the viewBox is ~110% of the world width, shifted right
-// so the Caribbean nodes sit at 44%+ and Singapore at 96%, Antarctica cropped at
-// 58°S. Land dots fade to 0 across the left 40% via an SVG mask so nothing sits
-// under the copy. Nodes, rings and travelling dots keep their colours. The CSS
-// animation loops run immediately; IntersectionObserver pauses them off-screen.
 const VB_X = -197, VB_Y = -131.5, VB_W = 1027, VB_H = 674;
+
+// Global cache so the map coordinates are calculated ONLY ONCE per session
+let cachedLandPath = null;
 
 const HeroMap = memo(function HeroMap() {
   const section = useRef(null);
   const [paused, setPaused] = useState(false);
   const dots = useHeroMapLand(projection);
-  const landPath = useMemo(() => dotsPath(dots), [dots]);
+  
+  // Cache the path string so subsequent page visits render instantly without JS lag
+  const landPath = useMemo(() => {
+    if (cachedLandPath) return cachedLandPath;
+    if (dots && dots.length > 0) {
+      cachedLandPath = dotsPath(dots);
+      return cachedLandPath;
+    }
+    return "";
+  }, [dots]);
 
   useEffect(() => {
     const el = section.current?.closest("section");
@@ -43,7 +50,7 @@ const HeroMap = memo(function HeroMap() {
             <rect x={VB_X} y={VB_Y} width={VB_W} height={VB_H} fill="url(#cerix-land-fade)" />
           </mask>
         </defs>
-        <path d={landPath} fill="var(--ivory)" fillOpacity="0.32" mask="url(#cerix-land-mask)" />
+        {landPath && <path d={landPath} fill="var(--ivory)" fillOpacity="0.32" mask="url(#cerix-land-mask)" />}
         <HeroMapArcs arcs={arcs} />
         <HeroMapNodes jurisdictions={jurisdictions} />
       </svg>
