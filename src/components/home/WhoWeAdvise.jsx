@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { WHO_WE_ADVISE, IMAGES } from "@/lib/cerixData";
 import MotionText from "@/components/MotionText";
-import Reveal from "@/components/Reveal";
 import { motion } from "framer-motion";
 
 export default function WhoWeAdvise() {
@@ -46,7 +45,13 @@ export default function WhoWeAdvise() {
 
         <div className="mt-20 grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {WHO_WE_ADVISE.map((c, i) => (
-            <Reveal key={i} variant="mask" delay={i * 0.1}>
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-5% 0px" }}
+              transition={{ duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            >
               <Link
                 to="/contact"
                 className="group block relative aspect-[3/4] overflow-hidden rounded-2xl border border-white/10 hover:border-[#C5A059]/40 transition-colors duration-500 bg-[#0B1D16]"
@@ -71,7 +76,7 @@ export default function WhoWeAdvise() {
                   </span>
                 </div>
               </Link>
-            </Reveal>
+            </motion.div>
           ))}
         </div>
       </div>
