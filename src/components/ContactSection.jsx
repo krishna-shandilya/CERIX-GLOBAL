@@ -52,7 +52,7 @@ export default function ContactSection() {
           message: ''
         });
       } else {
-        alert('Something went wrong. Please try again or use our direct channels.');
+        alert(result.message || 'Something went wrong. Please check your Web3Forms dashboard settings.');
       }
     } catch (error) {
       alert('Network error. Please reach out via WhatsApp or Telegram.');
