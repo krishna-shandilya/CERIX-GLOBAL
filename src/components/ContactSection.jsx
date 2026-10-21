@@ -13,6 +13,7 @@ export default function ContactSection() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,7 +41,7 @@ export default function ContactSection() {
 
       const result = await response.json();
       if (result.success) {
-        alert('Thank you. Your inquiry has been submitted successfully.');
+        setIsSuccess(true);
         setFormData({
           name: '',
           company: '',
@@ -61,7 +62,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="w-full bg-[#FDFBF7] text-[#1A1A1A] grid grid-cols-1 lg:grid-cols-12 min-h-[650px] border-t border-[#E5E0D8]">
+    <section className="w-full bg-[#FDFBF7] text-[#1A1A1A] grid grid-cols-1 lg:grid-cols-12 min-h-[650px] border-t border-[#E5E0D8] relative">
       {/* Left Column - Deep Green Panel (#07130E) */}
       <div className="lg:col-span-5 bg-[#07130E] text-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between relative overflow-hidden">
         <DottedMapBackground />
@@ -239,6 +240,27 @@ export default function ContactSection() {
           </a>
         </div>
       </div>
-    </section>
-  );
-}
+
+      {/* ============================================================ */}
+      {/* CUSTOM CENTERED FROSTED-GLASS SUCCESS MODAL                  */}
+      {/* ============================================================ */}
+      {isSuccess && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
+          <div className="relative w-full max-w-md bg-[#07130E]/90 backdrop-blur-xl border border-[#C5A059]/40 rounded-3xl p-8 text-center shadow-2xl space-y-6">
+            <div className="w-12 h-12 mx-auto rounded-full bg-[#C5A059]/20 border border-[#C5A059] flex items-center justify-center text-[#C5A059]">
+              ✓
+            </div>
+            <div className="space-y-2">
+              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#C5A059] block">
+                Inquiry Received
+              </span>
+              <h3 className="font-serif text-2xl text-white font-normal">
+                Thank you for your <span className="italic text-[#C5A059]">conversation.</span>
+              </h3>
+              <p className="text-xs text-[#D4CFC4] font-light leading-relaxed">
+                Your message has been routed successfully to <strong className="text-white font-normal">info@cerixglobal.com</strong>. Our advisory team will respond shortly.
+              </p>
+            </div>
+            <button
+              onClick={() => setIsSuccess(false)}
+              className="w-full rounded-full bg-[#C5A059] hover:bg-[#d4b06a] text-[#07130E] font
