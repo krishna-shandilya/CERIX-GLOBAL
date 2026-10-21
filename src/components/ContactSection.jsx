@@ -27,7 +27,7 @@ export default function ContactSection() {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "1c5f4774-2531-44ca-81b4-59f78b190140",
+          access_key: "1c5f477a-2531-44ca-81b4-59f78b190140",
           subject: `New Inquiry from ${formData.name || 'Website Visitor'} - Cerix Global`,
           from_name: formData.name,
           email: formData.email,
