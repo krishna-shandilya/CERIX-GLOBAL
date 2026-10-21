@@ -12,10 +12,52 @@ export default function ContactSection() {
     message: ''
   });
 
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Connect your form handler API or service (e.g. Formspree/Web3Forms)
-    alert('Thank you. Your inquiry has been submitted successfully.');
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "e069714e-98f5-4d5c-b293-fddd15e0aef7",
+          subject: `New Inquiry from ${formData.name || 'Website Visitor'} - Cerix Global`,
+          from_name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          country: formData.country,
+          interest: formData.interest,
+          message: formData.message,
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        alert('Thank you. Your inquiry has been submitted successfully.');
+        setFormData({
+          name: '',
+          company: '',
+          email: '',
+          phone: '',
+          country: '',
+          interest: '',
+          message: ''
+        });
+      } else {
+        alert('Something went wrong. Please try again or use our direct channels.');
+      }
+    } catch (error) {
+      alert('Network error. Please reach out via WhatsApp or Telegram.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -182,9 +224,10 @@ export default function ContactSection() {
           <div className="pt-4">
             <button 
               type="submit" 
-              className="rounded-full bg-[#07130E] hover:bg-[#0B1D16] text-[#C5A059] hover:text-white border border-[#C5A059]/40 hover:border-[#C5A059] px-8 py-4 text-xs font-mono uppercase tracking-wider transition-all flex items-center gap-3 shadow-md cursor-pointer"
+              disabled={isSubmitting}
+              className="rounded-full bg-[#07130E] hover:bg-[#0B1D16] text-[#C5A059] hover:text-white border border-[#C5A059]/40 hover:border-[#C5A059] px-8 py-4 text-xs font-mono uppercase tracking-wider transition-all flex items-center gap-3 shadow-md cursor-pointer disabled:opacity-50"
             >
-              Submit Inquiry →
+              {isSubmitting ? 'Sending...' : 'Submit Inquiry →'}
             </button>
           </div>
         </form>
