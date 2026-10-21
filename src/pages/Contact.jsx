@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import DottedMapBackground from '@/components/DottedMapBackground';
 
-export default function ContactPage() {
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const prefilledJurisdiction = searchParams.get('jurisdiction') || searchParams.get('interest') || '';
-
+export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     company: '',
     email: '',
     phone: '',
     country: '',
-    interest: prefilledJurisdiction ? 'Jurisdiction Strategy: ' + prefilledJurisdiction : '',
+    interest: '',
     message: ''
   });
 
@@ -32,7 +27,7 @@ export default function ContactPage() {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "e069714e-98f5-4d5c-b293-fddd15e0aef7",
+          access_key: "1c5f4774-2531-44ca-81b4-59f78b190140",
           subject: `New Inquiry from ${formData.name || 'Website Visitor'} - Cerix Global`,
           from_name: formData.name,
           email: formData.email,
@@ -57,7 +52,7 @@ export default function ContactPage() {
           message: ''
         });
       } else {
-        alert('Submission failed. Please reach out via WhatsApp or Telegram.');
+        alert('Something went wrong. Please try again or use our direct channels.');
       }
     } catch (error) {
       alert('Network error. Please reach out via WhatsApp or Telegram.');
@@ -99,7 +94,7 @@ export default function ContactPage() {
                 href="https://wa.me/919731709711" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-flex items-center gap-3 bg-white text-[#07130E] hover:bg-[#FDFBF7] border border-[#C5A059]/30 hover:border-[#C5A059] px-6 py-3.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all shadow-md font-medium"
+                className="inline-flex items-center justify-center gap-3 bg-white text-[#07130E] hover:bg-[#FDFBF7] border border-[#C5A059]/30 hover:border-[#C5A059] px-6 py-3.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all shadow-md font-medium"
               >
                 WhatsApp
               </a>
@@ -107,7 +102,7 @@ export default function ContactPage() {
                 href="https://t.me/Cerixglobal" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-flex items-center gap-3 bg-white text-[#07130E] hover:bg-[#FDFBF7] border border-[#C5A059]/30 hover:border-[#C5A059] px-6 py-3.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all shadow-md font-medium"
+                className="inline-flex items-center justify-center gap-3 bg-white text-[#07130E] hover:bg-[#FDFBF7] border border-[#C5A059]/30 hover:border-[#C5A059] px-6 py-3.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all shadow-md font-medium"
               >
                 Telegram
               </a>
@@ -186,10 +181,9 @@ export default function ContactPage() {
               className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] focus:outline-none focus:border-[#C5A059] transition-colors cursor-pointer"
             >
               <option value="">Select an area of interest</option>
-              <option value="corporate">Corporate Structuring</option>
-              <option value="fund">Fund Setup & Licensing</option>
-              <option value="wealth">Family Office & Trusts</option>
-              <option value="migration">Investment Migration</option>
+              <option value="structuring">Fund & Entity Structuring</option>
+              <option value="advisory">Cross-Border Advisory</option>
+              <option value="compliance">Regulatory & Compliance</option>
             </select>
           </div>
 
