@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { SERVICES } from "@/lib/cerixData";
-import Reveal from "@/components/Reveal";
 import { Image } from "@/components/ui/image";
 import { motion } from "framer-motion";
 
@@ -79,7 +78,12 @@ function ServiceCard({ service, index }) {
   const labelNum = `0${index + 1}`;
 
   return (
-    <Reveal variant="mask" delay={stagger}>
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-5% 0px" }}
+      transition={{ duration: 0.8, delay: stagger, ease: [0.22, 1, 0.36, 1] }}
+    >
       <Link
         to={`/expertise/${service.slug}`}
         className="group relative block overflow-hidden rounded-[20px] bg-obsidian/5 aspect-[3/4] transition-opacity duration-500 group-hover/grid:opacity-85 hover:!opacity-100"
@@ -117,6 +121,6 @@ function ServiceCard({ service, index }) {
           </div>
         </div>
       </Link>
-    </Reveal>
+    </motion.div>
   );
 }
