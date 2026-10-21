@@ -263,4 +263,13 @@ export default function ContactSection() {
             </div>
             <button
               onClick={() => setIsSuccess(false)}
-              className="w-full rounded-full bg-[#C5A059] hover:bg-[#d4b06a] text-[#07130E] font
+              className="w-full rounded-full bg-[#C5A059] hover:bg-[#d4b06a] text-[#07130E] font-medium py-3 text-xs font-mono uppercase tracking-wider transition-all shadow-md cursor-pointer"
+            >
+              Close Window
+            </button>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
