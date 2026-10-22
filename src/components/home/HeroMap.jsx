@@ -51,7 +51,7 @@ const HeroMap = memo(function HeroMap() {
           </mask>
         </defs>
         {landPath && <path d={landPath} fill="var(--ivory)" fillOpacity="0.32" mask="url(#cerix-land-mask)" />}
-        <HeroMapArcs arcs={arcs} />
+        <HeroMapArcs arcs={arcs} paused={paused} />
         <HeroMapNodes jurisdictions={jurisdictions} />
       </svg>
       <ul className="sr-only" aria-label="Jurisdictions in the international network">
