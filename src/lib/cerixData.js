@@ -1,12 +1,12 @@
-// Service Image Imports (.png)
-import corpImg from "@/assets/services/01-corporate-structuring.png";
-import setupImg from "@/assets/services/02-company-setup.png";
-import licensingImg from "@/assets/services/03-licensing.png";
-import bankingImg from "@/assets/services/04-banking-infrastructure.png";
-import trustsImg from "@/assets/services/05-trusts-foundations.png";
-import migrationImg from "@/assets/services/06-investment-migration.png";
-import expansionImg from "@/assets/services/07-international-expansion.png";
-import taxImg from "@/assets/services/08-tax-compliance.png";
+// Service Image Imports (.webp)
+import corpImg from "@/assets/services/01-corporate-structuring.webp";
+import setupImg from "@/assets/services/02-company-setup.webp";
+import licensingImg from "@/assets/services/03-licensing.webp";
+import bankingImg from "@/assets/services/04-banking-infrastructure.webp";
+import trustsImg from "@/assets/services/05-trusts-foundations.webp";
+import migrationImg from "@/assets/services/06-investment-migration.webp";
+import expansionImg from "@/assets/services/07-international-expansion.webp";
+import taxImg from "@/assets/services/08-tax-compliance.webp";
 
 // Who We Advise Image Imports (.png)
 import multinationalImg from "@/assets/whoweadvise/multinational-enterprises.png";
