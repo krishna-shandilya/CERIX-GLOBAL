@@ -3,11 +3,39 @@
 > Cerix Global provides elite cross-border corporate structuring, company setup, licensing, and wealth advisory services across tier-one international financial hubs.
 
 ## Core Services
-- Cross-Border Corporate Structuring: Establishing multi-jurisdictional corporate entities for asset protection and tax efficiency.
+- Cross-Border Corporate Structuring: Establishing multi-jurisdictional corporate entities for asset protection and optimal tax efficiency.
 - Alternative Investment Fund (AIF) Administration: Setting up and managing funds in Mauritius and the Cayman Islands.
-- Global Licensing & Compliance: Regulatory navigation for financial services firms.
+- Global Licensing & Compliance: Navigating regulatory requirements for financial services firms and corporate entities.
+- Wealth Advisory & Trust Formation: Structuring offshore trusts and foundations for multi-generational wealth preservation.
+
+## Operational Hubs & Jurisdictions
+- Mauritius
+- Cayman Islands
+- Switzerland
+
+## Q&A
+
+### Q: Why should I set up a Global Business Company (GBC) in Mauritius?
+A: A Mauritius GBC is ideal for cross-border investments, offering a robust regulatory framework, access to an extensive network of Double Taxation Avoidance Agreements (DTAAs), and no capital gains tax. It is widely used by asset managers for structuring investments into Africa and Asia.
+
+### Q: Why choose the Cayman Islands for Alternative Investment Funds (AIFs)?
+A: The Cayman Islands is the leading global jurisdiction for hedge funds and AIFs due to its flexible regulatory regime, tax-neutral environment, and established legal infrastructure. It offers a globally recognized framework that is highly attractive to institutional capital.
+
+### Q: How do I set up an Alternative Investment Fund (AIF) in Mauritius?
+A: Setting up an AIF in Mauritius requires structuring the legal entity, filing licensing applications with the Financial Services Commission (FSC), appointing licensed fund administrators, and ensuring strict compliance with local regulatory frameworks.
+
+### Q: Do you provide ongoing fund administration and compliance?
+A: Yes, Cerix Global oversees ongoing fund administration, including monthly Net Asset Value (NAV) calculations, strict regulatory compliance monitoring, and liaison with local fund administrators to ensure the entity meets all statutory requirements.
+
+### Q: How long does it take to register an offshore company and get it fully operational?
+A: While standard entity formation can take 3 to 7 business days, the complete process—including regulatory licensing, KYC compliance checks, and corporate bank account opening—typically takes 4 to 8 weeks, depending on the jurisdiction and the complexity of the corporate structure.
+
+### Q: Can Cerix Global assist with offshore corporate bank account opening?
+A: Yes, we facilitate the opening of multi-currency offshore corporate bank accounts across tier-one banking jurisdictions. We handle the complex KYC/AML compliance requirements and liaise directly with international banking partners to streamline the onboarding process.
+
+### Q: What are the main benefits of setting up an offshore trust for wealth management?
+A: Offshore trusts provide robust asset protection, high levels of confidentiality, and highly efficient estate planning. They legally separate the ownership of assets from the settlor, safeguarding wealth from future liabilities while ensuring a seamless, tax-efficient transfer to beneficiaries.
 
 ## Key Links
 - [Home](https://www.cerixglobal.com/)
-- [Expertise](https://www.cerixglobal.com/expertise)
-- [Contact](https://www.cerixglobal.com/#contact)
+- [Contact & Engagements](https://www.cerixglobal.com/#contact)
