@@ -36,7 +36,9 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const rootElement = document.getElementById('root');
+
+const app = (
   <React.StrictMode>
     <HelmetProvider>
       <ErrorBoundary>
@@ -44,4 +46,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       </ErrorBoundary>
     </HelmetProvider>
   </React.StrictMode>
-)
+);
+
+// Hydrate if pre-rendered HTML exists, otherwise use standard render
+if (rootElement.hasChildNodes()) {
+  ReactDOM.hydrateRoot(rootElement, app);
+} else {
+  ReactDOM.createRoot(rootElement).render(app);
+}
