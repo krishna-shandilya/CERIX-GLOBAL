@@ -1,3 +1,4 @@
+import React, { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
@@ -8,17 +9,18 @@ import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import ScrollToTop from './components/ScrollToTop';
 import Preloader from './components/Preloader';
 import Layout from '@/components/Layout';
-import Home from '@/pages/Home';
-import Expertise from '@/pages/Expertise';
-import ExpertiseDetail from '@/pages/ExpertiseDetail';
-import GlobalReach from '@/pages/GlobalReach';
-import ApproachPage from '@/pages/ApproachPage';
-import Insights from '@/pages/Insights';
-import InsightDetail from '@/pages/InsightDetail';
-import About from '@/pages/About';
-import Contact from '@/pages/Contact';
-import Legal from '@/pages/Legal';
-// Add page imports here
+
+// Lazy-loaded page components for bundle optimization & reduced TBT
+const Home = lazy(() => import('@/pages/Home'));
+const Expertise = lazy(() => import('@/pages/Expertise'));
+const ExpertiseDetail = lazy(() => import('@/pages/ExpertiseDetail'));
+const GlobalReach = lazy(() => import('@/pages/GlobalReach'));
+const ApproachPage = lazy(() => import('@/pages/ApproachPage'));
+const Insights = lazy(() => import('@/pages/Insights'));
+const InsightDetail = lazy(() => import('@/pages/InsightDetail'));
+const About = lazy(() => import('@/pages/About'));
+const Contact = lazy(() => import('@/pages/Contact'));
+const Legal = lazy(() => import('@/pages/Legal'));
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -43,30 +45,35 @@ const AuthenticatedApp = () => {
     }
   }
 
-  // Render the main app
+  // Render the main app wrapped in Suspense for lazy loading chunks
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/expertise" element={<Expertise />} />
-        <Route path="/expertise/:slug" element={<ExpertiseDetail />} />
-        <Route path="/global-reach" element={<GlobalReach />} />
-        <Route path="/approach" element={<ApproachPage />} />
-        <Route path="/insights" element={<Insights />} />
-        <Route path="/insights/:slug" element={<InsightDetail />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/privacy" element={<Legal />} />
-        <Route path="/terms" element={<Legal />} />
-        <Route path="/disclaimer" element={<Legal />} />
-      </Route>
-      <Route path="*" element={<PageNotFound />} />
-    </Routes>
+    <Suspense fallback={
+      <div className="fixed inset-0 flex items-center justify-center bg-[#07130E]">
+        <div className="w-8 h-8 border-4 border-[#C5A059]/20 border-t-[#C5A059] rounded-full animate-spin"></div>
+      </div>
+    }>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/expertise" element={<Expertise />} />
+          <Route path="/expertise/:slug" element={<ExpertiseDetail />} />
+          <Route path="/global-reach" element={<GlobalReach />} />
+          <Route path="/approach" element={<ApproachPage />} />
+          <Route path="/insights" element={<Insights />} />
+          <Route path="/insights/:slug" element={<InsightDetail />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy" element={<Legal />} />
+          <Route path="/terms" element={<Legal />} />
+          <Route path="/disclaimer" element={<Legal />} />
+        </Route>
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </Suspense>
   );
 };
 
 function App() {
-
   return (
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>
