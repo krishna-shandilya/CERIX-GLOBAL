@@ -75,4 +75,23 @@ export const jurisdictions = [
   { 
     name: "Seychelles", 
     code: "SYC", 
-    sub: "
+    sub: "SC // +248", 
+    position: [654.1, 263.0], 
+    labelPos: { dx: 12, dy: 3, anchor: "start" } 
+  }
+];
+
+// Empty arcs list (Zero line rendering)
+export const arcs = [];
+
+// High-efficiency fast string join
+export function dotsPath(dots) {
+  if (!dots || dots.length === 0) return "";
+  const len = dots.length;
+  const parts = new Array(len);
+  for (let i = 0; i < len; i++) {
+    const pt = dots[i];
+    parts[i] = `M${pt[0] - 0.9} ${pt[1]}a0.9 0.9 0 1 0 1.8 0a0.9 0.9 0 1 0 -1.8 0`;
+  }
+  return parts.join("");
+}
