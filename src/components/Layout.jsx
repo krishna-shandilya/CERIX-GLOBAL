@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import IntroOverlay from "./IntroOverlay";
+import Preloader from "./Preloader";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 import ScrollProgress from "./ScrollProgress";
@@ -18,7 +17,9 @@ export default function Layout() {
 
   return (
     <div className="min-h-screen flex flex-col bg-parchment" data-theme="light">
-      <IntroOverlay />
+      {/* The highly optimized, zero-blocking Preloader */}
+      <Preloader />
+      
       <ScrollProgress />
       <Navigation />
       <main className="flex-1">
