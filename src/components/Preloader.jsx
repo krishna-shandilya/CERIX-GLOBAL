@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import BrandEmblem from './BrandEmblem';
 
 const SESSION_KEY = 'cerix_visited';
@@ -6,65 +6,71 @@ const SESSION_KEY = 'cerix_visited';
 export default function Preloader() {
   const [loading, setLoading] = useState(() => {
     if (typeof window !== 'undefined') {
-      // If user has already visited in this session, skip the preloader
-      return !sessionStorage.getItem(SESSION_KEY);
+      try {
+        return !sessionStorage.getItem(SESSION_KEY);
+      } catch (_) {
+        return false;
+      }
     }
     return true;
   });
   const [fadeOut, setFadeOut] = useState(false);
 
+  const dismiss = useCallback(() => {
+    setFadeOut(true);
+    setTimeout(() => {
+      setLoading(false);
+      try {
+        sessionStorage.setItem(SESSION_KEY, 'true');
+      } catch (_) {}
+    }, 400);
+  }, []);
+
   useEffect(() => {
     if (!loading) return;
 
-    let fadeTimer;
-    let removeTimer;
+    let triggerTimer;
 
-    const dismissPreloader = () => {
-      // Smooth fade trigger
-      fadeTimer = setTimeout(() => {
-        setFadeOut(true);
-      }, 900);
-
-      // Clean unmount from DOM
-      removeTimer = setTimeout(() => {
-        setLoading(false);
-        try {
-          sessionStorage.setItem(SESSION_KEY, 'true');
-        } catch (e) {
-          // Fallback if storage blocked
-        }
-      }, 1400);
+    const handleReady = () => {
+      triggerTimer = setTimeout(dismiss, 450);
     };
 
-    if (document.readyState === 'complete') {
-      dismissPreloader();
+    if (document.readyState === 'interactive' || document.readyState === 'complete') {
+      handleReady();
     } else {
-      window.addEventListener('load', dismissPreloader, { once: true });
+      document.addEventListener('DOMContentLoaded', handleReady, { once: true });
     }
 
+    const handleImmediate = () => dismiss();
+    window.addEventListener('wheel', handleImmediate, { passive: true, once: true });
+    window.addEventListener('touchstart', handleImmediate, { passive: true, once: true });
+    window.addEventListener('keydown', handleImmediate, { once: true });
+
+    const fallbackTimer = setTimeout(dismiss, 1200);
+
     return () => {
-      clearTimeout(fadeTimer);
-      clearTimeout(removeTimer);
-      window.removeEventListener('load', dismissPreloader);
+      clearTimeout(triggerTimer);
+      clearTimeout(fallbackTimer);
+      document.removeEventListener('DOMContentLoaded', handleReady);
+      window.removeEventListener('wheel', handleImmediate);
+      window.removeEventListener('touchstart', handleImmediate);
+      window.removeEventListener('keydown', handleImmediate);
     };
-  }, [loading]);
+  }, [loading, dismiss]);
 
   if (!loading) return null;
 
   return (
     <div
       aria-hidden="true"
-      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#07130E] transform-gpu will-change-opacity transition-opacity duration-500 ease-out ${
+      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#07130E] will-change-opacity transition-opacity duration-400 ease-out ${
         fadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
-      style={{ transform: 'translateZ(0)' }}
     >
-      {/* Brand Emblem */}
-      <div className="mb-6">
-        <BrandEmblem size="lg" animate={true} />
+      <div className="mb-5">
+        <BrandEmblem size="lg" animate={false} />
       </div>
 
-      {/* Brand Typography */}
       <h1 className="text-xl sm:text-2xl font-serif tracking-[0.35em] text-white uppercase mb-2">
         Cerix Global
       </h1>
