@@ -19,18 +19,18 @@ export default function Preloader() {
   useEffect(() => {
     if (!loading) return;
 
-    // The clean, fast opacity fade
-    const dismiss = () => {
+    // Force the preloader to show for at least 1.2 seconds
+    const timer = setTimeout(() => {
       setFadeOut(true);
       setTimeout(() => {
         setLoading(false);
         try {
           sessionStorage.setItem(SESSION_KEY, 'true');
         } catch (e) {}
-      }, 300); // 300ms matches the quick CSS transition duration
-    };
+      }, 400); // Wait for the CSS fade-out to finish
+    }, 1200); 
 
-    // Instant kill switch if the user tries to scroll or interact early
+    // Instant kill switch on user interaction (scroll, click, key)
     const forceKill = () => {
       setLoading(false);
       try {
@@ -38,27 +38,17 @@ export default function Preloader() {
       } catch (e) {}
     };
 
-    // 1. Dismiss instantly as soon as the main page finishes loading
-    if (document.readyState === 'complete') {
-      dismiss();
-    } else {
-      window.addEventListener('load', dismiss, { once: true });
-    }
-
-    // 2. Allow user intent to skip the preloader instantly (0ms delay)
     window.addEventListener('wheel', forceKill, { passive: true, once: true });
     window.addEventListener('touchstart', forceKill, { passive: true, once: true });
     window.addEventListener('keydown', forceKill, { once: true });
-
-    // 3. Absolute maximum fail-safe cap (never block for more than 1 second)
-    const fallbackTimer = setTimeout(dismiss, 1000);
+    window.addEventListener('click', forceKill, { once: true });
 
     return () => {
-      clearTimeout(fallbackTimer);
-      window.removeEventListener('load', dismiss);
+      clearTimeout(timer);
       window.removeEventListener('wheel', forceKill);
       window.removeEventListener('touchstart', forceKill);
       window.removeEventListener('keydown', forceKill);
+      window.removeEventListener('click', forceKill);
     };
   }, [loading]);
 
@@ -67,17 +57,15 @@ export default function Preloader() {
   return (
     <div
       aria-hidden="true"
-      style={{ transitionProperty: 'opacity' }} // Explicitly forces ONLY opacity, killing any hidden scale/fly-out CSS
-      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#07130E] duration-300 ease-out ${
+      style={{ transitionProperty: 'opacity' }}
+      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#07130E] duration-500 ease-out ${
         fadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
-      {/* Brand Emblem retains its animation */}
       <div className="mb-5">
         <BrandEmblem size="lg" animate={true} />
       </div>
 
-      {/* Typography stays perfectly still while fading out */}
       <h1 className="text-xl sm:text-2xl font-serif tracking-[0.35em] text-white uppercase mb-2">
         Cerix Global
       </h1>
