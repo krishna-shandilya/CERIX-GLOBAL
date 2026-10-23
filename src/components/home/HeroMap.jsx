@@ -80,10 +80,10 @@ const HeroMap = memo(function HeroMap() {
           />
         )}
 
-        {/* Clean, static arcs */}
+        {/* Arcs (Null in Option 2) */}
         <HeroMapArcs arcs={arcs} />
 
-        {/* Subtle, sequential jurisdiction glow */}
+        {/* Autonomous illuminated nodes with typography */}
         {inView && <HeroMapNodes jurisdictions={jurisdictions} />}
       </svg>
     </div>
