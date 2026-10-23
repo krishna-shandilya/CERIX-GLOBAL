@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
-import { geoContains } from "d3-geo";
+import { geoContains, geoEquirectangular } from "d3-geo";
 import { merge } from "topojson-client";
 
-const CACHE_KEY = "cerix_map_dots_v1";
+const CACHE_KEY = "cerix_land_dots_v2";
 
-export default function useHeroMapLand(projection) {
+export default function useHeroMapLand() {
   const [dots, setDots] = useState(() => {
-    // 1. Instant hydration if already in session cache
     if (typeof window !== "undefined") {
       try {
         const cached = sessionStorage.getItem(CACHE_KEY);
         if (cached) return JSON.parse(cached);
       } catch (e) {
-        // Storage access fallback
+        // Fallback gracefully
       }
     }
     return [];
@@ -22,15 +21,29 @@ export default function useHeroMapLand(projection) {
     if (dots.length > 0) return;
 
     let cancelled = false;
-    let timerId = null;
 
-    const computeLandPoints = async () => {
+    const loadLand = async () => {
+      // 1. Try local JSON first if available
+      try {
+        const localRes = await fetch("/land-dots.json");
+        if (localRes.ok) {
+          const localData = await localRes.json();
+          if (!cancelled && localData.length > 0) {
+            setDots(localData);
+            try { sessionStorage.setItem(CACHE_KEY, JSON.stringify(localData)); } catch (_) {}
+            return;
+          }
+        }
+      } catch (_) {}
+
+      // 2. Fetch TopoJSON directly from CDN if local file is missing
       try {
         const response = await fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
         if (!response.ok) return;
         const topology = await response.json();
         if (cancelled) return;
 
+        const proj = geoEquirectangular().fitSize([1000, 500], { type: "Sphere" });
         const land = {
           type: "Feature",
           geometry: merge(topology, topology.objects.countries.geometries),
@@ -39,55 +52,36 @@ export default function useHeroMapLand(projection) {
         const points = [];
         const columns = 167;
         const total = columns * 84;
-        let index = 0;
-        const CHUNK_SIZE = 500; // Small batch to keep frames < 50ms
 
-        const processChunk = () => {
-          if (cancelled) return;
-          const end = Math.min(index + CHUNK_SIZE, total);
-
-          for (; index < end; index++) {
-            const point = [(index % columns) * 6, Math.floor(index / columns) * 6];
-            const location = projection.invert(point);
-            if (location && location[1] >= -58 && geoContains(land, location)) {
-              points.push(point);
-            }
+        for (let i = 0; i < total; i++) {
+          const pt = [(i % columns) * 6, Math.floor(i / columns) * 6];
+          const loc = proj.invert(pt);
+          if (loc && loc[1] >= -58 && geoContains(land, loc)) {
+            points.push(pt);
           }
+        }
 
-          if (index < total) {
-            timerId = setTimeout(processChunk, 16);
-          } else {
-            setDots(points);
-            try {
-              sessionStorage.setItem(CACHE_KEY, JSON.stringify(points));
-            } catch (e) {
-              // Storage quota limit fallback
-            }
-          }
-        };
-
-        processChunk();
+        if (!cancelled && points.length > 0) {
+          setDots(points);
+          try {
+            sessionStorage.setItem(CACHE_KEY, JSON.stringify(points));
+          } catch (_) {}
+        }
       } catch (err) {
-        console.error("Map land deferred computation error:", err);
+        console.error("Land loading fallback error:", err);
       }
     };
 
-    // 2. Defer computation until browser is idle
     if (typeof window !== "undefined" && "requestIdleCallback" in window) {
-      const idleHandle = window.requestIdleCallback(() => computeLandPoints(), { timeout: 2000 });
-      return () => {
-        cancelled = true;
-        window.cancelIdleCallback(idleHandle);
-        if (timerId) clearTimeout(timerId);
-      };
+      window.requestIdleCallback(() => loadLand(), { timeout: 1500 });
     } else {
-      timerId = setTimeout(computeLandPoints, 800);
-      return () => {
-        cancelled = true;
-        clearTimeout(timerId);
-      };
+      setTimeout(loadLand, 300);
     }
-  }, [projection, dots.length]);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [dots.length]);
 
   return dots;
 }
