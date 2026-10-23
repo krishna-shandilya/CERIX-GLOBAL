@@ -6,74 +6,74 @@ const HeroMapNodes = memo(function HeroMapNodes({ jurisdictions }) {
   return (
     <g className="cerix-hero-nodes pointer-events-none select-none">
       <defs>
-        <radialGradient id="option3-aura" cx="50%" cy="50%" r="50%">
+        <radialGradient id="node-glow-grad" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.8" />
-          <stop offset="45%" stopColor="#C5A880" stopOpacity="0.25" />
+          <stop offset="40%" stopColor="#C5A880" stopOpacity="0.3" />
           <stop offset="100%" stopColor="#C5A880" stopOpacity="0" />
         </radialGradient>
       </defs>
 
       <style>{`
-        @keyframes corridorPulse {
+        @keyframes beaconPulse {
           0% {
             r: 2px;
-            opacity: 0.85;
-            stroke-width: 1.2px;
+            opacity: 0.9;
+            stroke-width: 1.5px;
           }
-          65% {
-            r: 9px;
+          70% {
+            r: 10px;
             opacity: 0;
-            stroke-width: 0.4px;
+            stroke-width: 0.5px;
           }
           100% {
-            r: 9px;
+            r: 10px;
             opacity: 0;
             stroke-width: 0px;
           }
         }
-        .cerix-corridor-ring {
-          animation: corridorPulse 5.5s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+        .cerix-beacon-ring {
+          animation: beaconPulse 6s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
           transform-box: fill-box;
           transform-origin: center;
         }
       `}</style>
 
       {jurisdictions.map((node, index) => {
-        const delay = (index * 0.55).toFixed(1);
+        const delay = (index * 0.6).toFixed(1);
 
         return (
           <g
             key={node.name}
             transform={`translate(${node.position[0]} ${node.position[1]})`}
           >
-            {/* Luminous soft aura */}
+            {/* 1. Luminous ambient gradient backing */}
             <circle
-              r={node.isNexus ? "9" : "6"}
-              fill="url(#option3-aura)"
+              r={node.isHub ? "9" : "7"}
+              fill="url(#node-glow-grad)"
               opacity="0.45"
             />
 
-            {/* Radar expansion */}
+            {/* 2. Expanding radar pulse ring */}
             <circle
-              className="cerix-corridor-ring"
+              className="cerix-beacon-ring"
               r="2"
               fill="none"
               stroke="#D4AF37"
               style={{ animationDelay: `${delay}s` }}
             />
 
-            {/* Precision gold ring */}
+            {/* 3. Outer gold hairline ring */}
             <circle
-              r={node.isNexus ? "3.8" : "2.8"}
+              r={node.isHub ? "4" : "3.2"}
               fill="none"
               stroke="#C5A880"
               strokeWidth="0.75"
-              strokeOpacity="0.75"
+              strokeOpacity="0.7"
             />
 
-            {/* Solid core pinpoint */}
+            {/* 4. Center diamond pin */}
             <circle
-              r="1.5"
+              r="1.6"
               fill="#FFFFFF"
             />
           </g>
