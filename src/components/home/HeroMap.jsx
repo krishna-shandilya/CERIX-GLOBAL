@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, memo } from "react";
 import HeroMapArcs from "@/components/home/HeroMapArcs";
 import HeroMapNodes from "@/components/home/HeroMapNodes";
 import useHeroMapLand from "@/components/home/useHeroMapLand";
-import { dotsPath, jurisdictions } from "@/components/home/heroMapGeometry";
+import { arcs, dotsPath, jurisdictions } from "@/components/home/heroMapGeometry";
 
 const VB_X = -197, VB_Y = -131.5, VB_W = 1027, VB_H = 674;
 
@@ -80,10 +80,10 @@ const HeroMap = memo(function HeroMap() {
           />
         ) : null}
 
-        {/* Option 3: Graticules & Orbital Corridors */}
-        <HeroMapArcs />
+        {/* Option 1: Radial Parabolic Arcs */}
+        <HeroMapArcs arcs={arcs} />
 
-        {/* Sequentially glowing jurisdiction pins */}
+        {/* High-Precision Beacons */}
         {inView && <HeroMapNodes jurisdictions={jurisdictions} />}
       </svg>
     </div>
