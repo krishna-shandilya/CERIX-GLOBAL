@@ -1,44 +1,21 @@
 import React, { memo } from "react";
 
-const HeroMapArcs = memo(function HeroMapArcs({ arcs, paused }) {
+const HeroMapArcs = memo(function HeroMapArcs({ arcs }) {
   if (!arcs || arcs.length === 0) return null;
 
   return (
-    <g className="cerix-hero-arcs">
-      {/* 1. Static base guide arcs (vector paint, negligible CPU cost) */}
+    <g className="cerix-hero-arcs pointer-events-none">
       {arcs.map((arc, index) => (
         <path
-          key={`base-${index}`}
+          key={`arc-${index}`}
           d={arc.d}
           fill="none"
-          stroke="#B8860B"
-          strokeWidth="1.25"
-          strokeOpacity="0.4"
+          stroke="#C5A880"
+          strokeWidth="1.2"
+          strokeOpacity="0.45"
+          strokeLinecap="round"
         />
       ))}
-
-      {/* 2. Animated traveller pulses: mounted only when visible */}
-      {!paused &&
-        arcs.map((arc, index) => (
-          <path
-            key={`pulse-${index}`}
-            className="cerix-map-traveller"
-            d={arc.d}
-            fill="none"
-            stroke="#D4AF37"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeDasharray={`0.01 ${arc.length}`}
-            style={{
-              "--trip-distance": -(arc.length + 0.01),
-              "--trip-duration": `${4 + (index % 5) * 0.6}s`,
-              "--trip-offset": `${-index * 0.73}s`,
-              animationPlayState: "running",
-              transform: "translateZ(0)",
-              willChange: "stroke-dashoffset",
-            }}
-          />
-        ))}
     </g>
   );
 });
