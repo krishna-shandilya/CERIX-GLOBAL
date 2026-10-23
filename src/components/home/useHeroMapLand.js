@@ -36,7 +36,7 @@ export default function useHeroMapLand() {
         }
       } catch (_) {}
 
-      // 2. Fetch TopoJSON directly from CDN if local file is missing
+      // 2. Fetch TopoJSON directly from CDN if local file is not present
       try {
         const response = await fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
         if (!response.ok) return;
