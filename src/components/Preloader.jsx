@@ -32,7 +32,7 @@ export default function Preloader() {
     let triggerTimer;
 
     const handleReady = () => {
-      triggerTimer = setTimeout(dismiss, 450);
+      triggerTimer = setTimeout(dismiss, 500);
     };
 
     if (document.readyState === 'interactive' || document.readyState === 'complete') {
@@ -46,7 +46,7 @@ export default function Preloader() {
     window.addEventListener('touchstart', handleImmediate, { passive: true, once: true });
     window.addEventListener('keydown', handleImmediate, { once: true });
 
-    const fallbackTimer = setTimeout(dismiss, 1200);
+    const fallbackTimer = setTimeout(dismiss, 1400);
 
     return () => {
       clearTimeout(triggerTimer);
@@ -67,10 +67,12 @@ export default function Preloader() {
         fadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
+      {/* Brand Emblem with full animation intact */}
       <div className="mb-5">
-        <BrandEmblem size="lg" animate={false} />
+        <BrandEmblem size="lg" animate={true} />
       </div>
 
+      {/* Brand Typography (stationary, zero zoom/fly-out) */}
       <h1 className="text-xl sm:text-2xl font-serif tracking-[0.35em] text-white uppercase mb-2">
         Cerix Global
       </h1>
