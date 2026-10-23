@@ -1,25 +1,43 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { introShouldRun, markIntroDone, notifyIntroDone } from "@/lib/intro";
 
-// Full-screen intro (once per session): a dark forest-olive ground matching the hero
-// (base #17231F with the same centre glow) plus a few soft static olive blobs. The Cerix
-// dotted-grid mark forms from the centre outward, the reversed CERIX GLOBAL wordmark
-// settles in, then the whole lockup zooms toward the header logo and fades while the
-// backdrop sharpens. Timeline, zoom, skip, sessionStorage flag and reduced-motion stay.
 export default function IntroOverlay() {
   const [mounted, setMounted] = useState(introShouldRun());
-  const timers = useRef([]);
+  const [fadeOut, setFadeOut] = useState(false);
+
+  // Clean, fast opacity fade that signals the main app to reveal itself
+  const dismiss = useCallback(() => {
+    if (fadeOut) return;
+    setFadeOut(true);
+    markIntroDone();
+    notifyIntroDone();
+    
+    // Unmount from DOM completely after a swift 400ms fade
+    setTimeout(() => setMounted(false), 400); 
+  }, [fadeOut]);
 
   useEffect(() => {
     if (!mounted) return;
-    const t1 = setTimeout(() => {
-      markIntroDone();
-      notifyIntroDone();
-    }, 3200);
-    const t2 = setTimeout(() => setMounted(false), 3400);
-    timers.current = [t1, t2];
-    return () => timers.current.forEach(clearTimeout);
-  }, [mounted]);
+
+    // 1. Cut the delay: start fading right after the last dot animates (~1.6s) 
+    // instead of forcing users to stare at a blank green screen for 3.4s.
+    const timer = setTimeout(dismiss, 1600);
+
+    // 2. Instant skip: If the user scrolls, clicks, or taps, dismiss instantly.
+    const handleInteraction = () => dismiss();
+    window.addEventListener("wheel", handleInteraction, { passive: true, once: true });
+    window.addEventListener("touchstart", handleInteraction, { passive: true, once: true });
+    window.addEventListener("click", handleInteraction, { once: true });
+    window.addEventListener("keydown", handleInteraction, { once: true });
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("wheel", handleInteraction);
+      window.removeEventListener("touchstart", handleInteraction);
+      window.removeEventListener("click", handleInteraction);
+      window.removeEventListener("keydown", handleInteraction);
+    };
+  }, [mounted, dismiss]);
 
   if (!mounted) return null;
 
@@ -38,13 +56,30 @@ export default function IntroOverlay() {
   }
 
   return (
-    <div className="intro-overlay" aria-hidden="true">
+    <div 
+      className="intro-overlay" 
+      aria-hidden="true"
+      style={{
+        // Forces a strict opacity fade, overriding any external CSS trying to animate this wrapper
+        opacity: fadeOut ? 0 : 1,
+        transition: "opacity 0.4s ease-out",
+        pointerEvents: fadeOut ? "none" : "auto",
+      }}
+    >
       <div className="intro-backdrop-olive" />
       <div className="intro-blob" style={{ width: "46vw", height: "46vw", left: "8vw", top: "12vh" }} />
       <div className="intro-blob" style={{ width: "38vw", height: "38vw", right: "6vw", bottom: "8vh" }} />
       <div className="intro-blob" style={{ width: "30vw", height: "30vw", left: "42vw", bottom: "14vh" }} />
       <div className="intro-tint" />
-      <div className="intro-lockup">
+      
+      <div 
+        className="intro-lockup"
+        style={{
+          // Kills the "zoom toward the header logo" CSS animation entirely
+          transform: "translateZ(0)", 
+          transition: "opacity 0.4s ease-out"
+        }}
+      >
         <svg className="intro-mark" width="104" height="104" viewBox="0 0 64 64" aria-hidden="true">
           {dots.map((d, i) => (
             <circle
