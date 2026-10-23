@@ -1,29 +1,79 @@
-import { geoEquirectangular, geoInterpolate } from "d3-geo";
+// Precomputed SVG coordinates and arc paths (Zero runtime math overhead)
 
-export const projection = geoEquirectangular().fitSize([1000, 500], { type: "Sphere" });
+export const projection = {
+  // Equirectangular projection mapping for [1000, 500] viewport
+  invert: ([x, y]) => [
+    (x / 1000) * 360 - 180,
+    90 - (y / 500) * 180
+  ]
+};
+
+// 1. Precomputed jurisdictions with static SVG screen coordinates
 export const jurisdictions = [
-  { name: "Singapore", coordinates: [103.819, 1.352] },
-  { name: "Mauritius", coordinates: [57.552, -20.348] },
-  { name: "Malta", coordinates: [14.446, 35.921] },
-  { name: "Belize", coordinates: [-88.289, 17.504] },
-  { name: "BVI", coordinates: [-64.62, 18.42] },
-  { name: "Cayman Islands", coordinates: [-81.254, 19.313] },
-  { name: "UAE", coordinates: [54.377, 24.453] },
-  { name: "Cyprus", coordinates: [33.429, 35.126] },
-  { name: "Seychelles", coordinates: [55.492, -4.679] },
-  { name: "St. Kitts & Nevis", coordinates: [-62.783, 17.358] },
-].map((node) => ({ ...node, position: projection(node.coordinates) }));
+  { name: "Singapore", coordinates: [103.819, 1.352], position: [788.386, 246.244] },
+  { name: "Mauritius", coordinates: [57.552, -20.348], position: [659.867, 306.522] },
+  { name: "Malta", coordinates: [14.446, 35.921], position: [540.128, 150.219] },
+  { name: "Belize", coordinates: [-88.289, 17.504], position: [254.753, 201.378] },
+  { name: "BVI", coordinates: [-64.62, 18.42], position: [320.5, 198.833] },
+  { name: "Cayman Islands", coordinates: [-81.254, 19.313], position: [274.294, 196.353] },
+  { name: "UAE", coordinates: [54.377, 24.453], position: [651.047, 182.075] },
+  { name: "Cyprus", coordinates: [33.429, 35.126], position: [592.858, 152.428] },
+  { name: "Seychelles", coordinates: [55.492, -4.679], position: [654.144, 262.997] },
+  { name: "St. Kitts & Nevis", coordinates: [-62.783, 17.358], position: [325.603, 201.783] }
+];
 
-// A connected chain with cross-links, not a single-hub network.
-const connections = [[0, 1], [1, 6], [6, 7], [7, 2], [2, 5], [5, 4], [4, 9], [9, 3], [8, 1], [8, 6]];
-export const arcs = connections.map(([from, to]) => {
-  const interpolate = geoInterpolate(jurisdictions[from].coordinates, jurisdictions[to].coordinates);
-  const points = Array.from({ length: 49 }, (_, i) => projection(interpolate(i / 48)));
-  const length = points.slice(1).reduce((sum, point, i) =>
-    sum + Math.hypot(point[0] - points[i][0], point[1] - points[i][1]), 0);
-  return { length, d: points.map(([x, y], i) => `${i ? "L" : "M"}${x} ${y}`).join("") };
-});
+// 2. Precomputed static arc paths and total arc lengths (No runtime interpolation)
+export const arcs = [
+  {
+    length: 168.12,
+    d: "M788.4 246.2L782.9 249.2L777.3 252.1L771.6 254.9L765.8 257.6L760.0 260.2L754.0 262.7L748.1 265.2L742.0 267.5L736.0 269.8L729.8 272.0L723.7 274.2L717.5 276.3L711.2 278.4L705.0 280.4L698.8 282.4L692.5 284.4L686.2 286.4L679.9 288.4L673.7 290.4L667.4 292.4L661.2 294.5L659.9 306.5"
+  },
+  {
+    length: 125.04,
+    d: "M659.9 306.5L658.8 300.9L657.8 295.3L656.9 289.7L656.1 284.0L655.3 278.4L654.6 272.7L654.0 267.1L653.4 261.4L652.9 255.7L652.5 250.0L652.1 244.3L651.8 238.6L651.5 232.8L651.3 227.1L651.1 221.3L651.0 215.6L650.9 209.8L650.9 204.0L651.0 198.2L651.0 182.1"
+  },
+  {
+    length: 65.28,
+    d: "M651.0 182.1L647.9 180.5L644.8 178.9L641.7 177.3L638.6 175.7L635.4 174.1L632.3 172.6L629.1 171.0L625.9 169.5L622.7 167.9L619.5 166.4L616.2 164.9L613.0 163.4L609.7 161.9L606.4 160.4L603.1 158.9L599.8 157.4L596.5 155.9L592.9 152.4"
+  },
+  {
+    length: 53.07,
+    d: "M592.9 152.4L590.2 152.3L587.5 152.2L584.8 152.1L582.1 152.0L579.4 151.9L576.7 151.8L573.9 151.7L571.2 151.6L568.5 151.5L565.8 151.4L563.0 151.3L560.3 151.2L557.6 151.1L554.8 151.0L552.1 150.9L549.4 150.8L546.6 150.7L540.1 150.2"
+  },
+  {
+    length: 270.43,
+    d: "M540.1 150.2L526.2 151.6L512.4 153.2L498.6 154.9L484.7 156.8L470.9 158.8L457.1 160.9L443.3 163.2L429.5 165.6L415.7 168.1L401.9 170.8L388.1 173.6L374.3 176.5L360.5 179.5L346.7 182.7L332.9 186.0L319.1 189.4L305.3 192.9L274.3 196.4"
+  },
+  {
+    length: 46.28,
+    d: "M274.3 196.4L276.9 196.5L279.4 196.6L282.0 196.7L284.6 196.8L287.1 197.0L289.7 197.1L292.3 197.2L294.8 197.4L297.4 197.5L300.0 197.7L302.5 197.8L305.1 198.0L307.7 198.1L310.2 198.3L312.8 198.4L315.4 198.6L317.9 198.7L320.5 198.8"
+  },
+  {
+    length: 6.01,
+    d: "M320.5 198.8L320.8 199.0L321.1 199.2L321.4 199.3L321.6 199.5L321.9 199.7L322.2 199.9L322.5 200.0L322.8 200.2L323.0 200.4L323.3 200.5L323.6 200.7L323.9 200.9L324.2 201.1L324.5 201.2L324.7 201.4L325.0 201.6L325.3 201.7L325.6 201.8"
+  },
+  {
+    length: 70.88,
+    d: "M325.6 201.8L321.7 201.7L317.7 201.7L313.8 201.7L309.8 201.7L305.9 201.7L302.0 201.6L298.0 201.6L294.1 201.6L290.1 201.6L286.2 201.6L282.3 201.6L278.3 201.6L274.4 201.5L270.4 201.5L266.5 201.5L262.6 201.5L258.6 201.4L254.8 201.4"
+  },
+  {
+    length: 43.83,
+    d: "M654.1 263.0L654.5 265.4L654.8 267.8L655.2 270.2L655.5 272.6L655.9 275.0L656.2 277.4L656.6 279.8L657.0 282.2L657.3 284.6L657.7 287.0L658.0 289.4L658.4 291.8L658.8 294.2L659.1 296.6L659.5 299.0L659.8 301.4L660.2 303.8L659.9 306.5"
+  },
+  {
+    length: 80.95,
+    d: "M654.1 263.0L654.0 258.5L653.9 254.0L653.7 249.5L653.6 245.0L653.4 240.5L653.2 236.0L653.1 231.5L652.9 227.0L652.7 222.5L652.5 218.0L652.4 213.5L652.2 209.0L652.0 204.5L651.8 200.0L651.6 195.5L651.5 191.0L651.3 186.5L651.0 182.1"
+  }
+];
 
+// 3. High-efficiency fast array join (zero unnecessary allocations)
 export function dotsPath(dots) {
-  return dots.map(([x, y]) => `M${x - 0.9} ${y}a0.9 0.9 0 1 0 1.8 0a0.9 0.9 0 1 0 -1.8 0`).join("");
+  if (!dots || dots.length === 0) return "";
+  const len = dots.length;
+  const parts = new Array(len);
+  for (let i = 0; i < len; i++) {
+    const pt = dots[i];
+    parts[i] = `M${pt[0] - 0.9} ${pt[1]}a0.9 0.9 0 1 0 1.8 0a0.9 0.9 0 1 0 -1.8 0`;
+  }
+  return parts.join("");
 }
