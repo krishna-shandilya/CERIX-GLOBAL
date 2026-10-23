@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import BrandEmblem from './BrandEmblem';
 
 const SESSION_KEY = 'cerix_visited';
@@ -8,7 +8,7 @@ export default function Preloader() {
     if (typeof window !== 'undefined') {
       try {
         return !sessionStorage.getItem(SESSION_KEY);
-      } catch (_) {
+      } catch (e) {
         return false;
       }
     }
@@ -16,63 +16,68 @@ export default function Preloader() {
   });
   const [fadeOut, setFadeOut] = useState(false);
 
-  const dismiss = useCallback(() => {
-    setFadeOut(true);
-    setTimeout(() => {
-      setLoading(false);
-      try {
-        sessionStorage.setItem(SESSION_KEY, 'true');
-      } catch (_) {}
-    }, 400);
-  }, []);
-
   useEffect(() => {
     if (!loading) return;
 
-    let triggerTimer;
-
-    const handleReady = () => {
-      triggerTimer = setTimeout(dismiss, 500);
+    // The clean, fast opacity fade
+    const dismiss = () => {
+      setFadeOut(true);
+      setTimeout(() => {
+        setLoading(false);
+        try {
+          sessionStorage.setItem(SESSION_KEY, 'true');
+        } catch (e) {}
+      }, 300); // 300ms matches the quick CSS transition duration
     };
 
-    if (document.readyState === 'interactive' || document.readyState === 'complete') {
-      handleReady();
+    // Instant kill switch if the user tries to scroll or interact early
+    const forceKill = () => {
+      setLoading(false);
+      try {
+        sessionStorage.setItem(SESSION_KEY, 'true');
+      } catch (e) {}
+    };
+
+    // 1. Dismiss instantly as soon as the main page finishes loading
+    if (document.readyState === 'complete') {
+      dismiss();
     } else {
-      document.addEventListener('DOMContentLoaded', handleReady, { once: true });
+      window.addEventListener('load', dismiss, { once: true });
     }
 
-    const handleImmediate = () => dismiss();
-    window.addEventListener('wheel', handleImmediate, { passive: true, once: true });
-    window.addEventListener('touchstart', handleImmediate, { passive: true, once: true });
-    window.addEventListener('keydown', handleImmediate, { once: true });
+    // 2. Allow user intent to skip the preloader instantly (0ms delay)
+    window.addEventListener('wheel', forceKill, { passive: true, once: true });
+    window.addEventListener('touchstart', forceKill, { passive: true, once: true });
+    window.addEventListener('keydown', forceKill, { once: true });
 
-    const fallbackTimer = setTimeout(dismiss, 1400);
+    // 3. Absolute maximum fail-safe cap (never block for more than 1 second)
+    const fallbackTimer = setTimeout(dismiss, 1000);
 
     return () => {
-      clearTimeout(triggerTimer);
       clearTimeout(fallbackTimer);
-      document.removeEventListener('DOMContentLoaded', handleReady);
-      window.removeEventListener('wheel', handleImmediate);
-      window.removeEventListener('touchstart', handleImmediate);
-      window.removeEventListener('keydown', handleImmediate);
+      window.removeEventListener('load', dismiss);
+      window.removeEventListener('wheel', forceKill);
+      window.removeEventListener('touchstart', forceKill);
+      window.removeEventListener('keydown', forceKill);
     };
-  }, [loading, dismiss]);
+  }, [loading]);
 
   if (!loading) return null;
 
   return (
     <div
       aria-hidden="true"
-      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#07130E] will-change-opacity transition-opacity duration-400 ease-out ${
+      style={{ transitionProperty: 'opacity' }} // Explicitly forces ONLY opacity, killing any hidden scale/fly-out CSS
+      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#07130E] duration-300 ease-out ${
         fadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
-      {/* Brand Emblem with full animation intact */}
+      {/* Brand Emblem retains its animation */}
       <div className="mb-5">
         <BrandEmblem size="lg" animate={true} />
       </div>
 
-      {/* Brand Typography (stationary, zero zoom/fly-out) */}
+      {/* Typography stays perfectly still while fading out */}
       <h1 className="text-xl sm:text-2xl font-serif tracking-[0.35em] text-white uppercase mb-2">
         Cerix Global
       </h1>
