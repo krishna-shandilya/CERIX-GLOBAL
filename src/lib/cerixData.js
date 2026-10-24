@@ -14,17 +14,17 @@ import assetManagersImg from "@/assets/whoweadvise/asset-managers.webp";
 import familyOfficeImg from "@/assets/whoweadvise/high-net-worth.webp";
 import institutionalImg from "@/assets/whoweadvise/institutional-clients.webp";
 
-// Jurisdiction Image Imports (.png)
-import singaporeImg from "@/assets/services/jurisdictions/singapore.png";
-import mauritiusImg from "@/assets/services/jurisdictions/mauritius.png";
-import maltaImg from "@/assets/services/jurisdictions/malta.png";
-import belizeImg from "@/assets/services/jurisdictions/belize.png";
-import bviImg from "@/assets/services/jurisdictions/bvi.png";
-import caymanImg from "@/assets/services/jurisdictions/cayman-islands.png";
-import uaeImg from "@/assets/services/jurisdictions/uae.png";
-import cyprusImg from "@/assets/services/jurisdictions/cyprus.png";
-import seychellesImg from "@/assets/services/jurisdictions/seychelles.png";
-import stkittsImg from "@/assets/services/jurisdictions/st-kitts-nevis.png";
+// Jurisdiction Image Imports (.webp from src/assets/jurisdictions/)
+import singaporeImg from "@/assets/jurisdictions/singapore.webp";
+import mauritiusImg from "@/assets/jurisdictions/mauritius.webp";
+import maltaImg from "@/assets/jurisdictions/malta.webp";
+import belizeImg from "@/assets/jurisdictions/belize.webp";
+import bviImg from "@/assets/jurisdictions/bvi.webp";
+import caymanImg from "@/assets/jurisdictions/cayman-islands.webp";
+import uaeImg from "@/assets/jurisdictions/uae.webp";
+import cyprusImg from "@/assets/jurisdictions/cyprus.webp";
+import seychellesImg from "@/assets/jurisdictions/seychelles.webp";
+import stkittsImg from "@/assets/jurisdictions/st-kitts-nevis.webp";
 
 // Why Cerix Image Import
 import whyCerixImg from "@/assets/why-cerix.png";
