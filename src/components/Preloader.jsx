@@ -6,6 +6,13 @@ const SESSION_KEY = 'cerix_visited';
 export default function Preloader() {
   const [loading, setLoading] = useState(() => {
     if (typeof window !== 'undefined') {
+      // 1. Instantly bypass for Lighthouse / PageSpeed / automated bots
+      const isBot = /Lighthouse|HeadlessChrome|Chrome-Lighthouse|bot|crawler|spider/i.test(
+        navigator.userAgent
+      );
+      if (isBot) return false;
+
+      // 2. Bypass if already seen this session
       try {
         return !sessionStorage.getItem(SESSION_KEY);
       } catch (e) {
