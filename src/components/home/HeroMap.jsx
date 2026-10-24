@@ -1,19 +1,14 @@
 import React, { useEffect, useRef, useState, memo } from "react";
 import HeroMapArcs from "@/components/home/HeroMapArcs";
 import HeroMapNodes from "@/components/home/HeroMapNodes";
-import useHeroMapLand from "@/components/home/useHeroMapLand";
-import { arcs, dotsPath, jurisdictions } from "@/components/home/heroMapGeometry";
+import { arcs, jurisdictions } from "@/components/home/heroMapGeometry";
+import { CONTINENT_SILHOUETTE_PATH } from "@/components/home/continentPaths";
 
 const VB_X = -197, VB_Y = -131.5, VB_W = 1027, VB_H = 674;
 
 const HeroMap = memo(function HeroMap() {
   const section = useRef(null);
   const [inView, setInView] = useState(true);
-  const dots = useHeroMapLand();
-
-  const landPath = React.useMemo(() => {
-    return dots && dots.length > 0 ? dotsPath(dots) : "";
-  }, [dots]);
 
   useEffect(() => {
     const el = section.current?.closest("section");
@@ -41,19 +36,19 @@ const HeroMap = memo(function HeroMap() {
         focusable="false"
       >
         <defs>
-          {/* Native Hardware-Accelerated Dot Grid Pattern (0ms JS) */}
+          {/* Subtle dot pattern used as the continent fill */}
           <pattern
-            id="cerix-dot-pattern"
+            id="cerix-continent-dots"
             x={VB_X}
             y={VB_Y}
-            width="8"
-            height="8"
+            width="6"
+            height="6"
             patternUnits="userSpaceOnUse"
           >
-            <circle cx="2" cy="2" r="1.1" fill="#E8E4DA" fillOpacity="0.22" />
+            <circle cx="2" cy="2" r="1" fill="#E8E4DA" fillOpacity="0.25" />
           </pattern>
 
-          {/* Fade mask for clean readability behind left-side text */}
+          {/* Fade mask to dissolve continents gracefully behind the left headline */}
           <linearGradient
             id="cerix-land-fade"
             x1={VB_X}
@@ -82,32 +77,37 @@ const HeroMap = memo(function HeroMap() {
               fill="url(#cerix-land-fade)"
             />
           </mask>
+
+          {/* Mask that cuts out the dot pattern strictly into the shape of Earth's landmasses */}
+          <mask id="world-continents-cutout" maskUnits="userSpaceOnUse">
+            <rect x={VB_X} y={VB_Y} width={VB_W} height={VB_H} fill="black" />
+            <path
+              d={CONTINENT_SILHOUETTE_PATH}
+              fill="white"
+              transform="translate(0, 0) scale(1)"
+            />
+          </mask>
         </defs>
 
-        {/* 1. If static land dots ever exist, render them */}
-        {landPath ? (
-          <path
-            d={landPath}
-            fill="#E8E4DA"
-            fillOpacity="0.28"
-            mask="url(#cerix-land-mask)"
-          />
-        ) : (
-          /* 2. Instant Zero-Cost Dotted Field (Shows the dotted map matrix with zero CPU load) */
+        {/* 
+          World Map: Dotted texture masked precisely inside the continent geometry, 
+          then softened behind the left hero title. 
+        */}
+        <g mask="url(#cerix-land-mask)">
           <rect
             x={VB_X}
             y={VB_Y}
             width={VB_W}
             height={VB_H}
-            fill="url(#cerix-dot-pattern)"
-            mask="url(#cerix-land-mask)"
+            fill="url(#cerix-continent-dots)"
+            mask="url(#world-continents-cutout)"
           />
-        )}
+        </g>
 
-        {/* Option 1: Radial Parabolic Arcs */}
+        {/* Golden Arcs */}
         <HeroMapArcs arcs={arcs} />
 
-        {/* High-Precision Beacons */}
+        {/* Glowing Interactive Hub Nodes */}
         {inView && <HeroMapNodes jurisdictions={jurisdictions} />}
       </svg>
     </div>
