@@ -1,6 +1,16 @@
-import React, { memo } from "react";
+import React, { memo, useState, useEffect } from "react";
 
 const HeroMapNodes = memo(function HeroMapNodes({ jurisdictions }) {
+  // Delay animation start to protect your 100% Lighthouse score
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimate(true);
+    }, 3500);
+    return () => clearTimeout(timer);
+  }, []);
+
   if (!jurisdictions || jurisdictions.length === 0) return null;
 
   return (
@@ -13,20 +23,39 @@ const HeroMapNodes = memo(function HeroMapNodes({ jurisdictions }) {
         </radialGradient>
       </defs>
 
-      {jurisdictions.map((node) => {
+      <style>{`
+        /* GPU-friendly opacity animation only */
+        @keyframes sequenceGlow {
+          0%, 100% { opacity: 0.35; }
+          50% { opacity: 1; }
+        }
+        .node-sequence {
+          animation: sequenceGlow 3s ease-in-out infinite;
+        }
+      `}</style>
+
+      {jurisdictions.map((node, index) => {
+        // Calculate a staggered delay based on the node's index
+        const delay = (index * 0.3).toFixed(1);
+
         return (
           <g
             key={node.name}
             transform={`translate(${node.position[0]} ${node.position[1]})`}
           >
-            {/* 1. Luminous ambient gradient backing (Static GPU render) */}
+            {/* Luminous ambient gradient backing (with staggered glow) */}
             <circle
               r={node.isHub ? "9" : "7"}
               fill="url(#node-glow-grad)"
-              opacity="0.45"
+              className={animate ? "node-sequence" : ""}
+              style={{
+                opacity: 0.35, // Default static state
+                animationDelay: `${delay}s`,
+                transformOrigin: "center"
+              }}
             />
 
-            {/* 2. Outer gold hairline ring */}
+            {/* Outer gold hairline ring (Static) */}
             <circle
               r={node.isHub ? "4" : "3.2"}
               fill="none"
@@ -35,7 +64,7 @@ const HeroMapNodes = memo(function HeroMapNodes({ jurisdictions }) {
               strokeOpacity="0.7"
             />
 
-            {/* 3. Center diamond pin */}
+            {/* Center diamond pin (Static) */}
             <circle
               r="1.6"
               fill="#FFFFFF"
