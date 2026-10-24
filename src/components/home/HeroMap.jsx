@@ -41,17 +41,31 @@ const HeroMap = memo(function HeroMap() {
         focusable="false"
       >
         <defs>
+          {/* Native Hardware-Accelerated Dot Grid Pattern (0ms JS) */}
+          <pattern
+            id="cerix-dot-pattern"
+            x={VB_X}
+            y={VB_Y}
+            width="8"
+            height="8"
+            patternUnits="userSpaceOnUse"
+          >
+            <circle cx="2" cy="2" r="1.1" fill="#E8E4DA" fillOpacity="0.22" />
+          </pattern>
+
+          {/* Fade mask for clean readability behind left-side text */}
           <linearGradient
             id="cerix-land-fade"
             x1={VB_X}
             y1="0"
-            x2={VB_X + 0.4 * VB_W}
+            x2={VB_X + 0.45 * VB_W}
             y2="0"
             gradientUnits="userSpaceOnUse"
           >
             <stop offset="0%" stopColor="black" />
             <stop offset="100%" stopColor="white" />
           </linearGradient>
+
           <mask
             id="cerix-land-mask"
             maskUnits="userSpaceOnUse"
@@ -70,7 +84,7 @@ const HeroMap = memo(function HeroMap() {
           </mask>
         </defs>
 
-        {/* Guaranteed visible continent dots with explicit color */}
+        {/* 1. If static land dots ever exist, render them */}
         {landPath ? (
           <path
             d={landPath}
@@ -78,7 +92,17 @@ const HeroMap = memo(function HeroMap() {
             fillOpacity="0.28"
             mask="url(#cerix-land-mask)"
           />
-        ) : null}
+        ) : (
+          /* 2. Instant Zero-Cost Dotted Field (Shows the dotted map matrix with zero CPU load) */
+          <rect
+            x={VB_X}
+            y={VB_Y}
+            width={VB_W}
+            height={VB_H}
+            fill="url(#cerix-dot-pattern)"
+            mask="url(#cerix-land-mask)"
+          />
+        )}
 
         {/* Option 1: Radial Parabolic Arcs */}
         <HeroMapArcs arcs={arcs} />
