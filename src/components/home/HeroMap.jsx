@@ -1,14 +1,19 @@
 import React, { useEffect, useRef, useState, memo } from "react";
 import HeroMapArcs from "@/components/home/HeroMapArcs";
 import HeroMapNodes from "@/components/home/HeroMapNodes";
-import { arcs, jurisdictions } from "@/components/home/heroMapGeometry";
-import { WORLD_COASTLINES } from "@/components/home/worldVector";
+import useHeroMapLand from "@/components/home/useHeroMapLand";
+import { arcs, dotsPath, jurisdictions } from "@/components/home/heroMapGeometry";
 
 const VB_X = -197, VB_Y = -131.5, VB_W = 1027, VB_H = 674;
 
 const HeroMap = memo(function HeroMap() {
   const section = useRef(null);
   const [inView, setInView] = useState(true);
+  const dots = useHeroMapLand();
+
+  const landPath = React.useMemo(() => {
+    return dots && dots.length > 0 ? dotsPath(dots) : "";
+  }, [dots]);
 
   useEffect(() => {
     const el = section.current?.closest("section");
@@ -36,19 +41,17 @@ const HeroMap = memo(function HeroMap() {
         focusable="false"
       >
         <defs>
-          {/* Subtle fade mask behind the left hero headline */}
           <linearGradient
             id="cerix-land-fade"
             x1={VB_X}
             y1="0"
-            x2={VB_X + 0.45 * VB_W}
+            x2={VB_X + 0.4 * VB_W}
             y2="0"
             gradientUnits="userSpaceOnUse"
           >
             <stop offset="0%" stopColor="black" />
             <stop offset="100%" stopColor="white" />
           </linearGradient>
-
           <mask
             id="cerix-land-mask"
             maskUnits="userSpaceOnUse"
@@ -67,28 +70,16 @@ const HeroMap = memo(function HeroMap() {
           </mask>
         </defs>
 
-        {/* 
-          Full Precision World Map:
-          - fill: provides the landmass silhouette
-          - stroke with strokeDasharray="1 5": produces clean cartographic dotted coastlines
-          - 0ms JS blocking time
-        */}
-        <path
-          d={WORLD_COASTLINES}
-          fill="#E8E4DA"
-          fillOpacity="0.08"
-          stroke="#E8E4DA"
-          strokeOpacity="0.32"
-          strokeWidth="1.5"
-          strokeDasharray="1 4"
-          strokeLinecap="round"
-          mask="url(#cerix-land-mask)"
-        />
+        {landPath ? (
+          <path
+            d={landPath}
+            fill="#E8E4DA"
+            fillOpacity="0.28"
+            mask="url(#cerix-land-mask)"
+          />
+        ) : null}
 
-        {/* Golden Arcs */}
         <HeroMapArcs arcs={arcs} />
-
-        {/* Hub Beacons */}
         {inView && <HeroMapNodes jurisdictions={jurisdictions} />}
       </svg>
     </div>
