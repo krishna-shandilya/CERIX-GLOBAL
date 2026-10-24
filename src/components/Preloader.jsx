@@ -6,7 +6,7 @@ const SESSION_KEY = 'cerix_visited';
 export default function Preloader() {
   const [loading, setLoading] = useState(() => {
     if (typeof window !== 'undefined') {
-      // 1. Instantly bypass for Lighthouse / PageSpeed / automated bots
+      // 1. Instantly bypass for Lighthouse / PageSpeed / bots
       const isBot = /Lighthouse|HeadlessChrome|Chrome-Lighthouse|bot|crawler|spider/i.test(
         navigator.userAgent
       );
@@ -26,7 +26,7 @@ export default function Preloader() {
   useEffect(() => {
     if (!loading) return;
 
-    // Display for 300ms, then trigger a 200ms fade-out (500ms total)
+    // Display for just 150ms, then trigger a rapid 150ms fade-out
     const timer = setTimeout(() => {
       setFadeOut(true);
       setTimeout(() => {
@@ -34,8 +34,8 @@ export default function Preloader() {
         try {
           sessionStorage.setItem(SESSION_KEY, 'true');
         } catch (e) {}
-      }, 200);
-    }, 300);
+      }, 150);
+    }, 150);
 
     // Instant kill switch on user interaction
     const forceKill = () => {
@@ -65,7 +65,7 @@ export default function Preloader() {
     <div
       aria-hidden="true"
       style={{ transitionProperty: 'opacity' }}
-      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#07130E] duration-200 ease-out ${
+      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#07130E] duration-150 ease-out ${
         fadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
