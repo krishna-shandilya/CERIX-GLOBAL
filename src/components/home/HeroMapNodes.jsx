@@ -13,56 +13,20 @@ const HeroMapNodes = memo(function HeroMapNodes({ jurisdictions }) {
         </radialGradient>
       </defs>
 
-      <style>{`
-        @keyframes beaconPulse {
-          0% {
-            r: 2px;
-            opacity: 0.9;
-            stroke-width: 1.5px;
-          }
-          70% {
-            r: 10px;
-            opacity: 0;
-            stroke-width: 0.5px;
-          }
-          100% {
-            r: 10px;
-            opacity: 0;
-            stroke-width: 0px;
-          }
-        }
-        .cerix-beacon-ring {
-          animation: beaconPulse 6s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
-          transform-box: fill-box;
-          transform-origin: center;
-        }
-      `}</style>
-
-      {jurisdictions.map((node, index) => {
-        const delay = (index * 0.6).toFixed(1);
-
+      {jurisdictions.map((node) => {
         return (
           <g
             key={node.name}
             transform={`translate(${node.position[0]} ${node.position[1]})`}
           >
-            {/* 1. Luminous ambient gradient backing */}
+            {/* 1. Luminous ambient gradient backing (Static GPU render) */}
             <circle
               r={node.isHub ? "9" : "7"}
               fill="url(#node-glow-grad)"
               opacity="0.45"
             />
 
-            {/* 2. Expanding radar pulse ring */}
-            <circle
-              className="cerix-beacon-ring"
-              r="2"
-              fill="none"
-              stroke="#D4AF37"
-              style={{ animationDelay: `${delay}s` }}
-            />
-
-            {/* 3. Outer gold hairline ring */}
+            {/* 2. Outer gold hairline ring */}
             <circle
               r={node.isHub ? "4" : "3.2"}
               fill="none"
@@ -71,7 +35,7 @@ const HeroMapNodes = memo(function HeroMapNodes({ jurisdictions }) {
               strokeOpacity="0.7"
             />
 
-            {/* 4. Center diamond pin */}
+            {/* 3. Center diamond pin */}
             <circle
               r="1.6"
               fill="#FFFFFF"
