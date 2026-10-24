@@ -41,9 +41,13 @@ export default function GlobalReachPage() {
                   <img
                     src={jur.image}
                     alt={jur.name}
+                    width={400}
+                    height={208}
+                    loading={idx < 3 ? "eager" : "lazy"}
+                    decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1D16] via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1D16] via-transparent to-transparent opacity-80 pointer-events-none" />
                 </div>
               )}
               <div className="p-8">
