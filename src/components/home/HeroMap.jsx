@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, memo } from "react";
 import HeroMapArcs from "@/components/home/HeroMapArcs";
 import HeroMapNodes from "@/components/home/HeroMapNodes";
 import { arcs, jurisdictions } from "@/components/home/heroMapGeometry";
-import { LAND_DOTS_SVG_PATH } from "@/components/home/landDotsData";
+import { WORLD_COASTLINES } from "@/components/home/worldVector";
 
 const VB_X = -197, VB_Y = -131.5, VB_W = 1027, VB_H = 674;
 
@@ -36,7 +36,7 @@ const HeroMap = memo(function HeroMap() {
         focusable="false"
       >
         <defs>
-          {/* Subtle gradient to dissolve dots cleanly behind headline */}
+          {/* Subtle fade mask behind the left hero headline */}
           <linearGradient
             id="cerix-land-fade"
             x1={VB_X}
@@ -67,18 +67,28 @@ const HeroMap = memo(function HeroMap() {
           </mask>
         </defs>
 
-        {/* Real Dotted World Continents (Single composite SVG path, 0ms JS blocking) */}
+        {/* 
+          Full Precision World Map:
+          - fill: provides the landmass silhouette
+          - stroke with strokeDasharray="1 5": produces clean cartographic dotted coastlines
+          - 0ms JS blocking time
+        */}
         <path
-          d={LAND_DOTS_SVG_PATH}
+          d={WORLD_COASTLINES}
           fill="#E8E4DA"
-          fillOpacity="0.32"
+          fillOpacity="0.08"
+          stroke="#E8E4DA"
+          strokeOpacity="0.32"
+          strokeWidth="1.5"
+          strokeDasharray="1 4"
+          strokeLinecap="round"
           mask="url(#cerix-land-mask)"
         />
 
         {/* Golden Arcs */}
         <HeroMapArcs arcs={arcs} />
 
-        {/* Hub Nodes */}
+        {/* Hub Beacons */}
         {inView && <HeroMapNodes jurisdictions={jurisdictions} />}
       </svg>
     </div>
