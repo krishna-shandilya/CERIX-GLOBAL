@@ -19,7 +19,7 @@ export default function Preloader() {
   useEffect(() => {
     if (!loading) return;
 
-    // Force the preloader to show for at least 1.2 seconds
+    // Start fade-out at 650ms, complete unmount at 950ms (strictly < 1s)
     const timer = setTimeout(() => {
       setFadeOut(true);
       setTimeout(() => {
@@ -27,10 +27,10 @@ export default function Preloader() {
         try {
           sessionStorage.setItem(SESSION_KEY, 'true');
         } catch (e) {}
-      }, 400); // Wait for the CSS fade-out to finish
-    }, 1200); 
+      }, 300);
+    }, 650);
 
-    // Instant kill switch on user interaction (scroll, click, key)
+    // Instant kill switch on user interaction
     const forceKill = () => {
       setLoading(false);
       try {
@@ -58,7 +58,7 @@ export default function Preloader() {
     <div
       aria-hidden="true"
       style={{ transitionProperty: 'opacity' }}
-      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#07130E] duration-500 ease-out ${
+      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#07130E] duration-300 ease-out ${
         fadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
