@@ -16,9 +16,10 @@ const HeroMapNodes = memo(function HeroMapNodes({ jurisdictions }) {
   return (
     <g className="cerix-hero-nodes pointer-events-none select-none">
       <defs>
+        {/* Updated gradient: Richer #D4AF37 gold with higher opacity stops */}
         <radialGradient id="node-glow-grad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.8" />
-          <stop offset="40%" stopColor="#C5A880" stopOpacity="0.3" />
+          <stop offset="0%" stopColor="#D4AF37" stopOpacity="1" />
+          <stop offset="50%" stopColor="#D4AF37" stopOpacity="0.6" />
           <stop offset="100%" stopColor="#C5A880" stopOpacity="0" />
         </radialGradient>
       </defs>
@@ -26,7 +27,7 @@ const HeroMapNodes = memo(function HeroMapNodes({ jurisdictions }) {
       <style>{`
         /* GPU-friendly opacity animation only */
         @keyframes sequenceGlow {
-          0%, 100% { opacity: 0.35; }
+          0%, 100% { opacity: 0.4; }
           50% { opacity: 1; }
         }
         .node-sequence {
@@ -43,25 +44,25 @@ const HeroMapNodes = memo(function HeroMapNodes({ jurisdictions }) {
             key={node.name}
             transform={`translate(${node.position[0]} ${node.position[1]})`}
           >
-            {/* Luminous ambient gradient backing (with staggered glow) */}
+            {/* Brighter ambient gradient backing (Slightly larger radius for better glow) */}
             <circle
-              r={node.isHub ? "9" : "7"}
+              r={node.isHub ? "11" : "8.5"}
               fill="url(#node-glow-grad)"
               className={animate ? "node-sequence" : ""}
               style={{
-                opacity: 0.35, // Default static state
+                opacity: 0.4, // Brighter default static state
                 animationDelay: `${delay}s`,
                 transformOrigin: "center"
               }}
             />
 
-            {/* Outer gold hairline ring (Static) */}
+            {/* Outer gold hairline ring (Switched to brighter gold and higher opacity) */}
             <circle
               r={node.isHub ? "4" : "3.2"}
               fill="none"
-              stroke="#C5A880"
+              stroke="#D4AF37"
               strokeWidth="0.75"
-              strokeOpacity="0.7"
+              strokeOpacity="0.9"
             />
 
             {/* Center diamond pin (Static) */}
