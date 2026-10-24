@@ -33,7 +33,11 @@ export default function useHeroMapLand() {
           }
         }
         
-        if (active) setDots(pts);
+        if (active) {
+          setDots(pts);
+          // This will print the final array to your browser console so you can copy it
+          console.log(JSON.stringify(pts));
+        }
       } catch (err) {
         console.error("Map load deferred:", err);
       }
