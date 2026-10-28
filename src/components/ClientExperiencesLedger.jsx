@@ -9,7 +9,7 @@ const CLIENT_TESTIMONIALS = [
     jurisdictions: ['Singapore', 'Mauritius', 'Cayman Islands'],
     outcome:
       '“Cerix Global engineered our entire multi-jurisdictional holding framework with exceptional precision. Their strategic guidance allowed our expansion across Asia to proceed seamlessly without a hitch.”',
-    metric: 'USD 10+ Capital Structured',
+    metric: 'USD 10 Mil+ Capital Structured',
   },
   {
     id: 'exp-2',
