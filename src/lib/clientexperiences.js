@@ -3,28 +3,28 @@
 export const CLIENT_EXPERIENCES = [
   {
     eyebrow: "FOREX LICENSING · BELIZE",
-    text: "Forex licence set up in Belize for a large Central European group.",
+    text: "Forex licence secured and regulatory compliance architecture established in Belize for a Central European financial services group.",
     page: "international-licensing",
   },
   {
     eyebrow: "CORPORATE & VISA SET-UP · DUBAI (DMCC)",
-    text: "An immigration consulting company established in DMCC with a functional office, and employee visas arranged, for a South Asian conglomerate.",
+    text: "An immigration consulting company established in DMCC with a functional office, corporate banking channels, and executive visas arranged for a South Asian conglomerate.",
     page: "company-incorporation",
   },
   {
     eyebrow: "FUND SET-UP · MAURITIUS",
-    text: "A self-managed hedge fund set up in Mauritius.",
+    text: "A self-managed private investment fund structured in Mauritius accommodating an initial USD 10M capital deployment with regulatory clearance.",
     page: "corporate-structuring",
   },
   {
     eyebrow: "INVESTMENT ADVISORY LICENSING",
-    text: "A licensed investment advisory entity set up for a Europe-based asset management group.",
+    text: "A licensed investment advisory entity and governance framework established for a Europe-based asset management group.",
     page: "international-licensing",
   },
 ];
 
-export const FEEDBACK_LINE = "Client feedback: positive";
-export const CONFIDENTIALITY_LINE = "Client identities are kept confidential.";
+export const FEEDBACK_LINE = "Engagement completed to mandate";
+export const CONFIDENTIALITY_LINE = "Client identities and commercial disclosures remain strictly confidential.";
 
 export function experiencesForPage(slug) {
   return CLIENT_EXPERIENCES.filter((e) => e.page === slug);
