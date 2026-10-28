@@ -2,9 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { IMAGES } from '@/lib/cerixData';
 
 export default function WhyCerix() {
-  const TARGET_YEARS = 15;
   const [isVisible, setIsVisible] = useState(false);
-  const [yearsCount, setYearsCount] = useState(TARGET_YEARS);
+  const [yearsCount, setYearsCount] = useState(0);
   const sectionRef = useRef(null);
 
   // Intersection observer to trigger count and reveal
@@ -15,7 +14,7 @@ export default function WhyCerix() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.05 }
+      { threshold: 0.2 }
     );
 
     if (sectionRef.current) {
@@ -29,15 +28,14 @@ export default function WhyCerix() {
     };
   }, []);
 
-  // Smooth count-up animation
+  // Smooth count-up animation for "10+"
   useEffect(() => {
     if (!isVisible) return;
     let start = 0;
-    const end = TARGET_YEARS;
-    const duration = 1000;
-    const stepTime = Math.max(Math.floor(duration / end), 30);
+    const end = 10;
+    const duration = 1200;
+    const stepTime = Math.floor(duration / end);
 
-    setYearsCount(0);
     const timer = setInterval(() => {
       start += 1;
       setYearsCount(start);
