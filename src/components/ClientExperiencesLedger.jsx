@@ -4,18 +4,18 @@ import React, { useState } from 'react';
 const CLIENT_TESTIMONIALS = [
   {
     id: 'exp-1',
-    category: 'Fund & Asset Structuring',
+    category: 'Fund & Asset Structuring- PE fund',
     headline: 'Seamless Cross-Border Holding & Capital Inflow',
-    jurisdictions: ['Singapore', 'Mauritius', 'BVI'],
+    jurisdictions: ['Singapore', 'Mauritius', 'Cayman Islands'],
     outcome:
       '“Cerix Global engineered our entire multi-jurisdictional holding framework with exceptional precision. Their strategic guidance allowed our expansion across Asia to proceed seamlessly without a hitch.”',
-    metric: 'USD 120M+ Capital Structured',
+    metric: 'USD 10+ Capital Structured',
   },
   {
     id: 'exp-2',
-    category: 'Regulatory & Licensing',
+    category: 'Regulatory & Licensing- Forex Licence ',
     headline: 'Flawless Licensing & Regulatory Authorization',
-    jurisdictions: ['Cayman Islands', 'UAE (DIFC)'],
+    jurisdictions: ['Belize ', 'Seychelles'],
     outcome:
       '“Navigating dual-region regulatory compliance felt effortless with their team. They secured our investment manager licensing ahead of schedule and established robust substance right from day one.”',
     metric: '100% Substance Compliance Audit',
@@ -24,7 +24,7 @@ const CLIENT_TESTIMONIALS = [
     id: 'exp-3',
     category: 'Family Office Advisory',
     headline: 'Generational Wealth Protection & Succession Trust',
-    jurisdictions: ['Switzerland', 'Singapore', 'UK'],
+    jurisdictions: ['Luxembourg', 'BVI'],
     outcome:
       '“Our family required an absolute ring-fenced governance charter for our multi-region assets. The discretion, sophistication, and private-client care provided were truly top-tier.”',
     metric: '3-Generation Governance Framework',
@@ -33,7 +33,7 @@ const CLIENT_TESTIMONIALS = [
     id: 'exp-4',
     category: 'Corporate Restructuring',
     headline: 'Immaculate Entity Migration & Banking Channels',
-    jurisdictions: ['Mauritius', 'India', 'UK'],
+    jurisdictions: ['Hong Kong', 'Mauritius', 'Cayman Islands'],
     outcome:
       '“Re-domiciling our corporate entities and aligning our multi-currency banking infrastructure was handled with zero downtime. An absolute masterclass in corporate advisory.”',
     metric: 'Zero Operational Downtime',
