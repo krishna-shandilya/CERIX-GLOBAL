@@ -5,8 +5,7 @@ import WhatWeDo from '@/components/home/WhatWeDo';
 import WhoWeAdvise from '@/components/home/WhoWeAdvise';
 import Approach from '@/components/home/Approach';
 import WhyCerix from '@/components/home/WhyCerix';
-import ClientExperiencesLedger from '@/components/ClientExperiencesLedger';
-import FAQSection from '@/components/home/FAQSection'; // 1. Import the FAQ component
+import FAQSection from '@/components/home/FAQSection';
 import ContactSection from '@/components/home/ContactSection';
 
 export default function Home() {
@@ -28,11 +27,7 @@ export default function Home() {
       <WhoWeAdvise />
       <Approach />
       <WhyCerix />
-      <ClientExperiencesLedger />
-      
-      {/* 2. Place the FAQ Section here */}
       <FAQSection />
-
       <ContactSection />
     </main>
   );
