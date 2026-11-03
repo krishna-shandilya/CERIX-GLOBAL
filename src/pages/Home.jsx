@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import Hero from '@/components/home/Hero';
 import WhatWeDo from '@/components/home/WhatWeDo';
 import WhoWeAdvise from '@/components/home/WhoWeAdvise';
-import GlobalReachCarousel from '@/components/home/GlobalReachCarousel'; // 1. Import Global Reach
+import GlobalReachCarousel from '@/components/GlobalReachCarousel'; // Updated to match actual file location
 import Approach from '@/components/home/Approach';
 import WhyCerix from '@/components/home/WhyCerix';
 import FAQSection from '@/components/home/FAQSection';
@@ -27,7 +27,7 @@ export default function Home() {
       <WhatWeDo />
       <WhoWeAdvise />
       
-      {/* 2. Global Reach 3D Carousel placed directly after WhoWeAdvise */}
+      {/* Global Reach 3D Carousel */}
       <GlobalReachCarousel />
 
       <Approach />
