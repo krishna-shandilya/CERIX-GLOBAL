@@ -9,80 +9,85 @@ import {
   Globe2, 
   Building2, 
   Scale,
-  Sparkles
+  Sparkles 
 } from 'lucide-react';
 import { JURISDICTIONS } from '@/lib/cerixData';
 
 export default function GlobalReachCarousel() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [rotationAngle, setRotationAngle] = useState(0);
   const [selectedJurisdiction, setSelectedJurisdiction] = useState(null);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
-  const [isUserInteracting, setIsUserInteracting] = useState(false);
+  const [isLocked, setIsLocked] = useState(false);
 
-  const sectionRef = useRef(null);
-  const autoPlayTimerRef = useRef(null);
+  const containerRef = useRef(null);
   const navigate = useNavigate();
 
   const list = JURISDICTIONS || [];
   const total = list.length;
+  const angleStep = 360 / Math.max(total, 1);
+  const radius = 520; // 3D depth cylinder radius
 
-  // Cylinder radius and angle step
-  const radius = 480; // Distance in Z for depth curvature
-  const angleStep = 360 / Math.max(total, 5); // Angle around cylinder
+  // Determine which card is currently front-facing based on continuous rotation
+  const normalizedRotation = ((-rotationAngle % 360) + 360) % 360;
+  const activeIndex = Math.round(normalizedRotation / angleStep) % total;
 
-  const handleNext = useCallback(() => {
-    setActiveIndex((prev) => (prev + 1) % total);
-  }, [total]);
-
-  const handlePrev = useCallback(() => {
-    setActiveIndex((prev) => (prev - 1 + total) % total);
-  }, [total]);
-
-  // 1. Trigger autoplay when section enters viewport, stop when leaves
+  // 1. Direct Scroll-Linked Animation: Rotates smoothly with page scroll
   useEffect(() => {
-    if (!sectionRef.current) return;
+    if (isLocked || selectedJurisdiction) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !selectedJurisdiction && !isUserInteracting) {
-          setIsAutoPlaying(true);
-        } else {
-          setIsAutoPlaying(false);
-        }
-      },
-      { threshold: 0.3 }
-    );
+    let ticking = false;
 
-    observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, [selectedJurisdiction, isUserInteracting]);
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (!containerRef.current) {
+            ticking = false;
+            return;
+          }
 
-  // 2. Smooth Cylindrical Rotation Interval
-  useEffect(() => {
-    if (isAutoPlaying && !selectedJurisdiction && !isUserInteracting) {
-      autoPlayTimerRef.current = setInterval(() => {
-        handleNext();
-      }, 3400); // Smooth timing interval per card shift
-    } else {
-      if (autoPlayTimerRef.current) clearInterval(autoPlayTimerRef.current);
-    }
+          const rect = containerRef.current.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
 
-    return () => {
-      if (autoPlayTimerRef.current) clearInterval(autoPlayTimerRef.current);
+          // Check if carousel is entering/inside the viewport
+          if (rect.bottom > -200 && rect.top < windowHeight + 200) {
+            // Calculate progress: 0 when entering from bottom, 1 when leaving at top
+            const scrollProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
+            
+            // Continuous cylindrical rotation tied directly to scroll depth
+            const targetRotation = scrollProgress * 360; 
+            setRotationAngle(targetRotation);
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-  }, [isAutoPlaying, selectedJurisdiction, isUserInteracting, handleNext]);
 
-  // 3. User interaction locks: Clicking any jurisdiction pauses rotation permanently
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial check
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isLocked, selectedJurisdiction]);
+
+  // 2. Click Handler: Locks rotation onto the clicked jurisdiction
   const handleCardClick = (index, item) => {
-    setIsAutoPlaying(false);
-    setIsUserInteracting(true);
+    setIsLocked(true);
+    // Snap cylinder precisely to the selected card's angular position
+    setRotationAngle(-index * angleStep);
 
     if (index === activeIndex) {
       setSelectedJurisdiction(item);
-    } else {
-      setActiveIndex(index);
     }
   };
+
+  const handleNext = useCallback(() => {
+    setIsLocked(true);
+    setRotationAngle((prev) => prev - angleStep);
+  }, [angleStep]);
+
+  const handlePrev = useCallback(() => {
+    setIsLocked(true);
+    setRotationAngle((prev) => prev + angleStep);
+  }, [angleStep]);
 
   const handleNavigateToCorridor = (slugOrId) => {
     setSelectedJurisdiction(null);
@@ -93,86 +98,68 @@ export default function GlobalReachCarousel() {
 
   return (
     <section 
-      ref={sectionRef}
-      onMouseEnter={() => setIsUserInteracting(true)}
-      onMouseLeave={() => {
-        if (!selectedJurisdiction) setIsUserInteracting(false);
-      }}
-      className="relative bg-[#07130E] text-white py-28 px-4 overflow-hidden select-none border-t border-b border-white/5"
+      ref={containerRef}
+      className="relative bg-[#07130E] text-white py-24 px-4 overflow-hidden select-none"
     >
       {/* Ambient Lighting matching Hero */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[550px] bg-[#C5A059]/10 blur-[160px] rounded-full pointer-events-none" />
-      <div className="absolute top-0 right-1/4 w-[400px] h-[300px] bg-[#0E3324]/30 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[550px] bg-[#C5A059]/10 blur-[160px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header Section */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0D2319]/80 border border-[#C5A059]/30 text-[#C5A059] text-xs font-mono tracking-[0.25em] uppercase mb-4 shadow-lg backdrop-blur-md">
+        {/* Clean Header */}
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#0D2319]/80 border border-[#C5A059]/30 text-[#C5A059] text-xs font-mono tracking-[0.25em] uppercase mb-4 shadow-sm backdrop-blur-md">
             <Globe2 className="w-3.5 h-3.5" />
-            Global Reach Matrix
+            Global Reach
           </div>
           <h2 className="text-3xl md:text-5xl font-serif font-normal tracking-tight text-[#FDFBF7]">
             Institutional Reach Across <span className="text-[#C5A059] italic font-serif">Key Corridors</span>
           </h2>
           <p className="mt-4 text-[#D4CFC4]/90 text-sm md:text-base leading-relaxed font-light">
-            Select a financial center to examine regulatory frameworks, entity classes, and cross-border substance advisory.
+            Cross-border corporate structuring and fund governance across premier financial centers.
           </p>
         </div>
 
-        {/* 3D Cylindrical Perspective Carousel Stage */}
-        <div className="relative h-[500px] md:h-[560px] flex items-center justify-center [perspective:1400px]">
-          <div className="relative w-full h-full flex items-center justify-center [transform-style:preserve-3d]">
+        {/* 3D Cylindrical Perspective Carousel */}
+        <div className="relative h-[480px] md:h-[530px] flex items-center justify-center [perspective:1400px]">
+          <div 
+            className="relative w-full h-full flex items-center justify-center [transform-style:preserve-3d] transition-transform duration-700 ease-out"
+            style={{
+              transform: `rotateY(${rotationAngle}deg)`
+            }}
+          >
             {list.map((item, index) => {
               const jurKey = (item.slug || item.id || '').toLowerCase();
-              
-              // Calculate shortest angular offset on circular track
-              let diff = (index - activeIndex) % total;
-              if (diff > total / 2) diff -= total;
-              if (diff < -total / 2) diff += total;
-
-              const angle = diff * 32; // Degree rotation step along cylinder wall
-              const isCenter = diff === 0;
-              const isAdjacent = Math.abs(diff) === 1;
-              const isHidden = Math.abs(diff) > 2;
-
-              if (isHidden) return null;
-
-              // Cylindrical coordinate projection
-              const rad = (angle * Math.PI) / 180;
-              const translateX = Math.sin(rad) * radius * 0.95;
-              const translateZ = (Math.cos(rad) - 1) * radius;
+              const cardAngle = index * angleStep;
+              const isFront = index === activeIndex;
 
               return (
                 <div
                   key={jurKey || index}
                   onClick={() => handleCardClick(index, item)}
                   style={{
-                    transform: `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${angle}deg) scale(${isCenter ? 1.02 : 0.88})`,
-                    zIndex: isCenter ? 40 : 20 - Math.abs(diff),
-                    opacity: isCenter ? 1 : isAdjacent ? 0.6 : 0.25,
-                    transition: 'transform 0.85s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.85s ease, filter 0.85s ease',
-                    filter: isCenter ? 'drop-shadow(0 25px 45px rgba(0,0,0,0.8))' : 'blur(0.5px)'
+                    transform: `rotateY(${cardAngle}deg) translateZ(${radius}px) scale(${isFront ? 1.02 : 0.9})`,
+                    backfaceVisibility: 'hidden',
                   }}
-                  className={`absolute w-[300px] sm:w-[350px] md:w-[380px] h-[450px] md:h-[500px] rounded-2xl overflow-hidden cursor-pointer backdrop-blur-md border ${
-                    isCenter 
-                      ? 'border-[#C5A059] ring-2 ring-[#C5A059]/40 shadow-[0_15px_40px_rgba(197,160,89,0.25)]' 
-                      : 'border-white/10 hover:border-[#C5A059]/50'
+                  className={`absolute w-[290px] sm:w-[340px] md:w-[370px] h-[430px] md:h-[470px] rounded-2xl overflow-hidden cursor-pointer backdrop-blur-md border transition-all duration-500 ${
+                    isFront 
+                      ? 'border-[#C5A059] ring-2 ring-[#C5A059]/40 shadow-[0_20px_50px_rgba(197,160,89,0.25)] opacity-100 z-30' 
+                      : 'border-white/10 hover:border-[#C5A059]/50 opacity-40 hover:opacity-75 z-10'
                   }`}
                 >
-                  {/* Jurisdiction Photo */}
+                  {/* Photo */}
                   {item.image && (
                     <img 
                       src={item.image} 
                       alt={item.name} 
-                      className="w-full h-full object-cover transition-transform duration-1000 ease-out hover:scale-105"
+                      className="w-full h-full object-cover pointer-events-none"
                     />
                   )}
 
-                  {/* Gradient Vignette matching Hero Forest Palette */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#07130E] via-[#07130E]/70 to-transparent" />
+                  {/* Gradient matching Hero Forest Palette */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#07130E] via-[#07130E]/75 to-transparent pointer-events-none" />
 
                   {/* Card Content Overlay */}
-                  <div className="absolute inset-0 p-6 flex flex-col justify-end text-left">
+                  <div className="absolute inset-0 p-6 flex flex-col justify-end text-left pointer-events-auto">
                     <span className="text-[#C5A059] text-[11px] font-mono tracking-widest uppercase mb-1 flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059]" />
                       {item.region || item.coordinates}
@@ -192,13 +179,13 @@ export default function GlobalReachCarousel() {
                       </span>
                       <button 
                         type="button"
-                        className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all duration-300 ${
-                          isCenter
+                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-all duration-300 ${
+                          isFront
                             ? 'bg-[#C5A059] text-[#07130E] hover:bg-[#E6C875] shadow-md'
                             : 'bg-white/10 text-white hover:bg-[#C5A059] hover:text-[#07130E]'
                         }`}
                       >
-                        {isCenter ? 'Inspect Corridor' : 'View'}
+                        {isFront ? 'Inspect Corridor' : 'View'}
                         <ArrowUpRight className="w-3.5 h-3.5" />
                       </button>
                     </div>
@@ -209,75 +196,56 @@ export default function GlobalReachCarousel() {
           </div>
         </div>
 
-        {/* Carousel Bottom Controls & Playback Indicator */}
-        <div className="mt-6 flex flex-col items-center justify-center gap-4">
-          <div className="flex items-center gap-4">
-            <button
-              type="button"
-              onClick={() => {
-                setIsAutoPlaying(false);
-                setIsUserInteracting(true);
-                handlePrev();
-              }}
-              aria-label="Previous Corridor"
-              className="w-11 h-11 rounded-full border border-[#2D5441] bg-[#0B1D16]/80 backdrop-blur-sm hover:border-[#C5A059] hover:text-[#C5A059] flex items-center justify-center transition-all"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
+        {/* Minimal Controls */}
+        <div className="mt-8 flex items-center justify-center gap-4">
+          <button
+            type="button"
+            onClick={handlePrev}
+            aria-label="Previous Corridor"
+            className="w-10 h-10 rounded-full border border-[#2D5441] bg-[#0B1D16]/80 backdrop-blur-sm hover:border-[#C5A059] hover:text-[#C5A059] flex items-center justify-center transition-all"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
 
-            <div className="flex items-center gap-2">
-              {list.map((_, dotIndex) => (
-                <button
-                  key={dotIndex}
-                  onClick={() => {
-                    setIsAutoPlaying(false);
-                    setIsUserInteracting(true);
-                    setActiveIndex(dotIndex);
-                  }}
-                  className={`h-1.5 rounded-full transition-all duration-500 ${
-                    dotIndex === activeIndex ? 'w-8 bg-[#C5A059]' : 'w-2 bg-[#2D5441]'
-                  }`}
-                  aria-label={`Go to corridor ${dotIndex + 1}`}
-                />
-              ))}
-            </div>
-
-            <button
-              type="button"
-              onClick={() => {
-                setIsAutoPlaying(false);
-                setIsUserInteracting(true);
-                handleNext();
-              }}
-              aria-label="Next Corridor"
-              className="w-11 h-11 rounded-full border border-[#2D5441] bg-[#0B1D16]/80 backdrop-blur-sm hover:border-[#C5A059] hover:text-[#C5A059] flex items-center justify-center transition-all"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
+          <div className="flex items-center gap-2">
+            {list.map((_, dotIndex) => (
+              <button
+                key={dotIndex}
+                onClick={() => {
+                  setIsLocked(true);
+                  setRotationAngle(-dotIndex * angleStep);
+                }}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  dotIndex === activeIndex ? 'w-8 bg-[#C5A059]' : 'w-2 bg-[#2D5441]'
+                }`}
+                aria-label={`Go to corridor ${dotIndex + 1}`}
+              />
+            ))}
           </div>
 
-          {/* Autoplay Status Hint */}
-          <div className="text-[11px] font-mono tracking-wider text-slate-400 flex items-center gap-1.5">
-            <span className={`w-1.5 h-1.5 rounded-full ${isAutoPlaying ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}`} />
-            {isAutoPlaying ? 'Automatic Cylindrical Stream Active' : 'Manual Inspection Mode'}
-          </div>
+          <button
+            type="button"
+            onClick={handleNext}
+            aria-label="Next Corridor"
+            className="w-10 h-10 rounded-full border border-[#2D5441] bg-[#0B1D16]/80 backdrop-blur-sm hover:border-[#C5A059] hover:text-[#C5A059] flex items-center justify-center transition-all"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
         </div>
       </div>
 
-      {/* Pop-up Modal (Deep Forest Green #07130E / #0B1D16 with Frosted Glass) */}
+      {/* Frosted Deep Forest Green Modal */}
       {selectedJurisdiction && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#07130E]/70 backdrop-blur-xl animate-fade-in"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#07130E]/75 backdrop-blur-xl animate-fade-in"
           onClick={() => setSelectedJurisdiction(null)}
         >
           <div 
             className="relative w-full max-w-2xl bg-gradient-to-b from-[#0B1D16]/95 to-[#07130E]/95 border border-[#C5A059]/40 rounded-3xl shadow-[0_25px_70px_rgba(0,0,0,0.85)] p-6 md:p-8 overflow-hidden text-left backdrop-blur-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Ambient Background Gold Glow */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#C5A059]/10 blur-3xl pointer-events-none rounded-full" />
             
-            {/* Close Button */}
             <button
               type="button"
               onClick={() => setSelectedJurisdiction(null)}
@@ -286,7 +254,6 @@ export default function GlobalReachCarousel() {
               <X className="w-5 h-5" />
             </button>
 
-            {/* Modal Header */}
             <div className="flex items-center gap-3 mb-3">
               <span className="p-2.5 rounded-xl bg-[#07130E] border border-[#2D5441] text-[#C5A059] shadow-inner">
                 <Globe2 className="w-5 h-5" />
@@ -310,7 +277,7 @@ export default function GlobalReachCarousel() {
               {selectedJurisdiction.description}
             </p>
 
-            {/* Key Regulatory & Structural Highlights Box */}
+            {/* Highlights Box */}
             <div className="my-6 p-4 md:p-5 rounded-2xl bg-[#07130E]/80 border border-[#1E382B] shadow-inner">
               <div className="flex items-center gap-2 text-xs font-mono text-[#C5A059] mb-3 uppercase tracking-wider">
                 <ShieldCheck className="w-4 h-4 text-emerald-400" />
@@ -326,7 +293,7 @@ export default function GlobalReachCarousel() {
               </ul>
             </div>
 
-            {/* Modal Footer Actions */}
+            {/* Actions */}
             <div className="flex flex-col sm:flex-row items-center justify-end gap-3 pt-4 border-t border-white/10">
               <button
                 type="button"
