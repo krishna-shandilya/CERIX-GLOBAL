@@ -33,7 +33,7 @@ export default function GlobalReachCarousel() {
     setActiveIndex((prev) => (prev - 1 + total) % total);
   }, [total]);
 
-  // Scroll-linked continuous rotation (steps through cards smoothly as you scroll)
+  // Smooth scroll-linked rotation as the user scrolls past
   useEffect(() => {
     if (isLocked || selectedJurisdiction || total === 0) return;
 
@@ -51,10 +51,7 @@ export default function GlobalReachCarousel() {
           const windowHeight = window.innerHeight;
 
           if (rect.bottom > 0 && rect.top < windowHeight) {
-            // Fraction scrolled through this section (0.0 -> 1.0)
             const progress = Math.max(0, Math.min(1, (windowHeight - rect.top) / (windowHeight + rect.height)));
-            
-            // Step index when scroll crosses thresholds
             const calculatedIndex = Math.floor(progress * total) % total;
             
             if (calculatedIndex !== lastScrollProgress.current) {
@@ -91,33 +88,33 @@ export default function GlobalReachCarousel() {
   return (
     <section 
       ref={containerRef}
-      className="relative bg-[#07130E] text-white py-16 md:py-24 px-4 overflow-hidden select-none"
+      className="relative bg-[#FDFBF7] text-[#07130E] py-20 md:py-28 px-6 md:px-12 lg:px-24 overflow-hidden select-none border-t border-black/5"
     >
-      {/* Background glow matching Hero */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[#C5A059]/10 blur-[140px] rounded-full pointer-events-none" />
-
       <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* Header with guaranteed spacing */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#0D2319]/80 border border-[#C5A059]/30 text-[#C5A059] text-xs font-mono tracking-[0.25em] uppercase mb-4 shadow-sm backdrop-blur-md">
-            <Globe2 className="w-3.5 h-3.5" />
-            Global Reach
+        {/* Header Format Matching "WHO WE ADVISE" Exactly */}
+        <div className="max-w-4xl mb-16">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="h-px w-10 bg-[#C5A059]" />
+            <span className="text-xs font-mono tracking-[0.35em] text-[#C5A059] uppercase">
+              GLOBAL REACH
+            </span>
+            <div className="h-px w-20 bg-gradient-to-r from-[#C5A059]/40 to-transparent" />
           </div>
-          <h2 className="text-2xl md:text-4xl font-serif font-normal tracking-tight text-[#FDFBF7]">
-            Institutional Reach Across <span className="text-[#C5A059] italic font-serif">Key Corridors</span>
+
+          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal leading-[1.12] text-[#07130E] tracking-tight">
+            Institutional presence across <span className="italic text-[#8B6E33]">key corridors.</span>
           </h2>
-          <p className="mt-2 text-[#D4CFC4]/80 text-xs md:text-sm leading-relaxed font-light">
-            Cross-border corporate structuring and fund governance across premier financial centers.
+          <p className="mt-5 text-[#5A635E] text-base md:text-lg font-light max-w-2xl leading-relaxed">
+            Structuring cross-border entities, private funds, and operational substance across the world's premier common law and statutory financial centers.
           </p>
         </div>
 
-        {/* 3D Arc Showcase (Clean Perspective) */}
-        <div className="relative h-[380px] md:h-[420px] flex items-center justify-center [perspective:1000px]">
+        {/* 3D Arc Showcase (Clean Perspective on Light Background) */}
+        <div className="relative h-[400px] md:h-[440px] flex items-center justify-center [perspective:1100px]">
           {list.map((item, index) => {
             const jurKey = (item.slug || item.id || '').toLowerCase();
 
-            // Calculate cyclic distance from active card (-2, -1, 0, 1, 2)
             let offset = (index - activeIndex) % total;
             if (offset > total / 2) offset -= total;
             if (offset < -total / 2) offset += total;
@@ -128,12 +125,11 @@ export default function GlobalReachCarousel() {
 
             if (!isVisible) return null;
 
-            // Compute clean 3D positions without overlapping
-            const translateX = offset * 240; 
-            const translateZ = -Math.abs(offset) * 120;
-            const rotateY = offset * -25;
+            const translateX = offset * 250; 
+            const translateZ = -Math.abs(offset) * 110;
+            const rotateY = offset * -22;
             const scale = isCenter ? 1 : 0.88;
-            const opacity = isCenter ? 1 : isImmediate ? 0.45 : 0.15;
+            const opacity = isCenter ? 1 : isImmediate ? 0.5 : 0.2;
             const zIndex = 30 - Math.abs(offset) * 5;
 
             return (
@@ -148,8 +144,8 @@ export default function GlobalReachCarousel() {
                 }}
                 className={`absolute w-[260px] sm:w-[280px] h-[340px] sm:h-[370px] rounded-2xl overflow-hidden cursor-pointer backdrop-blur-md border ${
                   isCenter 
-                    ? 'border-[#C5A059] ring-2 ring-[#C5A059]/40 shadow-[0_20px_45px_rgba(0,0,0,0.85)]' 
-                    : 'border-white/10 hover:border-[#C5A059]/40'
+                    ? 'border-[#C5A059] ring-2 ring-[#C5A059]/40 shadow-[0_25px_50px_rgba(7,19,14,0.35)]' 
+                    : 'border-black/10 hover:border-[#C5A059]/50 shadow-[0_10px_25px_rgba(0,0,0,0.1)]'
                 }`}
               >
                 {/* Photo Layer */}
@@ -161,11 +157,11 @@ export default function GlobalReachCarousel() {
                   />
                 )}
 
-                {/* Dark Vignette Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#07130E] via-[#07130E]/60 to-transparent pointer-events-none" />
+                {/* Dark Vignette Overlay for Crisp Readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#07130E] via-[#07130E]/65 to-transparent pointer-events-none" />
 
                 {/* Card Content Overlay */}
-                <div className="absolute inset-0 p-5 flex flex-col justify-end text-left pointer-events-auto">
+                <div className="absolute inset-0 p-5 flex flex-col justify-end text-left pointer-events-auto text-white">
                   <div className="flex items-center gap-1.5 text-[#C5A059] text-[10px] font-mono tracking-widest uppercase mb-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059]" />
                     {item.region || item.coordinates}
@@ -175,12 +171,12 @@ export default function GlobalReachCarousel() {
                     {item.name}
                   </h3>
 
-                  <p className="text-slate-300 text-[11px] line-clamp-2 mb-3.5 font-light leading-snug">
+                  <p className="text-[#D4CFC4] text-[11px] line-clamp-2 mb-3.5 font-light leading-snug">
                     {item.subtitle || item.description}
                   </p>
 
                   <div className="pt-2.5 border-t border-white/15 flex items-center justify-between">
-                    <span className="text-[10px] font-mono text-slate-400">
+                    <span className="text-[10px] font-mono text-slate-300">
                       {item.coordinates || 'Active Corridor'}
                     </span>
                     <button 
@@ -188,7 +184,7 @@ export default function GlobalReachCarousel() {
                       className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-[11px] font-mono font-medium transition-colors ${
                         isCenter
                           ? 'bg-[#C5A059] text-[#07130E] font-bold hover:bg-[#E6C875]'
-                          : 'bg-white/10 text-white hover:bg-[#C5A059] hover:text-[#07130E]'
+                          : 'bg-white/15 text-white hover:bg-[#C5A059] hover:text-[#07130E]'
                       }`}
                     >
                       Inspect
@@ -201,13 +197,13 @@ export default function GlobalReachCarousel() {
           })}
         </div>
 
-        {/* Separated Navigation Controls (Well below the carousel) */}
+        {/* Navigation Controls Styled for Light Mode */}
         <div className="mt-12 flex items-center justify-center gap-6">
           <button
             type="button"
             onClick={handlePrev}
             aria-label="Previous Corridor"
-            className="w-9 h-9 rounded-full border border-[#2D5441] bg-[#0B1D16] hover:border-[#C5A059] hover:text-[#C5A059] flex items-center justify-center transition-all shadow-md"
+            className="w-10 h-10 rounded-full border border-black/10 bg-white hover:border-[#C5A059] hover:text-[#C5A059] text-[#07130E] flex items-center justify-center transition-all shadow-sm"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
@@ -221,7 +217,7 @@ export default function GlobalReachCarousel() {
                   setActiveIndex(dotIndex);
                 }}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
-                  dotIndex === activeIndex ? 'w-6 bg-[#C5A059]' : 'w-1.5 bg-[#2D5441]'
+                  dotIndex === activeIndex ? 'w-7 bg-[#C5A059]' : 'w-2 bg-black/15'
                 }`}
                 aria-label={`Go to corridor ${dotIndex + 1}`}
               />
@@ -232,21 +228,21 @@ export default function GlobalReachCarousel() {
             type="button"
             onClick={handleNext}
             aria-label="Next Corridor"
-            className="w-9 h-9 rounded-full border border-[#2D5441] bg-[#0B1D16] hover:border-[#C5A059] hover:text-[#C5A059] flex items-center justify-center transition-all shadow-md"
+            className="w-10 h-10 rounded-full border border-black/10 bg-white hover:border-[#C5A059] hover:text-[#C5A059] text-[#07130E] flex items-center justify-center transition-all shadow-sm"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
         </div>
       </div>
 
-      {/* Frosted Deep Forest Green Modal */}
+      {/* Deep Forest Green Frosted Modal */}
       {selectedJurisdiction && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#07130E]/80 backdrop-blur-xl"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#07130E]/75 backdrop-blur-xl"
           onClick={() => setSelectedJurisdiction(null)}
         >
           <div 
-            className="relative w-full max-w-xl bg-gradient-to-b from-[#0B1D16]/95 to-[#07130E]/95 border border-[#C5A059]/40 rounded-3xl shadow-[0_25px_70px_rgba(0,0,0,0.85)] p-6 md:p-8 overflow-hidden text-left backdrop-blur-2xl"
+            className="relative w-full max-w-xl bg-gradient-to-b from-[#0B1D16]/98 to-[#07130E]/98 border border-[#C5A059]/40 rounded-3xl shadow-[0_25px_70px_rgba(0,0,0,0.85)] p-6 md:p-8 overflow-hidden text-left backdrop-blur-2xl text-white"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="absolute top-0 right-0 w-48 h-48 bg-[#C5A059]/10 blur-3xl pointer-events-none rounded-full" />
@@ -298,7 +294,7 @@ export default function GlobalReachCarousel() {
               </ul>
             </div>
 
-            {/* Actions */}
+            {/* Modal Actions */}
             <div className="flex flex-col sm:flex-row items-center justify-end gap-2.5 pt-3 border-t border-white/10">
               <button
                 type="button"
