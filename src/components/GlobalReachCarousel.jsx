@@ -10,76 +10,23 @@ import {
   Building2, 
   Scale 
 } from 'lucide-react';
-
-const JURISDICTIONS = [
-  {
-    id: 'singapore',
-    name: 'Singapore',
-    tagline: 'Premier Asian Gateway & Tech Flip Hub',
-    image: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=1200&q=80',
-    stat: 'VCC & 13O / 13U Exemption',
-    regulator: 'MAS / ACRA',
-    summary: 'The preferred jurisdiction for Southeast Asian venture expansion, cross-border holding company flips, and Variable Capital Company (VCC) fund pooling.',
-    keyEntities: ['Private Limited (Pte Ltd)', 'Variable Capital Company (VCC)', 'Section 13O / 13U Family Office'],
-    corridorHighlights: 'Direct DTAA network with India, zero capital gains tax, compliant with RBI ODI Automatic Route.'
-  },
-  {
-    id: 'mauritius',
-    name: 'Mauritius',
-    tagline: 'Substance-Driven African & India Fund Corridor',
-    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80',
-    stat: 'Global Business License (GBC)',
-    regulator: 'Financial Services Commission (FSC)',
-    summary: 'Institutional domicile for India-bound Private Equity and VC Alternative Investment Funds (AIFs) providing robust statutory substance and treaty protections.',
-    keyEntities: ['Global Business Company (GBC)', 'Authorised Company', 'Closed-End Fund / AIF License'],
-    corridorHighlights: '15% headline corporate tax with 80% partial exemption regime, bilateral investment treaty enforcement.'
-  },
-  {
-    id: 'cayman',
-    name: 'Cayman Islands',
-    tagline: 'Global Benchmark for Institutional Alternative Funds',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
-    stat: 'CIMA Registered Funds',
-    regulator: 'Cayman Islands Monetary Authority (CIMA)',
-    summary: 'The gold standard for multi-jurisdiction master-feeder hedge funds, private equity vehicles, and Segregated Portfolio Companies (SPCs).',
-    keyEntities: ['Exempted Company', 'Segregated Portfolio Company (SPC)', 'Private Funds Act Registered Vehicle'],
-    corridorHighlights: 'Tax-neutral domicile, globally recognized by US and European institutional limited partners (LPs).'
-  },
-  {
-    id: 'uae',
-    name: 'UAE (DIFC / ADGM)',
-    tagline: 'Middle East Wealth & Modern Structuring Oasis',
-    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80',
-    stat: 'Common Law Financial Free Zones',
-    regulator: 'DFSA / FSRA',
-    summary: 'Independent English common law jurisdictions offering zero corporate income tax on qualifying free-zone income and unmatched Middle East fund structuring.',
-    keyEntities: ['Special Purpose Vehicle (SPV)', 'DIFC Prescribed Company', 'Family Office Foundation'],
-    corridorHighlights: 'High-density HNI migration hub, 100% foreign ownership, rapid multi-currency banking onboarding.'
-  },
-  {
-    id: 'switzerland',
-    name: 'Switzerland',
-    tagline: 'Ultra-High-Net-Worth Asset Protection & Trust',
-    image: 'https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&w=1200&q=80',
-    stat: 'FINMA Regulated Frameworks',
-    regulator: 'Swiss Financial Market Supervisory Authority (FINMA)',
-    summary: 'The premier global jurisdiction for multi-generational family governance, private trust companies, and Swiss asset management holding entities.',
-    keyEntities: ['Aktiengesellschaft (AG / SA)', 'Swiss Private Trust Company', 'Securities Firm Asset Management'],
-    corridorHighlights: 'Sovereign political neutrality, stringent privacy standards, and top-tier credit rating.'
-  }
-];
+import { JURISDICTIONS } from '@/lib/cerixData';
 
 export default function GlobalReachCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedJurisdiction, setSelectedJurisdiction] = useState(null);
   const navigate = useNavigate();
 
+  const list = JURISDICTIONS || [];
+
+  if (list.length === 0) return null;
+
   const handlePrev = () => {
-    setActiveIndex((prev) => (prev === 0 ? JURISDICTIONS.length - 1 : prev - 1));
+    setActiveIndex((prev) => (prev === 0 ? list.length - 1 : prev - 1));
   };
 
   const handleNext = () => {
-    setActiveIndex((prev) => (prev === JURISDICTIONS.length - 1 ? 0 : prev + 1));
+    setActiveIndex((prev) => (prev === list.length - 1 ? 0 : prev + 1));
   };
 
   const handleCardClick = (index, item) => {
@@ -90,13 +37,13 @@ export default function GlobalReachCarousel() {
     }
   };
 
-  const handleNavigateToCorridor = (id) => {
+  const handleNavigateToCorridor = (slugOrId) => {
     setSelectedJurisdiction(null);
-    navigate(`/global-reach?jurisdiction=${id}`);
+    navigate(`/global-reach?jurisdiction=${encodeURIComponent(slugOrId)}`);
   };
 
   return (
-    <section className="relative bg-[#07130E] text-white py-24 px-4 overflow-hidden select-none">
+    <section className="relative bg-[#07130E] text-white py-24 px-4 overflow-hidden select-none border-t border-b border-white/5">
       {/* Background Ambience */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-[#C5A059]/10 blur-[130px] rounded-full pointer-events-none" />
 
@@ -105,31 +52,30 @@ export default function GlobalReachCarousel() {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#132A21] border border-[#C5A059]/30 text-[#C5A059] text-xs font-mono tracking-widest uppercase mb-4">
             <Globe2 className="w-3.5 h-3.5" />
-            Global Corridors
+            Global Reach
           </div>
           <h2 className="text-3xl md:text-5xl font-serif font-medium tracking-tight text-[#FDFBF7]">
-            Institutional Reach Across <span className="text-[#C5A059] italic">Tier-One Jurisdictions</span>
+            Institutional Reach Across <span className="text-[#C5A059] italic">Key Jurisdictions</span>
           </h2>
-          <p className="mt-4 text-slate-300 text-sm md:text-base leading-relaxed">
+          <p className="mt-4 text-[#D4CFC4] text-sm md:text-base leading-relaxed">
             Select a financial center to examine regulatory frameworks, entity classes, and cross-border substance advisory.
           </p>
         </div>
 
         {/* 3D Coverflow Perspective Container */}
         <div className="relative h-[480px] md:h-[540px] flex items-center justify-center perspective-[1200px]">
-          {JURISDICTIONS.map((item, index) => {
-            const offset = (index - activeIndex + JURISDICTIONS.length) % JURISDICTIONS.length;
-            const normalizedOffset = offset > JURISDICTIONS.length / 2 ? offset - JURISDICTIONS.length : offset;
+          {list.map((item, index) => {
+            const jurKey = (item.slug || item.id || '').toLowerCase();
+            const offset = (index - activeIndex + list.length) % list.length;
+            const normalizedOffset = offset > list.length / 2 ? offset - list.length : offset;
             const isCenter = normalizedOffset === 0;
-            const isLeft = normalizedOffset === -1;
-            const isRight = normalizedOffset === 1;
             const isHidden = Math.abs(normalizedOffset) > 1;
 
             if (isHidden) return null;
 
             return (
               <div
-                key={item.id}
+                key={jurKey || index}
                 onClick={() => handleCardClick(index, item)}
                 style={{
                   transform: `
@@ -147,29 +93,31 @@ export default function GlobalReachCarousel() {
                     : 'border-[#1E382B] hover:opacity-75'
                 }`}
               >
-                {/* Background Image with Dark Vignette */}
-                <img 
-                  src={item.image} 
-                  alt={item.name} 
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                />
+                {/* Local Asset Image */}
+                {item.image && (
+                  <img 
+                    src={item.image} 
+                    alt={item.name} 
+                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#07130E] via-[#07130E]/75 to-transparent" />
 
                 {/* Card Content Overlay */}
                 <div className="absolute inset-0 p-6 flex flex-col justify-end">
                   <span className="text-[#C5A059] text-xs font-mono tracking-wider uppercase mb-1">
-                    {item.stat}
+                    {item.region || item.coordinates}
                   </span>
                   <h3 className="text-2xl md:text-3xl font-serif font-bold text-white mb-2">
                     {item.name}
                   </h3>
                   <p className="text-slate-300 text-xs md:text-sm line-clamp-2 mb-4">
-                    {item.summary}
+                    {item.subtitle || item.description}
                   </p>
 
                   <div className="pt-3 border-t border-white/10 flex items-center justify-between">
                     <span className="text-[11px] font-mono text-slate-400">
-                      Authority: {item.regulator}
+                      {item.coordinates || 'Global Corridor'}
                     </span>
                     <button 
                       type="button"
@@ -197,7 +145,7 @@ export default function GlobalReachCarousel() {
           </button>
 
           <div className="flex items-center gap-2">
-            {JURISDICTIONS.map((_, dotIndex) => (
+            {list.map((_, dotIndex) => (
               <button
                 key={dotIndex}
                 onClick={() => setActiveIndex(dotIndex)}
@@ -223,7 +171,7 @@ export default function GlobalReachCarousel() {
       {/* Pop-up Inspection Modal */}
       {selectedJurisdiction && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
           onClick={() => setSelectedJurisdiction(null)}
         >
           <div 
@@ -245,7 +193,7 @@ export default function GlobalReachCarousel() {
               </span>
               <div>
                 <span className="text-xs font-mono text-[#C5A059] uppercase tracking-widest">
-                  Jurisdiction Dossier
+                  {selectedJurisdiction.region || 'Jurisdiction Dossier'}
                 </span>
                 <h3 className="text-2xl font-serif font-bold text-white">
                   {selectedJurisdiction.name}
@@ -253,37 +201,28 @@ export default function GlobalReachCarousel() {
               </div>
             </div>
 
-            <p className="text-slate-300 text-sm mt-3 leading-relaxed">
-              {selectedJurisdiction.summary}
+            <p className="text-sm text-[#C5A059] font-mono uppercase tracking-wider mb-2">
+              {selectedJurisdiction.subtitle}
             </p>
 
-            {/* Detailed Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-              <div className="p-4 rounded-xl bg-[#07130E]/80 border border-[#1E382B]">
-                <div className="flex items-center gap-2 text-xs font-mono text-[#C5A059] mb-2 uppercase">
-                  <Building2 className="w-4 h-4" />
-                  Primary Structures
-                </div>
-                <ul className="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
-                  {selectedJurisdiction.keyEntities.map((entity, idx) => (
-                    <li key={idx}>{entity}</li>
-                  ))}
-                </ul>
-              </div>
+            <p className="text-slate-300 text-sm mt-2 leading-relaxed">
+              {selectedJurisdiction.description}
+            </p>
 
-              <div className="p-4 rounded-xl bg-[#07130E]/80 border border-[#1E382B]">
-                <div className="flex items-center gap-2 text-xs font-mono text-[#C5A059] mb-2 uppercase">
-                  <Scale className="w-4 h-4" />
-                  Regulatory & Compliance
-                </div>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  {selectedJurisdiction.corridorHighlights}
-                </p>
-                <div className="mt-2 text-[11px] font-mono text-slate-400 flex items-center gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                  Regulator: {selectedJurisdiction.regulator}
-                </div>
+            {/* Highlights Grid */}
+            <div className="my-6 p-4 rounded-xl bg-[#07130E]/80 border border-[#1E382B]">
+              <div className="flex items-center gap-2 text-xs font-mono text-[#C5A059] mb-3 uppercase tracking-wider">
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                Key Regulatory & Structural Highlights
               </div>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-slate-300">
+                {selectedJurisdiction.highlights?.map((h, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059] shrink-0 mt-1.5" />
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             {/* Modal Actions */}
@@ -297,10 +236,10 @@ export default function GlobalReachCarousel() {
               </button>
               <button
                 type="button"
-                onClick={() => handleNavigateToCorridor(selectedJurisdiction.id)}
+                onClick={() => handleNavigateToCorridor(selectedJurisdiction.slug || selectedJurisdiction.id)}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg bg-[#C5A059] text-[#07130E] text-xs font-mono font-bold hover:bg-[#E6C875] transition-colors shadow-lg"
               >
-                Explore {selectedJurisdiction.name} Corridor
+                View Full {selectedJurisdiction.name} Corridor Details
                 <ArrowUpRight className="w-4 h-4" />
               </button>
             </div>
