@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { SERVICES } from "@/lib/cerixData";
-import { Image } from "@/components/ui/image";
 import MotionText from "@/components/MotionText";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -66,7 +65,7 @@ export default function WhatWeDo() {
           </motion.p>
         </div>
 
-        {/* Interactive Bookshelf Stage - Expansive, Borderless Showcase */}
+        {/* Interactive Bookshelf Stage */}
         <div className="relative bg-[#F4F1EA] text-[#07130E] border border-[#07130E]/15 rounded-[2.5rem] p-8 sm:p-12 lg:p-16 shadow-2xl overflow-hidden">
           
           {/* Shelf Navigation Header */}
@@ -101,8 +100,8 @@ export default function WhatWeDo() {
           {/* Main Layout Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
-            {/* Left: Interactive Horizontal Spines Shelf */}
-            <div className="lg:col-span-5 flex items-end gap-3 overflow-x-auto pb-6 pt-4 px-2 [scrollbar-width:thin] [scrollbar-color:#8B6E33_#EDE9E1]">
+            {/* Left: Interactive Horizontal Spines Shelf (Width optimized so all 8 spines fit perfectly without hiding) */}
+            <div className="lg:col-span-6 flex items-end gap-2 sm:gap-2.5 overflow-x-auto pb-6 pt-4 px-2 [scrollbar-width:thin] [scrollbar-color:#8B6E33_#EDE9E1]">
               {SERVICES.map((s, i) => {
                 const isSelected = activeIndex === i;
                 const labelNum = `0${i + 1}`;
@@ -114,27 +113,27 @@ export default function WhatWeDo() {
                     whileHover={{ y: -10 }}
                     animate={{ y: isSelected ? -24 : 0 }}
                     transition={{ type: "spring", stiffness: 320, damping: 22 }}
-                    className={`relative group shrink-0 cursor-pointer rounded-md overflow-hidden flex flex-col justify-between py-6 px-3 transition-all duration-500 shadow-xl bg-[#EAE5DD] ${
+                    className={`relative group shrink-0 cursor-pointer rounded-md overflow-hidden flex flex-col justify-between py-6 px-2 transition-all duration-500 shadow-xl bg-[#EAE5DD] ${
                       isSelected 
-                        ? "w-16 lg:w-20 border-2 border-[#C5A059] shadow-[0_0_30px_rgba(197,160,89,0.4)] z-20" 
-                        : "w-12 lg:w-15 text-[#07130E]/80 border border-[#07130E]/20 hover:border-[#8B6E33]"
+                        ? "w-14 sm:w-16 lg:w-18 border-2 border-[#C5A059] shadow-[0_0_30px_rgba(197,160,89,0.4)] z-20" 
+                        : "w-10 sm:w-12 lg:w-13 text-[#07130E]/80 border border-[#07130E]/20 hover:border-[#8B6E33]"
                     }`}
                     style={{ height: '440px' }}
                   >
                     <div className="flex flex-col items-center gap-2">
-                      <span className="font-mono text-[10px] tracking-widest font-bold text-[#8B6E33]">
+                      <span className="font-mono text-[9px] sm:text-[10px] tracking-widest font-bold text-[#8B6E33]">
                         {labelNum}
                       </span>
                       <div className="w-1 h-1 rounded-full bg-[#8B6E33]" />
                     </div>
 
                     <div className="my-auto py-4 flex justify-center" style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}>
-                      <span className="font-serif text-xs lg:text-sm tracking-wider uppercase font-medium whitespace-nowrap text-[#07130E] group-hover:text-black transition-colors">
+                      <span className="font-serif text-[11px] sm:text-xs lg:text-sm tracking-wider uppercase font-medium whitespace-nowrap text-[#07130E] group-hover:text-black transition-colors">
                         {s.title}
                       </span>
                     </div>
 
-                    <div className="text-center font-mono text-[9px] tracking-[0.25em] uppercase text-[#8B6E33]">
+                    <div className="text-center font-mono text-[8px] sm:text-[9px] tracking-[0.2em] uppercase text-[#8B6E33]">
                       CERIX
                     </div>
                   </motion.div>
@@ -142,8 +141,8 @@ export default function WhatWeDo() {
               })}
             </div>
 
-            {/* Right: Immersive, Borderless Active Practice Showcase */}
-            <div className="lg:col-span-7 relative">
+            {/* Right: Immersive, Borderless Active Practice Showcase with Razor-Sharp Native Image */}
+            <div className="lg:col-span-6 relative">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndex}
@@ -153,13 +152,12 @@ export default function WhatWeDo() {
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   className="flex flex-col"
                 >
-                  {/* Large, Unconstrained, Borderless 3D Artwork Stage */}
+                  {/* Large, Unconstrained, Borderless 3D Artwork Stage with Crisp Rendering */}
                   <div className="relative w-full h-[360px] sm:h-[420px] lg:h-[480px] rounded-3xl overflow-hidden mb-8 shadow-2xl bg-[#07130E]">
-                    <Image
+                    <img
                       src={activeService.image}
                       alt={activeService.title}
-                      fittingType="cover"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover [image-rendering:-webkit-optimize-contrast]"
                     />
                     
                     {/* Floating Index Pill inside image corner */}
