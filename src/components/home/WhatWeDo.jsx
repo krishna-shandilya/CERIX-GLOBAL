@@ -14,7 +14,7 @@ export default function WhatWeDo() {
     <section className="relative bg-[#FDFBF7] py-28 lg:py-40">
       <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
         
-        {/* Top Context/Quote */}
+        {/* Top Context */}
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -25,7 +25,7 @@ export default function WhatWeDo() {
           From the global to the practical — the disciplines that make a structure real.
         </motion.p>
 
-        {/* Glowing Gold Micro-Header & Title Block */}
+        {/* Header Block */}
         <div className="max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -62,8 +62,8 @@ export default function WhatWeDo() {
           </motion.p>
         </div>
 
-        {/* Staggered Monolith Grid */}
-        <div className="mt-16 lg:mt-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-start">
+        {/* The Clean "Gallery Plaque" Grid */}
+        <div className="mt-16 lg:mt-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {CARDS.map((s, i) => (
             <ServiceCard key={s.id || i} service={s} index={i} />
           ))}
@@ -76,9 +76,6 @@ export default function WhatWeDo() {
 function ServiceCard({ service, index }) {
   const stagger = (index % 4) * 0.1;
   const labelNum = `0${index + 1}`;
-  
-  // Creates the "Staggered Architectural" look by pushing alternating columns down slightly on desktop
-  const isOffset = index % 2 !== 0;
 
   return (
     <motion.div
@@ -86,53 +83,45 @@ function ServiceCard({ service, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-5% 0px" }}
       transition={{ duration: 0.8, delay: stagger, ease: [0.22, 1, 0.36, 1] }}
-      className={`w-full ${isOffset ? 'lg:mt-16' : ''}`}
+      className="flex h-full"
     >
       <Link
         to={`/expertise/${service.slug}`}
-        className="group relative block w-full aspect-[4/5] rounded-[24px] overflow-hidden bg-[#07130E] border border-[#07130E]/10 hover:border-[#C5A059]/50 transition-all duration-700 shadow-lg hover:shadow-2xl"
+        className="group relative flex flex-col w-full rounded-3xl overflow-hidden bg-[#0A1612] border border-[#0A1612]/10 hover:border-[#C5A059]/40 transition-all duration-500 shadow-xl hover:shadow-2xl hover:-translate-y-2"
       >
-        {/* Desaturated Image Background */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
+        {/* Top Half: Pure Artwork View (No Overlapping Text) */}
+        <div className="relative h-56 lg:h-64 w-full overflow-hidden shrink-0 bg-[#07130E]">
           <Image
             src={service.image}
             alt={service.title}
             fittingType="cover"
-            className="w-full h-full object-cover opacity-50 grayscale-[40%] mix-blend-luminosity transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110 group-hover:grayscale-0 group-hover:mix-blend-normal group-hover:opacity-90"
+            className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
           />
+          {/* Subtle gradient at the very bottom edge just to smooth the transition to the dark card */}
+          <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#0A1612] to-transparent pointer-events-none" />
         </div>
 
-        {/* Deep Contextual Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#07130E] via-[#07130E]/30 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-700" />
-
-        {/* Top Number Badge */}
-        <div className="absolute top-6 left-6 flex items-center justify-center">
-          <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#C5A059]">
-            {labelNum}
-          </span>
-        </div>
-
-        {/* Content Container docked to the bottom */}
-        <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 flex flex-col justify-end">
+        {/* Bottom Half: The Plaque (Text & Navigation) */}
+        <div className="relative flex flex-col flex-grow p-6 sm:p-8 bg-[#0A1612]">
+          {/* Delicate Gold Accent Line */}
+          <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-[#C5A059]/0 via-[#C5A059]/30 to-[#C5A059]/0 group-hover:via-[#C5A059]/60 transition-colors duration-500" />
           
-          <h3 className="font-serif text-2xl sm:text-[1.75rem] text-white leading-tight mb-0 group-hover:-translate-y-2 group-hover:text-[#C5A059] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+          <div className="flex items-center justify-between mb-4 mt-2">
+            <span className="text-[10px] font-mono font-semibold tracking-[0.2em] text-[#C5A059]">
+              {labelNum}
+            </span>
+            <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-[#C5A059] group-hover:border-[#C5A059] transition-all duration-300">
+              <ArrowUpRight className="w-4 h-4 text-white group-hover:text-[#0A1612]" />
+            </div>
+          </div>
+
+          <h3 className="font-serif text-xl sm:text-2xl text-white leading-tight mb-3 group-hover:text-[#C5A059] transition-colors duration-300">
             {service.title}
           </h3>
 
-          {/* Hidden Content that flawlessly slides up via CSS Grid Rows */}
-          <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
-            <div className="overflow-hidden">
-              <div className="pt-3 border-t border-white/10 mt-3">
-                <p className="font-sans text-sm text-gray-300 font-light leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                  {service.desc || service.description}
-                </p>
-                <div className="mt-5 flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] uppercase text-[#C5A059] opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150 font-semibold">
-                  <span>Explore Expertise</span>
-                  <ArrowUpRight size={14} strokeWidth={2} />
-                </div>
-              </div>
-            </div>
-          </div>
+          <p className="font-sans text-sm text-gray-400 font-light leading-relaxed flex-grow">
+            {service.desc || service.description}
+          </p>
 
         </div>
       </Link>
