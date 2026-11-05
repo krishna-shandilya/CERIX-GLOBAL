@@ -70,7 +70,53 @@ export default function GlobalReachCarousel() {
   }, [isLocked, total]);
 
   const handleNavigateToCorridor = (slugOrId) => {
-    navigate(`/global-reach?jurisdiction=${encodeURIComponent(slugOrId)}`); };  const handleCardClick = (index, item) => { setIsLocked(true); if (index === activeIndex) { handleNavigateToCorridor(item.slug \vert{}\vert{} item.id); } else { setActiveIndex(index); } };  if (total === 0) return null;  return ( <section ref={containerRef} aria-label="Global Corridors Matrix" className="relative bg-[#FDFBF7] text-[#07130E] py-16 md:py-24 px-4 sm:px-8 md:px-12 lg:px-24 overflow-hidden border-t border-black/5" > <div className="max-w-7xl mx-auto relative z-10">  {/* Section Header */} <div className="max-w-4xl mb-12 md:mb-16"> <div className="flex items-center gap-3 mb-5"> <div className="h-px w-10 bg-[#8B6E33]" /> <span className="text-xs font-mono tracking-[0.35em] text-[#8B6E33] uppercase font-semibold"> GLOBAL REACH </span> <div className="h-px w-20 bg-gradient-to-r from-[#8B6E33]/40 to-transparent" /> </div>  <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.15] text-[#07130E] tracking-tight"> Institutional presence across <span className="italic text-[#8B6E33]">key corridors.</span> </h2> <p className="mt-4 text-[#4A5550] text-sm sm:text-base md:text-lg font-light max-w-2xl leading-relaxed"> Structuring cross-border entities, private funds, and operational substance across the world's premier common law and statutory financial centers. </p> </div>  {/* 1. Mobile & Tablet Layout (< 1024px): Touch-Friendly Horizontal Swipe */} <div className="lg:hidden flex gap-5 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-none px-2 -mx-4 sm:mx-0"> {list.map((item, index) => { const jurKey = (item.slug \vert{}\vert{} item.id \vert{}\vert{} '').toLowerCase(); return ( <div key={`mobile-${jurKey || index}`}
+    navigate(`/global-reach?jurisdiction=${encodeURIComponent(slugOrId)}`);
+  };
+
+  const handleCardClick = (index, item) => {
+    setIsLocked(true);
+    if (index === activeIndex) {
+      handleNavigateToCorridor(item.slug || item.id);
+    } else {
+      setActiveIndex(index);
+    }
+  };
+
+  if (total === 0) return null;
+
+  return (
+    <section 
+      ref={containerRef}
+      aria-label="Global Corridors Matrix"
+      className="relative bg-[#FDFBF7] text-[#07130E] py-16 md:py-24 px-4 sm:px-8 md:px-12 lg:px-24 overflow-hidden border-t border-black/5"
+    >
+      <div className="max-w-7xl mx-auto relative z-10">
+        
+        {/* Section Header */}
+        <div className="max-w-4xl mb-12 md:mb-16">
+          <div className="flex items-center gap-3 mb-5">
+            <div className="h-px w-10 bg-[#8B6E33]" />
+            <span className="text-xs font-mono tracking-[0.35em] text-[#8B6E33] uppercase font-semibold">
+              GLOBAL REACH
+            </span>
+            <div className="h-px w-20 bg-gradient-to-r from-[#8B6E33]/40 to-transparent" />
+          </div>
+
+          <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.15] text-[#07130E] tracking-tight">
+            Institutional presence across <span className="italic text-[#8B6E33]">key corridors.</span>
+          </h2>
+          <p className="mt-4 text-[#4A5550] text-sm sm:text-base md:text-lg font-light max-w-2xl leading-relaxed">
+            Structuring cross-border entities, private funds, and operational substance across the world's premier common law and statutory financial centers.
+          </p>
+        </div>
+
+        {/* 1. Mobile & Tablet Layout (< 1024px): Touch-Friendly Horizontal Swipe */}
+        <div className="lg:hidden flex gap-5 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-none px-2 -mx-4 sm:mx-0">
+          {list.map((item, index) => {
+            const jurKey = (item.slug || item.id || '').toLowerCase();
+            return (
+              <div
+                key={`mobile-${jurKey || index}`}
                 onClick={() => handleNavigateToCorridor(item.slug || item.id)}
                 className="w-[280px] sm:w-[320px] h-[440px] shrink-0 snap-center rounded-2xl overflow-hidden bg-[#0B1D16] border border-[#C5A059]/40 flex flex-col justify-between shadow-xl cursor-pointer"
               >
@@ -152,7 +198,7 @@ export default function GlobalReachCarousel() {
                   opacity,
                   transition: 'transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease'
                 }}
-                className={`absolute w-[300px] h-[460px] rounded-2xl overflow-hidden cursor-pointer backdrop-blur-md flex flex-col justify-between transition-all duration-500 bg-[#0B1D16] \${
+                className={`absolute w-[300px] h-[460px] rounded-2xl overflow-hidden cursor-pointer backdrop-blur-md flex flex-col justify-between transition-all duration-500 bg-[#0B1D16] ${
                   isCenter 
                     ? 'border-2 border-[#C5A059] ring-2 ring-[#C5A059]/30 shadow-[0_25px_50px_rgba(7,19,14,0.35)]' 
                     : 'border border-black/10 hover:border-[#C5A059]/40 shadow-[0_10px_25px_rgba(0,0,0,0.08)]'
@@ -196,4 +242,59 @@ export default function GlobalReachCarousel() {
                         e.stopPropagation();
                         handleNavigateToCorridor(item.slug || item.id);
                       }}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium focus-visible
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium focus-visible:ring-2 focus-visible:ring-[#C5A059] outline-none transition-colors ${
+                        isCenter
+                          ? 'bg-[#C5A059] text-[#07130E] font-bold hover:bg-[#E6C875]'
+                          : 'bg-white/10 text-white hover:bg-[#C5A059] hover:text-[#07130E]'
+                      }`}
+                    >
+                      Know More
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Carousel Navigation Arrows */}
+        <div className="hidden lg:flex mt-8 items-center justify-center gap-6">
+          <button
+            type="button"
+            onClick={handlePrev}
+            aria-label="Previous Corridor"
+            className="w-10 h-10 rounded-full border border-black/10 bg-white hover:border-[#C5A059] hover:text-[#C5A059] text-[#07130E] flex items-center justify-center transition-all shadow-sm focus-visible:ring-2 focus-visible:ring-[#C5A059] outline-none"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+
+          <div className="flex items-center gap-1.5">
+            {list.map((_, dotIndex) => (
+              <button
+                key={dotIndex}
+                onClick={() => {
+                  setIsLocked(true);
+                  setActiveIndex(dotIndex);
+                }}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  dotIndex === activeIndex ? 'w-7 bg-[#C5A059]' : 'w-2 bg-black/15'
+                }`}
+                aria-label={`Go to corridor ${dotIndex + 1}`}
+              />
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={handleNext}
+            aria-label="Next Corridor"
+            className="w-10 h-10 rounded-full border border-black/10 bg-white hover:border-[#C5A059] hover:text-[#C5A059] text-[#07130E] flex items-center justify-center transition-all shadow-sm focus-visible:ring-2 focus-visible:ring-[#C5A059] outline-none"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
