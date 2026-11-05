@@ -141,8 +141,11 @@ export default function WhyCerix() {
 
           {/* Premium Objective Advisory Framing */}
           <div className="mt-12 pt-6 border-t border-white/10 text-center">
-            <p className="text-[11px] font-mono text-[#8B9B90] tracking-wide leading-relaxed max-w-4xl mx-auto">
-              <span className="text-[#C5A059]">EXECUTION FRAMEWORK:</span> As an independent advisory practice, Cerix Global does not undertake directly regulated statutory or fiduciary administration. We design the architecture, while all local incorporation and regulated execution are delivered seamlessly via our trusted network of licensed partner institutions.
+            <p className="text-xs text-[#8B9B90] font-light leading-relaxed max-w-4xl mx-auto">
+              <span className="text-[11px] font-mono font-semibold tracking-widest uppercase text-[#C5A059] mr-2">
+                Execution Framework:
+              </span> 
+              As an independent advisory practice, Cerix Global does not undertake directly regulated statutory or fiduciary administration. We design the architecture, while all local incorporation and regulated execution are delivered seamlessly via our trusted network of licensed partner institutions.
             </p>
           </div>
         </div>
