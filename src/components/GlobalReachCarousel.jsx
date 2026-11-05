@@ -1,301 +1,171 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { 
-  ChevronLeft, 
-  ChevronRight, 
-  ArrowUpRight, 
-  Globe2 
-} from 'lucide-react';
-import { JURISDICTIONS } from '@/lib/cerixData';
+import React, { useState, useEffect, useRef } from 'react';
+import { IMAGES } from '@/lib/cerixData';
 
-export default function GlobalReachCarousel() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isLocked, setIsLocked] = useState(false);
+export default function WhyCerix() {
+  const [isVisible, setIsVisible] = useState(false);
+  // Default to 16 so it never flashes 0+ on initial paint or slow hydration
+  const [yearsCount, setYearsCount] = useState(16);
+  const sectionRef = useRef(null);
 
-  const containerRef = useRef(null);
-  const lastScrollProgress = useRef(0);
-  const navigate = useNavigate();
-
-  const list = JURISDICTIONS || [];
-  const total = list.length;
-
-  const handleNext = useCallback(() => {
-    setIsLocked(true);
-    setActiveIndex((prev) => (prev + 1) % total);
-  }, [total]);
-
-  const handlePrev = useCallback(() => {
-    setIsLocked(true);
-    setActiveIndex((prev) => (prev - 1 + total) % total);
-  }, [total]);
-
-  // Smooth scroll-linked rotation for desktop viewports
+  // Intersection observer with low threshold for reliable mobile & desktop triggers
   useEffect(() => {
-    if (isLocked || total === 0) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.05 }
+    );
 
-    let ticking = false;
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
 
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (!containerRef.current) {
-            ticking = false;
-            return;
-          }
-
-          // Disable auto scroll-rotation on mobile devices to prevent touch collision
-          if (window.innerWidth < 1024) {
-            ticking = false;
-            return;
-          }
-
-          const rect = containerRef.current.getBoundingClientRect();
-          const windowHeight = window.innerHeight;
-
-          if (rect.bottom > 0 && rect.top < windowHeight) {
-            const progress = Math.max(0, Math.min(1, (windowHeight - rect.top) / (windowHeight + rect.height)));
-            const calculatedIndex = Math.floor(progress * total) % total;
-            
-            if (calculatedIndex !== lastScrollProgress.current) {
-              lastScrollProgress.current = calculatedIndex;
-              setActiveIndex(calculatedIndex);
-            }
-          }
-          ticking = false;
-        });
-        ticking = true;
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
       }
     };
+  }, []);
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isLocked, total]);
+  // Smooth count-up animation that increments from 12 to 16
+  useEffect(() => {
+    if (!isVisible) return;
+    
+    let current = 12;
+    const target = 16;
+    setYearsCount(current);
 
-  const handleNavigateToCorridor = (slugOrId) => {
-    navigate(`/global-reach?jurisdiction=${encodeURIComponent(slugOrId)}`);
-  };
+    const timer = setInterval(() => {
+      current += 1;
+      setYearsCount(current);
+      if (current >= target) {
+        clearInterval(timer);
+      }
+    }, 120);
 
-  const handleCardClick = (index, item) => {
-    setIsLocked(true);
-    if (index === activeIndex) {
-      handleNavigateToCorridor(item.slug || item.id);
-    } else {
-      setActiveIndex(index);
-    }
-  };
-
-  if (total === 0) return null;
+    return () => clearInterval(timer);
+  }, [isVisible]);
 
   return (
-    <section 
-      ref={containerRef}
-      aria-label="Global Corridors Matrix"
-      className="relative bg-[#FDFBF7] text-[#07130E] py-16 md:py-24 px-4 sm:px-8 md:px-12 lg:px-24 overflow-hidden border-t border-black/5"
-    >
-      <div className="max-w-7xl mx-auto relative z-10">
+    <section ref={sectionRef} className="relative w-full bg-[#07130E] py-28 md:py-36 px-6 md:px-12 lg:px-24 overflow-hidden">
+      
+      {/* 1. Atmospheric Background Layer */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img
+          src={IMAGES.whyCerix}
+          alt="Cerix Global Infrastructure"
+          className="w-full h-full object-cover opacity-30 filter blur-[6px] scale-105"
+        />
+        {/* Multi-stop radial vignette for luxury depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#07130E] via-[#07130E]/80 to-[#07130E]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#07130E]/60 to-[#07130E]" />
+      </div>
+
+      {/* 2. Main Container with Glowing Gold Border Frame */}
+      <div className="relative z-10 max-w-7xl mx-auto">
         
-        {/* Header Format Matching Who We Advise with WCAG Compliant Contrast */}
-        <div className="max-w-4xl mb-12 md:mb-16">
-          <div className="flex items-center gap-3 mb-5">
-            <div className="h-px w-10 bg-[#8B6E33]" />
-            <span className="text-xs font-mono tracking-[0.35em] text-[#8B6E33] uppercase font-semibold">
-              GLOBAL REACH
-            </span>
-            <div className="h-px w-20 bg-gradient-to-r from-[#8B6E33]/40 to-transparent" />
+        {/* Top Micro-Header */}
+        <div className="flex items-center gap-3 mb-16">
+          <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C5A059]" />
+          <span className="text-xs font-mono tracking-[0.35em] text-[#C5A059] uppercase">
+            Why Cerix Global
+          </span>
+          <div className="h-px w-24 bg-gradient-to-r from-[#C5A059]/40 to-transparent" />
+        </div>
+
+        {/* Floating Glass Editorial Card */}
+        <div className="relative rounded-3xl p-8 md:p-16 bg-[#0B1D16]/70 backdrop-blur-2xl border border-white/10 shadow-[0_30px_100px_rgba(0,0,0,0.6)] overflow-hidden">
+          
+          {/* Subtle Corner Gold Light Bleed Accent */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#C5A059]/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            {/* Left Column: Striking Headline & Regulatory-Defensible Overview */}
+            <div className="lg:col-span-5 space-y-8">
+              <h2 className="font-serif text-4xl md:text-6xl text-white font-normal leading-[1.08] tracking-tight">
+                Experience across <span className="italic text-[#C5A059]">borders.</span>
+              </h2>
+              <p className="text-[#D4CFC4] font-light text-base md:text-lg leading-relaxed">
+                Cerix Global operates as an independent strategic advisory and intermediary practice. We design cross-border corporate architectures and private investment vehicles, executing seamlessly in direct coordination with regulated corporate service providers, licensed management companies, and legal counsel worldwide.
+              </p>
+              <div className="pt-2">
+                <span className="inline-block text-xs font-mono tracking-widest text-[#C5A059] uppercase border-b border-[#C5A059]/30 pb-1">
+                  Strategic Advisory &bull; Absolute Discretion
+                </span>
+              </div>
+            </div>
+
+            {/* Right Column: 2x2 Architectural Metric Grid with Pure Intermediary Framing */}
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              
+              {/* Stat 1: Advisory Track Record */}
+              <div className="group p-8 rounded-2xl bg-black/30 border border-white/5 hover:border-[#C5A059]/40 transition-all duration-500 hover:-translate-y-1">
+                <div className="font-serif text-5xl md:text-6xl text-white mb-2 tracking-tight group-hover:text-[#C5A059] transition-colors">
+                  {yearsCount}+
+                </div>
+                <div className="text-xs font-mono text-[#C5A059] uppercase tracking-wider mb-2">
+                  Years Advisory Pedigree
+                </div>
+                <p className="text-gray-400 font-light text-xs leading-relaxed">
+                  Decade-proven expertise structuring cross-border holding companies, private equity funds, and cross-border trade flows.
+                </p>
+              </div>
+
+              {/* Stat 2: Fiduciary & Partner Network (Defensible Intermediary Positioning) */}
+              <div className="group p-8 rounded-2xl bg-black/30 border border-white/5 hover:border-[#C5A059]/40 transition-all duration-500 hover:-translate-y-1">
+                <div className="font-serif text-4xl sm:text-5xl text-white mb-2 tracking-tight group-hover:text-[#C5A059] transition-colors pt-1">
+                  Licensed
+                </div>
+                <div className="text-xs font-mono text-[#C5A059] uppercase tracking-wider mb-2">
+                  Local Partner Network
+                </div>
+                <p className="text-gray-400 font-light text-xs leading-relaxed">
+                  Execution delivered exclusively in coordination with licensed corporate service providers, Mancos, and trustees in each domicile.
+                </p>
+              </div>
+
+              {/* Stat 3: Intermediary Coordination */}
+              <div className="group p-8 rounded-2xl bg-black/30 border border-white/5 hover:border-[#C5A059]/40 transition-all duration-500 hover:-translate-y-1">
+                <div className="font-serif text-4xl md:text-5xl text-white mb-2 tracking-tight group-hover:text-[#C5A059] transition-colors pt-2">
+                  Unified
+                </div>
+                <div className="text-xs font-mono text-[#C5A059] uppercase tracking-wider mb-2">
+                  Advisory Intermediary
+                </div>
+                <p className="text-gray-400 font-light text-xs leading-relaxed">
+                  Harmonizing multi-jurisdictional tax law, substance requirements, and banking onboarding under a single strategic mandate.
+                </p>
+              </div>
+
+              {/* Stat 4: Statutory Alignment */}
+              <div className="group p-8 rounded-2xl bg-black/30 border border-white/5 hover:border-[#C5A059]/40 transition-all duration-500 hover:-translate-y-1">
+                <div className="font-serif text-4xl md:text-5xl text-white mb-2 tracking-tight group-hover:text-[#C5A059] transition-colors pt-2">
+                  Institutional
+                </div>
+                <div className="text-xs font-mono text-[#C5A059] uppercase tracking-wider mb-2">
+                  Governance Alignment
+                </div>
+                <p className="text-gray-400 font-light text-xs leading-relaxed">
+                  Ensuring all recommended structures satisfy home-jurisdiction regulatory compliance (including RBI ODI, FEMA, and DTAA standards).
+                </p>
+              </div>
+
+            </div>
+
           </div>
 
-          <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.15] text-[#07130E] tracking-tight">
-            Institutional presence across <span className="italic text-[#8B6E33]">key corridors.</span>
-          </h2>
-          <p className="mt-4 text-[#4A5550] text-sm sm:text-base md:text-lg font-light max-w-2xl leading-relaxed">
-            Structuring cross-border entities, private funds, and operational substance across the world's premier common law and statutory financial centers.
-          </p>
-        </div>
-
-        {/* 1. MOBILE & TABLET LAYOUT (< 1024px): Native Touch Horizontal Track (No Scroll-Trap) */}
-        <div className="lg:hidden flex gap-5 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-none px-2 -mx-4 sm:mx-0">
-          {list.map((item, index) => {
-            const jurKey = (item.slug || item.id || '').toLowerCase();
-            return (
-              <div
-                key={`mobile-${jurKey || index}`}
-                onClick={() => handleNavigateToCorridor(item.slug || item.id)}
-                className="w-[280px] sm:w-[320px] h-[440px] shrink-0 snap-center rounded-2xl overflow-hidden bg-[#0B1D16] border border-[#C5A059]/40 flex flex-col justify-between shadow-xl cursor-pointer"
-              >
-                <div className="relative h-[55%] w-full bg-[#07130E] overflow-hidden">
-                  {item.image && (
-                    <img 
-                      src={item.image} 
-                      alt={item.name} 
-                      loading="lazy"
-                      className="w-full h-full object-cover"
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1D16] via-[#0B1D16]/20 to-transparent" />
-                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-[#07130E]/85 border border-[#C5A059]/40 text-[#C5A059] text-[10px] font-mono tracking-widest uppercase">
-                    {item.region || 'Corridor'}
-                  </div>
-                </div>
-
-                <div className="p-5 flex flex-col justify-between flex-grow text-white">
-                  <div>
-                    <h3 className="text-xl font-serif font-bold text-white mb-1">
-                      {item.name}
-                    </h3>
-                    <p className="text-[#C5A059] text-[11px] font-mono uppercase tracking-wider mb-2">
-                      {item.subtitle || item.region}
-                    </p>
-                    <p className="text-[#D4CFC4] text-xs font-light line-clamp-2 leading-relaxed">
-                      {item.desc || item.description}
-                    </p>
-                  </div>
-
-                  <div className="pt-3 border-t border-white/10 flex items-center justify-between">
-                    <span className="text-[10px] font-mono text-slate-400">
-                      {item.coordinates || 'Active Corridor'}
-                    </span>
-                    <button 
-                      type="button"
-                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#C5A059] text-[#07130E] text-xs font-mono font-bold"
-                    >
-                      Know More
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* 2. DESKTOP LAYOUT (>= 1024px): 3D Arc Perspective Showcase */}
-        <div className="hidden lg:flex relative h-[520px] items-center justify-center [perspective:1200px]">
-          {list.map((item, index) => {
-            const jurKey = (item.slug || item.id || '').toLowerCase();
-
-            let offset = (index - activeIndex) % total;
-            if (offset > total / 2) offset -= total;
-            if (offset < -total / 2) offset += total;
-
-            const isCenter = offset === 0;
-            const isImmediate = Math.abs(offset) === 1;
-            const isVisible = Math.abs(offset) <= 2;
-
-            if (!isVisible) return null;
-
-            const translateX = offset * 280; 
-            const translateZ = -Math.abs(offset) * 130;
-            const rotateY = offset * -20;
-            const scale = isCenter ? 1 : 0.9;
-            const opacity = isCenter ? 1 : isImmediate ? 0.5 : 0.2;
-            const zIndex = 30 - Math.abs(offset) * 5;
-
-            return (
-              <div
-                key={jurKey || index}
-                onClick={() => handleCardClick(index, item)}
-                style={{
-                  transform: `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
-                  zIndex,
-                  opacity,
-                  transition: 'transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease'
-                }}
-                className={`absolute w-[300px] h-[460px] rounded-2xl overflow-hidden cursor-pointer backdrop-blur-md flex flex-col justify-between transition-all duration-500 bg-[#0B1D16] ${
-                  isCenter 
-                    ? 'border-2 border-[#C5A059] ring-2 ring-[#C5A059]/30 shadow-[0_25px_50px_rgba(7,19,14,0.35)]' 
-                    : 'border border-black/10 hover:border-[#C5A059]/40 shadow-[0_10px_25px_rgba(0,0,0,0.08)]'
-                }`}
-              >
-                <div className="relative h-[56%] w-full overflow-hidden shrink-0 bg-[#07130E]">
-                  {item.image && (
-                    <img 
-                      src={item.image} 
-                      alt={item.name} 
-                      className="w-full h-full object-cover pointer-events-none transition-transform duration-700 ease-out hover:scale-105"
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1D16] via-[#0B1D16]/20 to-transparent pointer-events-none" />
-                  <div className="absolute top-3.5 left-3.5 px-2.5 py-1 rounded-full bg-[#07130E]/80 backdrop-blur-md border border-[#C5A059]/30 text-[#C5A059] text-[10px] font-mono tracking-widest uppercase flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059]" />
-                    {item.region || 'Corridor'}
-                  </div>
-                </div>
-
-                <div className="p-5 flex flex-col justify-between flex-grow text-left text-white bg-[#0B1D16]">
-                  <div>
-                    <h3 className="text-2xl font-serif font-bold text-white mb-1 tracking-tight">
-                      {item.name}
-                    </h3>
-                    <p className="text-[#C5A059] text-[11px] font-mono uppercase tracking-wider mb-2 line-clamp-1">
-                      {item.subtitle || item.region}
-                    </p>
-                    <p className="text-[#D4CFC4] text-xs font-light line-clamp-2 leading-relaxed">
-                      {item.desc || item.description}
-                    </p>
-                  </div>
-
-                  <div className="pt-3 border-t border-white/10 flex items-center justify-between mt-2">
-                    <span className="text-[10px] font-mono text-slate-400">
-                      {item.coordinates || item.coord || 'Global Hub'}
-                    </span>
-                    <button 
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleNavigateToCorridor(item.slug || item.id);
-                      }}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium focus-visible:ring-2 focus-visible:ring-[#C5A059] outline-none transition-colors ${
-                        isCenter
-                          ? 'bg-[#C5A059] text-[#07130E] font-bold hover:bg-[#E6C875]'
-                          : 'bg-white/10 text-white hover:bg-[#C5A059] hover:text-[#07130E]'
-                      }`}
-                    >
-                      Know More
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Minimal Navigation Controls (Desktop) */}
-        <div className="hidden lg:flex mt-8 items-center justify-center gap-6">
-          <button
-            type="button"
-            onClick={handlePrev}
-            aria-label="Previous Corridor"
-            className="w-10 h-10 rounded-full border border-black/10 bg-white hover:border-[#C5A059] hover:text-[#C5A059] text-[#07130E] flex items-center justify-center transition-all shadow-sm focus-visible:ring-2 focus-visible:ring-[#C5A059] outline-none"
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </button>
-
-          <div className="flex items-center gap-1.5">
-            {list.map((_, dotIndex) => (
-              <button
-                key={dotIndex}
-                onClick={() => {
-                  setIsLocked(true);
-                  setActiveIndex(dotIndex);
-                }}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  dotIndex === activeIndex ? 'w-7 bg-[#C5A059]' : 'w-2 bg-black/15'
-                }`}
-                aria-label={`Go to corridor ${dotIndex + 1}`}
-              />
-            ))}
+          {/* Statutory Regulatory Positioning Footnote */}
+          <div className="mt-12 pt-6 border-t border-white/10 text-center">
+            <p className="text-[11px] font-mono text-[#8B9B90] tracking-wide leading-relaxed max-w-4xl mx-auto">
+              Regulatory Notice: Cerix Global acts solely as an independent cross-border advisory and intermediary consultancy. It does not directly provide regulated corporate administration, fund administration, or fiduciary services within jurisdictions where statutory licensing is mandated; all corporate filings and fiduciary services are provided via authorized, locally licensed counterparties.
+            </p>
           </div>
 
-          <button
-            type="button"
-            onClick={handleNext}
-            aria-label="Next Corridor"
-            className="w-10 h-10 rounded-full border border-black/10 bg-white hover:border-[#C5A059] hover:text-[#C5A059] text-[#07130E] flex items-center justify-center transition-all shadow-sm focus-visible:ring-2 focus-visible:ring-[#C5A059] outline-none"
-          >
-            <ChevronRight className="w-4 h-4" />
-          </button>
         </div>
+
       </div>
     </section>
   );
