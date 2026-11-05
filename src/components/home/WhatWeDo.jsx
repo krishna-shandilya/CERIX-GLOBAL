@@ -1,47 +1,52 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight, X, Globe, Building2, Shield, Landmark, FileText, Key, Layers, Briefcase } from "lucide-react";
-import { SERVICES, SHEET_ASSETS } from "@/lib/cerixData";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Globe, Building2, Shield, Landmark, FileText, Key, Layers, Briefcase } from "lucide-react";
+import { SERVICES } from "@/lib/cerixData";
 import { Image } from "@/components/ui/image";
 import MotionText from "@/components/MotionText";
 import { motion, AnimatePresence } from "framer-motion";
 
-const SERVICE_ICONS = [Globe, Building2, Shield, Landmark, FileText, Key, Layers, Briefcase];
-
 export default function WhatWeDo() {
-  const [selectedIndex, setSelectedIndex] = useState(5); // Default to index 5 (Noon in Ashes equivalent or similar)
-  const activeService = SERVICES[selectedIndex] || SERVICES[0];
-  const ActiveIcon = SERVICE_ICONS[selectedIndex % SERVICE_ICONS.length];
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeService = SERVICES[activeIndex] || SERVICES[0];
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev === 0 ? SERVICES.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev === SERVICES.length - 1 ? 0 : prev + 1));
+  };
 
   return (
-    <section className="relative bg-[#FDFBF7] text-[#141414] py-32 lg:py-48 overflow-hidden select-none">
-      {/* Paper Grain Background Overlay */}
-      <div className="absolute inset-0 z-40 pointer-events-none opacity-55 mix-blend-multiply">
+    <section className="relative bg-[#FDFBF7] text-[#141414] py-28 lg:py-40 overflow-hidden select-none">
+      {/* Paper Grain Overlay */}
+      <div className="absolute inset-0 z-20 pointer-events-none opacity-40 mix-blend-multiply">
         <svg className="w-full h-full">
-          <filter id="paper-noise">
+          <filter id="paper-grain">
             <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" />
             <feColorMatrix type="matrix" values="1 0 0 0 0.45  0 1 0 0 0.42  0 0 1 0 0.38  0 0 0 0.22 0" />
           </filter>
-          <rect width="100%" height="100%" filter="url(#paper-noise)" />
+          <rect width="100%" height="100%" filter="url(#paper-grain)" />
         </svg>
       </div>
 
-      <div className="relative z-10 mx-auto max-w-[1600px] px-6 lg:px-12">
+      <div className="relative z-30 mx-auto max-w-[1550px] px-6 lg:px-12">
         
-        {/* Section Header */}
-        <div className="max-w-3xl mb-16 lg:mb-20">
+        {/* Top Header */}
+        <div className="max-w-3xl mb-16">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.2, 0.8, 0.2, 1] }}
+            transition={{ duration: 0.7 }}
             className="flex items-center gap-3 mb-6"
           >
-            <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#1F3FB0]" />
+            <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C5A059]" />
             <span className="text-[10.5px] font-mono tracking-[0.09em] uppercase font-semibold text-[#141414]" style={{ border: '1px solid rgba(20,20,20,.9)', padding: '0 8px', display: 'inline-flex', alignItems: 'center', height: '21px' }}>
               What We Do
             </span>
-            <div className="h-px w-24 bg-gradient-to-r from-[#1F3FB0]/40 to-transparent" />
+            <div className="h-px w-24 bg-gradient-to-r from-[#C5A059]/40 to-transparent" />
           </motion.div>
 
           <MotionText
@@ -54,122 +59,133 @@ export default function WhatWeDo() {
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.2, 0.8, 0.2, 1] }}
+            transition={{ duration: 0.7, delay: 0.1 }}
             className="text-[#6D6A63] font-light text-lg lg:text-xl leading-relaxed max-w-2xl font-sans"
           >
             Disciplines designed to establish, protect, and operate international structures with absolute clarity.
           </motion.p>
         </div>
 
-        {/* Segmented Control Bar */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-10 -mx-6 px-6 lg:mx-0 lg:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {SERVICES.map((s, i) => {
-            const isSelected = selectedIndex === i;
-            return (
-              <motion.button
-                key={s.id || i}
-                onClick={() => setSelectedIndex(i)}
-                whileTap={{ scale: 0.96 }}
-                transition={{ type: "spring", damping: 20, stiffness: 300 }}
-                className={`group relative flex items-center gap-3 px-4 py-2 font-mono text-[10.5px] tracking-[0.09em] uppercase transition-colors shrink-0 outline-none ${
-                  isSelected 
-                    ? "bg-[#1F3FB0] text-white font-semibold shadow-md" 
-                    : "bg-[#F4F2ED] hover:bg-[#EDEBE6] text-[#141414] border border-[#141414]/20"
-                }`}
-                style={{ border: '1px solid rgba(20,20,20,.9)', height: '23px', padding: '0 11px' }}
-              >
-                <span className={isSelected ? "text-white" : "text-[#1F3FB0]"}>
-                  0{i + 1}
-                </span>
-                <span className="whitespace-nowrap">{s.title.split(' ')[0]}</span>
-              </motion.button>
-            );
-          })}
-        </div>
-
-        {/* Dynamic Command Deck & Stage */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 min-h-[580px] lg:h-[620px]">
+        {/* Interactive Bookshelf Stage */}
+        <div className="relative bg-[#F4F2ED] border border-[#141414]/20 rounded-2xl p-8 lg:p-14 shadow-2xl overflow-hidden">
           
-          {/* LEFT STAGE: 100% Unmasked Live Visual Canvas */}
-          <div className="lg:col-span-7 relative rounded-[2px] overflow-hidden bg-[#F4F2ED] border border-[#141414]/20 shadow-xl h-[360px] sm:h-[420px] lg:h-full flex items-center justify-center p-8">
-            <AnimatePresence mode="popLayout">
-              <motion.div
-                key={selectedIndex}
-                initial={{ opacity: 0, scale: 0.98, rotate: -2 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ type: "spring", damping: 22, stiffness: 200 }}
-                className="relative w-full max-w-[420px] aspect-[1/1.5] shadow-2xl rounded-sm overflow-hidden border border-[#141414]/10"
-              >
-                <Image
-                  src={activeService.image}
-                  alt={activeService.title}
-                  fittingType="cover"
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Translucent Floating Badge on Stage */}
-            <div className="absolute top-6 left-6 px-3 py-1 rounded-none bg-[#EDEBE6]/90 backdrop-blur-md border border-[#141414]/20 flex items-center gap-2 shadow-sm">
-              <ActiveIcon className="w-3.5 h-3.5 text-[#1F3FB0]" />
-              <span className="font-mono text-[10.5px] tracking-[0.09em] uppercase text-[#141414] font-semibold">
-                Practice Area 0{selectedIndex + 1}
+          {/* Shelf Navigation Header */}
+          <div className="flex items-center justify-between mb-10 pb-6 border-b border-[#141414]/10">
+            <div className="flex items-center gap-3">
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#C5A059] font-bold">
+                Practice Shelf
               </span>
+              <span className="font-mono text-xs text-[#6D6A63]">
+                (0{activeIndex + 1} / 0{SERVICES.length})
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handlePrev}
+                aria-label="Previous practice"
+                className="w-10 h-10 rounded-full bg-[#141414]/5 hover:bg-[#C5A059] text-[#141414] hover:text-[#07130E] border border-[#141414]/10 hover:border-[#C5A059] flex items-center justify-center transition-all duration-300 outline-none cursor-pointer"
+              >
+                <ArrowLeft className="w-4 h-4" />
+              </button>
+              <button
+                onClick={handleNext}
+                aria-label="Next practice"
+                className="w-10 h-10 rounded-full bg-[#141414]/5 hover:bg-[#C5A059] text-[#141414] hover:text-[#07130E] border border-[#141414]/10 hover:border-[#C5A059] flex items-center justify-center transition-all duration-300 outline-none cursor-pointer"
+              >
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </div>
           </div>
 
-          {/* RIGHT PANEL: Paper Sheet Material Surface */}
-          <div className="lg:col-span-5 rounded-[2px] bg-[#F4F2ED] text-[#141414] border border-[#141414]/20 p-8 sm:p-12 lg:p-14 flex flex-col justify-between shadow-xl relative overflow-hidden">
+          {/* The Horizontal Shelf & Active Book Spotlight */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={selectedIndex}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ type: "spring", damping: 22, stiffness: 220 }}
-                className="flex flex-col h-full justify-between"
-              >
-                <div className="space-y-6">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10.5px] font-mono tracking-[0.09em] uppercase font-semibold text-[#1F3FB0]">
-                      Mandate Specification
-                    </span>
-                    <span className="font-mono text-xs text-[#6D6A63] tracking-widest">
-                      0{selectedIndex + 1} / 0{SERVICES.length}
-                    </span>
+            {/* Left: Interactive Horizontal Spines Shelf */}
+            <div className="lg:col-span-7 flex items-end gap-2.5 overflow-x-auto pb-4 pt-4 px-2 [scrollbar-width:thin] [scrollbar-color:#C5A059_#EDEBE6]">
+              {SERVICES.map((s, i) => {
+                const isSelected = activeIndex === i;
+                const labelNum = `0${i + 1}`;
+
+                return (
+                  <motion.div
+                    key={s.id || i}
+                    onClick={() => setActiveIndex(i)}
+                    whileHover={{ y: -12 }}
+                    animate={{ y: isSelected ? -20 : 0 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className={`relative group shrink-0 cursor-pointer rounded-sm overflow-hidden flex flex-col justify-between py-5 px-2 transition-all duration-500 shadow-md ${
+                      isSelected 
+                        ? "w-16 lg:w-20 bg-[#07130E] text-[#C5A059] border-2 border-[#C5A059] shadow-2xl z-20" 
+                        : "w-12 lg:w-14 bg-[#EDEBE6] text-[#141414] border border-[#141414]/20 hover:border-[#C5A059]/60"
+                    }`}
+                    style={{ height: '340px' }}
+                  >
+                    <div className="flex flex-col items-center gap-2">
+                      <span className="font-mono text-[10px] tracking-widest font-bold opacity-70">
+                        {labelNum}
+                      </span>
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#C5A059]" />
+                    </div>
+
+                    <div className="writing-mode-vertical text-center my-auto transform rotate-180">
+                      <span className="font-serif text-xs lg:text-sm tracking-wider uppercase font-medium whitespace-nowrap">
+                        {s.title}
+                      </span>
+                    </div>
+
+                    <div className="text-center font-mono text-[9px] tracking-widest uppercase opacity-60">
+                      CERIX
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Right: The Pulled-Out Open Book / Dossier Cover Showcase */}
+            <div className="lg:col-span-5 relative">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeIndex}
+                  initial={{ opacity: 0, scale: 0.95, rotateY: -15, y: 15 }}
+                  animate={{ opacity: 1, scale: 1, rotateY: 0, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, rotateY: 15, y: -15 }}
+                  transition={{ duration: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
+                  className="bg-[#EDEBE6] border border-[#141414]/20 rounded-2xl p-6 lg:p-8 shadow-2xl relative flex flex-col justify-between"
+                >
+                  <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#141414] text-[#C5A059] font-mono text-[10px] uppercase tracking-widest">
+                    Active Mandate 0{activeIndex + 1}
                   </div>
 
-                  <h3 className="font-serif text-3xl sm:text-4xl text-[#141414] leading-tight">
-                    {activeService.title}
-                  </h3>
-
-                  <p className="font-sans text-base sm:text-lg text-[#6D6A63] font-light leading-relaxed">
-                    {activeService.desc || activeService.description}
-                  </p>
-                </div>
-
-                <div className="pt-8 border-t border-[#141414]/10 mt-8 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#1F3FB0]" />
-                    <span className="font-mono text-[10.5px] tracking-[0.09em] uppercase text-[#6D6A63]">
-                      Active Framework
-                    </span>
+                  <div className="relative aspect-[4/5] rounded-xl overflow-hidden mb-6 shadow-inner bg-[#07130E]">
+                    <Image
+                      src={activeService.image}
+                      alt={activeService.title}
+                      fittingType="cover"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#07130E]/80 via-transparent to-transparent opacity-60" />
                   </div>
 
-                  <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                  <div>
+                    <h3 className="font-serif text-2xl lg:text-3xl text-[#141414] leading-tight mb-3">
+                      {activeService.title}
+                    </h3>
+                    <p className="font-sans text-sm text-[#6D6A63] font-light leading-relaxed mb-6">
+                      {activeService.desc || activeService.description}
+                    </p>
+
                     <Link
                       to={`/expertise/${activeService.slug}`}
-                      className="inline-flex items-center gap-3 bg-[#1F3FB0] text-white px-6 py-3 font-mono text-[10.5px] font-semibold uppercase tracking-[0.09em] shadow-md transition-colors hover:bg-[#152e85] outline-none"
+                      className="inline-flex items-center gap-2 bg-[#1F3FB0] text-white px-6 py-3.5 rounded-xl font-mono text-xs font-bold uppercase tracking-[0.09em] shadow-lg transition-colors hover:bg-[#152e85] outline-none"
                     >
-                      <span>Explore Mandate</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      <span>Explore Practice Area</span>
+                      <ArrowUpRight className="w-4 h-4" />
                     </Link>
-                  </motion.div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
           </div>
 
