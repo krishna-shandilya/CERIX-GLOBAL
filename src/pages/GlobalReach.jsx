@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { 
   Globe2, 
   Sparkles, 
@@ -9,19 +9,24 @@ import {
   ShieldCheck, 
   FileCheck, 
   ArrowUpRight, 
-  X 
+  X,
+  Lock
 } from 'lucide-react';
 import { JURISDICTIONS } from '../lib/cerixData';
 import DottedMapBackground from '@/components/DottedMapBackground';
 
 export default function GlobalReachPage() {
+  const { jurisdictionSlug } = useParams();
   const [searchParams] = useSearchParams();
-  const targetJurisdiction = searchParams.get('jurisdiction')?.toLowerCase();
+  
+  // Resolve clean static path first, fallback to search query
+  const targetJurisdiction = (jurisdictionSlug || searchParams.get('jurisdiction') || '').toLowerCase();
   const cardRefs = useRef({});
 
   const [selectedJurisdiction, setSelectedJurisdiction] = useState(null);
   const [activeTab, setActiveTab] = useState('structures'); // 'structures' | 'tax' | 'overview'
 
+  // Scroll to targeted corridor and auto-open preview dossier if directly linked
   useEffect(() => {
     if (!targetJurisdiction) return;
 
@@ -31,9 +36,37 @@ export default function GlobalReachPage() {
         targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }, 150);
 
+      // Auto-open dossier if navigated directly to a corridor route
+      const matched = JURISDICTIONS.find(
+        (j) => (j.slug || j.id || '').toLowerCase() === targetJurisdiction
+      );
+      if (matched && jurisdictionSlug) {
+        setSelectedJurisdiction(matched);
+      }
+
       return () => clearTimeout(timer);
     }
-  }, [targetJurisdiction]);
+  }, [targetJurisdiction, jurisdictionSlug]);
+
+  // WCAG Escape key handler for accessible modal dismissal
+  const handleKeyDown = useCallback((e) => {
+    if (e.key === 'Escape') {
+      setSelectedJurisdiction(null);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (selectedJurisdiction) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedJurisdiction, handleKeyDown]);
 
   const handleOpenModal = (jur) => {
     setSelectedJurisdiction(jur);
@@ -49,17 +82,17 @@ export default function GlobalReachPage() {
           {/* Micro-Header */}
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C5A059]" />
-            <span className="text-xs font-mono tracking-[0.35em] text-[#C5A059] uppercase">
-              Global Reach
+            <span className="text-xs font-mono tracking-[0.35em] text-[#C5A059] uppercase font-semibold">
+              Global Advisory Reach
             </span>
             <div className="h-px w-24 bg-gradient-to-r from-[#C5A059]/40 to-transparent" />
           </div>
 
           <h1 className="font-serif text-4xl md:text-6xl font-normal leading-tight text-white mb-6 tracking-tight">
-            A network across <span className="italic text-[#C5A059]">jurisdictions.</span>
+            Cross-border advisory across <span className="italic text-[#C5A059]">key corridors.</span>
           </h1>
-          <p className="text-[#D4CFC4] text-lg md:text-xl font-light max-w-2xl leading-relaxed">
-            We work across a curated network of jurisdictions — each selected for its relevance to specific objectives. No jurisdiction is universally suitable; every recommendation begins with the client.
+          <p className="text-[#D4CFC4] text-lg md:text-xl font-light max-w-3xl leading-relaxed">
+            Cerix Global acts as an independent strategic advisor and intermediary. We design resilient cross-border holding architectures and private fund platforms, executing seamlessly in direct coordination with authorized corporate service providers, licensed fiduciaries, and legal counsel worldwide.
           </p>
         </div>
       </section>
@@ -90,7 +123,7 @@ export default function GlobalReachPage() {
                     <div className="h-52 overflow-hidden relative">
                       <img
                         src={jur.image}
-                        alt={jur.name}
+                        alt={`${jur.name} Financial Corridor`}
                         width={400}
                         height={208}
                         loading={idx < 3 ? "eager" : "lazy"}
@@ -100,7 +133,7 @@ export default function GlobalReachPage() {
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0B1D16] via-transparent to-transparent opacity-80 pointer-events-none" />
                       {isTargeted && (
                         <div className="absolute top-4 right-4 bg-[#C5A059] text-[#07130E] text-[10px] font-mono uppercase font-bold tracking-widest px-3 py-1 rounded-full shadow-lg">
-                          Selected
+                          Targeted Corridor
                         </div>
                       )}
                     </div>
@@ -137,7 +170,7 @@ export default function GlobalReachPage() {
 
                     {/* Key Highlights */}
                     <div className="border-t border-white/10 pt-4">
-                      <p className="text-xs font-mono uppercase tracking-widest text-[#C5A059]/80 mb-2">Key Highlights:</p>
+                      <p className="text-xs font-mono uppercase tracking-widest text-[#C5A059]/80 mb-2">Key Corridor Highlights:</p>
                       <ul className="space-y-1.5">
                         {jur.highlights?.slice(0, 3).map((h, i) => (
                           <li key={i} className="text-xs text-gray-300 flex items-start gap-2">
@@ -155,7 +188,7 @@ export default function GlobalReachPage() {
                   <button
                     type="button"
                     onClick={() => handleOpenModal(jur)}
-                    className="w-full text-center rounded-full bg-[#07130E] text-[#C5A059] border border-[#C5A059]/40 hover:border-[#C5A059] hover:bg-[#C5A059]/10 py-3 px-4 text-xs font-mono uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2"
+                    className="w-full text-center rounded-full bg-[#07130E] text-[#C5A059] border border-[#C5A059]/40 hover:border-[#C5A059] hover:bg-[#C5A059]/10 py-3 px-4 text-xs font-mono uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 focus-visible:ring-2 focus-visible:ring-[#C5A059] outline-none"
                   >
                     <span>Inspect Full Dossier</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
@@ -163,13 +196,13 @@ export default function GlobalReachPage() {
 
                   <Link
                     to={`/contact?jurisdiction=${jur.slug || jurKey}`}
-                    className={`block w-full text-center rounded-full py-3 px-4 text-xs font-mono uppercase tracking-wider transition-all duration-300 shadow-sm ${
+                    className={`block w-full text-center rounded-full py-3 px-4 text-xs font-mono uppercase tracking-wider transition-all duration-300 shadow-sm focus-visible:ring-2 focus-visible:ring-[#C5A059] outline-none ${
                       isTargeted
                         ? 'bg-[#C5A059] text-[#07130E] font-bold hover:bg-[#E6C875] border border-[#C5A059]'
                         : 'bg-[#132A21] text-slate-200 border border-white/10 hover:border-[#C5A059] hover:text-[#C5A059]'
                     }`}
                   >
-                    Discuss this Jurisdiction →
+                    Inquire on {jur.name} Corridor →
                   </Link>
                 </div>
               </div>
@@ -178,9 +211,12 @@ export default function GlobalReachPage() {
         </div>
       </section>
 
-      {/* Deep Forest Green Frosted Modal */}
+      {/* Deep Forest Green Frosted Modal (Accessible Dialog) */}
       {selectedJurisdiction && (
         <div 
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="corridor-modal-title"
           className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-[#07130E]/80 backdrop-blur-xl animate-fade-in"
           onClick={() => setSelectedJurisdiction(null)}
         >
@@ -191,11 +227,12 @@ export default function GlobalReachPage() {
             {/* Ambient Gold Glow */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#C5A059]/10 blur-3xl pointer-events-none rounded-full" />
             
-            {/* Close Button */}
+            {/* Close Button with Clear Accessible Label */}
             <button
               type="button"
+              aria-label="Close corridor preview"
               onClick={() => setSelectedJurisdiction(null)}
-              className="absolute top-5 right-5 text-slate-400 hover:text-white p-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-colors z-20"
+              className="absolute top-5 right-5 text-slate-400 hover:text-white p-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-colors z-20 focus-visible:ring-2 focus-visible:ring-[#C5A059] outline-none"
             >
               <X className="w-4 h-4" />
             </button>
@@ -211,9 +248,9 @@ export default function GlobalReachPage() {
                     <Sparkles className="w-3 h-3 text-[#C5A059]" />
                     {selectedJurisdiction.region} • {selectedJurisdiction.coordinates}
                   </span>
-                  <h3 className="text-2xl md:text-3xl font-serif font-bold text-white">
+                  <h2 id="corridor-modal-title" className="text-2xl md:text-3xl font-serif font-bold text-white">
                     {selectedJurisdiction.name}
-                  </h3>
+                  </h2>
                 </div>
               </div>
               <p className="text-xs md:text-sm text-[#C5A059] font-mono uppercase tracking-wider">
@@ -221,11 +258,11 @@ export default function GlobalReachPage() {
               </p>
 
               {/* Navigation Tabs */}
-              <div className="flex gap-2 mt-5 border-b border-white/10 pb-0">
+              <div className="flex gap-2 mt-5 border-b border-white/10 pb-0 overflow-x-auto scrollbar-none">
                 <button
                   type="button"
                   onClick={() => setActiveTab('structures')}
-                  className={`flex items-center gap-2 pb-2.5 px-3 text-xs font-mono uppercase tracking-wider border-b-2 transition-all ${
+                  className={`flex items-center gap-2 pb-2.5 px-3 text-xs font-mono uppercase tracking-wider border-b-2 transition-all whitespace-nowrap focus-visible:ring-2 focus-visible:ring-[#C5A059] outline-none ${
                     activeTab === 'structures'
                       ? 'border-[#C5A059] text-[#C5A059] font-bold'
                       : 'border-transparent text-slate-400 hover:text-slate-200'
@@ -237,7 +274,7 @@ export default function GlobalReachPage() {
                 <button
                   type="button"
                   onClick={() => setActiveTab('tax')}
-                  className={`flex items-center gap-2 pb-2.5 px-3 text-xs font-mono uppercase tracking-wider border-b-2 transition-all ${
+                  className={`flex items-center gap-2 pb-2.5 px-3 text-xs font-mono uppercase tracking-wider border-b-2 transition-all whitespace-nowrap focus-visible:ring-2 focus-visible:ring-[#C5A059] outline-none ${
                     activeTab === 'tax'
                       ? 'border-[#C5A059] text-[#C5A059] font-bold'
                       : 'border-transparent text-slate-400 hover:text-slate-200'
@@ -249,7 +286,7 @@ export default function GlobalReachPage() {
                 <button
                   type="button"
                   onClick={() => setActiveTab('overview')}
-                  className={`flex items-center gap-2 pb-2.5 px-3 text-xs font-mono uppercase tracking-wider border-b-2 transition-all ${
+                  className={`flex items-center gap-2 pb-2.5 px-3 text-xs font-mono uppercase tracking-wider border-b-2 transition-all whitespace-nowrap focus-visible:ring-2 focus-visible:ring-[#C5A059] outline-none ${
                     activeTab === 'overview'
                       ? 'border-[#C5A059] text-[#C5A059] font-bold'
                       : 'border-transparent text-slate-400 hover:text-slate-200'
@@ -262,12 +299,12 @@ export default function GlobalReachPage() {
             </div>
 
             {/* Scrollable Modal Content */}
-            <div className="p-6 md:p-8 overflow-y-auto space-y-4 max-h-[calc(90vh-210px)]">
+            <div className="p-6 md:p-8 overflow-y-auto space-y-4 max-h-[calc(90vh-210px)] custom-scrollbar">
               {/* TAB 1: PERMISSIBLE STRUCTURES */}
               {activeTab === 'structures' && (
                 <div className="space-y-3.5">
                   <p className="text-xs text-slate-300 font-light leading-relaxed mb-4">
-                    The following legal vehicles can be incorporated or domiciled in {selectedJurisdiction.name} under Cerix Global's advisory:
+                    The following corporate and investment vehicles can be structured in {selectedJurisdiction.name} under Cerix Global's coordinated advisory:
                   </p>
                   {selectedJurisdiction.structures?.map((struct, idx) => (
                     <div 
@@ -297,7 +334,7 @@ export default function GlobalReachPage() {
                   <div className="p-4 rounded-2xl bg-[#07130E]/75 border border-[#1E382B]">
                     <div className="flex items-center gap-2 text-xs font-mono text-[#C5A059] uppercase tracking-wider mb-2">
                       <Landmark className="w-3.5 h-3.5" />
-                      Statutory Regulator & Corporate Tax
+                      Statutory Authority & Corporate Tax Framework
                     </div>
                     <div className="text-xs text-slate-200 space-y-2">
                       <p><strong className="text-white">Primary Authority:</strong> {selectedJurisdiction.regulator}</p>
@@ -308,7 +345,7 @@ export default function GlobalReachPage() {
                   <div className="p-4 rounded-2xl bg-[#07130E]/75 border border-[#1E382B]">
                     <div className="flex items-center gap-2 text-xs font-mono text-[#C5A059] uppercase tracking-wider mb-2">
                       <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                      Local Substance & Directorship Rules
+                      Local Substance & Statutory Compliance
                     </div>
                     <p className="text-xs text-slate-300 font-light leading-relaxed">
                       {selectedJurisdiction.substanceRequirements}
@@ -325,7 +362,7 @@ export default function GlobalReachPage() {
                   </p>
                   <div className="p-4 rounded-2xl bg-[#07130E]/75 border border-[#1E382B]">
                     <div className="text-xs font-mono text-[#C5A059] uppercase tracking-wider mb-3">
-                      Corridor Strengths & Safeguards
+                      Corridor Strengths & Legal Protections
                     </div>
                     <ul className="space-y-2 text-xs text-slate-300">
                       {selectedJurisdiction.highlights?.map((h, i) => (
@@ -342,20 +379,21 @@ export default function GlobalReachPage() {
 
             {/* Modal Actions Footer */}
             <div className="p-4 md:p-6 bg-[#07130E] border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
-              <span className="text-[11px] font-mono text-slate-400 text-center sm:text-left">
-                Advisory coverage under FEMA, ODI & corridor DTAA regulations.
+              <span className="text-[11px] font-mono text-slate-400 text-center sm:text-left flex items-center gap-1.5 justify-center sm:justify-start">
+                <Lock className="w-3 h-3 text-[#C5A059]" />
+                Advisory aligned with cross-border treaty & RBI/FEMA regulations.
               </span>
               <div className="flex items-center gap-2.5 w-full sm:w-auto">
                 <button
                   type="button"
                   onClick={() => setSelectedJurisdiction(null)}
-                  className="w-1/2 sm:w-auto px-4 py-2 rounded-xl border border-[#2D5441] text-xs font-mono text-slate-300 hover:text-white hover:border-[#C5A059] transition-colors"
+                  className="w-1/2 sm:w-auto px-4 py-2 rounded-xl border border-[#2D5441] text-xs font-mono text-slate-300 hover:text-white hover:border-[#C5A059] transition-colors focus-visible:ring-2 focus-visible:ring-[#C5A059] outline-none"
                 >
                   Close
                 </button>
                 <Link
                   to={`/contact?jurisdiction=${selectedJurisdiction.slug || selectedJurisdiction.id}`}
-                  className="w-1/2 sm:w-auto inline-flex items-center justify-center gap-1.5 px-5 py-2 rounded-xl bg-[#C5A059] text-[#07130E] text-xs font-mono font-bold hover:bg-[#E6C875] transition-all shadow-[0_4px_20px_rgba(197,160,89,0.3)]"
+                  className="w-1/2 sm:w-auto inline-flex items-center justify-center gap-1.5 px-5 py-2 rounded-xl bg-[#C5A059] text-[#07130E] text-xs font-mono font-bold hover:bg-[#E6C875] transition-all shadow-[0_4px_20px_rgba(197,160,89,0.3)] focus-visible:ring-2 focus-visible:ring-[#C5A059] outline-none"
                 >
                   Inquire
                   <ArrowUpRight className="w-3.5 h-3.5" />
