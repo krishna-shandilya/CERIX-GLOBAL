@@ -31,10 +31,10 @@ export default function WhatWeDo() {
         </svg>
       </div>
 
-      <div className="relative z-30 mx-auto max-w-[1550px] px-6 lg:px-12">
+      <div className="relative z-30 mx-auto max-w-[1600px] px-6 lg:px-12">
         
         {/* Top Header */}
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-3xl mb-16 lg:mb-20">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -66,11 +66,11 @@ export default function WhatWeDo() {
           </motion.p>
         </div>
 
-        {/* Interactive Bookshelf Stage with Approach Section Beige Background Theme */}
-        <div className="relative bg-[#F4F1EA] text-[#07130E] border border-[#07130E]/15 rounded-3xl p-8 lg:p-14 shadow-2xl overflow-hidden">
+        {/* Interactive Bookshelf Stage - Expansive, Borderless Showcase */}
+        <div className="relative bg-[#F4F1EA] text-[#07130E] border border-[#07130E]/15 rounded-[2.5rem] p-8 sm:p-12 lg:p-16 shadow-2xl overflow-hidden">
           
           {/* Shelf Navigation Header */}
-          <div className="flex items-center justify-between mb-12 pb-6 border-b border-[#07130E]/10">
+          <div className="flex items-center justify-between mb-12 lg:mb-16 pb-6 border-b border-[#07130E]/10">
             <div className="flex items-center gap-3">
               <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#8B6E33] font-bold">
                 Practice Shelf
@@ -98,11 +98,11 @@ export default function WhatWeDo() {
             </div>
           </div>
 
-          {/* The Horizontal Shelf & Active Book Spotlight */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          {/* Main Layout Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
             {/* Left: Interactive Horizontal Spines Shelf */}
-            <div className="lg:col-span-6 flex items-end gap-3 overflow-x-auto pb-6 pt-4 px-2 [scrollbar-width:thin] [scrollbar-color:#8B6E33_#EDE9E1]">
+            <div className="lg:col-span-5 flex items-end gap-3 overflow-x-auto pb-6 pt-4 px-2 [scrollbar-width:thin] [scrollbar-color:#8B6E33_#EDE9E1]">
               {SERVICES.map((s, i) => {
                 const isSelected = activeIndex === i;
                 const labelNum = `0${i + 1}`;
@@ -116,10 +116,10 @@ export default function WhatWeDo() {
                     transition={{ type: "spring", stiffness: 320, damping: 22 }}
                     className={`relative group shrink-0 cursor-pointer rounded-md overflow-hidden flex flex-col justify-between py-6 px-3 transition-all duration-500 shadow-xl bg-[#EAE5DD] ${
                       isSelected 
-                        ? "w-16 lg:w-20 border-2 border-[#C5A059] shadow-[0_0_25px_rgba(197,160,89,0.35)] z-20" 
+                        ? "w-16 lg:w-20 border-2 border-[#C5A059] shadow-[0_0_30px_rgba(197,160,89,0.4)] z-20" 
                         : "w-12 lg:w-15 text-[#07130E]/80 border border-[#07130E]/20 hover:border-[#8B6E33]"
                     }`}
-                    style={{ height: '420px' }}
+                    style={{ height: '440px' }}
                   >
                     <div className="flex flex-col items-center gap-2">
                       <span className="font-mono text-[10px] tracking-widest font-bold text-[#8B6E33]">
@@ -142,43 +142,45 @@ export default function WhatWeDo() {
               })}
             </div>
 
-            {/* Right: The Pulled-Out Open Dossier Cover Showcase (Large Image Proportions) */}
-            <div className="lg:col-span-6 relative">
+            {/* Right: Immersive, Borderless Active Practice Showcase */}
+            <div className="lg:col-span-7 relative">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndex}
-                  initial={{ opacity: 0, scale: 0.96, y: 15 }}
+                  initial={{ opacity: 0, scale: 0.97, y: 15 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.96, y: -15 }}
+                  exit={{ opacity: 0, scale: 0.97, y: -15 }}
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                  className="bg-[#EDE9E1] backdrop-blur-2xl border border-[#07130E]/20 rounded-3xl p-8 lg:p-12 shadow-2xl relative flex flex-col justify-between min-h-[480px]"
+                  className="flex flex-col"
                 >
-                  <div className="absolute top-6 right-6 px-3.5 py-1.5 rounded-full bg-[#07130E] text-[#C5A059] font-mono text-[10px] uppercase tracking-widest font-semibold">
-                    Mandate 0{activeIndex + 1}
-                  </div>
-
-                  {/* Large Unmasked Image */}
-                  <div className="relative w-full h-[280px] lg:h-[340px] rounded-2xl overflow-hidden mb-6 shadow-2xl bg-[#07130E] border border-[#07130E]/10">
+                  {/* Large, Unconstrained, Borderless 3D Artwork Stage */}
+                  <div className="relative w-full h-[360px] sm:h-[420px] lg:h-[480px] rounded-3xl overflow-hidden mb-8 shadow-2xl bg-[#07130E]">
                     <Image
                       src={activeService.image}
                       alt={activeService.title}
                       fittingType="cover"
                       className="w-full h-full object-cover"
                     />
+                    
+                    {/* Floating Index Pill inside image corner */}
+                    <div className="absolute top-6 right-6 px-4 py-2 rounded-full bg-[#07130E]/80 backdrop-blur-md border border-white/20 text-[#C5A059] font-mono text-xs uppercase tracking-widest font-semibold shadow-lg">
+                      0{activeIndex + 1} / 0{SERVICES.length}
+                    </div>
                   </div>
 
-                  <div className="space-y-3">
-                    <h3 className="font-serif text-2xl lg:text-3xl text-[#07130E] leading-tight">
+                  {/* Typography & Direct Action */}
+                  <div className="space-y-4 px-2">
+                    <h3 className="font-serif text-3xl lg:text-4xl text-[#07130E] leading-tight">
                       {activeService.title}
                     </h3>
-                    <p className="font-sans text-sm sm:text-base text-[#07130E]/70 font-light leading-relaxed line-clamp-2">
+                    <p className="font-sans text-base lg:text-lg text-[#07130E]/75 font-light leading-relaxed max-w-xl">
                       {activeService.desc || activeService.description}
                     </p>
 
-                    <div className="pt-2">
+                    <div className="pt-4">
                       <Link
                         to={`/expertise/${activeService.slug}`}
-                        className="inline-flex items-center gap-3 bg-[#07130E] hover:bg-[#14261f] text-white px-7 py-3.5 rounded-xl font-mono text-xs font-bold uppercase tracking-[0.2em] shadow-lg transition-all duration-300 hover:-translate-y-0.5 outline-none"
+                        className="inline-flex items-center gap-3 bg-[#07130E] hover:bg-[#14261f] text-white px-8 py-4 rounded-xl font-mono text-xs font-bold uppercase tracking-[0.2em] shadow-lg transition-all duration-300 hover:-translate-y-0.5 outline-none"
                       >
                         <span>Explore Practice Area</span>
                         <ArrowRight className="w-4 h-4 text-[#C5A059]" />
