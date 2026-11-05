@@ -3,11 +3,10 @@ import { IMAGES } from '@/lib/cerixData';
 
 export default function WhyCerix() {
   const [isVisible, setIsVisible] = useState(false);
-  // Default to 16 so it never flashes 0+ on initial paint or slow hydration
-  const [yearsCount, setYearsCount] = useState(16);
+  // Default to 10 so it never shows 0 or 16
+  const [yearsCount, setYearsCount] = useState(10);
   const sectionRef = useRef(null);
 
-  // Intersection observer with low threshold for reliable mobile & desktop triggers
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -29,12 +28,10 @@ export default function WhyCerix() {
     };
   }, []);
 
-  // Smooth count-up animation that increments smoothly from 12 to 16
   useEffect(() => {
     if (!isVisible) return;
-    
-    let current = 12;
-    const target = 16;
+    let current = 6;
+    const target = 10;
     setYearsCount(current);
 
     const timer = setInterval(() => {
@@ -43,30 +40,25 @@ export default function WhyCerix() {
       if (current >= target) {
         clearInterval(timer);
       }
-    }, 120);
+    }, 140);
 
     return () => clearInterval(timer);
   }, [isVisible]);
 
   return (
     <section ref={sectionRef} className="relative w-full bg-[#07130E] py-28 md:py-36 px-6 md:px-12 lg:px-24 overflow-hidden">
-      
-      {/* 1. Immersive Atmospheric Background Layer */}
+      {/* Background Layer */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
           src={IMAGES.whyCerix}
           alt="Cerix Global Infrastructure"
           className="w-full h-full object-cover opacity-30 filter blur-[6px] scale-105"
         />
-        {/* Multi-stop radial vignette for high-end luxury depth */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#07130E] via-[#07130E]/80 to-[#07130E]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#07130E]/60 to-[#07130E]" />
       </div>
 
-      {/* 2. Main Container with Glowing Gold Border Frame */}
       <div className="relative z-10 max-w-7xl mx-auto">
-        
-        {/* Top Micro-Header */}
         <div className="flex items-center gap-3 mb-16">
           <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C5A059]" />
           <span className="text-xs font-mono tracking-[0.35em] text-[#C5A059] uppercase">
@@ -75,15 +67,10 @@ export default function WhyCerix() {
           <div className="h-px w-24 bg-gradient-to-r from-[#C5A059]/40 to-transparent" />
         </div>
 
-        {/* Floating Glass Editorial Card */}
         <div className="relative rounded-3xl p-8 md:p-16 bg-[#0B1D16]/70 backdrop-blur-2xl border border-white/10 shadow-[0_30px_100px_rgba(0,0,0,0.6)] overflow-hidden">
-          
-          {/* Subtle Corner Gold Light Bleed Accent */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#C5A059]/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            
-            {/* Left Column: Headline & Advisory Positioning */}
             <div className="lg:col-span-5 space-y-8">
               <h2 className="font-serif text-4xl md:text-6xl text-white font-normal leading-[1.08] tracking-tight">
                 Experience across <span className="italic text-[#C5A059]">borders.</span>
@@ -98,10 +85,8 @@ export default function WhyCerix() {
               </div>
             </div>
 
-            {/* Right Column: 2x2 Metric Grid with Intermediary Phrasing */}
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              
-              {/* Stat 1: Cumulative Track Record */}
+              {/* Stat 1: 10+ Years */}
               <div className="group p-8 rounded-2xl bg-black/30 border border-white/5 hover:border-[#C5A059]/40 transition-all duration-500 hover:-translate-y-1">
                 <div className="font-serif text-5xl md:text-6xl text-white mb-2 tracking-tight group-hover:text-[#C5A059] transition-colors">
                   {yearsCount}+
@@ -114,7 +99,7 @@ export default function WhyCerix() {
                 </p>
               </div>
 
-              {/* Stat 2: Clarified as Local Partner Fiduciaries */}
+              {/* Stat 2 */}
               <div className="group p-8 rounded-2xl bg-black/30 border border-white/5 hover:border-[#C5A059]/40 transition-all duration-500 hover:-translate-y-1">
                 <div className="font-serif text-5xl md:text-6xl text-white mb-2 tracking-tight group-hover:text-[#C5A059] transition-colors">
                   Licensed
@@ -127,7 +112,7 @@ export default function WhyCerix() {
                 </p>
               </div>
 
-              {/* Stat 3: Independent Advisory Mandate */}
+              {/* Stat 3 */}
               <div className="group p-8 rounded-2xl bg-black/30 border border-white/5 hover:border-[#C5A059]/40 transition-all duration-500 hover:-translate-y-1">
                 <div className="font-serif text-4xl md:text-5xl text-white mb-2 tracking-tight group-hover:text-[#C5A059] transition-colors pt-2">
                   Unified
@@ -140,7 +125,7 @@ export default function WhyCerix() {
                 </p>
               </div>
 
-              {/* Stat 4: Regulatory Alignment */}
+              {/* Stat 4 */}
               <div className="group p-8 rounded-2xl bg-black/30 border border-white/5 hover:border-[#C5A059]/40 transition-all duration-500 hover:-translate-y-1">
                 <div className="font-serif text-4xl md:text-5xl text-white mb-2 tracking-tight group-hover:text-[#C5A059] transition-colors pt-2">
                   Institutional
@@ -152,20 +137,15 @@ export default function WhyCerix() {
                   Structuring compliant cross-border flows aligned with home-jurisdiction frameworks, including RBI ODI, FEMA, and DTAA standards.
                 </p>
               </div>
-
             </div>
-
           </div>
 
-          {/* Statutory Regulatory Disclaimer */}
           <div className="mt-12 pt-6 border-t border-white/10 text-center">
             <p className="text-[11px] font-mono text-[#8B9B90] tracking-wide leading-relaxed max-w-4xl mx-auto">
               Regulatory Notice: Cerix Global operates exclusively as an independent cross-border advisory and intermediary consultancy. It does not directly provide corporate administration, fund administration, or fiduciary services within jurisdictions where statutory licensing is mandated. All statutory filings and regulated administrative services are delivered via authorized, locally licensed counterparties.
             </p>
           </div>
-
         </div>
-
       </div>
     </section>
   );
