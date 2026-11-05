@@ -1,40 +1,36 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, X, Layers, Briefcase, Shield, Landmark, Globe, FileText, Building2, Key } from "lucide-react";
+import { ArrowRight, Globe, Building2, Shield, Landmark, FileText, Key, Layers, Briefcase } from "lucide-react";
 import { SERVICES } from "@/lib/cerixData";
 import { Image } from "@/components/ui/image";
 import MotionText from "@/components/MotionText";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Icons mapped to the 8 services for the interactive experience
 const SERVICE_ICONS = [Globe, Building2, Shield, Landmark, FileText, Key, Layers, Briefcase];
 
 export default function WhatWeDo() {
-  const [hoveredIndex, setHoveredIndex] = useState(0); 
-
-  const PROFILES = SERVICES.map((service, index) => ({
-    ...service,
-    icon: SERVICE_ICONS[index % SERVICE_ICONS.length],
-  }));
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const activeService = SERVICES[selectedIndex] || SERVICES[0];
+  const ActiveIcon = SERVICE_ICONS[selectedIndex % SERVICE_ICONS.length];
 
   return (
-    <section className="relative bg-[#07130E] text-white py-32 lg:py-48 overflow-hidden">
-      {/* Subtle Ambient Background */}
+    <section className="relative bg-[#07130E] text-white py-32 lg:py-48 overflow-hidden select-none">
+      {/* Ambient Depth Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#07130E] via-[#07130E]/95 to-[#07130E]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#C5A059]/5 to-transparent blur-3xl opacity-50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#07130E] via-[#07130E]/90 to-[#07130E]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#C5A059]/10 via-transparent to-transparent blur-3xl opacity-60" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1600px] px-6 lg:px-12">
         
-        {/* Header Section */}
-        <div className="max-w-3xl mb-16">
+        {/* Section Header */}
+        <div className="max-w-3xl mb-16 lg:mb-20">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="flex items-center gap-3 mb-8"
+            className="flex items-center gap-3 mb-6"
           >
             <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C5A059]" />
             <span className="text-xs font-mono tracking-[0.35em] text-[#C5A059] uppercase">
@@ -46,7 +42,7 @@ export default function WhatWeDo() {
           <MotionText
             text="From complexity to structure."
             as="h2"
-            className="font-serif text-[2.8rem] sm:text-6xl lg:text-[4.5rem] leading-[1.05] text-white text-balance mb-6"
+            className="font-serif text-[2.8rem] sm:text-6xl lg:text-[4.5rem] leading-[1.05] text-white text-balance mb-6 tracking-tight"
           />
 
           <motion.p
@@ -54,178 +50,121 @@ export default function WhatWeDo() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-[#D4CFC4]/70 font-light text-lg lg:text-xl leading-relaxed max-w-2xl"
+            className="text-[#D4CFC4]/80 font-light text-lg lg:text-xl leading-relaxed max-w-2xl font-sans"
           >
             Disciplines designed to establish, protect, and operate international structures with absolute clarity.
           </motion.p>
         </div>
 
-        {/* The Cinematic Accordion (Split into two rows of 4 for a breathtaking 8-item layout) */}
-        <div className="flex flex-col gap-4">
+        {/* Apple-Style Fluid Segmented Control / Tab Bar (Interruptible & Instant Feedback) */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-10 -mx-6 px-6 lg:mx-0 lg:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {SERVICES.map((s, i) => {
+            const isSelected = selectedIndex === i;
+            return (
+              <motion.button
+                key={s.id || i}
+                onClick={() => setSelectedIndex(i)}
+                whileTap={{ scale: 0.96 }}
+                transition={{ type: "spring", damping: 20, stiffness: 300 }}
+                className={`group relative flex items-center gap-3 px-6 py-4 rounded-2xl font-mono text-xs tracking-widest uppercase transition-colors shrink-0 outline-none ${
+                  isSelected 
+                    ? "bg-[#C5A059] text-[#07130E] font-bold shadow-[0_10px_30px_rgba(197,160,89,0.3)]" 
+                    : "bg-white/5 hover:bg-white/10 text-white/70 hover:text-white border border-white/10"
+                }`}
+              >
+                <span className={isSelected ? "text-[#07130E]" : "text-[#C5A059]"}>
+                  0{i + 1}
+                </span>
+                <span className="whitespace-nowrap">{s.title.split(' ')[0]}</span>
+              </motion.button>
+            );
+          })}
+        </div>
+
+        {/* Apple-Style Dynamic Command Deck & Stage */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 min-h-[580px] lg:h-[620px]">
           
-          {/* Row 1 (First 4 items) */}
-          <div className="flex flex-col lg:flex-row w-full h-[650px] lg:h-[480px] gap-4">
-            {PROFILES.slice(0, 4).map((c, i) => {
-              const isActive = hoveredIndex === i;
-              const labelNum = `0${i + 1}`;
-              
-              return (
-                <motion.div
-                  key={c.id || i}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-5% 0px" }}
-                  transition={{ duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  onMouseEnter={() => setHoveredIndex(i)}
-                  onClick={() => setHoveredIndex(i)}
-                  className={`relative group overflow-hidden rounded-3xl cursor-pointer border transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-2xl
-                    ${isActive 
-                      ? 'lg:flex-[3.5] flex-[3.5] border-[#C5A059]/40' 
-                      : 'lg:flex-[1] flex-[1] border-white/10 hover:border-white/20'
-                    }
-                  `}
-                >
-                  {/* Pristine Unblurred Image */}
-                  <Image
-                    src={c.image}
-                    alt={c.title}
-                    fittingType="cover"
-                    className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[2000ms] ease-out
-                      ${isActive ? 'scale-105 opacity-90' : 'scale-100 opacity-40 grayscale-[20%] group-hover:opacity-60'}
-                    `}
-                  />
-                  
-                  <div className={`absolute inset-0 transition-opacity duration-700
-                    ${isActive 
-                      ? 'bg-gradient-to-t from-[#050C09] via-[#050C09]/50 to-transparent' 
-                      : 'bg-gradient-to-t from-[#050C09] to-[#050C09]/40'
-                    }`} 
-                  />
+          {/* LEFT STAGE: 100% Unmasked Live Visual Canvas with Spring Transitions */}
+          <div className="lg:col-span-7 relative rounded-[2.5rem] overflow-hidden bg-[#050C09] border border-white/10 shadow-2xl h-[360px] sm:h-[420px] lg:h-full">
+            <AnimatePresence mode="popLayout">
+              <motion.div
+                key={selectedIndex}
+                initial={{ opacity: 0, scale: 1.03 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                className="absolute inset-0 w-full h-full"
+              >
+                <Image
+                  src={activeService.image}
+                  alt={activeService.title}
+                  fittingType="cover"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+            </AnimatePresence>
 
-                  <div className="absolute inset-0 p-6 lg:p-8 flex flex-col justify-end">
-                    
-                    <div className="flex items-center justify-between mb-4">
-                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500 shrink-0
-                        ${isActive ? 'bg-[#C5A059] text-[#07130E]' : 'bg-white/10 text-white backdrop-blur-sm'}
-                      `}>
-                        <c.icon className="w-5 h-5" />
-                      </div>
-                      <span className="font-mono text-xs tracking-[0.2em] text-[#C5A059] font-bold">
-                        {labelNum}
-                      </span>
-                    </div>
-
-                    <h3 className={`font-serif text-white transition-all duration-700 whitespace-pre-wrap
-                      ${isActive ? 'text-xl lg:text-2xl mb-3 leading-tight' : 'text-base lg:text-lg mb-0 opacity-70 line-clamp-1'}
-                    `}>
-                      {c.title}
-                    </h3>
-
-                    <div 
-                      className={`transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden flex flex-col
-                        ${isActive ? 'max-h-48 opacity-100 translate-y-0' : 'max-h-0 opacity-0 translate-y-4'}
-                      `}
-                    >
-                      <p className="font-sans text-xs lg:text-sm text-gray-300 font-light leading-relaxed mb-4 line-clamp-2">
-                        {c.desc || c.description}
-                      </p>
-                      
-                      <Link
-                        to={`/expertise/${c.slug}`}
-                        className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] uppercase text-[#C5A059] font-semibold w-fit"
-                      >
-                        <span>Explore Mandate</span>
-                        <ArrowRight size={14} />
-                      </Link>
-                    </div>
-
-                  </div>
-                </motion.div>
-              );
-            })}
+            {/* Translucent Floating Badge on Stage */}
+            <div className="absolute top-6 left-6 px-4 py-2 rounded-full bg-[#0B1D16]/70 backdrop-blur-xl border border-white/20 flex items-center gap-2 shadow-lg">
+              <ActiveIcon className="w-4 h-4 text-[#C5A059]" />
+              <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-white font-semibold">
+                Practice Area 0{selectedIndex + 1}
+              </span>
+            </div>
           </div>
 
-          {/* Row 2 (Remaining items 05 - 08) */}
-          <div className="flex flex-col lg:flex-row w-full h-[650px] lg:h-[480px] gap-4">
-            {PROFILES.slice(4, 8).map((c, i) => {
-              const actualIndex = i + 4;
-              const isActive = hoveredIndex === actualIndex;
-              const labelNum = `0${actualIndex + 1}`;
-              
-              return (
-                <motion.div
-                  key={c.id || actualIndex}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-5% 0px" }}
-                  transition={{ duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  onMouseEnter={() => setHoveredIndex(actualIndex)}
-                  onClick={() => setHoveredIndex(actualIndex)}
-                  className={`relative group overflow-hidden rounded-3xl cursor-pointer border transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-2xl
-                    ${isActive 
-                      ? 'lg:flex-[3.5] flex-[3.5] border-[#C5A059]/40' 
-                      : 'lg:flex-[1] flex-[1] border-white/10 hover:border-white/20'
-                    }
-                  `}
-                >
-                  {/* Pristine Unblurred Image */}
-                  <Image
-                    src={c.image}
-                    alt={c.title}
-                    fittingType="cover"
-                    className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[2000ms] ease-out
-                      ${isActive ? 'scale-105 opacity-90' : 'scale-100 opacity-40 grayscale-[20%] group-hover:opacity-60'}
-                    `}
-                  />
-                  
-                  <div className={`absolute inset-0 transition-opacity duration-700
-                    ${isActive 
-                      ? 'bg-gradient-to-t from-[#050C09] via-[#050C09]/50 to-transparent' 
-                      : 'bg-gradient-to-t from-[#050C09] to-[#050C09]/40'
-                    }`} 
-                  />
-
-                  <div className="absolute inset-0 p-6 lg:p-8 flex flex-col justify-end">
-                    
-                    <div className="flex items-center justify-between mb-4">
-                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500 shrink-0
-                        ${isActive ? 'bg-[#C5A059] text-[#07130E]' : 'bg-white/10 text-white backdrop-blur-sm'}
-                      `}>
-                        <c.icon className="w-5 h-5" />
-                      </div>
-                      <span className="font-mono text-xs tracking-[0.2em] text-[#C5A059] font-bold">
-                        {labelNum}
-                      </span>
-                    </div>
-
-                    <h3 className={`font-serif text-white transition-all duration-700 whitespace-pre-wrap
-                      ${isActive ? 'text-xl lg:text-2xl mb-3 leading-tight' : 'text-base lg:text-lg mb-0 opacity-70 line-clamp-1'}
-                    `}>
-                      {c.title}
-                    </h3>
-
-                    <div 
-                      className={`transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden flex flex-col
-                        ${isActive ? 'max-h-48 opacity-100 translate-y-0' : 'max-h-0 opacity-0 translate-y-4'}
-                      `}
-                    >
-                      <p className="font-sans text-xs lg:text-sm text-gray-300 font-light leading-relaxed mb-4 line-clamp-2">
-                        {c.desc || c.description}
-                      </p>
-                      
-                      <Link
-                        to={`/expertise/${c.slug}`}
-                        className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] uppercase text-[#C5A059] font-semibold w-fit"
-                      >
-                        <span>Explore Mandate</span>
-                        <ArrowRight size={14} />
-                      </Link>
-                    </div>
-
+          {/* RIGHT PANEL: Fluid Material Surface with Live Content & Direct Link */}
+          <div className="lg:col-span-5 rounded-[2.5rem] bg-[#0B1D16]/80 backdrop-blur-2xl border border-[#C5A059]/30 p-8 sm:p-12 lg:p-14 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+            
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={selectedIndex}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ type: "spring", damping: 22, stiffness: 220 }}
+                className="flex flex-col h-full justify-between"
+              >
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-xs tracking-[0.3em] text-[#C5A059] uppercase font-bold">
+                      Mandate Specification
+                    </span>
+                    <span className="font-mono text-xs text-white/40 tracking-widest">
+                      0{selectedIndex + 1} / 0{SERVICES.length}
+                    </span>
                   </div>
-                </motion.div>
-              );
-            })}
+
+                  <h3 className="font-serif text-3xl sm:text-4xl text-white leading-tight">
+                    {activeService.title}
+                  </h3>
+
+                  <p className="font-sans text-base sm:text-lg text-[#D4CFC4] font-light leading-relaxed">
+                    {activeService.desc || activeService.description}
+                  </p>
+                </div>
+
+                <div className="pt-8 border-t border-white/10 mt-8 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse" />
+                    <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/70">
+                      Active Framework
+                    </span>
+                  </div>
+
+                  <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                    <Link
+                      to={`/expertise/${activeService.slug}`}
+                      className="inline-flex items-center gap-3 bg-[#C5A059] text-[#07130E] px-7 py-4 rounded-xl font-mono text-xs font-bold uppercase tracking-[0.2em] shadow-lg transition-colors hover:bg-[#d4b06a] outline-none"
+                    >
+                      <span>Explore Mandate</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
           </div>
 
         </div>
