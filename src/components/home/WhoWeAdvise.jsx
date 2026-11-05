@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, X, Globe, Briefcase, Shield, Landmark } from "lucide-react";
+import { ArrowRight, X, Globe, Briefcase, Shield, Landmark, User, Target } from "lucide-react";
 import { WHO_WE_ADVISE, IMAGES } from "@/lib/cerixData";
 import MotionText from "@/components/MotionText";
 import { motion, AnimatePresence } from "framer-motion";
 
-// We map the extra modal details and icons to your existing WHO_WE_ADVISE array by index
+// Upgraded rich data for the two-column "Who / What" modal layout
 const ENHANCED_DETAILS = [
   {
     icon: Globe,
     details: {
-      mandate: 'Architecting tax-efficient, scalable corporate structures for cross-border expansion, intellectual property centralization, and pre-IPO readiness.',
+      profile: 'Fast-growing tech startups, established multinational corporations, and cross-border SaaS enterprises scaling operations globally.',
+      solutions: 'We architect tax-efficient, scalable corporate frameworks. From centralizing Intellectual Property (IP) and establishing regional headquarters (Singapore/UAE), to structuring cap-tables for cross-border VC funding and pre-IPO readiness.',
       focus: [
-        'Intellectual Property (IP) Holding Company Setup',
-        'Regional HQ Structuring (Singapore / UAE)',
-        'Cross-Border Profit Repatriation Strategies',
+        'Intellectual Property (IP) Holding Architecture',
+        'Regional HQ Structuring (SG / UAE)',
+        'Cross-Border Profit Repatriation',
         'ESOP & Founder Equity Structuring'
       ],
       structures: 'PTE LTD (SG), FZCO (UAE), GBC (Mauritius)'
@@ -23,11 +24,12 @@ const ENHANCED_DETAILS = [
   {
     icon: Briefcase,
     details: {
-      mandate: 'Establishing robust, compliant fund architectures tailored for global capital raising, distinct asset classes, and specific investor jurisdictions.',
+      profile: 'General Partners (GPs), private equity managers, venture capitalists, and hedge fund operators scaling global capital pools.',
+      solutions: 'We design robust, compliant fund architectures tailored for multi-jurisdictional capital raising. This includes setting up master-feeder structures, securing fund manager licensing, and creating seamless LP onboarding frameworks.',
       focus: [
         'VCC / GP-LP Structuring (Singapore)',
-        'Exempted Limited Partnerships (Cayman Islands)',
-        'Fund Manager Licensing & Compliance Support',
+        'Exempted Limited Partnerships (Cayman)',
+        'Fund Manager Licensing & Compliance',
         'Master-Feeder Fund Architecture'
       ],
       structures: 'VCC (SG), ELP (Cayman), PCC (Mauritius)'
@@ -36,23 +38,25 @@ const ENHANCED_DETAILS = [
   {
     icon: Shield,
     details: {
-      mandate: 'Creating impenetrable, multi-generational wealth preservation structures protecting absolute privacy and facilitating seamless succession.',
+      profile: 'Ultra-high-net-worth families, private wealth owners, and family offices seeking generational wealth protection and mobility.',
+      solutions: 'We create impenetrable, multi-generational wealth preservation structures. Our mandates prioritize absolute privacy, seamless succession planning, and navigating complex investment migration pathways like Golden Visas.',
       focus: [
-        'Single & Multi-Family Office (SFO/MFO) Setup',
+        'Single & Multi-Family Office (SFO/MFO)',
         'Discretionary Trust Formation',
         'Private Wealth Foundations',
-        'Golden Visa & Residency by Investment (UAE/SG)'
+        'Residency by Investment (UAE / SG)'
       ],
-      structures: 'Trusts (SG/Cook Islands), Foundations (UAE)'
+      structures: 'Trusts (SG / Cook Islands), Foundations (UAE)'
     }
   },
   {
     icon: Landmark,
     details: {
-      mandate: 'Navigating complex regulatory environments to secure operational licenses for fintechs, brokerages, and international trading houses.',
+      profile: 'Fintech disruptors, broker-dealers, international trading houses, and established global financial institutions.',
+      solutions: 'We navigate complex regulatory environments to secure specialized operational licenses, establish multi-currency treasury centers, and architect robust compliance and trade finance frameworks across elite financial corridors.',
       focus: [
-        'Financial Services Licensing (FSC / MAS / DFSA)',
-        'Multi-Currency Treasury & Payment Centers',
+        'Financial Services Licensing (FSC / MAS)',
+        'Multi-Currency Treasury Centers',
         'Broker-Dealer Setup',
         'Global Trade Finance Structuring'
       ],
@@ -63,10 +67,9 @@ const ENHANCED_DETAILS = [
 
 export default function WhoWeAdvise() {
   const [activeModal, setActiveModal] = useState(null);
-  // Default to the first card being expanded on desktop load
   const [hoveredIndex, setHoveredIndex] = useState(0); 
 
-  // Merge your original data with the new modal details
+  // Merge your original data with the new detailed modal data
   const PROFILES = WHO_WE_ADVISE.map((item, index) => ({
     ...item,
     icon: ENHANCED_DETAILS[index]?.icon || Globe,
@@ -116,7 +119,7 @@ export default function WhoWeAdvise() {
           />
         </div>
 
-        {/* The Cinematic Accordion (Performance Optimised Flex Layout) */}
+        {/* The Cinematic Accordion */}
         <div className="flex flex-col lg:flex-row w-full h-[800px] lg:h-[600px] gap-4">
           {PROFILES.map((c, i) => {
             const isActive = hoveredIndex === i;
@@ -137,7 +140,6 @@ export default function WhoWeAdvise() {
                   }
                 `}
               >
-                {/* Background Image (Sourced directly from your WHO_WE_ADVISE data) */}
                 <img
                   src={c.image}
                   alt={c.title}
@@ -146,7 +148,6 @@ export default function WhoWeAdvise() {
                   `}
                 />
                 
-                {/* Gradient Overlays for readability */}
                 <div className={`absolute inset-0 transition-opacity duration-700
                   ${isActive 
                     ? 'bg-gradient-to-t from-[#050C09] via-[#050C09]/60 to-transparent' 
@@ -154,24 +155,19 @@ export default function WhoWeAdvise() {
                   }`} 
                 />
 
-                {/* Content Container */}
                 <div className="absolute inset-0 p-6 lg:p-8 flex flex-col justify-end">
-                  
-                  {/* Icon */}
                   <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500 mb-6 shrink-0
                     ${isActive ? 'bg-[#C5A059] text-[#07130E]' : 'bg-white/10 text-white backdrop-blur-sm'}
                   `}>
                     <c.icon className="w-5 h-5" />
                   </div>
 
-                  {/* Title */}
                   <h3 className={`font-serif text-white transition-all duration-700 whitespace-pre-wrap
                     ${isActive ? 'text-2xl lg:text-3xl mb-4 leading-tight' : 'text-lg lg:text-xl mb-0 opacity-70'}
                   `}>
                     {c.title}
                   </h3>
 
-                  {/* Expanding Content (Only visible when active) */}
                   <div 
                     className={`transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden flex flex-col
                       ${isActive ? 'max-h-64 opacity-100 translate-y-0' : 'max-h-0 opacity-0 translate-y-4'}
@@ -186,7 +182,6 @@ export default function WhoWeAdvise() {
                       <ArrowRight size={14} />
                     </div>
                   </div>
-
                 </div>
               </motion.div>
             );
@@ -194,85 +189,119 @@ export default function WhoWeAdvise() {
         </div>
       </div>
 
-      {/* Detailed Frosted Glass Modal */}
+      {/* Upgraded Immersive Frosted Glass Modal */}
       <AnimatePresence>
         {activeModal && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+            
+            {/* Dark Backdrop */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-[#07130E]/80 backdrop-blur-md cursor-pointer"
+              className="absolute inset-0 bg-[#020604]/80 backdrop-blur-md cursor-pointer"
               onClick={closeModal}
             />
             
+            {/* Modal Container */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.95, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full max-w-2xl bg-[#0B1D16]/95 backdrop-blur-2xl border border-[#C5A059]/30 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
+              className="relative w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl border border-[#C5A059]/30 flex flex-col max-h-[90vh]"
             >
-              <div className="flex items-center justify-between p-6 sm:p-8 border-b border-white/5">
+              
+              {/* Dynamic Image Background Layer */}
+              <div className="absolute inset-0 z-0">
+                <img 
+                  src={activeModal.image} 
+                  alt="Background Context" 
+                  className="w-full h-full object-cover opacity-40 mix-blend-overlay"
+                />
+                <div className="absolute inset-0 bg-[#0B1D16]/85 backdrop-blur-2xl" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#0B1D16] via-transparent to-[#07130E]/90" />
+              </div>
+
+              {/* Modal Header */}
+              <div className="relative z-10 flex items-center justify-between p-6 sm:p-8 border-b border-white/10">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-[#C5A059]/10 rounded-lg flex items-center justify-center border border-[#C5A059]/30 shrink-0">
-                    <activeModal.icon className="w-5 h-5 text-[#C5A059]" />
+                  <div className="w-10 h-10 bg-[#C5A059] rounded-lg flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(197,160,89,0.3)]">
+                    <activeModal.icon className="w-5 h-5 text-[#07130E]" />
                   </div>
-                  <h3 className="font-serif text-xl sm:text-2xl text-white">
+                  <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-white">
                     {activeModal.title}
                   </h3>
                 </div>
                 <button 
                   onClick={closeModal}
-                  className="text-gray-400 hover:text-white transition-colors p-2 bg-white/5 rounded-full hover:bg-white/10 outline-none shrink-0 ml-4"
+                  className="text-gray-400 hover:text-white transition-colors p-2 bg-white/5 border border-white/10 rounded-full hover:bg-white/20 outline-none shrink-0 ml-4"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
-              <div className="p-6 sm:p-8 overflow-y-auto custom-scrollbar space-y-8">
-                <div>
-                  <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#C5A059] mb-3">
-                    Strategic Mandate
-                  </h4>
-                  <p className="text-sm sm:text-base text-[#D4CFC4] font-light leading-relaxed">
-                    {activeModal.details.mandate}
-                  </p>
-                </div>
+              {/* Two-Column Content Area */}
+              <div className="relative z-10 p-6 sm:p-8 overflow-y-auto custom-scrollbar flex-grow">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                  
+                  {/* Left Column: Who We Cater To */}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2 text-[#C5A059] mb-4">
+                      <User className="w-4 h-4" />
+                      <h4 className="text-[10px] font-mono uppercase tracking-[0.2em]">Client Profile</h4>
+                    </div>
+                    <p className="text-base sm:text-lg text-white font-light leading-relaxed">
+                      {activeModal.details.profile}
+                    </p>
+                  </div>
 
-                <div>
-                  <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#C5A059] mb-4">
-                    Execution Focus
-                  </h4>
-                  <ul className="space-y-3">
-                    {activeModal.details.focus.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#C5A059] mt-2 shrink-0" />
-                        <span className="text-sm text-white font-light leading-relaxed">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                  {/* Right Column: Strategic Solutions */}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2 text-[#C5A059] mb-4">
+                      <Target className="w-4 h-4" />
+                      <h4 className="text-[10px] font-mono uppercase tracking-[0.2em]">Strategic Solutions</h4>
+                    </div>
+                    <p className="text-sm sm:text-base text-[#D4CFC4] font-light leading-relaxed mb-6">
+                      {activeModal.details.solutions}
+                    </p>
 
-                <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
-                  <span className="text-[10px] font-mono text-gray-500 uppercase tracking-[0.2em] shrink-0">
-                    Typical Vehicles
-                  </span>
-                  <span className="text-sm text-[#C5A059] font-medium">
-                    {activeModal.details.structures}
-                  </span>
+                    <div className="pt-4 border-t border-white/10">
+                      <ul className="space-y-3">
+                        {activeModal.details.focus.map((item, idx) => (
+                          <li key={idx} className="flex items-start gap-3">
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#C5A059] mt-2 shrink-0 shadow-[0_0_8px_rgba(197,160,89,0.5)]" />
+                            <span className="text-sm text-gray-300 font-light leading-relaxed">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
                 </div>
               </div>
 
-              <div className="p-6 sm:p-8 border-t border-white/5 bg-black/20 flex justify-end">
+              {/* Modal Footer CTA */}
+              <div className="relative z-10 p-6 sm:p-8 border-t border-white/10 bg-[#07130E]/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+                
+                <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full sm:w-auto">
+                  <span className="text-[10px] font-mono text-gray-500 uppercase tracking-[0.2em] shrink-0">
+                    Typical Vehicles:
+                  </span>
+                  <span className="text-sm text-white font-medium">
+                    {activeModal.details.structures}
+                  </span>
+                </div>
+
                 <Link 
                   to="/contact"
                   onClick={closeModal}
-                  className="inline-flex items-center gap-2 bg-[#C5A059] text-[#07130E] px-6 py-3.5 rounded-xl text-xs font-bold font-mono uppercase tracking-wider hover:bg-[#b5924d] transition-all hover:-translate-y-0.5 shadow-lg outline-none"
+                  className="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-[#C5A059] text-[#07130E] px-8 py-4 rounded-xl text-xs font-bold font-mono uppercase tracking-wider hover:bg-[#d4b06a] transition-all hover:-translate-y-0.5 shadow-[0_10px_20px_-10px_rgba(197,160,89,0.5)] outline-none"
                 >
                   Initiate Advisory Mandate
                   <ArrowRight className="w-4 h-4" />
                 </Link>
+
               </div>
             </motion.div>
           </div>
