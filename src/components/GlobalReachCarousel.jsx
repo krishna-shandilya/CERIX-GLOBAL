@@ -29,7 +29,7 @@ export default function GlobalReachCarousel() {
     setActiveIndex((prev) => (prev - 1 + total) % total);
   }, [total]);
 
-  // Smooth scroll-linked rotation as the user scrolls past
+  // Smooth scroll-linked rotation for desktop viewports
   useEffect(() => {
     if (isLocked || total === 0) return;
 
@@ -39,6 +39,12 @@ export default function GlobalReachCarousel() {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           if (!containerRef.current) {
+            ticking = false;
+            return;
+          }
+
+          // Disable auto scroll-rotation on mobile devices to prevent touch collision
+          if (window.innerWidth < 1024) {
             ticking = false;
             return;
           }
@@ -83,30 +89,87 @@ export default function GlobalReachCarousel() {
   return (
     <section 
       ref={containerRef}
-      className="relative bg-[#FDFBF7] text-[#07130E] py-20 md:py-28 px-6 md:px-12 lg:px-24 overflow-hidden select-none border-t border-black/5"
+      aria-label="Global Corridors Matrix"
+      className="relative bg-[#FDFBF7] text-[#07130E] py-16 md:py-24 px-4 sm:px-8 md:px-12 lg:px-24 overflow-hidden border-t border-black/5"
     >
       <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* Header Matching "WHO WE ADVISE" Layout */}
-        <div className="max-w-4xl mb-14">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="h-px w-10 bg-[#C5A059]" />
-            <span className="text-xs font-mono tracking-[0.35em] text-[#C5A059] uppercase">
+        {/* Header Format Matching Who We Advise with WCAG Compliant Contrast */}
+        <div className="max-w-4xl mb-12 md:mb-16">
+          <div className="flex items-center gap-3 mb-5">
+            <div className="h-px w-10 bg-[#8B6E33]" />
+            <span className="text-xs font-mono tracking-[0.35em] text-[#8B6E33] uppercase font-semibold">
               GLOBAL REACH
             </span>
-            <div className="h-px w-20 bg-gradient-to-r from-[#C5A059]/40 to-transparent" />
+            <div className="h-px w-20 bg-gradient-to-r from-[#8B6E33]/40 to-transparent" />
           </div>
 
-          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal leading-[1.12] text-[#07130E] tracking-tight">
+          <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.15] text-[#07130E] tracking-tight">
             Institutional presence across <span className="italic text-[#8B6E33]">key corridors.</span>
           </h2>
-          <p className="mt-4 text-[#5A635E] text-base md:text-lg font-light max-w-2xl leading-relaxed">
+          <p className="mt-4 text-[#4A5550] text-sm sm:text-base md:text-lg font-light max-w-2xl leading-relaxed">
             Structuring cross-border entities, private funds, and operational substance across the world's premier common law and statutory financial centers.
           </p>
         </div>
 
-        {/* 3D Arc Showcase (Taller cards with isolated photo header & bottom text) */}
-        <div className="relative h-[480px] sm:h-[520px] md:h-[550px] flex items-center justify-center [perspective:1200px]">
+        {/* 1. MOBILE & TABLET LAYOUT (< 1024px): Native Touch Horizontal Track (No Scroll-Trap) */}
+        <div className="lg:hidden flex gap-5 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-none px-2 -mx-4 sm:mx-0">
+          {list.map((item, index) => {
+            const jurKey = (item.slug || item.id || '').toLowerCase();
+            return (
+              <div
+                key={`mobile-${jurKey || index}`}
+                onClick={() => handleNavigateToCorridor(item.slug || item.id)}
+                className="w-[280px] sm:w-[320px] h-[440px] shrink-0 snap-center rounded-2xl overflow-hidden bg-[#0B1D16] border border-[#C5A059]/40 flex flex-col justify-between shadow-xl cursor-pointer"
+              >
+                <div className="relative h-[55%] w-full bg-[#07130E] overflow-hidden">
+                  {item.image && (
+                    <img 
+                      src={item.image} 
+                      alt={item.name} 
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1D16] via-[#0B1D16]/20 to-transparent" />
+                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-[#07130E]/85 border border-[#C5A059]/40 text-[#C5A059] text-[10px] font-mono tracking-widest uppercase">
+                    {item.region || 'Corridor'}
+                  </div>
+                </div>
+
+                <div className="p-5 flex flex-col justify-between flex-grow text-white">
+                  <div>
+                    <h3 className="text-xl font-serif font-bold text-white mb-1">
+                      {item.name}
+                    </h3>
+                    <p className="text-[#C5A059] text-[11px] font-mono uppercase tracking-wider mb-2">
+                      {item.subtitle || item.region}
+                    </p>
+                    <p className="text-[#D4CFC4] text-xs font-light line-clamp-2 leading-relaxed">
+                      {item.desc || item.description}
+                    </p>
+                  </div>
+
+                  <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+                    <span className="text-[10px] font-mono text-slate-400">
+                      {item.coordinates || 'Active Corridor'}
+                    </span>
+                    <button 
+                      type="button"
+                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#C5A059] text-[#07130E] text-xs font-mono font-bold"
+                    >
+                      Know More
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* 2. DESKTOP LAYOUT (>= 1024px): 3D Arc Perspective Showcase */}
+        <div className="hidden lg:flex relative h-[520px] items-center justify-center [perspective:1200px]">
           {list.map((item, index) => {
             const jurKey = (item.slug || item.id || '').toLowerCase();
 
@@ -137,13 +200,12 @@ export default function GlobalReachCarousel() {
                   opacity,
                   transition: 'transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease'
                 }}
-                className={`absolute w-[270px] sm:w-[300px] md:w-[320px] h-[440px] sm:h-[480px] rounded-2xl overflow-hidden cursor-pointer backdrop-blur-md flex flex-col justify-between transition-all duration-500 bg-[#0B1D16] ${
+                className={`absolute w-[300px] h-[460px] rounded-2xl overflow-hidden cursor-pointer backdrop-blur-md flex flex-col justify-between transition-all duration-500 bg-[#0B1D16] ${
                   isCenter 
                     ? 'border-2 border-[#C5A059] ring-2 ring-[#C5A059]/30 shadow-[0_25px_50px_rgba(7,19,14,0.35)]' 
                     : 'border border-black/10 hover:border-[#C5A059]/40 shadow-[0_10px_25px_rgba(0,0,0,0.08)]'
                 }`}
               >
-                {/* Photo Half (Separated to eliminate text overlap) */}
                 <div className="relative h-[56%] w-full overflow-hidden shrink-0 bg-[#07130E]">
                   {item.image && (
                     <img 
@@ -152,20 +214,16 @@ export default function GlobalReachCarousel() {
                       className="w-full h-full object-cover pointer-events-none transition-transform duration-700 ease-out hover:scale-105"
                     />
                   )}
-                  {/* Subtle lower gradient to transition cleanly into card base */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0B1D16] via-[#0B1D16]/20 to-transparent pointer-events-none" />
-
-                  {/* Top Badge: Region or Coordinates */}
                   <div className="absolute top-3.5 left-3.5 px-2.5 py-1 rounded-full bg-[#07130E]/80 backdrop-blur-md border border-[#C5A059]/30 text-[#C5A059] text-[10px] font-mono tracking-widest uppercase flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059]" />
                     {item.region || 'Corridor'}
                   </div>
                 </div>
 
-                {/* Content Section (Isolated and guaranteed legible) */}
                 <div className="p-5 flex flex-col justify-between flex-grow text-left text-white bg-[#0B1D16]">
                   <div>
-                    <h3 className="text-xl sm:text-2xl font-serif font-bold text-white mb-1 tracking-tight">
+                    <h3 className="text-2xl font-serif font-bold text-white mb-1 tracking-tight">
                       {item.name}
                     </h3>
                     <p className="text-[#C5A059] text-[11px] font-mono uppercase tracking-wider mb-2 line-clamp-1">
@@ -176,7 +234,6 @@ export default function GlobalReachCarousel() {
                     </p>
                   </div>
 
-                  {/* Card Bottom CTA */}
                   <div className="pt-3 border-t border-white/10 flex items-center justify-between mt-2">
                     <span className="text-[10px] font-mono text-slate-400">
                       {item.coordinates || item.coord || 'Global Hub'}
@@ -187,7 +244,7 @@ export default function GlobalReachCarousel() {
                         e.stopPropagation();
                         handleNavigateToCorridor(item.slug || item.id);
                       }}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors ${
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium focus-visible:ring-2 focus-visible:ring-[#C5A059] outline-none transition-colors ${
                         isCenter
                           ? 'bg-[#C5A059] text-[#07130E] font-bold hover:bg-[#E6C875]'
                           : 'bg-white/10 text-white hover:bg-[#C5A059] hover:text-[#07130E]'
@@ -203,13 +260,13 @@ export default function GlobalReachCarousel() {
           })}
         </div>
 
-        {/* Minimal Navigation Controls */}
-        <div className="mt-8 flex items-center justify-center gap-6">
+        {/* Minimal Navigation Controls (Desktop) */}
+        <div className="hidden lg:flex mt-8 items-center justify-center gap-6">
           <button
             type="button"
             onClick={handlePrev}
             aria-label="Previous Corridor"
-            className="w-10 h-10 rounded-full border border-black/10 bg-white hover:border-[#C5A059] hover:text-[#C5A059] text-[#07130E] flex items-center justify-center transition-all shadow-sm"
+            className="w-10 h-10 rounded-full border border-black/10 bg-white hover:border-[#C5A059] hover:text-[#C5A059] text-[#07130E] flex items-center justify-center transition-all shadow-sm focus-visible:ring-2 focus-visible:ring-[#C5A059] outline-none"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
@@ -234,7 +291,7 @@ export default function GlobalReachCarousel() {
             type="button"
             onClick={handleNext}
             aria-label="Next Corridor"
-            className="w-10 h-10 rounded-full border border-black/10 bg-white hover:border-[#C5A059] hover:text-[#C5A059] text-[#07130E] flex items-center justify-center transition-all shadow-sm"
+            className="w-10 h-10 rounded-full border border-black/10 bg-white hover:border-[#C5A059] hover:text-[#C5A059] text-[#07130E] flex items-center justify-center transition-all shadow-sm focus-visible:ring-2 focus-visible:ring-[#C5A059] outline-none"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
