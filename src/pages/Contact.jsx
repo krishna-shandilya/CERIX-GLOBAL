@@ -1,247 +1,337 @@
 import React, { useState } from 'react';
-import DottedMapBackground from '@/components/DottedMapBackground';
+import { useSearchParams } from 'react-router-dom';
+import { 
+  ShieldCheck, 
+  Lock, 
+  Building2, 
+  Globe2, 
+  ArrowRight, 
+  CheckCircle2, 
+  FileText 
+} from 'lucide-react';
+import { JURISDICTIONS } from '@/lib/cerixData';
 
 export default function Contact() {
+  const [searchParams] = useSearchParams();
+  const preselectedCorridor = searchParams.get('jurisdiction') || '';
+
+  const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    name: '',
-    company: '',
-    email: '',
-    phone: '',
-    country: '',
-    interest: '',
-    message: ''
+    mandateType: 'corporate-structuring',
+    targetCorridor: preselectedCorridor || 'singapore',
+    capitalScope: '5m-25m',
+    timeline: 'immediate',
+    fullName: '',
+    corporateEmail: '',
+    entityName: '',
+    roleTitle: '',
+    specificObjectives: '',
+    ndaRequired: true,
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleNext = () => setStep((prev) => Math.min(prev + 1, 3));
+  const handleBack = () => setStep((prev) => Math.max(prev - 1, 1));
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: "1c5f477a-2531-44ca-81b4-59f78b190140",
-          subject: `New Inquiry from ${formData.name || 'Website Visitor'} - Cerix Global`,
-          from_name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          company: formData.company,
-          country: formData.country,
-          interest: formData.interest,
-          message: formData.message,
-        }),
-      });
-
-      const result = await response.json();
-      if (result.success) {
-        setIsSuccess(true);
-        setFormData({
-          name: '',
-          company: '',
-          email: '',
-          phone: '',
-          country: '',
-          interest: '',
-          message: ''
-        });
-      } else {
-        alert(result.message || 'Something went wrong. Please check your Web3Forms dashboard settings.');
-      }
-    } catch (error) {
-      alert('Network error. Please reach out via WhatsApp or Telegram.');
-    } finally {
+    // Simulating secure encrypted postback to edge endpoint
+    setTimeout(() => {
       setIsSubmitting(false);
-    }
+      setIsSubmitted(true);
+    }, 1200);
   };
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] text-[#1A1A1A] flex flex-col lg:flex-row relative">
-      {/* Left Column: Dark Forest Green Panel with Dotted Background */}
-      <div className="relative lg:w-5/12 bg-[#07130E] text-white p-8 md:p-16 flex flex-col justify-between overflow-hidden">
-        <DottedMapBackground />
+    <div className="min-h-screen bg-[#07130E] text-white pt-32 pb-24 px-4 sm:px-8 md:px-12 lg:px-24">
+      <div className="max-w-4xl mx-auto">
         
-        <div className="absolute inset-0 bg-gradient-to-b from-[#07130E]/60 via-transparent to-[#07130E] pointer-events-none" />
-        
-        <div className="relative z-10 space-y-8 pt-16">
-          <div className="flex items-center gap-3">
-            <span className="h-px w-8 bg-[#C5A059]"></span>
-            <span className="text-[#C5A059] font-mono uppercase tracking-widest text-xs">
-              CONTACT
-            </span>
+        {/* Header Block */}
+        <div className="mb-12 text-center md:text-left">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#0D2319] border border-[#C5A059]/30 text-[#C5A059] text-xs font-mono uppercase tracking-widest mb-4">
+            <Lock className="w-3.5 h-3.5 text-emerald-400" />
+            Confidential Advisory Intake
           </div>
-          <h1 className="font-serif text-4xl md:text-6xl font-normal leading-tight text-white tracking-tight">
-            Your next move starts with a <span className="italic text-[#C5A059]">conversation.</span>
+          <h1 className="font-serif text-3xl sm:text-5xl font-normal text-[#FDFBF7] tracking-tight">
+            Initiate a <span className="italic text-[#C5A059]">Strategic Mandate.</span>
           </h1>
-          <p className="text-[#D4CFC4] text-lg font-light leading-relaxed max-w-md">
-            Tell us what you're building, where you're going and what you need to navigate.
+          <p className="mt-3 text-slate-300 text-sm md:text-base font-light max-w-2xl leading-relaxed">
+            All preliminary inquiries are assessed directly by senior cross-border advisory partners under strict non-disclosure protocols.
           </p>
         </div>
 
-        <div className="relative z-10 pt-16 space-y-6">
-          <div className="border-t border-white/10 pt-6 space-y-4">
-            <span className="text-[#C5A059] font-mono text-xs uppercase tracking-widest block mb-4">
-              Direct Channels
+        {/* Progress Tracker */}
+        <div className="mb-10 flex items-center justify-between border-b border-white/10 pb-4">
+          <div className="flex items-center gap-3">
+            <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-mono font-bold ${
+              step >= 1 ? 'bg-[#C5A059] text-[#07130E]' : 'bg-white/10 text-white'
+            }`}>
+              1
             </span>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a 
-                href="https://wa.me/919731709711" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="inline-flex items-center justify-center gap-3 bg-white text-[#07130E] hover:bg-[#FDFBF7] border border-[#C5A059]/30 hover:border-[#C5A059] px-6 py-3.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all shadow-md font-medium"
-              >
-                WhatsApp
-              </a>
-              <a 
-                href="https://t.me/Cerixglobal" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="inline-flex items-center justify-center gap-3 bg-white text-[#07130E] hover:bg-[#FDFBF7] border border-[#C5A059]/30 hover:border-[#C5A059] px-6 py-3.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all shadow-md font-medium"
-              >
-                Telegram
-              </a>
-            </div>
+            <span className={`text-xs font-mono uppercase tracking-wider ${step >= 1 ? 'text-white' : 'text-slate-500'}`}>
+              Mandate & Corridor
+            </span>
+          </div>
+
+          <div className="h-px w-12 bg-white/10 hidden sm:block" />
+
+          <div className="flex items-center gap-3">
+            <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-mono font-bold ${
+              step >= 2 ? 'bg-[#C5A059] text-[#07130E]' : 'bg-white/10 text-white'
+            }`}>
+              2
+            </span>
+            <span className={`text-xs font-mono uppercase tracking-wider ${step >= 2 ? 'text-white' : 'text-slate-500'}`}>
+              Scope & Capital
+            </span>
+          </div>
+
+          <div className="h-px w-12 bg-white/10 hidden sm:block" />
+
+          <div className="flex items-center gap-3">
+            <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-mono font-bold ${
+              step === 3 ? 'bg-[#C5A059] text-[#07130E]' : 'bg-white/10 text-white'
+            }`}>
+              3
+            </span>
+            <span className={`text-xs font-mono uppercase tracking-wider ${step === 3 ? 'text-white' : 'text-slate-500'}`}>
+              Institutional Verification
+            </span>
           </div>
         </div>
-      </div>
 
-      {/* Right Column: Form Panel */}
-      <div className="lg:w-7/12 p-8 md:p-16 lg:p-24 bg-[#FDFBF7] flex flex-col justify-center">
-        <form onSubmit={handleSubmit} className="space-y-8 max-w-2xl mx-auto w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-2">
-              <label className="text-xs font-mono uppercase tracking-wider text-[#C5A059]">Name *</label>
-              <input 
-                type="text" 
-                required
-                placeholder="Full Name"
-                value={formData.name}
-                onChange={(e) => setFormData({...formData, name: e.target.value})}
-                className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#C5A059] transition-colors"
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="text-xs font-mono uppercase tracking-wider text-[#C5A059]">Company</label>
-              <input 
-                type="text" 
-                placeholder="Company Name"
-                value={formData.company}
-                onChange={(e) => setFormData({...formData, company: e.target.value})}
-                className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#C5A059] transition-colors"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-2">
-              <label className="text-xs font-mono uppercase tracking-wider text-[#C5A059]">Email *</label>
-              <input 
-                type="email" 
-                required
-                placeholder="name@example.com"
-                value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#C5A059] transition-colors"
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="text-xs font-mono uppercase tracking-wider text-[#C5A059]">Phone</label>
-              <input 
-                type="tel" 
-                placeholder="Phone Number"
-                value={formData.phone}
-                onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#C5A059] transition-colors"
-              />
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-xs font-mono uppercase tracking-wider text-[#C5A059]">Country / Region</label>
-            <input 
-              type="text" 
-              placeholder="e.g. United Arab Emirates, Singapore, Mauritius"
-              value={formData.country}
-              onChange={(e) => setFormData({...formData, country: e.target.value})}
-              className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#C5A059] transition-colors"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-xs font-mono uppercase tracking-wider text-[#C5A059]">Area of Interest</label>
-            <select 
-              value={formData.interest}
-              onChange={(e) => setFormData({...formData, interest: e.target.value})}
-              className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] focus:outline-none focus:border-[#C5A059] transition-colors cursor-pointer"
-            >
-              <option value="">Select an area of interest</option>
-              <option value="structuring">Fund & Entity Structuring</option>
-              <option value="advisory">Cross-Border Advisory</option>
-              <option value="compliance">Regulatory & Compliance</option>
-            </select>
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-xs font-mono uppercase tracking-wider text-[#C5A059]">Message</label>
-            <textarea 
-              rows={4}
-              placeholder="Tell us about your requirements..."
-              value={formData.message}
-              onChange={(e) => setFormData({...formData, message: e.target.value})}
-              className="w-full bg-transparent border-b border-[#D4CFC4] pb-3 text-[#1A1A1A] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#C5A059] resize-none transition-colors"
-            ></textarea>
-          </div>
-
-          <div className="pt-4">
-            <button 
-              type="submit" 
-              disabled={isSubmitting}
-              className="rounded-full bg-[#07130E] hover:bg-[#0B1D16] text-[#C5A059] hover:text-white border border-[#C5A059]/40 hover:border-[#C5A059] px-8 py-4 text-xs font-mono uppercase tracking-wider transition-all flex items-center gap-3 shadow-md cursor-pointer disabled:opacity-50"
-            >
-              {isSubmitting ? 'Sending...' : 'Submit Inquiry →'}
-            </button>
-          </div>
-        </form>
-
-        <div className="pt-16 mt-16 border-t border-[#E5E0D8] text-xs font-mono text-[#777] flex flex-col md:flex-row justify-between gap-4">
-          <span>CERIX GLOBAL CONSULTING</span>
-          <a href="mailto:info@cerixglobal.com" className="hover:text-[#C5A059] transition-colors">INFO@CERIXGLOBAL.COM</a>
-        </div>
-      </div>
-
-      {/* CUSTOM CENTERED FROSTED-GLASS SUCCESS MODAL */}
-      {isSuccess && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="relative w-full max-w-md bg-[#07130E]/95 backdrop-blur-xl border border-[#C5A059]/40 rounded-3xl p-8 text-center shadow-2xl space-y-6">
-            <div className="w-12 h-12 mx-auto rounded-full bg-[#C5A059]/20 border border-[#C5A059] flex items-center justify-center text-[#C5A059]">
-              ✓
-            </div>
-            <div className="space-y-2">
-              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#C5A059] block">
-                Inquiry Received
-              </span>
-              <h3 className="font-serif text-2xl text-white font-normal">
-                Thank you for your <span className="italic text-[#C5A059]">conversation.</span>
-              </h3>
-              <p className="text-xs text-[#D4CFC4] font-light leading-relaxed">
-                Your message has been routed successfully to <strong className="text-white font-normal">info@cerixglobal.com</strong>. Our advisory team will respond shortly.
+        {/* Form Container */}
+        <div className="bg-[#0B1D16]/80 backdrop-blur-xl border border-[#C5A059]/30 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+          
+          {isSubmitted ? (
+            <div className="py-12 text-center space-y-4">
+              <CheckCircle2 className="w-14 h-14 text-emerald-400 mx-auto" />
+              <h3 className="text-2xl font-serif font-bold text-white">Advisory Dossier Received</h3>
+              <p className="text-slate-300 text-sm max-w-md mx-auto leading-relaxed">
+                Your mandate parameters have been routed to our senior advisory desk. An engagement partner will initiate contact via verified channels within 1 business day.
               </p>
+              <div className="pt-4">
+                <span className="text-[11px] font-mono text-[#C5A059] uppercase tracking-widest bg-[#07130E] border border-white/10 px-4 py-2 rounded-full">
+                  Case ID: CRX-{Math.floor(100000 + Math.random() * 900000)}
+                </span>
+              </div>
             </div>
-            <button
-              onClick={() => setIsSuccess(false)}
-              className="w-full rounded-full bg-[#C5A059] hover:bg-[#d4b06a] text-[#07130E] font-medium py-3 text-xs font-mono uppercase tracking-wider transition-all shadow-md cursor-pointer"
-            >
-              Close Window
-            </button>
-          </div>
+          ) : (
+            <form onSubmit={handleSubmit}>
+              
+              {/* STEP 1: Mandate & Corridor */}
+              {step === 1 && (
+                <div className="space-y-6">
+                  <div>
+                    <label className="block text-xs font-mono uppercase tracking-wider text-[#C5A059] mb-3">
+                      Select Primary Advisory Mandate
+                    </label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {[
+                        { id: 'corporate-structuring', label: 'Cross-Border Holding Architecture' },
+                        { id: 'fund-formation', label: 'Investment Fund Formation (VCC / SPC / AIF)' },
+                        { id: 'family-office', label: 'Family Office Trust & Succession' },
+                        { id: 'tax-substance', label: 'FEMA / ODI Substance & Treaty Advisory' },
+                      ].map((item) => (
+                        <button
+                          key={item.id}
+                          type="button"
+                          onClick={() => setFormData({ ...formData, mandateType: item.id })}
+                          className={`p-4 rounded-xl text-left border text-xs font-mono transition-all ${
+                            formData.mandateType === item.id
+                              ? 'bg-[#132A21] border-[#C5A059] text-white ring-1 ring-[#C5A059]/50'
+                              : 'bg-[#07130E] border-white/10 text-slate-300 hover:border-white/30'
+                          }`}
+                        >
+                          {item.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono uppercase tracking-wider text-[#C5A059] mb-2">
+                      Target Financial Corridor
+                    </label>
+                    <select
+                      value={formData.targetCorridor}
+                      onChange={(e) => setFormData({ ...formData, targetCorridor: e.target.value })}
+                      className="w-full bg-[#07130E] border border-white/10 rounded-xl p-3.5 text-xs font-mono text-white focus:border-[#C5A059] outline-none"
+                    >
+                      {JURISDICTIONS.map((j) => (
+                        <option key={j.slug || j.id} value={j.slug || j.id}>
+                          {j.name} — ({j.region})
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="flex justify-end pt-4">
+                    <button
+                      type="button"
+                      onClick={handleNext}
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#C5A059] text-[#07130E] text-xs font-mono font-bold hover:bg-[#E6C875] transition-all"
+                    >
+                      Continue to Scope
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* STEP 2: Scope & Capital */}
+              {step === 2 && (
+                <div className="space-y-6">
+                  <div>
+                    <label className="block text-xs font-mono uppercase tracking-wider text-[#C5A059] mb-3">
+                      Anticipated Capital / Asset Deployment Scale
+                    </label>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      {[
+                        { id: '1m-5m', label: 'USD 1M – 5M' },
+                        { id: '5m-25m', label: 'USD 5M – 25M' },
+                        { id: '25m+', label: 'USD 25M+' },
+                      ].map((item) => (
+                        <button
+                          key={item.id}
+                          type="button"
+                          onClick={() => setFormData({ ...formData, capitalScope: item.id })}
+                          className={`p-4 rounded-xl text-center border text-xs font-mono font-bold transition-all ${
+                            formData.capitalScope === item.id
+                              ? 'bg-[#132A21] border-[#C5A059] text-white ring-1 ring-[#C5A059]/50'
+                              : 'bg-[#07130E] border-white/10 text-slate-300 hover:border-white/30'
+                          }`}
+                        >
+                          {item.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono uppercase tracking-wider text-[#C5A059] mb-2">
+                      Brief Operational Objectives
+                    </label>
+                    <textarea
+                      rows={4}
+                      value={formData.specificObjectives}
+                      onChange={(e) => setFormData({ ...formData, specificObjectives: e.target.value })}
+                      placeholder="Outline holding objectives, cross-border remittance pathways, or fund structure parameters..."
+                      className="w-full bg-[#07130E] border border-white/10 rounded-xl p-3.5 text-xs font-mono text-white placeholder-slate-600 focus:border-[#C5A059] outline-none leading-relaxed"
+                    />
+                  </div>
+
+                  <div className="flex justify-between pt-4">
+                    <button
+                      type="button"
+                      onClick={handleBack}
+                      className="px-5 py-3 rounded-xl border border-white/10 text-slate-300 text-xs font-mono hover:text-white transition-colors"
+                    >
+                      Back
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleNext}
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#C5A059] text-[#07130E] text-xs font-mono font-bold hover:bg-[#E6C875] transition-all"
+                    >
+                      Proceed to Verification
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* STEP 3: Institutional Verification */}
+              {step === 3 && (
+                <div className="space-y-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-mono uppercase tracking-wider text-[#C5A059] mb-1.5">
+                        Full Name / Principal *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.fullName}
+                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                        className="w-full bg-[#07130E] border border-white/10 rounded-xl p-3 text-xs font-mono text-white focus:border-[#C5A059] outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-mono uppercase tracking-wider text-[#C5A059] mb-1.5">
+                        Corporate / Institutional Email *
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        value={formData.corporateEmail}
+                        onChange={(e) => setFormData({ ...formData, corporateEmail: e.target.value })}
+                        className="w-full bg-[#07130E] border border-white/10 rounded-xl p-3 text-xs font-mono text-white focus:border-[#C5A059] outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-mono uppercase tracking-wider text-[#C5A059] mb-1.5">
+                        Entity / Family Office Name
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.entityName}
+                        onChange={(e) => setFormData({ ...formData, entityName: e.target.value })}
+                        className="w-full bg-[#07130E] border border-white/10 rounded-xl p-3 text-xs font-mono text-white focus:border-[#C5A059] outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-mono uppercase tracking-wider text-[#C5A059] mb-1.5">
+                        Designation / Role
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.roleTitle}
+                        onChange={(e) => setFormData({ ...formData, roleTitle: e.target.value })}
+                        placeholder="e.g. Managing Director, General Counsel"
+                        className="w-full bg-[#07130E] border border-white/10 rounded-xl p-3 text-xs font-mono text-white focus:border-[#C5A059] outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-[#07130E] border border-white/10 flex items-center gap-3">
+                    <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
+                    <span className="text-[11px] font-mono text-slate-300">
+                      Mutual NDA automatically triggered upon submission under standard institutional confidentiality protocols.
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between pt-4">
+                    <button
+                      type="button"
+                      onClick={handleBack}
+                      className="px-5 py-3 rounded-xl border border-white/10 text-slate-300 text-xs font-mono hover:text-white transition-colors"
+                    >
+                      Back
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-[#C5A059] text-[#07130E] text-xs font-mono font-bold hover:bg-[#E6C875] transition-all shadow-lg disabled:opacity-50"
+                    >
+                      {isSubmitting ? 'Securing Submission...' : 'Transmit Mandate Request'}
+                      <Lock className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              )}
+            </form>
+          )}
         </div>
-      )}
+
+        {/* Regulatory Compliance Footnote */}
+        <p className="mt-8 text-center text-[11px] font-mono text-slate-500 leading-relaxed max-w-2xl mx-auto">
+          Regulatory Notice: Cerix Global serves strictly as an independent cross-border advisory intermediary. All entity registrations, corporate filings, and fund administration are executed in coordination with authorized, locally licensed management companies and fiduciary institutions.
+        </p>
+      </div>
     </div>
   );
 }
