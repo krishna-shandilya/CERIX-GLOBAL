@@ -19,7 +19,7 @@ export default function Home() {
         "name": "Cerix Global",
         "url": "https://www.cerixglobal.com/",
         "logo": "https://www.cerixglobal.com/assets/logo.png",
-        "description": "Elite international corporate structuring, cross-border holding architectures, investment funds, and family office wealth advisory.",
+        "description": "Elite international cross-border corporate structuring, holding architectures, alternative investment funds, and family office wealth advisory.",
         "priceRange": "$$$$",
         "areaServed": [
           { "@type": "Country", "name": "Mauritius" },
@@ -49,21 +49,36 @@ export default function Home() {
           name="description" 
           content="Architecting resilient cross-border entity structures, private investment funds, and institutional governance frameworks across Mauritius, Singapore, Cayman Islands, and the UAE." 
         />
-        <meta name="geo.region" content="MU" />
-        <meta name="geo.placename" content="Mauritius" />
+        <meta name="geo.region" content="MU;SG;AE;IN" />
+        <meta name="geo.placename" content="International Financial Corridors" />
         <link rel="canonical" href="https://www.cerixglobal.com/" />
         <script type="application/ld+json">
           {JSON.stringify(structuredSchema)}
         </script>
       </Helmet>
 
+      {/* 1. Hero & Value Architecture */}
       <Hero />
+
+      {/* 2. Practice Areas & Advisory Offerings */}
       <WhatWeDo />
+
+      {/* 3. Target Institutional Segments */}
       <WhoWeAdvise />
+
+      {/* 4. Global Corridors 3D / Scroll-Snap Carousel */}
       <GlobalReachCarousel />
+
+      {/* 5. Execution Approach & Methodology */}
       <Approach />
+
+      {/* 6. Why Cerix Global (Rendered once with 16+ years stat) */}
       <WhyCerix />
+
+      {/* 7. Institutional FAQ Matrix */}
       <FAQSection />
+
+      {/* 8. Conversion Intake Gateway */}
       <ContactSection />
     </main>
   );
