@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Globe, Building2, Shield, Landmark, FileText, Key, Layers, Briefcase } from "lucide-react";
 import { SERVICES } from "@/lib/cerixData";
