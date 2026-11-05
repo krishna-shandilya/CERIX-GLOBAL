@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, X, Globe, Briefcase, Shield, Landmark } from "lucide-react";
-import { IMAGES } from "@/lib/cerixData";
+import { WHO_WE_ADVISE, IMAGES } from "@/lib/cerixData";
 import MotionText from "@/components/MotionText";
 import { motion, AnimatePresence } from "framer-motion";
 
-const CLIENT_PROFILES = [
+// We map the extra modal details and icons to your existing WHO_WE_ADVISE array by index
+const ENHANCED_DETAILS = [
   {
-    id: 'enterprises',
-    title: 'Multinational Enterprises & Tech Founders',
-    shortDesc: 'Designing multi-jurisdictional IP holding, regional operational hubs, and international growth vehicles.',
     icon: Globe,
-    image: IMAGES.enterprises || 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80',
     details: {
       mandate: 'Architecting tax-efficient, scalable corporate structures for cross-border expansion, intellectual property centralization, and pre-IPO readiness.',
       focus: [
@@ -24,11 +21,7 @@ const CLIENT_PROFILES = [
     }
   },
   {
-    id: 'funds',
-    title: 'Asset Managers & Investment Funds',
-    shortDesc: 'Structuring offshore fund entities, feeder funds, and cross-border investment platforms.',
     icon: Briefcase,
-    image: IMAGES.funds || 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80',
     details: {
       mandate: 'Establishing robust, compliant fund architectures tailored for global capital raising, distinct asset classes, and specific investor jurisdictions.',
       focus: [
@@ -41,11 +34,7 @@ const CLIENT_PROFILES = [
     }
   },
   {
-    id: 'hnwi',
-    title: 'High-Net-Worth Individuals & Family Offices',
-    shortDesc: 'Establishing wealth preservation trusts, foundations, and investment migration residency pathways.',
     icon: Shield,
-    image: IMAGES.hnwi || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80',
     details: {
       mandate: 'Creating impenetrable, multi-generational wealth preservation structures protecting absolute privacy and facilitating seamless succession.',
       focus: [
@@ -58,11 +47,7 @@ const CLIENT_PROFILES = [
     }
   },
   {
-    id: 'institutional',
-    title: 'Institutional Clients & Trading Groups',
-    shortDesc: 'Securing specialized financial service licenses and establishing multi-currency treasury infrastructure.',
     icon: Landmark,
-    image: IMAGES.institutional || 'https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?auto=format&fit=crop&q=80',
     details: {
       mandate: 'Navigating complex regulatory environments to secure operational licenses for fintechs, brokerages, and international trading houses.',
       focus: [
@@ -80,6 +65,13 @@ export default function WhoWeAdvise() {
   const [activeModal, setActiveModal] = useState(null);
   // Default to the first card being expanded on desktop load
   const [hoveredIndex, setHoveredIndex] = useState(0); 
+
+  // Merge your original data with the new modal details
+  const PROFILES = WHO_WE_ADVISE.map((item, index) => ({
+    ...item,
+    icon: ENHANCED_DETAILS[index]?.icon || Globe,
+    details: ENHANCED_DETAILS[index]?.details || ENHANCED_DETAILS[0].details,
+  }));
 
   const openModal = (profile) => {
     setActiveModal(profile);
@@ -126,12 +118,12 @@ export default function WhoWeAdvise() {
 
         {/* The Cinematic Accordion (Performance Optimised Flex Layout) */}
         <div className="flex flex-col lg:flex-row w-full h-[800px] lg:h-[600px] gap-4">
-          {CLIENT_PROFILES.map((c, i) => {
+          {PROFILES.map((c, i) => {
             const isActive = hoveredIndex === i;
             
             return (
               <motion.div
-                key={c.id}
+                key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-5% 0px" }}
@@ -145,7 +137,7 @@ export default function WhoWeAdvise() {
                   }
                 `}
               >
-                {/* Background Image */}
+                {/* Background Image (Sourced directly from your WHO_WE_ADVISE data) */}
                 <img
                   src={c.image}
                   alt={c.title}
@@ -166,7 +158,7 @@ export default function WhoWeAdvise() {
                 <div className="absolute inset-0 p-6 lg:p-8 flex flex-col justify-end">
                   
                   {/* Icon */}
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500 mb-6
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500 mb-6 shrink-0
                     ${isActive ? 'bg-[#C5A059] text-[#07130E]' : 'bg-white/10 text-white backdrop-blur-sm'}
                   `}>
                     <c.icon className="w-5 h-5" />
@@ -186,7 +178,7 @@ export default function WhoWeAdvise() {
                     `}
                   >
                     <p className="font-sans text-sm text-gray-300 font-light leading-relaxed mb-6 max-w-md">
-                      {c.shortDesc}
+                      {c.desc || c.description}
                     </p>
                     
                     <div className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] uppercase text-[#C5A059] font-semibold w-fit">
@@ -202,7 +194,7 @@ export default function WhoWeAdvise() {
         </div>
       </div>
 
-      {/* Detailed Frosted Glass Modal (Remains Unchanged) */}
+      {/* Detailed Frosted Glass Modal */}
       <AnimatePresence>
         {activeModal && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
@@ -223,7 +215,7 @@ export default function WhoWeAdvise() {
             >
               <div className="flex items-center justify-between p-6 sm:p-8 border-b border-white/5">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-[#C5A059]/10 rounded-lg flex items-center justify-center border border-[#C5A059]/30">
+                  <div className="w-10 h-10 bg-[#C5A059]/10 rounded-lg flex items-center justify-center border border-[#C5A059]/30 shrink-0">
                     <activeModal.icon className="w-5 h-5 text-[#C5A059]" />
                   </div>
                   <h3 className="font-serif text-xl sm:text-2xl text-white">
@@ -232,7 +224,7 @@ export default function WhoWeAdvise() {
                 </div>
                 <button 
                   onClick={closeModal}
-                  className="text-gray-400 hover:text-white transition-colors p-2 bg-white/5 rounded-full hover:bg-white/10 outline-none"
+                  className="text-gray-400 hover:text-white transition-colors p-2 bg-white/5 rounded-full hover:bg-white/10 outline-none shrink-0 ml-4"
                 >
                   <X className="w-5 h-5" />
                 </button>
