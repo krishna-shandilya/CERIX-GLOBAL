@@ -114,10 +114,10 @@ export default function WhatWeDo() {
                     whileHover={{ y: -10 }}
                     animate={{ y: isSelected ? -24 : 0 }}
                     transition={{ type: "spring", stiffness: 320, damping: 22 }}
-                    className={`relative group shrink-0 cursor-pointer rounded-md overflow-hidden flex flex-col justify-between py-6 px-3 transition-all duration-500 shadow-xl ${
+                    className={`relative group shrink-0 cursor-pointer rounded-md overflow-hidden flex flex-col justify-between py-6 px-3 transition-all duration-500 shadow-xl bg-[#EAE5DD] ${
                       isSelected 
-                        ? "w-16 lg:w-20 bg-[#07130E] text-[#C5A059] border-2 border-[#C5A059] shadow-[0_20px_40px_rgba(7,19,14,0.25)] z-20" 
-                        : "w-12 lg:w-15 bg-[#EAE5DD] text-[#07130E]/80 border border-[#07130E]/20 hover:border-[#8B6E33]"
+                        ? "w-16 lg:w-20 border-2 border-[#C5A059] shadow-[0_0_25px_rgba(197,160,89,0.35)] z-20" 
+                        : "w-12 lg:w-15 text-[#07130E]/80 border border-[#07130E]/20 hover:border-[#8B6E33]"
                     }`}
                     style={{ height: '420px' }}
                   >
@@ -128,7 +128,7 @@ export default function WhatWeDo() {
                       <div className="w-1 h-1 rounded-full bg-[#8B6E33]" />
                     </div>
 
-                    <div className="my-auto py-4" style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}>
+                    <div className="my-auto py-4 flex justify-center" style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}>
                       <span className="font-serif text-xs lg:text-sm tracking-wider uppercase font-medium whitespace-nowrap text-[#07130E] group-hover:text-black transition-colors">
                         {s.title}
                       </span>
