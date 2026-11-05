@@ -52,7 +52,7 @@ Objectives: ${formData.specificObjectives || 'None provided'}
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "1c5f477a-2531-44ca-81b4-59f78b190140", // Your existing key routed to info@cerixglobal.com
+          access_key: "1c5f477a-2531-44ca-81b4-59f78b190140", 
           subject: `New Mandate Inquiry from ${formData.fullName} - Cerix Global`,
           from_name: formData.fullName,
           email: formData.corporateEmail,
@@ -64,7 +64,6 @@ Objectives: ${formData.specificObjectives || 'None provided'}
       const result = await response.json();
       if (result.success) {
         setIsSuccess(true);
-        // Reset form
         setFormData({
           mandateType: 'corporate-structuring',
           targetCorridor: 'singapore',
@@ -124,7 +123,7 @@ Objectives: ${formData.specificObjectives || 'None provided'}
                 href="https://wa.me/919731709711" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white text-white hover:text-[#07130E] border border-white/20 hover:border-white px-6 py-3 rounded-full text-xs font-mono uppercase tracking-wider transition-all shadow-md font-medium backdrop-blur-sm"
+                className="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white text-white hover:text-[#07130E] border border-white/20 hover:border-white px-6 py-3 rounded-full text-xs font-mono uppercase tracking-wider transition-all duration-300 shadow-md font-medium backdrop-blur-sm hover:-translate-y-0.5"
               >
                 WhatsApp
               </a>
@@ -132,7 +131,7 @@ Objectives: ${formData.specificObjectives || 'None provided'}
                 href="https://t.me/Cerixglobal" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white text-white hover:text-[#07130E] border border-white/20 hover:border-white px-6 py-3 rounded-full text-xs font-mono uppercase tracking-wider transition-all shadow-md font-medium backdrop-blur-sm"
+                className="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white text-white hover:text-[#07130E] border border-white/20 hover:border-white px-6 py-3 rounded-full text-xs font-mono uppercase tracking-wider transition-all duration-300 shadow-md font-medium backdrop-blur-sm hover:-translate-y-0.5"
               >
                 Telegram
               </a>
@@ -142,45 +141,45 @@ Objectives: ${formData.specificObjectives || 'None provided'}
       </div>
 
       {/* RIGHT COLUMN: Light Immersive & Premium Frosted Glass Form */}
-      <div className="lg:w-7/12 relative p-6 sm:p-12 lg:p-20 flex flex-col justify-center min-h-[80vh]">
+      <div className="lg:w-7/12 relative p-6 sm:p-12 lg:p-20 flex flex-col justify-between min-h-[80vh]">
         {/* Subtle background ambient mesh */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#FDFBF7] via-[#F5F2EB] to-[#EAE4D9] pointer-events-none" />
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#C5A059]/5 blur-3xl pointer-events-none rounded-full" />
 
-        <div className="relative z-10 max-w-2xl mx-auto w-full">
+        <div className="relative z-10 max-w-2xl mx-auto w-full pt-8 lg:pt-0">
           
-          {/* Progress Indicator (Light Theme adapted) */}
+          {/* Progress Indicator */}
           <div className="mb-10 flex items-center justify-between border-b border-[#D4CFC4]/50 pb-5">
             <div className="flex items-center gap-3">
-              <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-mono font-bold transition-colors ${
-                step >= 1 ? 'bg-[#07130E] text-[#C5A059]' : 'bg-white border border-[#D4CFC4] text-slate-400'
+              <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-500 ${
+                step >= 1 ? 'bg-[#07130E] text-[#C5A059] shadow-md' : 'bg-white/50 border border-[#D4CFC4] text-slate-400'
               }`}>1</span>
-              <span className={`text-xs font-mono uppercase tracking-wider ${step >= 1 ? 'text-[#07130E] font-bold' : 'text-slate-400'}`}>
+              <span className={`text-xs font-mono uppercase tracking-wider transition-colors duration-500 ${step >= 1 ? 'text-[#07130E] font-bold' : 'text-slate-400'}`}>
                 Scope
               </span>
             </div>
-            <div className="h-px w-8 sm:w-16 bg-[#D4CFC4]/50" />
+            <div className="h-px w-8 sm:w-16 bg-[#D4CFC4]/50 transition-colors duration-500" />
             <div className="flex items-center gap-3">
-              <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-mono font-bold transition-colors ${
-                step >= 2 ? 'bg-[#07130E] text-[#C5A059]' : 'bg-white border border-[#D4CFC4] text-slate-400'
+              <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-500 ${
+                step >= 2 ? 'bg-[#07130E] text-[#C5A059] shadow-md' : 'bg-white/50 border border-[#D4CFC4] text-slate-400'
               }`}>2</span>
-              <span className={`text-xs font-mono uppercase tracking-wider ${step >= 2 ? 'text-[#07130E] font-bold' : 'text-slate-400'}`}>
+              <span className={`text-xs font-mono uppercase tracking-wider transition-colors duration-500 ${step >= 2 ? 'text-[#07130E] font-bold' : 'text-slate-400'}`}>
                 Scale
               </span>
             </div>
-            <div className="h-px w-8 sm:w-16 bg-[#D4CFC4]/50" />
+            <div className="h-px w-8 sm:w-16 bg-[#D4CFC4]/50 transition-colors duration-500" />
             <div className="flex items-center gap-3">
-              <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-mono font-bold transition-colors ${
-                step === 3 ? 'bg-[#07130E] text-[#C5A059]' : 'bg-white border border-[#D4CFC4] text-slate-400'
+              <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-500 ${
+                step === 3 ? 'bg-[#07130E] text-[#C5A059] shadow-md' : 'bg-white/50 border border-[#D4CFC4] text-slate-400'
               }`}>3</span>
-              <span className={`text-xs font-mono uppercase tracking-wider ${step === 3 ? 'text-[#07130E] font-bold' : 'text-slate-400'}`}>
+              <span className={`text-xs font-mono uppercase tracking-wider transition-colors duration-500 ${step === 3 ? 'text-[#07130E] font-bold' : 'text-slate-400'}`}>
                 Verify
               </span>
             </div>
           </div>
 
           {/* Premium Frosted Glass Form Container */}
-          <div className="bg-white/60 backdrop-blur-2xl border border-white shadow-[0_25px_60px_-15px_rgba(0,0,0,0.05)] rounded-3xl p-6 sm:p-10">
+          <div className="bg-white/50 backdrop-blur-xl border border-white shadow-[0_25px_60px_-15px_rgba(0,0,0,0.05)] rounded-3xl p-6 sm:p-10 transition-all duration-500">
             <form onSubmit={handleSubmit}>
               
               {/* STEP 1 */}
@@ -201,10 +200,10 @@ Objectives: ${formData.specificObjectives || 'None provided'}
                           key={item.id}
                           type="button"
                           onClick={() => setFormData({ ...formData, mandateType: item.id })}
-                          className={`p-4 rounded-xl text-left border text-xs font-mono transition-all ${
+                          className={`p-4 rounded-xl text-left border text-sm font-medium transition-all duration-500 ease-out relative overflow-hidden ${
                             formData.mandateType === item.id
-                              ? 'bg-[#07130E] border-[#07130E] text-[#C5A059] shadow-lg'
-                              : 'bg-white/50 border-[#D4CFC4] text-slate-600 hover:border-[#8B6E33]/50 hover:bg-white'
+                              ? 'bg-[#07130E]/85 backdrop-blur-md border-[#C5A059]/50 text-[#C5A059] shadow-[0_10px_20px_-10px_rgba(7,19,14,0.4)] scale-[1.02]'
+                              : 'bg-white/40 border-[#D4CFC4]/60 text-slate-600 hover:border-[#C5A059]/40 hover:bg-white/80 hover:text-[#07130E] hover:-translate-y-0.5'
                           }`}
                         >
                           {item.label}
@@ -220,208 +219,4 @@ Objectives: ${formData.specificObjectives || 'None provided'}
                     <select
                       value={formData.targetCorridor}
                       onChange={(e) => setFormData({ ...formData, targetCorridor: e.target.value })}
-                      className="w-full bg-white/50 border border-[#D4CFC4] rounded-xl p-4 text-sm font-mono text-[#07130E] focus:bg-white focus:border-[#8B6E33] outline-none transition-all cursor-pointer shadow-sm"
-                    >
-                      <option value="undecided">To Be Determined</option>
-                      {JURISDICTIONS.map((j) => (
-                        <option key={j.slug || j.id} value={j.slug || j.id}>
-                          {j.name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div className="flex justify-end pt-4">
-                    <button
-                      type="button"
-                      onClick={handleNext}
-                      className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#C5A059] text-[#07130E] text-xs font-mono font-bold tracking-wider uppercase hover:bg-[#b5924d] transition-all shadow-md"
-                    >
-                      Next Step
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* STEP 2 */}
-              {step === 2 && (
-                <div className="space-y-7 animate-fade-in">
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-[#8B6E33] mb-3">
-                      Capital / Asset Scale
-                    </label>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                      {[
-                        { id: '1m-5m', label: 'USD 1M–5M' },
-                        { id: '5m-25m', label: 'USD 5M–25M' },
-                        { id: '25m+', label: 'USD 25M+' },
-                      ].map((item) => (
-                        <button
-                          key={item.id}
-                          type="button"
-                          onClick={() => setFormData({ ...formData, capitalScope: item.id })}
-                          className={`p-4 rounded-xl text-center border text-xs font-mono font-bold transition-all ${
-                            formData.capitalScope === item.id
-                              ? 'bg-[#07130E] border-[#07130E] text-[#C5A059] shadow-lg'
-                              : 'bg-white/50 border-[#D4CFC4] text-slate-600 hover:border-[#8B6E33]/50 hover:bg-white'
-                          }`}
-                        >
-                          {item.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-[#8B6E33] mb-3">
-                      Brief Objectives
-                    </label>
-                    <textarea
-                      rows={4}
-                      value={formData.specificObjectives}
-                      onChange={(e) => setFormData({ ...formData, specificObjectives: e.target.value })}
-                      placeholder="Share a brief overview of your structuring requirements or intended jurisdiction..."
-                      className="w-full bg-white/50 border border-[#D4CFC4] rounded-xl p-4 text-sm text-[#07130E] placeholder-slate-400 focus:bg-white focus:border-[#8B6E33] outline-none transition-all shadow-sm resize-none"
-                    />
-                  </div>
-
-                  <div className="flex justify-between pt-4">
-                    <button
-                      type="button"
-                      onClick={handleBack}
-                      className="px-6 py-3.5 rounded-xl border border-[#D4CFC4] text-slate-500 text-xs font-mono uppercase tracking-wider hover:bg-white hover:text-[#07130E] transition-all"
-                    >
-                      Back
-                    </button>
-                    <button
-                      type="button"
-                      onClick={handleNext}
-                      className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#C5A059] text-[#07130E] text-xs font-mono font-bold tracking-wider uppercase hover:bg-[#b5924d] transition-all shadow-md"
-                    >
-                      Continue
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* STEP 3 */}
-              {step === 3 && (
-                <div className="space-y-6 animate-fade-in">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-[#8B6E33] mb-2">
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.fullName}
-                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                        className="w-full bg-white/50 border border-[#D4CFC4] rounded-xl p-3.5 text-sm font-medium text-[#07130E] focus:bg-white focus:border-[#8B6E33] outline-none transition-all shadow-sm"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-[#8B6E33] mb-2">
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        value={formData.corporateEmail}
-                        onChange={(e) => setFormData({ ...formData, corporateEmail: e.target.value })}
-                        className="w-full bg-white/50 border border-[#D4CFC4] rounded-xl p-3.5 text-sm font-medium text-[#07130E] focus:bg-white focus:border-[#8B6E33] outline-none transition-all shadow-sm"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-[#8B6E33] mb-2">
-                        Company / Entity
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.entityName}
-                        onChange={(e) => setFormData({ ...formData, entityName: e.target.value })}
-                        className="w-full bg-white/50 border border-[#D4CFC4] rounded-xl p-3.5 text-sm font-medium text-[#07130E] focus:bg-white focus:border-[#8B6E33] outline-none transition-all shadow-sm"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-[#8B6E33] mb-2">
-                        Designation
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="e.g. Director, Partner"
-                        value={formData.roleTitle}
-                        onChange={(e) => setFormData({ ...formData, roleTitle: e.target.value })}
-                        className="w-full bg-white/50 border border-[#D4CFC4] rounded-xl p-3.5 text-sm font-medium text-[#07130E] placeholder:text-slate-400 focus:bg-white focus:border-[#8B6E33] outline-none transition-all shadow-sm"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="p-4 rounded-xl bg-[#07130E]/5 border border-[#07130E]/10 flex items-start gap-3 mt-2">
-                    <ShieldCheck className="w-5 h-5 text-[#307050] shrink-0" />
-                    <span className="text-[11px] font-mono text-slate-600 leading-relaxed">
-                      Submission establishes an implicit NDA. All disclosures are protected under institutional advisory confidentiality.
-                    </span>
-                  </div>
-
-                  <div className="flex justify-between pt-4">
-                    <button
-                      type="button"
-                      onClick={handleBack}
-                      className="px-6 py-3.5 rounded-xl border border-[#D4CFC4] text-slate-500 text-xs font-mono uppercase tracking-wider hover:bg-white hover:text-[#07130E] transition-all"
-                    >
-                      Back
-                    </button>
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#07130E] text-[#C5A059] text-xs font-mono font-bold tracking-wider uppercase hover:bg-black transition-all shadow-lg disabled:opacity-50"
-                    >
-                      {isSubmitting ? 'Transmitting...' : 'Submit Inquiry'}
-                      <Lock className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                </div>
-              )}
-            </form>
-          </div>
-
-          <div className="pt-16 mt-8 text-[10px] sm:text-xs font-mono text-slate-400 flex flex-col md:flex-row justify-between gap-4">
-            <span className="uppercase tracking-widest text-[#8B6E33]">Cerix Global Consulting</span>
-            <span className="uppercase tracking-widest">Independent Advisory Intermediary</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Success Modal (Dark Frosted Glass to match premium aesthetic) */}
-      {isSuccess && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#07130E]/70 backdrop-blur-md animate-fade-in">
-          <div className="relative w-full max-w-md bg-[#0B1D16]/95 backdrop-blur-2xl border border-[#C5A059]/40 rounded-3xl p-8 text-center shadow-2xl space-y-6">
-            <div className="w-14 h-14 mx-auto rounded-full bg-[#C5A059]/20 border border-[#C5A059] flex items-center justify-center text-[#C5A059]">
-              <CheckCircle2 className="w-7 h-7" />
-            </div>
-            <div className="space-y-3">
-              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#C5A059] block">
-                Mandate Request Received
-              </span>
-              <h3 className="font-serif text-2xl md:text-3xl text-white font-normal">
-                Thank you for your <span className="italic text-[#C5A059]">conversation.</span>
-              </h3>
-              <p className="text-sm text-[#D4CFC4] font-light leading-relaxed">
-                Your dossier has been securely routed to <strong className="text-white font-medium">info@cerixglobal.com</strong>. A partner will review your mandate parameters and respond shortly.
-              </p>
-            </div>
-            <button
-              onClick={() => setIsSuccess(false)}
-              className="w-full mt-4 rounded-xl bg-[#C5A059] hover:bg-[#d4b06a] text-[#07130E] font-bold py-3.5 text-xs font-mono uppercase tracking-wider transition-all shadow-md"
-            >
-              Close Window
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
+                      className="w-full bg-white/40 backdrop-blur-sm border border-[#D4CFC4]/80 rounded-xl p-4 text
