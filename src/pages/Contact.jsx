@@ -146,7 +146,7 @@ Objectives: ${formData.specificObjectives || 'None provided'}
         <div className="absolute inset-0 bg-gradient-to-br from-[#FDFBF7] via-[#F5F2EB] to-[#EAE4D9] pointer-events-none" />
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#C5A059]/5 blur-3xl pointer-events-none rounded-full" />
 
-        <div className="relative z-10 max-w-2xl mx-auto w-full pt-8 lg:pt-0">
+        <div className="relative z-10 max-w-2xl mx-auto w-full pt-28 lg:pt-8">
           
           {/* Progress Indicator */}
           <div className="mb-10 flex items-center justify-between border-b border-[#D4CFC4]/50 pb-5">
@@ -155,7 +155,7 @@ Objectives: ${formData.specificObjectives || 'None provided'}
                 step >= 1 ? 'bg-[#07130E] text-[#C5A059] shadow-md' : 'bg-white/50 border border-[#D4CFC4] text-slate-400'
               }`}>1</span>
               <span className={`text-xs font-mono uppercase tracking-wider transition-colors duration-500 ${step >= 1 ? 'text-[#07130E] font-bold' : 'text-slate-400'}`}>
-                Scope
+                Mandate
               </span>
             </div>
             <div className="h-px w-8 sm:w-16 bg-[#D4CFC4]/50 transition-colors duration-500" />
@@ -164,7 +164,7 @@ Objectives: ${formData.specificObjectives || 'None provided'}
                 step >= 2 ? 'bg-[#07130E] text-[#C5A059] shadow-md' : 'bg-white/50 border border-[#D4CFC4] text-slate-400'
               }`}>2</span>
               <span className={`text-xs font-mono uppercase tracking-wider transition-colors duration-500 ${step >= 2 ? 'text-[#07130E] font-bold' : 'text-slate-400'}`}>
-                Scale
+                Parameters
               </span>
             </div>
             <div className="h-px w-8 sm:w-16 bg-[#D4CFC4]/50 transition-colors duration-500" />
@@ -173,7 +173,7 @@ Objectives: ${formData.specificObjectives || 'None provided'}
                 step === 3 ? 'bg-[#07130E] text-[#C5A059] shadow-md' : 'bg-white/50 border border-[#D4CFC4] text-slate-400'
               }`}>3</span>
               <span className={`text-xs font-mono uppercase tracking-wider transition-colors duration-500 ${step === 3 ? 'text-[#07130E] font-bold' : 'text-slate-400'}`}>
-                Verify
+                Principal
               </span>
             </div>
           </div>
@@ -399,33 +399,7 @@ Objectives: ${formData.specificObjectives || 'None provided'}
         </div>
       </div>
 
-      {/* Success Modal */}
+      {/* Improved Success Modal */}
       {isSuccess && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#07130E]/70 backdrop-blur-md animate-fade-in">
-          <div className="relative w-full max-w-md bg-[#0B1D16]/95 backdrop-blur-2xl border border-[#C5A059]/40 rounded-3xl p-8 text-center shadow-2xl space-y-6">
-            <div className="w-14 h-14 mx-auto rounded-full bg-[#C5A059]/20 border border-[#C5A059] flex items-center justify-center text-[#C5A059] shadow-[0_0_20px_rgba(197,160,89,0.2)]">
-              <CheckCircle2 className="w-7 h-7" />
-            </div>
-            <div className="space-y-3">
-              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#C5A059] block">
-                Mandate Request Received
-              </span>
-              <h3 className="font-serif text-2xl md:text-3xl text-white font-normal">
-                Thank you for your <span className="italic text-[#C5A059]">conversation.</span>
-              </h3>
-              <p className="text-sm text-[#D4CFC4] font-light leading-relaxed">
-                Your dossier has been securely routed to <strong className="text-white font-medium">info@cerixglobal.com</strong>. A partner will review your mandate parameters and respond shortly.
-              </p>
-            </div>
-            <button
-              onClick={() => setIsSuccess(false)}
-              className="w-full mt-4 rounded-xl bg-[#C5A059] hover:bg-[#d4b06a] text-[#07130E] font-bold py-3.5 text-xs font-mono uppercase tracking-wider hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 outline-none focus:outline-none"
-            >
-              Close Window
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
+          <div className="relative w-full max-w-md bg-[#0B1D16]/
