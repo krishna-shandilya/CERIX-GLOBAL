@@ -15,15 +15,20 @@ export default function WhatWeDo() {
   };
 
   const handleNext = () => {
-    setActiveIndex((prev) => (prev === SERVICES.length - 1 ? 0 : prev - 1)); // Wait, let's make it increment correctly
+    setActiveIndex((prev) => (prev === SERVICES.length - 1 ? 0 : prev + 1));
   };
 
   return (
-    <section className="relative bg-[#07130E] text-white py-28 lg:py-40 overflow-hidden select-none">
-      {/* Ambient Depth Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#07130E] via-[#07130E]/95 to-[#07130E]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#C5A059]/5 to-transparent blur-3xl opacity-50" />
+    <section className="relative bg-[#FDFBF7] text-[#07130E] py-28 lg:py-40 overflow-hidden select-none">
+      {/* Paper Grain Background Overlay */}
+      <div className="absolute inset-0 z-20 pointer-events-none opacity-40 mix-blend-multiply">
+        <svg className="w-full h-full">
+          <filter id="paper-grain">
+            <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" />
+            <feColorMatrix type="matrix" values="1 0 0 0 0.45  0 1 0 0 0.42  0 0 1 0 0.38  0 0 0 0.22 0" />
+          </filter>
+          <rect width="100%" height="100%" filter="url(#paper-grain)" />
+        </svg>
       </div>
 
       <div className="relative z-30 mx-auto max-w-[1550px] px-6 lg:px-12">
@@ -38,7 +43,7 @@ export default function WhatWeDo() {
             className="flex items-center gap-3 mb-6"
           >
             <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C5A059]" />
-            <span className="text-[10.5px] font-mono tracking-[0.2em] uppercase font-semibold text-[#C5A059]" style={{ border: '1px solid rgba(197,160,89,0.3)', padding: '0 8px', display: 'inline-flex', alignItems: 'center', height: '21px', background: 'rgba(197,160,89,0.05)' }}>
+            <span className="text-[10.5px] font-mono tracking-[0.2em] uppercase font-semibold text-[#8B6E33]" style={{ border: '1px solid rgba(197,160,89,0.3)', padding: '0 8px', display: 'inline-flex', alignItems: 'center', height: '21px', background: 'rgba(197,160,89,0.05)' }}>
               What We Do
             </span>
             <div className="h-px w-24 bg-gradient-to-r from-[#C5A059]/40 to-transparent" />
@@ -47,7 +52,7 @@ export default function WhatWeDo() {
           <MotionText
             text="From complexity to structure."
             as="h2"
-            className="font-serif text-[2.8rem] sm:text-6xl lg:text-[4.5rem] leading-[1.05] text-white text-balance mb-6 tracking-tight"
+            className="font-serif text-[2.8rem] sm:text-6xl lg:text-[4.5rem] leading-[1.05] text-[#07130E] text-balance mb-6 tracking-tight"
           />
 
           <motion.p
@@ -55,22 +60,22 @@ export default function WhatWeDo() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-[#D4CFC4] font-light text-lg lg:text-xl leading-relaxed max-w-2xl font-sans"
+            className="text-[#07130E]/70 font-light text-lg lg:text-xl leading-relaxed max-w-2xl font-sans"
           >
             Disciplines designed to establish, protect, and operate international structures with absolute clarity.
           </motion.p>
         </div>
 
-        {/* Interactive Bookshelf Stage */}
-        <div className="relative bg-[#0A1612] border border-[#C5A059]/30 rounded-3xl p-8 lg:p-14 shadow-2xl overflow-hidden backdrop-blur-md">
+        {/* Interactive Bookshelf Stage with Approach Section Beige Background Theme */}
+        <div className="relative bg-[#F4F1EA] text-[#07130E] border border-[#07130E]/15 rounded-3xl p-8 lg:p-14 shadow-2xl overflow-hidden">
           
           {/* Shelf Navigation Header */}
-          <div className="flex items-center justify-between mb-12 pb-6 border-b border-white/10">
+          <div className="flex items-center justify-between mb-12 pb-6 border-b border-[#07130E]/10">
             <div className="flex items-center gap-3">
-              <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#C5A059] font-bold">
+              <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#8B6E33] font-bold">
                 Practice Shelf
               </span>
-              <span className="font-mono text-xs text-white/50 tracking-widest">
+              <span className="font-mono text-xs text-[#07130E]/50 tracking-widest">
                 (0{activeIndex + 1} / 0{SERVICES.length})
               </span>
             </div>
@@ -79,14 +84,14 @@ export default function WhatWeDo() {
               <button
                 onClick={handlePrev}
                 aria-label="Previous practice"
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-[#C5A059] text-white hover:text-[#07130E] border border-white/10 hover:border-[#C5A059] flex items-center justify-center transition-all duration-300 outline-none cursor-pointer"
+                className="w-10 h-10 rounded-full bg-[#07130E]/5 hover:bg-[#C5A059] text-[#07130E] hover:text-white border border-[#07130E]/15 hover:border-[#C5A059] flex items-center justify-center transition-all duration-300 outline-none cursor-pointer"
               >
                 <ArrowLeft className="w-4 h-4" />
               </button>
               <button
-                onClick={() => setActiveIndex((prev) => (prev === SERVICES.length - 1 ? 0 : prev + 1))}
+                onClick={handleNext}
                 aria-label="Next practice"
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-[#C5A059] text-white hover:text-[#07130E] border border-white/10 hover:border-[#C5A059] flex items-center justify-center transition-all duration-300 outline-none cursor-pointer"
+                className="w-10 h-10 rounded-full bg-[#07130E]/5 hover:bg-[#C5A059] text-[#07130E] hover:text-white border border-[#07130E]/15 hover:border-[#C5A059] flex items-center justify-center transition-all duration-300 outline-none cursor-pointer"
               >
                 <ArrowRight className="w-4 h-4" />
               </button>
@@ -97,99 +102,5 @@ export default function WhatWeDo() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             {/* Left: Interactive Horizontal Spines Shelf */}
-            <div className="lg:col-span-6 flex items-end gap-3 overflow-x-auto pb-6 pt-4 px-2 [scrollbar-width:thin] [scrollbar-color:#C5A059_#07130E]">
-              {SERVICES.map((s, i) => {
-                const isSelected = activeIndex === i;
-                const labelNum = `0${i + 1}`;
-
-                return (
-                  <motion.div
-                    key={s.id || i}
-                    onClick={() => setActiveIndex(i)}
-                    whileHover={{ y: -10 }}
-                    animate={{ y: isSelected ? -24 : 0 }}
-                    transition={{ type: "spring", stiffness: 320, damping: 22 }}
-                    className={`relative group shrink-0 cursor-pointer rounded-md overflow-hidden flex flex-col justify-between py-6 px-3 transition-all duration-500 shadow-xl ${
-                      isSelected 
-                        ? "w-16 lg:w-20 bg-[#0B1D16] text-[#C5A059] border-2 border-[#C5A059] shadow-[0_20px_40px_rgba(197,160,89,0.2)] z-20" 
-                        : "w-12 lg:w-15 bg-[#07130E] text-white/70 border border-white/10 hover:border-[#C5A059]/50"
-                    }`}
-                    style={{ height: '360px' }}
-                  >
-                    <div className="flex flex-col items-center gap-2">
-                      <span className="font-mono text-[10px] tracking-widest font-bold text-[#C5A059]">
-                        {labelNum}
-                      </span>
-                      <div className="w-1 h-1 rounded-full bg-[#C5A059]/60" />
-                    </div>
-
-                    {/* Clean Vertical Typography (No awkward upside-down inversion) */}
-                    <div className="my-auto py-4" style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}>
-                      <span className="font-serif text-xs lg:text-sm tracking-wider uppercase font-medium whitespace-nowrap text-white/90 group-hover:text-white transition-colors">
-                        {s.title}
-                      </span>
-                    </div>
-
-                    <div className="text-center font-mono text-[9px] tracking-[0.25em] uppercase text-[#C5A059]/60">
-                      CERIX
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-
-            {/* Right: The Pulled-Out Open Dossier Cover Showcase */}
-            <div className="lg:col-span-6 relative">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeIndex}
-                  initial={{ opacity: 0, scale: 0.96, y: 15 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.96, y: -15 }}
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                  className="bg-[#0B1D16]/95 backdrop-blur-2xl border border-[#C5A059]/40 rounded-3xl p-8 lg:p-10 shadow-2xl relative flex flex-col justify-between"
-                >
-                  <div className="absolute top-6 right-6 px-3.5 py-1.5 rounded-full bg-[#C5A059]/15 border border-[#C5A059]/40 text-[#C5A059] font-mono text-[10px] uppercase tracking-widest font-semibold">
-                    Mandate 0{activeIndex + 1}
-                  </div>
-
-                  <div className="relative aspect-[16/10] sm:aspect-[4/3] rounded-2xl overflow-hidden mb-8 shadow-2xl bg-[#07130E] border border-white/10">
-                    <Image
-                      src={activeService.image}
-                      alt={activeService.title}
-                      fittingType="cover"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#07130E]/60 via-transparent to-transparent opacity-60" />
-                  </div>
-
-                  <div className="space-y-4">
-                    <h3 className="font-serif text-2xl lg:text-3xl text-white leading-tight">
-                      {activeService.title}
-                    </h3>
-                    <p className="font-sans text-sm sm:text-base text-[#D4CFC4] font-light leading-relaxed">
-                      {activeService.desc || activeService.description}
-                    </p>
-
-                    <div className="pt-4">
-                      <Link
-                        to={`/expertise/${activeService.slug}`}
-                        className="inline-flex items-center gap-3 bg-[#C5A059] hover:bg-[#d4b06a] text-[#07130E] px-7 py-4 rounded-xl font-mono text-xs font-bold uppercase tracking-[0.2em] shadow-lg transition-all duration-300 hover:-translate-y-0.5 outline-none"
-                      >
-                        <span>Explore Practice Area</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-  );
-}
+            <div className="lg:col-span-6 flex items-end gap-3 overflow-x-auto pb-6 pt-4 px-2 [scrollbar-width:thin] [scrollbar-color:#8B6E33_#EDE9E1]">
+              {SERVICES.map((s, i
