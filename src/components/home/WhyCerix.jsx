@@ -3,10 +3,11 @@ import { IMAGES } from '@/lib/cerixData';
 
 export default function WhyCerix() {
   const [isVisible, setIsVisible] = useState(false);
-  const [yearsCount, setYearsCount] = useState(0);
+  // Default to 16 so it never flashes 0+ on initial paint or slow hydration
+  const [yearsCount, setYearsCount] = useState(16);
   const sectionRef = useRef(null);
 
-  // Intersection observer to trigger count and reveal
+  // Intersection observer with low threshold for reliable mobile & desktop triggers
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -14,7 +15,7 @@ export default function WhyCerix() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.05 }
     );
 
     if (sectionRef.current) {
@@ -28,27 +29,27 @@ export default function WhyCerix() {
     };
   }, []);
 
-  // Smooth count-up animation for "10+"
+  // Smooth count-up animation that increments smoothly from 12 to 16
   useEffect(() => {
     if (!isVisible) return;
-    let start = 0;
-    const end = 10;
-    const duration = 1200;
-    const stepTime = Math.floor(duration / end);
+    
+    let current = 12;
+    const target = 16;
+    setYearsCount(current);
 
     const timer = setInterval(() => {
-      start += 1;
-      setYearsCount(start);
-      if (start >= end) {
+      current += 1;
+      setYearsCount(current);
+      if (current >= target) {
         clearInterval(timer);
       }
-    }, stepTime);
+    }, 120);
 
     return () => clearInterval(timer);
   }, [isVisible]);
 
   return (
-    <section ref={sectionRef} className="relative w-full bg-[#07130E] py-36 px-6 md:px-12 lg:px-24 overflow-hidden">
+    <section ref={sectionRef} className="relative w-full bg-[#07130E] py-28 md:py-36 px-6 md:px-12 lg:px-24 overflow-hidden">
       
       {/* 1. Immersive Atmospheric Background Layer */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -100,7 +101,7 @@ export default function WhyCerix() {
             {/* Right Column: 2x2 Architectural Metric Grid with Hover Glow */}
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
               
-              {/* Stat 1 */}
+              {/* Stat 1: Cumulative Track Record */}
               <div className="group p-8 rounded-2xl bg-black/30 border border-white/5 hover:border-[#C5A059]/40 transition-all duration-500 hover:-translate-y-1">
                 <div className="font-serif text-5xl md:text-6xl text-white mb-2 tracking-tight group-hover:text-[#C5A059] transition-colors">
                   {yearsCount}+
@@ -109,7 +110,7 @@ export default function WhyCerix() {
                   Years of Experience
                 </div>
                 <p className="text-gray-400 font-light text-xs leading-relaxed">
-                  Decade-proven pedigree managing cross-border group dynamics.
+                  Decade-proven pedigree managing cross-border group dynamics and alternative fund structures.
                 </p>
               </div>
 
@@ -122,7 +123,7 @@ export default function WhyCerix() {
                   Jurisdiction Network
                 </div>
                 <p className="text-gray-400 font-light text-xs leading-relaxed">
-                  Substance-aligned setups across premier international hubs.
+                  Substance-aligned setups across premier international hubs and statutory financial centers.
                 </p>
               </div>
 
@@ -135,7 +136,7 @@ export default function WhyCerix() {
                   Advisory Approach
                 </div>
                 <p className="text-gray-400 font-light text-xs leading-relaxed">
-                  Coordinating legal, tax, and fiduciary execution in unison.
+                  Coordinating legal, tax, and fiduciary execution in unison across corridors.
                 </p>
               </div>
 
@@ -148,7 +149,7 @@ export default function WhyCerix() {
                   Professional Network
                 </div>
                 <p className="text-gray-400 font-light text-xs leading-relaxed">
-                  Seamless collaboration with leading local specialists worldwide.
+                  Seamless collaboration with leading local specialists, legal counsel, and custodians worldwide.
                 </p>
               </div>
 
