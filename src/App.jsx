@@ -41,7 +41,10 @@ function App() {
               <Route path="/expertise" element={<Expertise />} />
               <Route path="/expertise/:slug" element={<ExpertiseDetail />} />
 
+              {/* Global Reach: Index & Static Corridor Clean Slugs */}
               <Route path="/global-reach" element={<GlobalReach />} />
+              <Route path="/global-reach/:jurisdictionSlug" element={<GlobalReach />} />
+
               <Route path="/approach" element={<ApproachPage />} />
               <Route path="/insights" element={<Insights />} />
               <Route path="/insights/:slug" element={<InsightDetail />} />
