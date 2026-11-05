@@ -14,11 +14,11 @@ export default function WhatWeDo() {
   const ActiveIcon = SERVICE_ICONS[selectedIndex % SERVICE_ICONS.length];
 
   return (
-    <section className="relative bg-[#07130E] text-white py-32 lg:py-48 overflow-hidden select-none">
+    <section className="relative bg-[#FDFBF7] text-[#07130E] py-32 lg:py-48 overflow-hidden select-none">
       {/* Ambient Depth Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#07130E] via-[#07130E]/90 to-[#07130E]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#C5A059]/10 via-transparent to-transparent blur-3xl opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FDFBF7] via-[#F5F2EB] to-[#FDFBF7]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#C5A059]/10 via-transparent to-transparent blur-3xl opacity-40" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1600px] px-6 lg:px-12">
@@ -33,7 +33,7 @@ export default function WhatWeDo() {
             className="flex items-center gap-3 mb-6"
           >
             <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C5A059]" />
-            <span className="text-xs font-mono tracking-[0.35em] text-[#C5A059] uppercase">
+            <span className="text-xs font-mono tracking-[0.35em] text-[#8B6E33] uppercase font-semibold">
               What We Do
             </span>
             <div className="h-px w-24 bg-gradient-to-r from-[#C5A059]/40 to-transparent" />
@@ -42,7 +42,7 @@ export default function WhatWeDo() {
           <MotionText
             text="From complexity to structure."
             as="h2"
-            className="font-serif text-[2.8rem] sm:text-6xl lg:text-[4.5rem] leading-[1.05] text-white text-balance mb-6 tracking-tight"
+            className="font-serif text-[2.8rem] sm:text-6xl lg:text-[4.5rem] leading-[1.05] text-[#07130E] text-balance mb-6 tracking-tight"
           />
 
           <motion.p
@@ -50,13 +50,13 @@ export default function WhatWeDo() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-[#D4CFC4]/80 font-light text-lg lg:text-xl leading-relaxed max-w-2xl font-sans"
+            className="text-[#07130E]/70 font-light text-lg lg:text-xl leading-relaxed max-w-2xl font-sans"
           >
             Disciplines designed to establish, protect, and operate international structures with absolute clarity.
           </motion.p>
         </div>
 
-        {/* Apple-Style Fluid Segmented Control / Tab Bar (Interruptible & Instant Feedback) */}
+        {/* Apple-Style Fluid Segmented Control / Tab Bar */}
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-10 -mx-6 px-6 lg:mx-0 lg:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {SERVICES.map((s, i) => {
             const isSelected = selectedIndex === i;
@@ -68,11 +68,11 @@ export default function WhatWeDo() {
                 transition={{ type: "spring", damping: 20, stiffness: 300 }}
                 className={`group relative flex items-center gap-3 px-6 py-4 rounded-2xl font-mono text-xs tracking-widest uppercase transition-colors shrink-0 outline-none ${
                   isSelected 
-                    ? "bg-[#C5A059] text-[#07130E] font-bold shadow-[0_10px_30px_rgba(197,160,89,0.3)]" 
-                    : "bg-white/5 hover:bg-white/10 text-white/70 hover:text-white border border-white/10"
+                    ? "bg-[#07130E] text-[#C5A059] font-bold shadow-[0_10px_30px_rgba(7,19,14,0.2)]" 
+                    : "bg-white/80 hover:bg-white text-[#07130E]/70 hover:text-[#07130E] border border-[#07130E]/10"
                 }`}
               >
-                <span className={isSelected ? "text-[#07130E]" : "text-[#C5A059]"}>
+                <span className={isSelected ? "text-[#C5A059]" : "text-[#8B6E33]"}>
                   0{i + 1}
                 </span>
                 <span className="whitespace-nowrap">{s.title.split(' ')[0]}</span>
@@ -84,8 +84,8 @@ export default function WhatWeDo() {
         {/* Apple-Style Dynamic Command Deck & Stage */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 min-h-[580px] lg:h-[620px]">
           
-          {/* LEFT STAGE: 100% Unmasked Live Visual Canvas with Spring Transitions */}
-          <div className="lg:col-span-7 relative rounded-[2.5rem] overflow-hidden bg-[#050C09] border border-white/10 shadow-2xl h-[360px] sm:h-[420px] lg:h-full">
+          {/* LEFT STAGE: 100% Unmasked Live Visual Canvas */}
+          <div className="lg:col-span-7 relative rounded-[2.5rem] overflow-hidden bg-[#07130E] border border-[#07130E]/10 shadow-xl h-[360px] sm:h-[420px] lg:h-full">
             <AnimatePresence mode="popLayout">
               <motion.div
                 key={selectedIndex}
@@ -105,7 +105,7 @@ export default function WhatWeDo() {
             </AnimatePresence>
 
             {/* Translucent Floating Badge on Stage */}
-            <div className="absolute top-6 left-6 px-4 py-2 rounded-full bg-[#0B1D16]/70 backdrop-blur-xl border border-white/20 flex items-center gap-2 shadow-lg">
+            <div className="absolute top-6 left-6 px-4 py-2 rounded-full bg-[#07130E]/60 backdrop-blur-xl border border-white/20 flex items-center gap-2 shadow-lg">
               <ActiveIcon className="w-4 h-4 text-[#C5A059]" />
               <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-white font-semibold">
                 Practice Area 0{selectedIndex + 1}
@@ -113,8 +113,8 @@ export default function WhatWeDo() {
             </div>
           </div>
 
-          {/* RIGHT PANEL: Fluid Material Surface with Live Content & Direct Link */}
-          <div className="lg:col-span-5 rounded-[2.5rem] bg-[#0B1D16]/80 backdrop-blur-2xl border border-[#C5A059]/30 p-8 sm:p-12 lg:p-14 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+          {/* RIGHT PANEL: Warm Beige / Forest Green Institutional Material Surface */}
+          <div className="lg:col-span-5 rounded-[2.5rem] bg-[#07130E] text-white border border-[#C5A059]/30 p-8 sm:p-12 lg:p-14 flex flex-col justify-between shadow-2xl relative overflow-hidden">
             
             <AnimatePresence mode="wait">
               <motion.div
