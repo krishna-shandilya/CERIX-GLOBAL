@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Linkedin, Mail, ShieldAlert } from 'lucide-react';
+import { Linkedin, Mail } from 'lucide-react';
 import BrandEmblem from './BrandEmblem';
 
 export default function Footer() {
@@ -11,7 +11,6 @@ export default function Footer() {
         {/* Brand & Mission Column */}
         <div className="lg:col-span-5 space-y-6">
           
-          {/* Brand Emblem & Shifted Text Block */}
           <Link to="/" className="inline-flex items-center gap-5 group focus-visible:ring-2 focus-visible:ring-[#C5A059] outline-none rounded-lg p-1">
             <div className="relative w-14 h-14 shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
               <BrandEmblem />
@@ -101,17 +100,14 @@ export default function Footer() {
 
       </div>
 
-      {/* Mandatory Statutory Advisory & Intermediary Disclosure */}
+      {/* Premium Advisory Scope Disclosure */}
       <div className="max-w-7xl mx-auto pt-8 pb-4">
-        <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 text-[11px] font-mono text-gray-400 leading-relaxed space-y-2">
-          <div className="flex items-center gap-2 text-[#C5A059] uppercase tracking-wider font-semibold">
-            <ShieldAlert className="w-3.5 h-3.5" />
-            Statutory Intermediary Notice & Regulatory Disclaimer
-          </div>
-          <p>
-            Cerix Global acts strictly as an independent cross-border advisory firm and intermediary. Cerix Global is not a licensed corporate service provider, trust company, or fund administrator and does not directly provide company formation, statutory corporate filings, fiduciary appointments, or regulated financial administration in jurisdictions where such activities mandate local statutory licensing. All statutory formations, local directorships, fund administration, and fiduciary mandates are executed exclusively in conjunction with authorized, locally licensed, and regulated partner institutions. Specific legal, tax, and regulatory opinions must be obtained from qualified independent counsel within the relevant jurisdiction.
-          </p>
-        </div>
+        <p className="text-xs text-gray-400 font-light leading-relaxed">
+          <span className="text-[11px] font-mono font-semibold tracking-widest uppercase text-[#C5A059] mr-2">
+            Advisory Scope & Independence:
+          </span> 
+          Cerix Global operates as an independent cross-border structuring advisor and strategic intermediary. To maintain absolute objectivity, we do not directly provide statutory corporate administration, trust services, or fund administration. All regulated execution, local directorships, and compliance mandates are coordinated seamlessly through our curated network of authorized, locally licensed counterparties.
+        </p>
       </div>
 
       {/* Copyright Bottom Bar */}
