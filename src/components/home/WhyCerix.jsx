@@ -3,7 +3,6 @@ import { IMAGES } from '@/lib/cerixData';
 
 export default function WhyCerix() {
   const [isVisible, setIsVisible] = useState(false);
-  // Default to 10 so it never shows 0 or 16
   const [yearsCount, setYearsCount] = useState(10);
   const sectionRef = useRef(null);
 
@@ -140,9 +139,10 @@ export default function WhyCerix() {
             </div>
           </div>
 
+          {/* Premium Objective Advisory Framing */}
           <div className="mt-12 pt-6 border-t border-white/10 text-center">
             <p className="text-[11px] font-mono text-[#8B9B90] tracking-wide leading-relaxed max-w-4xl mx-auto">
-              Regulatory Notice: Cerix Global operates exclusively as an independent cross-border advisory and intermediary consultancy. It does not directly provide corporate administration, fund administration, or fiduciary services within jurisdictions where statutory licensing is mandated. All statutory filings and regulated administrative services are delivered via authorized, locally licensed counterparties.
+              <span className="text-[#C5A059]">EXECUTION FRAMEWORK:</span> As an independent advisory practice, Cerix Global does not undertake directly regulated statutory or fiduciary administration. We design the architecture, while all local incorporation and regulated execution are delivered seamlessly via our trusted network of licensed partner institutions.
             </p>
           </div>
         </div>
