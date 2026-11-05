@@ -5,7 +5,6 @@ import { WHO_WE_ADVISE, IMAGES } from "@/lib/cerixData";
 import MotionText from "@/components/MotionText";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Upgraded rich data for the two-column "Who / What" modal layout
 const ENHANCED_DETAILS = [
   {
     icon: Globe,
@@ -69,7 +68,6 @@ export default function WhoWeAdvise() {
   const [activeModal, setActiveModal] = useState(null);
   const [hoveredIndex, setHoveredIndex] = useState(0); 
 
-  // Merge your original data with the new detailed modal data
   const PROFILES = WHO_WE_ADVISE.map((item, index) => ({
     ...item,
     icon: ENHANCED_DETAILS[index]?.icon || Globe,
@@ -88,15 +86,12 @@ export default function WhoWeAdvise() {
 
   return (
     <section className="relative bg-[#07130E] text-white py-32 lg:py-48 overflow-hidden">
-      {/* Subtle Ambient Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-b from-[#07130E] via-[#07130E]/95 to-[#07130E]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#C5A059]/5 to-transparent blur-3xl opacity-50" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1600px] px-6 lg:px-12">
-        
-        {/* Header Section */}
         <div className="max-w-3xl mb-16">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -119,7 +114,6 @@ export default function WhoWeAdvise() {
           />
         </div>
 
-        {/* The Cinematic Accordion */}
         <div className="flex flex-col lg:flex-row w-full h-[800px] lg:h-[600px] gap-4">
           {PROFILES.map((c, i) => {
             const isActive = hoveredIndex === i;
@@ -132,7 +126,14 @@ export default function WhoWeAdvise() {
                 viewport={{ once: true, margin: "-5% 0px" }}
                 transition={{ duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 onMouseEnter={() => setHoveredIndex(i)}
-                onClick={() => openModal(c)}
+                onClick={() => {
+                  // Smart touch logic: Expand first, open modal second
+                  if (isActive) {
+                    openModal(c);
+                  } else {
+                    setHoveredIndex(i);
+                  }
+                }}
                 className={`relative group overflow-hidden rounded-3xl cursor-pointer border transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-2xl
                   ${isActive 
                     ? 'lg:flex-[3.5] flex-[3.5] border-[#C5A059]/40' 
@@ -189,12 +190,9 @@ export default function WhoWeAdvise() {
         </div>
       </div>
 
-      {/* Upgraded Immersive Frosted Glass Modal */}
       <AnimatePresence>
         {activeModal && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
-            
-            {/* Dark Backdrop */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -203,7 +201,6 @@ export default function WhoWeAdvise() {
               onClick={closeModal}
             />
             
-            {/* Modal Container */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.95, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -211,8 +208,6 @@ export default function WhoWeAdvise() {
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="relative w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl border border-[#C5A059]/30 flex flex-col max-h-[90vh]"
             >
-              
-              {/* Dynamic Image Background Layer */}
               <div className="absolute inset-0 z-0">
                 <img 
                   src={activeModal.image} 
@@ -223,7 +218,6 @@ export default function WhoWeAdvise() {
                 <div className="absolute inset-0 bg-gradient-to-br from-[#0B1D16] via-transparent to-[#07130E]/90" />
               </div>
 
-              {/* Modal Header */}
               <div className="relative z-10 flex items-center justify-between p-6 sm:p-8 border-b border-white/10">
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 bg-[#C5A059] rounded-lg flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(197,160,89,0.3)]">
@@ -241,11 +235,8 @@ export default function WhoWeAdvise() {
                 </button>
               </div>
 
-              {/* Two-Column Content Area */}
               <div className="relative z-10 p-6 sm:p-8 overflow-y-auto custom-scrollbar flex-grow">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                  
-                  {/* Left Column: Who We Cater To */}
                   <div className="space-y-4">
                     <div className="flex items-center gap-2 text-[#C5A059] mb-4">
                       <User className="w-4 h-4" />
@@ -256,7 +247,6 @@ export default function WhoWeAdvise() {
                     </p>
                   </div>
 
-                  {/* Right Column: Strategic Solutions */}
                   <div className="space-y-4">
                     <div className="flex items-center gap-2 text-[#C5A059] mb-4">
                       <Target className="w-4 h-4" />
@@ -277,13 +267,10 @@ export default function WhoWeAdvise() {
                       </ul>
                     </div>
                   </div>
-
                 </div>
               </div>
 
-              {/* Modal Footer CTA */}
               <div className="relative z-10 p-6 sm:p-8 border-t border-white/10 bg-[#07130E]/50 flex flex-col sm:flex-row items-center justify-between gap-4">
-                
                 <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full sm:w-auto">
                   <span className="text-[10px] font-mono text-gray-500 uppercase tracking-[0.2em] shrink-0">
                     Typical Vehicles:
@@ -301,7 +288,6 @@ export default function WhoWeAdvise() {
                   Initiate Advisory Mandate
                   <ArrowRight className="w-4 h-4" />
                 </Link>
-
               </div>
             </motion.div>
           </div>
