@@ -103,4 +103,97 @@ export default function WhatWeDo() {
             
             {/* Left: Interactive Horizontal Spines Shelf */}
             <div className="lg:col-span-6 flex items-end gap-3 overflow-x-auto pb-6 pt-4 px-2 [scrollbar-width:thin] [scrollbar-color:#8B6E33_#EDE9E1]">
-              {SERVICES.map((s, i
+              {SERVICES.map((s, i) => {
+                const isSelected = activeIndex === i;
+                const labelNum = `0${i + 1}`;
+
+                return (
+                  <motion.div
+                    key={s.id || i}
+                    onClick={() => setActiveIndex(i)}
+                    whileHover={{ y: -10 }}
+                    animate={{ y: isSelected ? -24 : 0 }}
+                    transition={{ type: "spring", stiffness: 320, damping: 22 }}
+                    className={`relative group shrink-0 cursor-pointer rounded-md overflow-hidden flex flex-col justify-between py-6 px-3 transition-all duration-500 shadow-xl ${
+                      isSelected 
+                        ? "w-16 lg:w-20 bg-[#07130E] text-[#C5A059] border-2 border-[#C5A059] shadow-[0_20px_40px_rgba(7,19,14,0.25)] z-20" 
+                        : "w-12 lg:w-15 bg-[#EAE5DD] text-[#07130E]/80 border border-[#07130E]/20 hover:border-[#8B6E33]"
+                    }`}
+                    style={{ height: '420px' }}
+                  >
+                    <div className="flex flex-col items-center gap-2">
+                      <span className="font-mono text-[10px] tracking-widest font-bold text-[#8B6E33]">
+                        {labelNum}
+                      </span>
+                      <div className="w-1 h-1 rounded-full bg-[#8B6E33]" />
+                    </div>
+
+                    <div className="my-auto py-4" style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}>
+                      <span className="font-serif text-xs lg:text-sm tracking-wider uppercase font-medium whitespace-nowrap text-[#07130E] group-hover:text-black transition-colors">
+                        {s.title}
+                      </span>
+                    </div>
+
+                    <div className="text-center font-mono text-[9px] tracking-[0.25em] uppercase text-[#8B6E33]">
+                      CERIX
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Right: The Pulled-Out Open Dossier Cover Showcase (Large Image Proportions) */}
+            <div className="lg:col-span-6 relative">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeIndex}
+                  initial={{ opacity: 0, scale: 0.96, y: 15 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.96, y: -15 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="bg-[#EDE9E1] backdrop-blur-2xl border border-[#07130E]/20 rounded-3xl p-8 lg:p-12 shadow-2xl relative flex flex-col justify-between min-h-[480px]"
+                >
+                  <div className="absolute top-6 right-6 px-3.5 py-1.5 rounded-full bg-[#07130E] text-[#C5A059] font-mono text-[10px] uppercase tracking-widest font-semibold">
+                    Mandate 0{activeIndex + 1}
+                  </div>
+
+                  {/* Large Unmasked Image */}
+                  <div className="relative w-full h-[280px] lg:h-[340px] rounded-2xl overflow-hidden mb-6 shadow-2xl bg-[#07130E] border border-[#07130E]/10">
+                    <Image
+                      src={activeService.image}
+                      alt={activeService.title}
+                      fittingType="cover"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  <div className="space-y-3">
+                    <h3 className="font-serif text-2xl lg:text-3xl text-[#07130E] leading-tight">
+                      {activeService.title}
+                    </h3>
+                    <p className="font-sans text-sm sm:text-base text-[#07130E]/70 font-light leading-relaxed line-clamp-2">
+                      {activeService.desc || activeService.description}
+                    </p>
+
+                    <div className="pt-2">
+                      <Link
+                        to={`/expertise/${activeService.slug}`}
+                        className="inline-flex items-center gap-3 bg-[#07130E] hover:bg-[#14261f] text-white px-7 py-3.5 rounded-xl font-mono text-xs font-bold uppercase tracking-[0.2em] shadow-lg transition-all duration-300 hover:-translate-y-0.5 outline-none"
+                      >
+                        <span>Explore Practice Area</span>
+                        <ArrowRight className="w-4 h-4 text-[#C5A059]" />
+                      </Link>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  );
+}
