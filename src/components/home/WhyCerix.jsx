@@ -83,22 +83,22 @@ export default function WhyCerix() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             
-            {/* Left Column: Striking Headline & Overview */}
+            {/* Left Column: Headline & Advisory Positioning */}
             <div className="lg:col-span-5 space-y-8">
               <h2 className="font-serif text-4xl md:text-6xl text-white font-normal leading-[1.08] tracking-tight">
                 Experience across <span className="italic text-[#C5A059]">borders.</span>
               </h2>
               <p className="text-[#D4CFC4] font-light text-base md:text-lg leading-relaxed">
-                Our practice is built on coordinated, multidisciplinary advisory — drawing on a network of professionals and partners across multiple jurisdictions to address the full complexity of international structuring.
+                Cerix Global operates as an independent cross-border advisory firm and intermediary. We design strategic corporate frameworks and private fund architectures, coordinating seamlessly with authorized local corporate service providers, licensed fiduciaries, and legal counsel worldwide.
               </p>
               <div className="pt-2">
                 <span className="inline-block text-xs font-mono tracking-widest text-[#C5A059] uppercase border-b border-[#C5A059]/30 pb-1">
-                  Global Reach &bull; Absolute Discretion
+                  Strategic Advisory &bull; Absolute Discretion
                 </span>
               </div>
             </div>
 
-            {/* Right Column: 2x2 Architectural Metric Grid with Hover Glow */}
+            {/* Right Column: 2x2 Metric Grid with Intermediary Phrasing */}
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
               
               {/* Stat 1: Cumulative Track Record */}
@@ -107,54 +107,61 @@ export default function WhyCerix() {
                   {yearsCount}+
                 </div>
                 <div className="text-xs font-mono text-[#C5A059] uppercase tracking-wider mb-2">
-                  Years of Experience
+                  Years Advisory Pedigree
                 </div>
                 <p className="text-gray-400 font-light text-xs leading-relaxed">
-                  Decade-proven pedigree managing cross-border group dynamics and alternative fund structures.
+                  Decade-proven expertise advising on international holding groups and private investment funds.
                 </p>
               </div>
 
-              {/* Stat 2 */}
+              {/* Stat 2: Clarified as Local Partner Fiduciaries */}
               <div className="group p-8 rounded-2xl bg-black/30 border border-white/5 hover:border-[#C5A059]/40 transition-all duration-500 hover:-translate-y-1">
                 <div className="font-serif text-5xl md:text-6xl text-white mb-2 tracking-tight group-hover:text-[#C5A059] transition-colors">
-                  Global
+                  Licensed
                 </div>
                 <div className="text-xs font-mono text-[#C5A059] uppercase tracking-wider mb-2">
-                  Jurisdiction Network
+                  Local Partner Network
                 </div>
                 <p className="text-gray-400 font-light text-xs leading-relaxed">
-                  Substance-aligned setups across premier international hubs and statutory financial centers.
+                  Local entity incorporation and fund administration are executed exclusively via licensed management companies and fiduciaries in each jurisdiction.
                 </p>
               </div>
 
-              {/* Stat 3 */}
-              <div className="group p-8 rounded-2xl bg-black/30 border border-white/5 hover:border-[#C5A059]/40 transition-all duration-500 hover:-translate-y-1">
-                <div className="font-serif text-4xl md:text-5xl text-white mb-2 tracking-tight group-hover:text-[#C5A059] transition-colors pt-2">
-                  End-to-End
-                </div>
-                <div className="text-xs font-mono text-[#C5A059] uppercase tracking-wider mb-2">
-                  Advisory Approach
-                </div>
-                <p className="text-gray-400 font-light text-xs leading-relaxed">
-                  Coordinating legal, tax, and fiduciary execution in unison across corridors.
-                </p>
-              </div>
-
-              {/* Stat 4 */}
+              {/* Stat 3: Independent Advisory Mandate */}
               <div className="group p-8 rounded-2xl bg-black/30 border border-white/5 hover:border-[#C5A059]/40 transition-all duration-500 hover:-translate-y-1">
                 <div className="font-serif text-4xl md:text-5xl text-white mb-2 tracking-tight group-hover:text-[#C5A059] transition-colors pt-2">
                   Unified
                 </div>
                 <div className="text-xs font-mono text-[#C5A059] uppercase tracking-wider mb-2">
-                  Professional Network
+                  Advisory Intermediary
                 </div>
                 <p className="text-gray-400 font-light text-xs leading-relaxed">
-                  Seamless collaboration with leading local specialists, legal counsel, and custodians worldwide.
+                  Harmonizing multi-jurisdictional tax law, substance guidelines, and bank onboarding under one strategic mandate.
+                </p>
+              </div>
+
+              {/* Stat 4: Regulatory Alignment */}
+              <div className="group p-8 rounded-2xl bg-black/30 border border-white/5 hover:border-[#C5A059]/40 transition-all duration-500 hover:-translate-y-1">
+                <div className="font-serif text-4xl md:text-5xl text-white mb-2 tracking-tight group-hover:text-[#C5A059] transition-colors pt-2">
+                  Institutional
+                </div>
+                <div className="text-xs font-mono text-[#C5A059] uppercase tracking-wider mb-2">
+                  Governance Alignment
+                </div>
+                <p className="text-gray-400 font-light text-xs leading-relaxed">
+                  Structuring compliant cross-border flows aligned with home-jurisdiction frameworks, including RBI ODI, FEMA, and DTAA standards.
                 </p>
               </div>
 
             </div>
 
+          </div>
+
+          {/* Statutory Regulatory Disclaimer */}
+          <div className="mt-12 pt-6 border-t border-white/10 text-center">
+            <p className="text-[11px] font-mono text-[#8B9B90] tracking-wide leading-relaxed max-w-4xl mx-auto">
+              Regulatory Notice: Cerix Global operates exclusively as an independent cross-border advisory and intermediary consultancy. It does not directly provide corporate administration, fund administration, or fiduciary services within jurisdictions where statutory licensing is mandated. All statutory filings and regulated administrative services are delivered via authorized, locally licensed counterparties.
+            </p>
           </div>
 
         </div>
