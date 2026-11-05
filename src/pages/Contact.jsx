@@ -200,10 +200,10 @@ Objectives: ${formData.specificObjectives || 'None provided'}
                           key={item.id}
                           type="button"
                           onClick={() => setFormData({ ...formData, mandateType: item.id })}
-                          className={`p-4 rounded-xl text-left border text-sm font-medium transition-all duration-500 ease-out relative overflow-hidden ${
+                          className={`p-4 rounded-xl text-left text-sm transition-all duration-500 ease-out relative overflow-hidden outline-none focus:outline-none ${
                             formData.mandateType === item.id
-                              ? 'bg-[#07130E]/85 backdrop-blur-md border-[#C5A059]/50 text-[#C5A059] shadow-[0_10px_20px_-10px_rgba(7,19,14,0.4)] scale-[1.02]'
-                              : 'bg-white/40 border-[#D4CFC4]/60 text-slate-600 hover:border-[#C5A059]/40 hover:bg-white/80 hover:text-[#07130E] hover:-translate-y-0.5'
+                              ? 'bg-[#C5A059]/10 backdrop-blur-md border border-[#C5A059] ring-1 ring-[#C5A059] text-[#07130E] font-bold shadow-[0_8px_20px_-6px_rgba(197,160,89,0.3)] scale-[1.02]'
+                              : 'bg-white/40 border border-[#D4CFC4]/60 text-slate-600 font-medium hover:border-[#C5A059]/40 hover:bg-white/80 hover:text-[#07130E] hover:-translate-y-0.5'
                           }`}
                         >
                           {item.label}
@@ -219,7 +219,7 @@ Objectives: ${formData.specificObjectives || 'None provided'}
                     <select
                       value={formData.targetCorridor}
                       onChange={(e) => setFormData({ ...formData, targetCorridor: e.target.value })}
-                      className="w-full bg-white/40 backdrop-blur-sm border border-[#D4CFC4]/80 rounded-xl p-4 text-sm font-medium text-[#07130E] focus:bg-white/90 focus:border-[#C5A059]/60 hover:border-[#C5A059]/40 hover:bg-white/60 outline-none transition-all duration-300 cursor-pointer shadow-sm"
+                      className="w-full bg-white/40 backdrop-blur-sm border border-[#D4CFC4]/80 rounded-xl p-4 text-sm font-medium text-[#07130E] focus:bg-white/90 focus:border-[#C5A059]/60 focus:ring-1 focus:ring-[#C5A059]/60 hover:border-[#C5A059]/40 hover:bg-white/60 outline-none transition-all duration-300 cursor-pointer shadow-sm"
                     >
                       <option value="undecided">To Be Determined</option>
                       {JURISDICTIONS.map((j) => (
@@ -234,7 +234,7 @@ Objectives: ${formData.specificObjectives || 'None provided'}
                     <button
                       type="button"
                       onClick={handleNext}
-                      className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#C5A059] text-[#07130E] text-xs font-bold tracking-wider uppercase hover:bg-[#b5924d] hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300"
+                      className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#C5A059] text-[#07130E] text-xs font-bold tracking-wider uppercase hover:bg-[#b5924d] hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 outline-none focus:outline-none"
                     >
                       Next Step
                       <ArrowRight className="w-4 h-4" />
@@ -260,10 +260,10 @@ Objectives: ${formData.specificObjectives || 'None provided'}
                           key={item.id}
                           type="button"
                           onClick={() => setFormData({ ...formData, capitalScope: item.id })}
-                          className={`p-4 rounded-xl text-center border text-sm font-medium transition-all duration-500 ease-out relative overflow-hidden ${
+                          className={`p-4 rounded-xl text-center text-sm transition-all duration-500 ease-out relative overflow-hidden outline-none focus:outline-none ${
                             formData.capitalScope === item.id
-                              ? 'bg-[#07130E]/85 backdrop-blur-md border-[#C5A059]/50 text-[#C5A059] shadow-[0_10px_20px_-10px_rgba(7,19,14,0.4)] scale-[1.02]'
-                              : 'bg-white/40 border-[#D4CFC4]/60 text-slate-600 hover:border-[#C5A059]/40 hover:bg-white/80 hover:text-[#07130E] hover:-translate-y-0.5'
+                              ? 'bg-[#C5A059]/10 backdrop-blur-md border border-[#C5A059] ring-1 ring-[#C5A059] text-[#07130E] font-bold shadow-[0_8px_20px_-6px_rgba(197,160,89,0.3)] scale-[1.02]'
+                              : 'bg-white/40 border border-[#D4CFC4]/60 text-slate-600 font-medium hover:border-[#C5A059]/40 hover:bg-white/80 hover:text-[#07130E] hover:-translate-y-0.5'
                           }`}
                         >
                           {item.label}
@@ -281,7 +281,7 @@ Objectives: ${formData.specificObjectives || 'None provided'}
                       value={formData.specificObjectives}
                       onChange={(e) => setFormData({ ...formData, specificObjectives: e.target.value })}
                       placeholder="Share a brief overview of your structuring requirements or intended jurisdiction..."
-                      className="w-full bg-white/40 backdrop-blur-sm border border-[#D4CFC4]/80 rounded-xl p-4 text-sm font-medium text-[#07130E] placeholder-slate-400 focus:bg-white/90 focus:border-[#C5A059]/60 hover:border-[#C5A059]/40 hover:bg-white/60 outline-none transition-all duration-300 shadow-sm resize-none"
+                      className="w-full bg-white/40 backdrop-blur-sm border border-[#D4CFC4]/80 rounded-xl p-4 text-sm font-medium text-[#07130E] placeholder-slate-400 focus:bg-white/90 focus:border-[#C5A059]/60 focus:ring-1 focus:ring-[#C5A059]/60 hover:border-[#C5A059]/40 hover:bg-white/60 outline-none transition-all duration-300 shadow-sm resize-none"
                     />
                   </div>
 
@@ -289,14 +289,14 @@ Objectives: ${formData.specificObjectives || 'None provided'}
                     <button
                       type="button"
                       onClick={handleBack}
-                      className="px-6 py-3.5 rounded-xl border border-[#D4CFC4]/80 bg-white/30 backdrop-blur-sm text-slate-600 text-xs font-bold uppercase tracking-wider hover:bg-white hover:text-[#07130E] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300"
+                      className="px-6 py-3.5 rounded-xl border border-[#D4CFC4]/80 bg-white/30 backdrop-blur-sm text-slate-600 text-xs font-bold uppercase tracking-wider hover:bg-white hover:text-[#07130E] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300 outline-none focus:outline-none"
                     >
                       Back
                     </button>
                     <button
                       type="button"
                       onClick={handleNext}
-                      className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#C5A059] text-[#07130E] text-xs font-bold tracking-wider uppercase hover:bg-[#b5924d] hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300"
+                      className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#C5A059] text-[#07130E] text-xs font-bold tracking-wider uppercase hover:bg-[#b5924d] hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 outline-none focus:outline-none"
                     >
                       Continue
                       <ArrowRight className="w-4 h-4" />
@@ -318,7 +318,7 @@ Objectives: ${formData.specificObjectives || 'None provided'}
                         required
                         value={formData.fullName}
                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                        className="w-full bg-white/40 backdrop-blur-sm border border-[#D4CFC4]/80 rounded-xl p-3.5 text-sm font-medium text-[#07130E] focus:bg-white/90 focus:border-[#C5A059]/60 hover:border-[#C5A059]/40 outline-none transition-all duration-300 shadow-sm"
+                        className="w-full bg-white/40 backdrop-blur-sm border border-[#D4CFC4]/80 rounded-xl p-3.5 text-sm font-medium text-[#07130E] focus:bg-white/90 focus:border-[#C5A059]/60 focus:ring-1 focus:ring-[#C5A059]/60 hover:border-[#C5A059]/40 outline-none transition-all duration-300 shadow-sm"
                       />
                     </div>
                     <div>
@@ -330,7 +330,7 @@ Objectives: ${formData.specificObjectives || 'None provided'}
                         required
                         value={formData.corporateEmail}
                         onChange={(e) => setFormData({ ...formData, corporateEmail: e.target.value })}
-                        className="w-full bg-white/40 backdrop-blur-sm border border-[#D4CFC4]/80 rounded-xl p-3.5 text-sm font-medium text-[#07130E] focus:bg-white/90 focus:border-[#C5A059]/60 hover:border-[#C5A059]/40 outline-none transition-all duration-300 shadow-sm"
+                        className="w-full bg-white/40 backdrop-blur-sm border border-[#D4CFC4]/80 rounded-xl p-3.5 text-sm font-medium text-[#07130E] focus:bg-white/90 focus:border-[#C5A059]/60 focus:ring-1 focus:ring-[#C5A059]/60 hover:border-[#C5A059]/40 outline-none transition-all duration-300 shadow-sm"
                       />
                     </div>
                     <div>
@@ -341,7 +341,7 @@ Objectives: ${formData.specificObjectives || 'None provided'}
                         type="text"
                         value={formData.entityName}
                         onChange={(e) => setFormData({ ...formData, entityName: e.target.value })}
-                        className="w-full bg-white/40 backdrop-blur-sm border border-[#D4CFC4]/80 rounded-xl p-3.5 text-sm font-medium text-[#07130E] focus:bg-white/90 focus:border-[#C5A059]/60 hover:border-[#C5A059]/40 outline-none transition-all duration-300 shadow-sm"
+                        className="w-full bg-white/40 backdrop-blur-sm border border-[#D4CFC4]/80 rounded-xl p-3.5 text-sm font-medium text-[#07130E] focus:bg-white/90 focus:border-[#C5A059]/60 focus:ring-1 focus:ring-[#C5A059]/60 hover:border-[#C5A059]/40 outline-none transition-all duration-300 shadow-sm"
                       />
                     </div>
                     <div>
@@ -353,7 +353,7 @@ Objectives: ${formData.specificObjectives || 'None provided'}
                         placeholder="e.g. Director, Partner"
                         value={formData.roleTitle}
                         onChange={(e) => setFormData({ ...formData, roleTitle: e.target.value })}
-                        className="w-full bg-white/40 backdrop-blur-sm border border-[#D4CFC4]/80 rounded-xl p-3.5 text-sm font-medium text-[#07130E] placeholder:text-slate-400 focus:bg-white/90 focus:border-[#C5A059]/60 hover:border-[#C5A059]/40 outline-none transition-all duration-300 shadow-sm"
+                        className="w-full bg-white/40 backdrop-blur-sm border border-[#D4CFC4]/80 rounded-xl p-3.5 text-sm font-medium text-[#07130E] placeholder:text-slate-400 focus:bg-white/90 focus:border-[#C5A059]/60 focus:ring-1 focus:ring-[#C5A059]/60 hover:border-[#C5A059]/40 outline-none transition-all duration-300 shadow-sm"
                       />
                     </div>
                   </div>
@@ -369,14 +369,14 @@ Objectives: ${formData.specificObjectives || 'None provided'}
                     <button
                       type="button"
                       onClick={handleBack}
-                      className="px-6 py-3.5 rounded-xl border border-[#D4CFC4]/80 bg-white/30 backdrop-blur-sm text-slate-600 text-xs font-bold uppercase tracking-wider hover:bg-white hover:text-[#07130E] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300"
+                      className="px-6 py-3.5 rounded-xl border border-[#D4CFC4]/80 bg-white/30 backdrop-blur-sm text-slate-600 text-xs font-bold uppercase tracking-wider hover:bg-white hover:text-[#07130E] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300 outline-none focus:outline-none"
                     >
                       Back
                     </button>
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#07130E] text-[#C5A059] text-xs font-bold tracking-wider uppercase hover:bg-black hover:-translate-y-0.5 hover:shadow-[0_10px_20px_-10px_rgba(7,19,14,0.6)] transition-all duration-300 disabled:opacity-50 disabled:hover:translate-y-0"
+                      className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#07130E] text-[#C5A059] text-xs font-bold tracking-wider uppercase hover:bg-black hover:-translate-y-0.5 hover:shadow-[0_10px_20px_-10px_rgba(7,19,14,0.6)] transition-all duration-300 disabled:opacity-50 disabled:hover:translate-y-0 outline-none focus:outline-none"
                     >
                       {isSubmitting ? 'Transmitting...' : 'Submit Inquiry'}
                       <Lock className="w-3.5 h-3.5" />
@@ -419,7 +419,7 @@ Objectives: ${formData.specificObjectives || 'None provided'}
             </div>
             <button
               onClick={() => setIsSuccess(false)}
-              className="w-full mt-4 rounded-xl bg-[#C5A059] hover:bg-[#d4b06a] text-[#07130E] font-bold py-3.5 text-xs font-mono uppercase tracking-wider hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300"
+              className="w-full mt-4 rounded-xl bg-[#C5A059] hover:bg-[#d4b06a] text-[#07130E] font-bold py-3.5 text-xs font-mono uppercase tracking-wider hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 outline-none focus:outline-none"
             >
               Close Window
             </button>
