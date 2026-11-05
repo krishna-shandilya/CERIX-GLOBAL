@@ -219,4 +219,213 @@ Objectives: ${formData.specificObjectives || 'None provided'}
                     <select
                       value={formData.targetCorridor}
                       onChange={(e) => setFormData({ ...formData, targetCorridor: e.target.value })}
-                      className="w-full bg-white/40 backdrop-blur-sm border border-[#D4CFC4]/80 rounded-xl p-4 text
+                      className="w-full bg-white/40 backdrop-blur-sm border border-[#D4CFC4]/80 rounded-xl p-4 text-sm font-medium text-[#07130E] focus:bg-white/90 focus:border-[#C5A059]/60 hover:border-[#C5A059]/40 hover:bg-white/60 outline-none transition-all duration-300 cursor-pointer shadow-sm"
+                    >
+                      <option value="undecided">To Be Determined</option>
+                      {JURISDICTIONS.map((j) => (
+                        <option key={j.slug || j.id} value={j.slug || j.id}>
+                          {j.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="flex justify-end pt-4">
+                    <button
+                      type="button"
+                      onClick={handleNext}
+                      className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#C5A059] text-[#07130E] text-xs font-bold tracking-wider uppercase hover:bg-[#b5924d] hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300"
+                    >
+                      Next Step
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* STEP 2 */}
+              {step === 2 && (
+                <div className="space-y-7 animate-fade-in">
+                  <div>
+                    <label className="block text-xs font-mono uppercase tracking-wider text-[#8B6E33] mb-3">
+                      Capital / Asset Scale
+                    </label>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      {[
+                        { id: '1m-5m', label: 'USD 1M–5M' },
+                        { id: '5m-25m', label: 'USD 5M–25M' },
+                        { id: '25m+', label: 'USD 25M+' },
+                      ].map((item) => (
+                        <button
+                          key={item.id}
+                          type="button"
+                          onClick={() => setFormData({ ...formData, capitalScope: item.id })}
+                          className={`p-4 rounded-xl text-center border text-sm font-medium transition-all duration-500 ease-out relative overflow-hidden ${
+                            formData.capitalScope === item.id
+                              ? 'bg-[#07130E]/85 backdrop-blur-md border-[#C5A059]/50 text-[#C5A059] shadow-[0_10px_20px_-10px_rgba(7,19,14,0.4)] scale-[1.02]'
+                              : 'bg-white/40 border-[#D4CFC4]/60 text-slate-600 hover:border-[#C5A059]/40 hover:bg-white/80 hover:text-[#07130E] hover:-translate-y-0.5'
+                          }`}
+                        >
+                          {item.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono uppercase tracking-wider text-[#8B6E33] mb-3">
+                      Brief Objectives
+                    </label>
+                    <textarea
+                      rows={4}
+                      value={formData.specificObjectives}
+                      onChange={(e) => setFormData({ ...formData, specificObjectives: e.target.value })}
+                      placeholder="Share a brief overview of your structuring requirements or intended jurisdiction..."
+                      className="w-full bg-white/40 backdrop-blur-sm border border-[#D4CFC4]/80 rounded-xl p-4 text-sm font-medium text-[#07130E] placeholder-slate-400 focus:bg-white/90 focus:border-[#C5A059]/60 hover:border-[#C5A059]/40 hover:bg-white/60 outline-none transition-all duration-300 shadow-sm resize-none"
+                    />
+                  </div>
+
+                  <div className="flex justify-between pt-4">
+                    <button
+                      type="button"
+                      onClick={handleBack}
+                      className="px-6 py-3.5 rounded-xl border border-[#D4CFC4]/80 bg-white/30 backdrop-blur-sm text-slate-600 text-xs font-bold uppercase tracking-wider hover:bg-white hover:text-[#07130E] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300"
+                    >
+                      Back
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleNext}
+                      className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#C5A059] text-[#07130E] text-xs font-bold tracking-wider uppercase hover:bg-[#b5924d] hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300"
+                    >
+                      Continue
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* STEP 3 */}
+              {step === 3 && (
+                <div className="space-y-6 animate-fade-in">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-xs font-mono uppercase tracking-wider text-[#8B6E33] mb-2">
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.fullName}
+                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                        className="w-full bg-white/40 backdrop-blur-sm border border-[#D4CFC4]/80 rounded-xl p-3.5 text-sm font-medium text-[#07130E] focus:bg-white/90 focus:border-[#C5A059]/60 hover:border-[#C5A059]/40 outline-none transition-all duration-300 shadow-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-mono uppercase tracking-wider text-[#8B6E33] mb-2">
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        value={formData.corporateEmail}
+                        onChange={(e) => setFormData({ ...formData, corporateEmail: e.target.value })}
+                        className="w-full bg-white/40 backdrop-blur-sm border border-[#D4CFC4]/80 rounded-xl p-3.5 text-sm font-medium text-[#07130E] focus:bg-white/90 focus:border-[#C5A059]/60 hover:border-[#C5A059]/40 outline-none transition-all duration-300 shadow-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-mono uppercase tracking-wider text-[#8B6E33] mb-2">
+                        Company / Entity
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.entityName}
+                        onChange={(e) => setFormData({ ...formData, entityName: e.target.value })}
+                        className="w-full bg-white/40 backdrop-blur-sm border border-[#D4CFC4]/80 rounded-xl p-3.5 text-sm font-medium text-[#07130E] focus:bg-white/90 focus:border-[#C5A059]/60 hover:border-[#C5A059]/40 outline-none transition-all duration-300 shadow-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-mono uppercase tracking-wider text-[#8B6E33] mb-2">
+                        Designation
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Director, Partner"
+                        value={formData.roleTitle}
+                        onChange={(e) => setFormData({ ...formData, roleTitle: e.target.value })}
+                        className="w-full bg-white/40 backdrop-blur-sm border border-[#D4CFC4]/80 rounded-xl p-3.5 text-sm font-medium text-[#07130E] placeholder:text-slate-400 focus:bg-white/90 focus:border-[#C5A059]/60 hover:border-[#C5A059]/40 outline-none transition-all duration-300 shadow-sm"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="p-4 rounded-xl bg-white/30 backdrop-blur-md border border-[#07130E]/5 flex items-start gap-3 mt-2 shadow-sm">
+                    <ShieldCheck className="w-5 h-5 text-[#307050] shrink-0" />
+                    <span className="text-[11px] font-medium text-slate-600 leading-relaxed">
+                      Submission establishes an implicit NDA. All disclosures are protected under institutional advisory confidentiality.
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between pt-4">
+                    <button
+                      type="button"
+                      onClick={handleBack}
+                      className="px-6 py-3.5 rounded-xl border border-[#D4CFC4]/80 bg-white/30 backdrop-blur-sm text-slate-600 text-xs font-bold uppercase tracking-wider hover:bg-white hover:text-[#07130E] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300"
+                    >
+                      Back
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#07130E] text-[#C5A059] text-xs font-bold tracking-wider uppercase hover:bg-black hover:-translate-y-0.5 hover:shadow-[0_10px_20px_-10px_rgba(7,19,14,0.6)] transition-all duration-300 disabled:opacity-50 disabled:hover:translate-y-0"
+                    >
+                      {isSubmitting ? 'Transmitting...' : 'Submit Inquiry'}
+                      <Lock className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              )}
+            </form>
+          </div>
+        </div>
+
+        {/* Global Footer Disclaimer Injection */}
+        <div className="relative z-10 pt-16 mt-8 border-t border-[#D4CFC4]/60 text-center max-w-4xl mx-auto w-full">
+          <p className="text-xs text-slate-500 font-light leading-relaxed">
+            <span className="text-[11px] font-mono font-semibold tracking-widest uppercase text-[#8B6E33] mr-2 block sm:inline mb-1 sm:mb-0">
+              Advisory Scope & Independence:
+            </span>
+            Cerix Global operates as an independent cross-border structuring advisor and strategic intermediary. To maintain absolute objectivity, we do not directly provide statutory corporate administration, trust services, or fund administration. All regulated execution, local directorships, and compliance mandates are coordinated seamlessly through our curated network of authorized, locally licensed counterparties.
+          </p>
+        </div>
+      </div>
+
+      {/* Success Modal */}
+      {isSuccess && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#07130E]/70 backdrop-blur-md animate-fade-in">
+          <div className="relative w-full max-w-md bg-[#0B1D16]/95 backdrop-blur-2xl border border-[#C5A059]/40 rounded-3xl p-8 text-center shadow-2xl space-y-6">
+            <div className="w-14 h-14 mx-auto rounded-full bg-[#C5A059]/20 border border-[#C5A059] flex items-center justify-center text-[#C5A059] shadow-[0_0_20px_rgba(197,160,89,0.2)]">
+              <CheckCircle2 className="w-7 h-7" />
+            </div>
+            <div className="space-y-3">
+              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#C5A059] block">
+                Mandate Request Received
+              </span>
+              <h3 className="font-serif text-2xl md:text-3xl text-white font-normal">
+                Thank you for your <span className="italic text-[#C5A059]">conversation.</span>
+              </h3>
+              <p className="text-sm text-[#D4CFC4] font-light leading-relaxed">
+                Your dossier has been securely routed to <strong className="text-white font-medium">info@cerixglobal.com</strong>. A partner will review your mandate parameters and respond shortly.
+              </p>
+            </div>
+            <button
+              onClick={() => setIsSuccess(false)}
+              className="w-full mt-4 rounded-xl bg-[#C5A059] hover:bg-[#d4b06a] text-[#07130E] font-bold py-3.5 text-xs font-mono uppercase tracking-wider hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300"
+            >
+              Close Window
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
