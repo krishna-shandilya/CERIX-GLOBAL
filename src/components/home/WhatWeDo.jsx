@@ -5,19 +5,23 @@ import { SERVICES } from "@/lib/cerixData";
 import { Image } from "@/components/ui/image";
 import { motion } from "framer-motion";
 
+const CARDS = [
+  ...SERVICES, 
+];
+
 export default function WhatWeDo() {
   return (
-    <section className="relative bg-[#FDFBF7] py-28 lg:py-40">
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
+    <section className="relative bg-[#FDFBF7] py-24 lg:py-40 overflow-hidden">
+      <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
         
-        {/* Context & Header */}
-        <div className="max-w-4xl mb-24">
+        {/* Context / Header */}
+        <div className="max-w-4xl">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10% 0px" }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="font-serif text-xl lg:text-2xl text-[#07130E]/40 italic max-w-2xl mb-12"
+            className="font-serif text-xl lg:text-2xl text-[#07130E]/40 italic max-w-2xl mb-12 lg:mb-16"
           >
             From the global to the practical — the disciplines that make a structure real.
           </motion.p>
@@ -41,80 +45,114 @@ export default function WhatWeDo() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="font-serif text-[2.8rem] sm:text-5xl lg:text-6xl text-[#07130E] leading-[1.05] mb-6 tracking-tight"
+            className="font-serif text-[2.4rem] sm:text-5xl lg:text-6xl text-[#07130E] leading-[1.05] mb-6 tracking-tight"
           >
             From complexity to structure.
           </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="text-[#07130E]/70 font-light text-lg lg:text-xl leading-relaxed max-w-3xl"
+          >
+            Cerix Global brings together the disciplines required to design, establish and operate international structures — coordinated, considered and built around the objective.
+          </motion.p>
         </div>
 
-        {/* The Sticky Dossier Stack */}
-        <div className="relative flex flex-col gap-12 lg:gap-0 pb-24">
-          {SERVICES.map((service, i) => {
-            const labelNum = `0${i + 1}`;
-            
-            return (
-              <motion.div
-                key={service.id || i}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-10% 0px" }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                // This creates the cascading sticky stack effect on desktop
-                className="lg:sticky lg:h-[600px] w-full rounded-[2rem] overflow-hidden bg-[#0A1612] shadow-[0_-10px_40px_rgba(0,0,0,0.15)] border border-[#C5A059]/20 flex flex-col-reverse lg:flex-row group"
-                style={{ top: `calc(10vh + ${i * 12}px)` }}
-              >
-                
-                {/* Left Side: Typography & Interaction (No image masking required) */}
-                <div className="w-full lg:w-5/12 p-8 lg:p-16 flex flex-col justify-between relative bg-[#0A1612] z-10">
-                  
-                  <div className="flex items-center justify-between mb-12 lg:mb-0">
-                    <span className="font-mono text-sm tracking-[0.2em] text-[#C5A059] font-semibold">
-                      {labelNum}
-                    </span>
-                    <div className="lg:hidden w-10 h-10 rounded-full bg-[#C5A059] flex items-center justify-center">
-                      <ArrowUpRight className="w-5 h-5 text-[#0A1612]" />
-                    </div>
-                  </div>
-
-                  <div>
-                    <h3 className="font-serif text-3xl lg:text-4xl text-white leading-tight mb-6 group-hover:text-[#C5A059] transition-colors duration-500">
-                      {service.title}
-                    </h3>
-                    
-                    <p className="font-sans text-base text-gray-400 font-light leading-relaxed mb-10 max-w-md">
-                      {service.desc || service.description}
-                    </p>
-
-                    <Link
-                      to={`/expertise/${service.slug}`}
-                      className="inline-flex items-center gap-4 text-xs font-mono uppercase tracking-[0.2em] text-white hover:text-[#C5A059] transition-colors duration-300 outline-none"
-                    >
-                      <div className="w-12 h-12 rounded-full border border-white/20 group-hover:border-[#C5A059] flex items-center justify-center transition-all duration-500 group-hover:bg-[#C5A059]">
-                        <ArrowUpRight className="w-4 h-4 text-white group-hover:text-[#0A1612] transition-colors" />
-                      </div>
-                      Explore Mandate
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Right Side: 100% Unmasked Pure Image */}
-                <div className="w-full lg:w-7/12 h-[300px] lg:h-full relative overflow-hidden bg-[#07130E]">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fittingType="cover"
-                    className="w-full h-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-105"
-                  />
-                  {/* A subtle inner shadow just to frame the image against the border, no masking gradients */}
-                  <div className="absolute inset-0 shadow-[inset_0_0_40px_rgba(0,0,0,0.4)] pointer-events-none" />
-                </div>
-
-              </motion.div>
-            );
-          })}
+        {/* 
+          The Asymmetrical Bento Grid (Desktop) + Horizontal Swipe Carousel (Mobile)
+          - CSS classes hide the scrollbar for a clean native app feel on mobile.
+        */}
+        <div className="mt-16 lg:mt-24 flex lg:grid overflow-x-auto lg:overflow-x-visible snap-x snap-mandatory lg:snap-none gap-5 lg:gap-6 pb-12 lg:pb-0 -mx-6 px-6 lg:mx-0 lg:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden grid-cols-4">
+          {CARDS.map((s, i) => (
+            <ServiceCard key={s.id || i} service={s} index={i} />
+          ))}
         </div>
 
       </div>
     </section>
+  );
+}
+
+function ServiceCard({ service, index }) {
+  const labelNum = `0${index + 1}`;
+  
+  // Asymmetrical Bento Logic for Desktop (4 Column Grid)
+  // This creates a dynamic, beautiful mosaic layout instead of boring identical squares.
+  const bentoSpans = [
+    "lg:col-span-2 lg:row-span-1", // 01: Wide
+    "lg:col-span-1 lg:row-span-1", // 02: Square
+    "lg:col-span-1 lg:row-span-1", // 03: Square
+    "lg:col-span-1 lg:row-span-1", // 04: Square
+    "lg:col-span-2 lg:row-span-1", // 05: Wide
+    "lg:col-span-1 lg:row-span-1", // 06: Square
+    "lg:col-span-2 lg:row-span-1", // 07: Wide
+    "lg:col-span-2 lg:row-span-1", // 08: Wide
+  ];
+  
+  const spanClass = bentoSpans[index] || "lg:col-span-1";
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-5% 0px" }}
+      transition={{ duration: 0.6, delay: (index % 4) * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      className={`w-[85vw] sm:w-[60vw] lg:w-auto h-[450px] lg:h-[500px] shrink-0 snap-center ${spanClass}`}
+    >
+      <Link
+        to={`/expertise/${service.slug}`}
+        className="group relative block w-full h-full rounded-[2rem] overflow-hidden bg-[#07130E] shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.15)] transition-all duration-700"
+      >
+        {/* Full-Color Background Image */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          <Image
+            src={service.image}
+            alt={service.title}
+            fittingType="cover"
+            className="w-full h-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-105"
+          />
+        </div>
+
+        {/* Soft edge darkening strictly at the bottom for text legibility, keeping art bright */}
+        <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[#07130E]/90 via-[#07130E]/20 to-transparent pointer-events-none transition-opacity duration-500 group-hover:opacity-100" />
+
+        {/* Top Minimalist Number Badge */}
+        <div className="absolute top-5 left-5 flex items-center">
+          <div className="w-10 h-10 rounded-full bg-[#07130E]/30 backdrop-blur-md border border-white/20 flex items-center justify-center">
+            <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#C5A059]">
+              {labelNum}
+            </span>
+          </div>
+        </div>
+
+        {/* The Floating Frosted Glass Dock */}
+        <div className="absolute bottom-5 left-5 right-5 rounded-[1.5rem] bg-white/10 backdrop-blur-2xl border border-white/20 p-5 lg:p-6 flex flex-col transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:bg-white/20 group-hover:border-[#C5A059]/50 group-hover:-translate-y-2 shadow-[0_8px_32px_rgba(0,0,0,0.25)]">
+          
+          <div className="flex items-start justify-between gap-4 mb-2 lg:mb-3">
+            <h3 className="font-serif text-xl lg:text-[1.35rem] text-white leading-tight">
+              {service.title}
+            </h3>
+            
+            {/* Action Button */}
+            <div className="w-8 h-8 rounded-full bg-[#C5A059] flex items-center justify-center shrink-0 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
+              <ArrowUpRight className="w-4 h-4 text-[#07130E]" />
+            </div>
+          </div>
+
+          <p className="font-sans text-xs lg:text-sm text-white/80 font-light leading-relaxed line-clamp-2 lg:line-clamp-3 mb-3 lg:mb-4 transition-colors duration-500 group-hover:text-white">
+            {service.desc || service.description}
+          </p>
+
+          <div className="mt-auto flex items-center gap-3 font-mono text-[10px] tracking-[0.2em] uppercase text-[#C5A059] font-bold">
+            <span>Explore</span>
+            <div className="h-px w-6 bg-[#C5A059]/60 group-hover:w-12 transition-all duration-500" />
+          </div>
+
+        </div>
+      </Link>
+    </motion.div>
   );
 }
