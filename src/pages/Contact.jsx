@@ -402,4 +402,30 @@ Objectives: ${formData.specificObjectives || 'None provided'}
       {/* Improved Success Modal */}
       {isSuccess && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#07130E]/70 backdrop-blur-md animate-fade-in">
-          <div className="relative w-full max-w-md bg-[#0B1D16]/
+          <div className="relative w-full max-w-md bg-[#0B1D16]/95 backdrop-blur-2xl border border-[#C5A059]/40 rounded-3xl p-8 text-center shadow-2xl space-y-6">
+            <div className="w-14 h-14 mx-auto rounded-full bg-[#C5A059]/20 border border-[#C5A059] flex items-center justify-center text-[#C5A059] shadow-[0_0_20px_rgba(197,160,89,0.2)]">
+              <CheckCircle2 className="w-7 h-7" />
+            </div>
+            <div className="space-y-3">
+              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#C5A059] block">
+                Mandate Securely Logged
+              </span>
+              <h3 className="font-serif text-2xl md:text-3xl text-white font-normal">
+                The conversation has <span className="italic text-[#C5A059]">begun.</span>
+              </h3>
+              <p className="text-sm text-[#D4CFC4] font-light leading-relaxed">
+                Your mandate parameters have been securely transmitted under strict confidentiality. A senior partner will review your dossier and reach out shortly to discuss execution.
+              </p>
+            </div>
+            <button
+              onClick={() => setIsSuccess(false)}
+              className="w-full mt-4 rounded-xl bg-[#C5A059] hover:bg-[#d4b06a] text-[#07130E] font-bold py-3.5 text-xs font-mono uppercase tracking-wider hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 outline-none focus:outline-none"
+            >
+              Close Window
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
