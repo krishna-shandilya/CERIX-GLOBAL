@@ -19,16 +19,11 @@ export default function WhatWeDo() {
   };
 
   return (
-    <section className="relative bg-[#FDFBF7] text-[#141414] py-28 lg:py-40 overflow-hidden select-none">
-      {/* Paper Grain Overlay */}
-      <div className="absolute inset-0 z-20 pointer-events-none opacity-40 mix-blend-multiply">
-        <svg className="w-full h-full">
-          <filter id="paper-grain">
-            <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" />
-            <feColorMatrix type="matrix" values="1 0 0 0 0.45  0 1 0 0 0.42  0 0 1 0 0.38  0 0 0 0.22 0" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#paper-grain)" />
-        </svg>
+    <section className="relative bg-[#07130E] text-white py-28 lg:py-40 overflow-hidden select-none">
+      {/* Ambient Depth Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#07130E] via-[#07130E]/95 to-[#07130E]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#C5A059]/5 to-transparent blur-3xl opacity-50" />
       </div>
 
       <div className="relative z-30 mx-auto max-w-[1550px] px-6 lg:px-12">
@@ -43,7 +38,7 @@ export default function WhatWeDo() {
             className="flex items-center gap-3 mb-6"
           >
             <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C5A059]" />
-            <span className="text-[10.5px] font-mono tracking-[0.09em] uppercase font-semibold text-[#141414]" style={{ border: '1px solid rgba(20,20,20,.9)', padding: '0 8px', display: 'inline-flex', alignItems: 'center', height: '21px' }}>
+            <span className="text-[10.5px] font-mono tracking-[0.2em] uppercase font-semibold text-[#C5A059]" style={{ border: '1px solid rgba(197,160,89,0.3)', padding: '0 8px', display: 'inline-flex', alignItems: 'center', height: '21px', background: 'rgba(197,160,89,0.05)' }}>
               What We Do
             </span>
             <div className="h-px w-24 bg-gradient-to-r from-[#C5A059]/40 to-transparent" />
@@ -52,7 +47,7 @@ export default function WhatWeDo() {
           <MotionText
             text="From complexity to structure."
             as="h2"
-            className="font-serif text-[2.8rem] sm:text-6xl lg:text-[4.5rem] leading-[1.05] text-[#141414] text-balance mb-6 tracking-tight"
+            className="font-serif text-[2.8rem] sm:text-6xl lg:text-[4.5rem] leading-[1.05] text-white text-balance mb-6 tracking-tight"
           />
 
           <motion.p
@@ -60,22 +55,22 @@ export default function WhatWeDo() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-[#6D6A63] font-light text-lg lg:text-xl leading-relaxed max-w-2xl font-sans"
+            className="text-[#D4CFC4] font-light text-lg lg:text-xl leading-relaxed max-w-2xl font-sans"
           >
             Disciplines designed to establish, protect, and operate international structures with absolute clarity.
           </motion.p>
         </div>
 
         {/* Interactive Bookshelf Stage */}
-        <div className="relative bg-[#F4F2ED] border border-[#141414]/20 rounded-2xl p-8 lg:p-14 shadow-2xl overflow-hidden">
+        <div className="relative bg-[#0A1612] border border-[#C5A059]/30 rounded-2xl p-8 lg:p-14 shadow-2xl overflow-hidden backdrop-blur-md">
           
           {/* Shelf Navigation Header */}
-          <div className="flex items-center justify-between mb-10 pb-6 border-b border-[#141414]/10">
+          <div className="flex items-center justify-between mb-10 pb-6 border-b border-white/10">
             <div className="flex items-center gap-3">
               <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#C5A059] font-bold">
                 Practice Shelf
               </span>
-              <span className="font-mono text-xs text-[#6D6A63]">
+              <span className="font-mono text-xs text-white/50">
                 (0{activeIndex + 1} / 0{SERVICES.length})
               </span>
             </div>
@@ -84,14 +79,14 @@ export default function WhatWeDo() {
               <button
                 onClick={handlePrev}
                 aria-label="Previous practice"
-                className="w-10 h-10 rounded-full bg-[#141414]/5 hover:bg-[#C5A059] text-[#141414] hover:text-[#07130E] border border-[#141414]/10 hover:border-[#C5A059] flex items-center justify-center transition-all duration-300 outline-none cursor-pointer"
+                className="w-10 h-10 rounded-full bg-white/5 hover:bg-[#C5A059] text-white hover:text-[#07130E] border border-white/10 hover:border-[#C5A059] flex items-center justify-center transition-all duration-300 outline-none cursor-pointer"
               >
                 <ArrowLeft className="w-4 h-4" />
               </button>
               <button
                 onClick={handleNext}
                 aria-label="Next practice"
-                className="w-10 h-10 rounded-full bg-[#141414]/5 hover:bg-[#C5A059] text-[#141414] hover:text-[#07130E] border border-[#141414]/10 hover:border-[#C5A059] flex items-center justify-center transition-all duration-300 outline-none cursor-pointer"
+                className="w-10 h-10 rounded-full bg-white/5 hover:bg-[#C5A059] text-white hover:text-[#07130E] border border-white/10 hover:border-[#C5A059] flex items-center justify-center transition-all duration-300 outline-none cursor-pointer"
               >
                 <ArrowRight className="w-4 h-4" />
               </button>
@@ -102,7 +97,7 @@ export default function WhatWeDo() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
             {/* Left: Interactive Horizontal Spines Shelf */}
-            <div className="lg:col-span-7 flex items-end gap-2.5 overflow-x-auto pb-4 pt-4 px-2 [scrollbar-width:thin] [scrollbar-color:#C5A059_#EDEBE6]">
+            <div className="lg:col-span-7 flex items-end gap-2.5 overflow-x-auto pb-4 pt-4 px-2 [scrollbar-width:thin] [scrollbar-color:#C5A059_#07130E]">
               {SERVICES.map((s, i) => {
                 const isSelected = activeIndex === i;
                 const labelNum = `0${i + 1}`;
@@ -114,10 +109,10 @@ export default function WhatWeDo() {
                     whileHover={{ y: -12 }}
                     animate={{ y: isSelected ? -20 : 0 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className={`relative group shrink-0 cursor-pointer rounded-sm overflow-hidden flex flex-col justify-between py-5 px-2 transition-all duration-500 shadow-md ${
+                    className={`relative group shrink-0 cursor-pointer rounded-sm overflow-hidden flex flex-col justify-between py-5 px-2 transition-all duration-500 shadow-lg ${
                       isSelected 
                         ? "w-16 lg:w-20 bg-[#07130E] text-[#C5A059] border-2 border-[#C5A059] shadow-2xl z-20" 
-                        : "w-12 lg:w-14 bg-[#EDEBE6] text-[#141414] border border-[#141414]/20 hover:border-[#C5A059]/60"
+                        : "w-12 lg:w-14 bg-[#0B1D16] text-white/80 border border-white/10 hover:border-[#C5A059]/60"
                     }`}
                     style={{ height: '340px' }}
                   >
@@ -151,9 +146,9 @@ export default function WhatWeDo() {
                   animate={{ opacity: 1, scale: 1, rotateY: 0, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95, rotateY: 15, y: -15 }}
                   transition={{ duration: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-                  className="bg-[#EDEBE6] border border-[#141414]/20 rounded-2xl p-6 lg:p-8 shadow-2xl relative flex flex-col justify-between"
+                  className="bg-[#0B1D16]/90 backdrop-blur-xl border border-[#C5A059]/30 rounded-2xl p-6 lg:p-8 shadow-2xl relative flex flex-col justify-between"
                 >
-                  <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#141414] text-[#C5A059] font-mono text-[10px] uppercase tracking-widest">
+                  <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#C5A059]/15 border border-[#C5A059]/40 text-[#C5A059] font-mono text-[10px] uppercase tracking-widest">
                     Active Mandate 0{activeIndex + 1}
                   </div>
 
@@ -168,16 +163,16 @@ export default function WhatWeDo() {
                   </div>
 
                   <div>
-                    <h3 className="font-serif text-2xl lg:text-3xl text-[#141414] leading-tight mb-3">
+                    <h3 className="font-serif text-2xl lg:text-3xl text-white leading-tight mb-3">
                       {activeService.title}
                     </h3>
-                    <p className="font-sans text-sm text-[#6D6A63] font-light leading-relaxed mb-6">
+                    <p className="font-sans text-sm text-[#D4CFC4] font-light leading-relaxed mb-6">
                       {activeService.desc || activeService.description}
                     </p>
 
                     <Link
                       to={`/expertise/${activeService.slug}`}
-                      className="inline-flex items-center gap-2 bg-[#1F3FB0] text-white px-6 py-3.5 rounded-xl font-mono text-xs font-bold uppercase tracking-[0.09em] shadow-lg transition-colors hover:bg-[#152e85] outline-none"
+                      className="inline-flex items-center gap-2 bg-[#C5A059] text-[#07130E] px-6 py-3.5 rounded-xl font-mono text-xs font-bold uppercase tracking-[0.09em] shadow-lg transition-colors hover:bg-[#d4b06a] outline-none"
                     >
                       <span>Explore Practice Area</span>
                       <ArrowUpRight className="w-4 h-4" />
