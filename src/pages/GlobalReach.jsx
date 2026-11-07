@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import {
   Globe2,
-  Sparkles,
   Building2,
   Scale,
   Landmark,
@@ -19,7 +18,6 @@ export default function GlobalReachPage() {
   const { jurisdictionSlug } = useParams();
   const [searchParams] = useSearchParams();
 
-  // Resolve clean static path first, fallback to search query
   const targetJurisdiction = (
     jurisdictionSlug ||
     searchParams.get("jurisdiction") ||
@@ -28,9 +26,8 @@ export default function GlobalReachPage() {
   const cardRefs = useRef({});
 
   const [selectedJurisdiction, setSelectedJurisdiction] = useState(null);
-  const [activeTab, setActiveTab] = useState("structures"); // 'structures' | 'tax' | 'overview'
+  const [activeTab, setActiveTab] = useState("structures");
 
-  // Scroll to targeted corridor and auto-open preview dossier if directly linked
   useEffect(() => {
     if (!targetJurisdiction) return;
 
@@ -51,7 +48,6 @@ export default function GlobalReachPage() {
     }
   }, [targetJurisdiction, jurisdictionSlug]);
 
-  // WCAG Escape key handler for accessible modal dismissal
   const handleKeyDown = useCallback((e) => {
     if (e.key === "Escape") {
       setSelectedJurisdiction(null);
@@ -82,7 +78,6 @@ export default function GlobalReachPage() {
       <section className="relative pt-32 pb-20 px-6 md:px-12 lg:px-24 bg-[#07130E] text-white overflow-hidden border-b border-white/5">
         <DottedMapBackground />
         <div className="relative z-10 max-w-7xl mx-auto">
-          {/* Micro-Header */}
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C5A059]" />
             <span className="text-xs font-mono tracking-[0.35em] text-[#C5A059] uppercase font-semibold">
@@ -126,7 +121,6 @@ export default function GlobalReachPage() {
                     : "border border-white/10 hover:border-[#C5A059]/60"
                 }`}
               >
-                {/* Image & Header */}
                 <div>
                   {jur.image && (
                     <div className="h-52 overflow-hidden relative">
@@ -167,7 +161,6 @@ export default function GlobalReachPage() {
                       {jur.description}
                     </p>
 
-                    {/* Available Structures Pills */}
                     {jur.structures && jur.structures.length > 0 && (
                       <div className="border-t border-white/10 pt-4 mb-4">
                         <p className="text-xs font-mono uppercase tracking-widest text-[#C5A059]/80 mb-2.5 flex items-center gap-1.5">
@@ -187,7 +180,6 @@ export default function GlobalReachPage() {
                       </div>
                     )}
 
-                    {/* Key Highlights */}
                     <div className="border-t border-white/10 pt-4">
                       <p className="text-xs font-mono uppercase tracking-widest text-[#C5A059]/80 mb-2">
                         Key Corridor Highlights:
@@ -207,7 +199,6 @@ export default function GlobalReachPage() {
                   </div>
                 </div>
 
-                {/* Card Actions */}
                 <div className="px-8 pb-8 pt-2 flex flex-col gap-2.5">
                   <button
                     type="button"
@@ -236,90 +227,81 @@ export default function GlobalReachPage() {
       </section>
 
       {/* =========================================================================
-          ELEVATED FROSTED GLASS DOSSIER MODAL WITH CARD IMAGE INTEGRATION
+          MATCHED LUXURY DOSSIER MODAL (Harmonized with Who We Advise)
          ========================================================================= */}
       {selectedJurisdiction && (
         <div
           role="dialog"
           aria-modal="true"
           aria-labelledby="corridor-modal-title"
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#020604]/85 backdrop-blur-xl animate-fade-in"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#020604]/85 backdrop-blur-md animate-fade-in"
           onClick={() => setSelectedJurisdiction(null)}
         >
           <div
             style={{
-              background:
-                "linear-gradient(135deg, rgba(11, 29, 22, 0.94) 0%, rgba(7, 19, 14, 0.96) 100%)",
-              backdropFilter: "blur(32px)",
-              WebkitBackdropFilter: "blur(32px)",
-              border: "1px solid rgba(197, 160, 89, 0.45)",
-              boxShadow:
-                "0 25px 80px rgba(0, 0, 0, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.18)",
+              background: "rgba(11, 29, 22, 0.90)",
+              backdropFilter: "blur(28px)",
+              WebkitBackdropFilter: "blur(28px)",
+              border: "1px solid rgba(197, 160, 89, 0.35)",
+              boxShadow: "0 25px 80px rgba(0, 0, 0, 0.85)",
             }}
-            className="relative w-full max-w-4xl max-h-[92vh] flex flex-col rounded-3xl overflow-hidden text-left text-white z-10"
+            className="relative w-full max-w-4xl max-h-[90vh] flex flex-col rounded-3xl overflow-hidden text-left text-white z-10"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Background Corridor Image Overlay (Who We Advise Pattern) */}
+            {/* Background Corridor Image Overlay */}
             {selectedJurisdiction.image && (
               <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
                 <img
                   src={selectedJurisdiction.image}
                   alt={selectedJurisdiction.name}
-                  className="w-full h-full object-cover opacity-25 mix-blend-screen scale-105 filter blur-[0.5px]"
+                  className="w-full h-full object-cover opacity-35 mix-blend-overlay scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#07130E] via-[#07130E]/80 to-[#07130E]/60" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(197,160,89,0.18),transparent_65%)]" />
+                <div className="absolute inset-0 bg-[#0B1D16]/85 backdrop-blur-2xl" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#0B1D16] via-transparent to-[#07130E]/90" />
               </div>
             )}
 
             {/* Specular Top Edge Highlight */}
-            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#C5A059]/60 to-transparent z-20 pointer-events-none" />
+            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#C5A059]/50 to-transparent z-20 pointer-events-none" />
 
             {/* Close Button */}
             <button
               type="button"
               aria-label="Close corridor preview"
               onClick={() => setSelectedJurisdiction(null)}
-              className="absolute top-6 right-6 text-slate-400 hover:text-white p-2.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 transition-colors z-30 focus-visible:ring-2 focus-visible:ring-[#C5A059] outline-none"
+              className="absolute top-6 right-6 text-gray-400 hover:text-white p-2 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 transition-colors z-30 focus-visible:ring-2 focus-visible:ring-[#C5A059] outline-none"
             >
               <X className="w-4 h-4" />
             </button>
 
             {/* Modal Header */}
-            <div className="p-6 sm:p-8 pb-5 border-b border-white/10 relative z-10 shrink-0">
-              <div className="flex items-center gap-4 mb-3">
-                <span className="p-3 rounded-2xl bg-[#07130E]/80 border border-[#C5A059]/40 text-[#C5A059] shadow-[0_0_20px_rgba(197,160,89,0.2)]">
-                  <Globe2 className="w-6 h-6" />
-                </span>
+            <div className="p-6 sm:p-8 pb-4 border-b border-white/10 relative z-10 shrink-0">
+              <div className="flex items-center gap-4 mb-2">
+                <div className="w-10 h-10 bg-[#C5A059] rounded-lg flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(197,160,89,0.3)] text-[#07130E]">
+                  <Globe2 className="w-5 h-5" />
+                </div>
                 <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-[10px] font-mono text-[#D4AF37] uppercase tracking-[0.25em] flex items-center gap-1.5 font-semibold">
-                      <Sparkles className="w-3 h-3 text-[#C5A059]" />
-                      {selectedJurisdiction.region} &bull; {selectedJurisdiction.coordinates}
-                    </span>
-                  </div>
-                  <h2
+                  <h3
                     id="corridor-modal-title"
-                    className="text-2xl sm:text-3xl md:text-4xl font-serif text-white tracking-tight"
+                    className="font-serif text-2xl sm:text-3xl text-white font-normal tracking-tight"
                   >
                     {selectedJurisdiction.name}
-                  </h2>
+                  </h3>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#C5A059] block mt-0.5">
+                    {selectedJurisdiction.region} &bull; {selectedJurisdiction.coordinates}
+                  </span>
                 </div>
               </div>
 
-              <p className="text-xs sm:text-sm text-[#C5A059] font-mono uppercase tracking-[0.18em]">
-                {selectedJurisdiction.subtitle}
-              </p>
-
               {/* Navigation Tabs */}
-              <div className="flex gap-4 sm:gap-6 mt-6 border-b border-white/10 pb-0 overflow-x-auto [scrollbar-width:none]">
+              <div className="flex gap-6 mt-6 border-b border-white/10 pb-0 overflow-x-auto [scrollbar-width:none]">
                 <button
                   type="button"
                   onClick={() => setActiveTab("structures")}
-                  className={`flex items-center gap-2 pb-3 text-xs font-mono uppercase tracking-[0.2em] border-b-2 transition-all whitespace-nowrap outline-none ${
+                  className={`flex items-center gap-2 pb-3 text-[11px] font-mono uppercase tracking-[0.2em] border-b-2 transition-all whitespace-nowrap outline-none ${
                     activeTab === "structures"
-                      ? "border-[#C5A059] text-[#D4AF37] font-bold"
-                      : "border-transparent text-slate-400 hover:text-slate-200"
+                      ? "border-[#C5A059] text-[#C5A059] font-semibold"
+                      : "border-transparent text-gray-400 hover:text-white"
                   }`}
                 >
                   <Building2 className="w-3.5 h-3.5" />
@@ -328,10 +310,10 @@ export default function GlobalReachPage() {
                 <button
                   type="button"
                   onClick={() => setActiveTab("tax")}
-                  className={`flex items-center gap-2 pb-3 text-xs font-mono uppercase tracking-[0.2em] border-b-2 transition-all whitespace-nowrap outline-none ${
+                  className={`flex items-center gap-2 pb-3 text-[11px] font-mono uppercase tracking-[0.2em] border-b-2 transition-all whitespace-nowrap outline-none ${
                     activeTab === "tax"
-                      ? "border-[#C5A059] text-[#D4AF37] font-bold"
-                      : "border-transparent text-slate-400 hover:text-slate-200"
+                      ? "border-[#C5A059] text-[#C5A059] font-semibold"
+                      : "border-transparent text-gray-400 hover:text-white"
                   }`}
                 >
                   <Scale className="w-3.5 h-3.5" />
@@ -340,10 +322,10 @@ export default function GlobalReachPage() {
                 <button
                   type="button"
                   onClick={() => setActiveTab("overview")}
-                  className={`flex items-center gap-2 pb-3 text-xs font-mono uppercase tracking-[0.2em] border-b-2 transition-all whitespace-nowrap outline-none ${
+                  className={`flex items-center gap-2 pb-3 text-[11px] font-mono uppercase tracking-[0.2em] border-b-2 transition-all whitespace-nowrap outline-none ${
                     activeTab === "overview"
-                      ? "border-[#C5A059] text-[#D4AF37] font-bold"
-                      : "border-transparent text-slate-400 hover:text-slate-200"
+                      ? "border-[#C5A059] text-[#C5A059] font-semibold"
+                      : "border-transparent text-gray-400 hover:text-white"
                   }`}
                 >
                   <FileCheck className="w-3.5 h-3.5" />
@@ -353,36 +335,28 @@ export default function GlobalReachPage() {
             </div>
 
             {/* Scrollable Modal Body */}
-            <div className="p-6 sm:p-8 overflow-y-auto space-y-4 max-h-[calc(92vh-220px)] relative z-10 custom-scrollbar">
+            <div className="p-6 sm:p-8 overflow-y-auto space-y-4 max-h-[calc(90vh-210px)] relative z-10 custom-scrollbar">
               {/* TAB 1: PERMISSIBLE STRUCTURES */}
               {activeTab === "structures" && (
                 <div className="space-y-4">
-                  <p className="text-xs sm:text-sm text-slate-300 font-light font-sans leading-relaxed mb-4">
-                    The following corporate and investment vehicles can be structured
-                    in {selectedJurisdiction.name} under Cerix Global's coordinated
-                    advisory:
+                  <p className="text-sm sm:text-base text-[#D4CFC4] font-light leading-relaxed mb-4">
+                    The following corporate and investment vehicles can be structured in {selectedJurisdiction.name} under Cerix Global's coordinated advisory:
                   </p>
                   {selectedJurisdiction.structures?.map((struct, idx) => (
                     <div
                       key={idx}
-                      style={{
-                        background: "rgba(6, 20, 14, 0.72)",
-                        backdropFilter: "blur(16px)",
-                        WebkitBackdropFilter: "blur(16px)",
-                        border: "1px solid rgba(197, 160, 89, 0.22)",
-                      }}
-                      className="p-5 rounded-2xl hover:border-[#C5A059]/50 transition-all duration-300 shadow-lg"
+                      className="p-5 rounded-2xl bg-[#07130E]/60 border border-white/10 hover:border-[#C5A059]/40 transition-all duration-300 shadow-md"
                     >
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2.5">
-                        <h4 className="text-base font-serif text-white flex items-center gap-2.5">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                        <h4 className="font-serif text-lg text-white font-normal flex items-center gap-2.5">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059] shadow-[0_0_8px_rgba(197,160,89,0.8)]" />
                           {struct.type}
                         </h4>
-                        <span className="text-[10px] font-mono text-[#D4AF37] bg-[#C5A059]/10 border border-[#C5A059]/30 px-2.5 py-1 rounded-md w-fit tracking-wider">
+                        <span className="text-[10px] font-mono uppercase tracking-[0.15em] text-[#C5A059] bg-[#C5A059]/10 border border-[#C5A059]/25 px-2.5 py-1 rounded-md w-fit">
                           {struct.bestFor}
                         </span>
                       </div>
-                      <p className="text-xs sm:text-sm text-slate-300 font-sans font-light leading-relaxed">
+                      <p className="text-sm text-[#D4CFC4] font-light leading-relaxed">
                         {struct.features}
                       </p>
                     </div>
@@ -393,45 +367,27 @@ export default function GlobalReachPage() {
               {/* TAB 2: TAX & SUBSTANCE */}
               {activeTab === "tax" && (
                 <div className="space-y-4">
-                  <div
-                    style={{
-                      background: "rgba(6, 20, 14, 0.72)",
-                      backdropFilter: "blur(16px)",
-                      WebkitBackdropFilter: "blur(16px)",
-                      border: "1px solid rgba(197, 160, 89, 0.22)",
-                    }}
-                    className="p-5 rounded-2xl shadow-lg"
-                  >
-                    <div className="flex items-center gap-2 text-xs font-mono text-[#C5A059] uppercase tracking-[0.2em] mb-3">
+                  <div className="p-5 rounded-2xl bg-[#07130E]/60 border border-white/10">
+                    <div className="flex items-center gap-2 text-[#C5A059] mb-3 font-mono text-[10px] uppercase tracking-[0.2em] font-semibold">
                       <Landmark className="w-4 h-4" />
                       Statutory Authority & Corporate Tax Framework
                     </div>
-                    <div className="text-xs sm:text-sm text-slate-200 font-sans space-y-2">
+                    <div className="text-sm text-[#D4CFC4] font-light space-y-2">
                       <p>
-                        <strong className="text-white font-medium">Primary Authority:</strong>{" "}
-                        {selectedJurisdiction.regulator}
+                        <strong className="text-white font-normal">Primary Authority:</strong> {selectedJurisdiction.regulator}
                       </p>
                       <p>
-                        <strong className="text-white font-medium">Headline / Effective Tax:</strong>{" "}
-                        {selectedJurisdiction.effectiveTaxRate}
+                        <strong className="text-white font-normal">Headline / Effective Tax:</strong> {selectedJurisdiction.effectiveTaxRate}
                       </p>
                     </div>
                   </div>
 
-                  <div
-                    style={{
-                      background: "rgba(6, 20, 14, 0.72)",
-                      backdropFilter: "blur(16px)",
-                      WebkitBackdropFilter: "blur(16px)",
-                      border: "1px solid rgba(197, 160, 89, 0.22)",
-                    }}
-                    className="p-5 rounded-2xl shadow-lg"
-                  >
-                    <div className="flex items-center gap-2 text-xs font-mono text-[#C5A059] uppercase tracking-[0.2em] mb-2.5">
+                  <div className="p-5 rounded-2xl bg-[#07130E]/60 border border-white/10">
+                    <div className="flex items-center gap-2 text-[#C5A059] mb-2.5 font-mono text-[10px] uppercase tracking-[0.2em] font-semibold">
                       <ShieldCheck className="w-4 h-4 text-emerald-400" />
                       Local Substance & Statutory Compliance
                     </div>
-                    <p className="text-xs sm:text-sm text-slate-300 font-sans font-light leading-relaxed">
+                    <p className="text-sm text-[#D4CFC4] font-light leading-relaxed">
                       {selectedJurisdiction.substanceRequirements}
                     </p>
                   </div>
@@ -441,24 +397,16 @@ export default function GlobalReachPage() {
               {/* TAB 3: KEY ADVANTAGES */}
               {activeTab === "overview" && (
                 <div className="space-y-4">
-                  <p className="text-xs sm:text-sm text-slate-300 font-sans font-light leading-relaxed">
+                  <p className="text-sm sm:text-base text-[#D4CFC4] font-light leading-relaxed">
                     {selectedJurisdiction.description}
                   </p>
-                  <div
-                    style={{
-                      background: "rgba(6, 20, 14, 0.72)",
-                      backdropFilter: "blur(16px)",
-                      WebkitBackdropFilter: "blur(16px)",
-                      border: "1px solid rgba(197, 160, 89, 0.22)",
-                    }}
-                    className="p-5 rounded-2xl shadow-lg"
-                  >
-                    <div className="text-xs font-mono text-[#C5A059] uppercase tracking-[0.2em] mb-3">
+                  <div className="p-5 rounded-2xl bg-[#07130E]/60 border border-white/10">
+                    <div className="text-[#C5A059] mb-3 font-mono text-[10px] uppercase tracking-[0.2em] font-semibold">
                       Corridor Strengths & Legal Protections
                     </div>
-                    <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300 font-sans">
+                    <ul className="space-y-2.5 text-sm text-[#D4CFC4] font-light">
                       {selectedJurisdiction.highlights?.map((h, i) => (
-                        <li key={i} className="flex items-start gap-2.5 font-light">
+                        <li key={i} className="flex items-start gap-2.5">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059] shrink-0 mt-2 shadow-[0_0_6px_rgba(197,160,89,0.7)]" />
                           <span className="leading-relaxed">{h}</span>
                         </li>
@@ -470,16 +418,19 @@ export default function GlobalReachPage() {
             </div>
 
             {/* Modal Actions Footer */}
-            <div className="p-4 sm:p-6 bg-[#040C09]/90 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0 relative z-10">
-              <span className="text-[11px] font-mono text-slate-400 text-center sm:text-left flex items-center gap-1.5 justify-center sm:justify-start">
-                <Lock className="w-3.5 h-3.5 text-[#C5A059]" />
-                Advisory aligned with cross-border treaty & RBI/FEMA regulations.
-              </span>
+            <div className="p-6 sm:p-8 border-t border-white/10 bg-[#07130E]/50 flex flex-col sm:flex-row items-center justify-between gap-4 shrink-0 relative z-10">
+              <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full sm:w-auto">
+                <Lock className="w-4 h-4 text-[#C5A059] shrink-0" />
+                <span className="text-[10px] font-mono text-gray-400 uppercase tracking-[0.2em]">
+                  Advisory aligned with cross-border treaty & RBI/FEMA regulations.
+                </span>
+              </div>
+
               <div className="flex items-center gap-3 w-full sm:w-auto">
                 <button
                   type="button"
                   onClick={() => setSelectedJurisdiction(null)}
-                  className="w-1/2 sm:w-auto px-5 py-2.5 rounded-xl border border-white/15 text-xs font-mono text-slate-300 hover:text-white hover:border-[#C5A059] transition-colors outline-none"
+                  className="w-1/2 sm:w-auto px-5 py-3.5 rounded-xl border border-white/15 text-xs font-mono text-gray-400 hover:text-white hover:border-[#C5A059] transition-colors outline-none"
                 >
                   Close
                 </button>
@@ -487,10 +438,10 @@ export default function GlobalReachPage() {
                   to={`/contact?jurisdiction=${
                     selectedJurisdiction.slug || selectedJurisdiction.id
                   }`}
-                  className="w-1/2 sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#AA8327] text-[#07130E] text-xs font-mono font-bold uppercase tracking-wider hover:brightness-110 transition-all shadow-[0_4px_20px_rgba(197,160,89,0.3)] outline-none"
+                  className="w-1/2 sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-[#C5A059] text-[#07130E] text-xs font-mono font-bold uppercase tracking-wider hover:bg-[#d4b06a] transition-all shadow-[0_10px_20px_-10px_rgba(197,160,89,0.5)] outline-none"
                 >
                   <span>Inquire</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#07130E]" />
+                  <ArrowUpRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
