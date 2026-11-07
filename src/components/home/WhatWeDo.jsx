@@ -1,48 +1,42 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowLeft } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { SERVICES } from "@/lib/cerixData";
 import MotionText from "@/components/MotionText";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function WhatWeDo() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const activeService = SERVICES[activeIndex] || SERVICES[0];
-
-  const handlePrev = () => {
-    setActiveIndex((prev) => (prev === 0 ? SERVICES.length - 1 : prev - 1));
-  };
-
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev === SERVICES.length - 1 ? 0 : prev + 1));
-  };
 
   return (
-    <section className="relative bg-[#FDFBF7] text-[#07130E] py-28 lg:py-40 overflow-hidden select-none">
-      {/* Paper Grain Background Overlay */}
-      <div className="absolute inset-0 z-20 pointer-events-none opacity-40 mix-blend-multiply">
+    <section className="relative bg-[#06140F] text-[#FDFBF7] py-24 lg:py-36 overflow-hidden select-none">
+      {/* Subtle luxury ambient radial glows */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-[#123826]/35 blur-[160px] pointer-events-none rounded-full" />
+      <div className="absolute -bottom-20 right-10 w-[500px] h-[400px] bg-[#C5A059]/10 blur-[140px] pointer-events-none rounded-full" />
+
+      {/* Luxury Subtle Grain Overlay */}
+      <div className="absolute inset-0 z-10 pointer-events-none opacity-20 mix-blend-overlay">
         <svg className="w-full h-full">
-          <filter id="paper-grain">
-            <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" />
-            <feColorMatrix type="matrix" values="1 0 0 0 0.45  0 1 0 0 0.42  0 0 1 0 0.38  0 0 0 0.22 0" />
+          <filter id="vault-grain">
+            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
+            <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.25 0" />
           </filter>
-          <rect width="100%" height="100%" filter="url(#paper-grain)" />
+          <rect width="100%" height="100%" filter="url(#vault-grain)" />
         </svg>
       </div>
 
-      <div className="relative z-30 mx-auto max-w-[1600px] px-6 lg:px-12">
-        
+      <div className="relative z-20 mx-auto max-w-[1680px] px-5 sm:px-8 lg:px-12">
         {/* Top Header */}
-        <div className="max-w-3xl mb-16 lg:mb-20">
+        <div className="max-w-3xl mb-12 lg:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.6 }}
             className="flex items-center gap-3 mb-6"
           >
             <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C5A059]" />
-            <span className="text-[10.5px] font-mono tracking-[0.2em] uppercase font-semibold text-[#8B6E33]" style={{ border: '1px solid rgba(197,160,89,0.3)', padding: '0 8px', display: 'inline-flex', alignItems: 'center', height: '21px', background: 'rgba(197,160,89,0.05)' }}>
+            <span className="text-[11px] font-mono tracking-[0.25em] uppercase font-semibold text-[#D4AF37] px-2.5 py-0.5 border border-[#C5A059]/30 rounded-sm bg-[#C5A059]/10">
               What We Do
             </span>
             <div className="h-px w-24 bg-gradient-to-r from-[#C5A059]/40 to-transparent" />
@@ -51,148 +45,221 @@ export default function WhatWeDo() {
           <MotionText
             text="From complexity to structure."
             as="h2"
-            className="font-serif text-[2.8rem] sm:text-6xl lg:text-[4.5rem] leading-[1.05] text-[#07130E] text-balance mb-6 tracking-tight"
+            className="font-serif text-[2.6rem] sm:text-6xl lg:text-[4.2rem] leading-[1.05] text-[#FDFBF7] text-balance mb-6 tracking-tight"
           />
 
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-[#07130E]/70 font-light text-lg lg:text-xl leading-relaxed max-w-2xl font-sans"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-[#FDFBF7]/70 font-light text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl font-sans"
           >
             Disciplines designed to establish, protect, and operate international structures with absolute clarity.
           </motion.p>
         </div>
 
-        {/* Interactive Bookshelf Stage */}
-        <div className="relative bg-[#F4F1EA] text-[#07130E] border border-[#07130E]/15 rounded-[2.5rem] p-8 sm:p-12 lg:p-16 shadow-2xl overflow-hidden">
-          
-          {/* Shelf Navigation Header */}
-          <div className="flex items-center justify-between mb-12 lg:mb-16 pb-6 border-b border-[#07130E]/10">
-            <div className="flex items-center gap-3">
-              <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#8B6E33] font-bold">
-                Practice Shelf
-              </span>
-              <span className="font-mono text-xs text-[#07130E]/50 tracking-widest">
-                (0{activeIndex + 1} / 0{SERVICES.length})
-              </span>
-            </div>
+        {/* =========================================================================
+            DESKTOP VIEW: Horizontal Expanding Accordion (lg & above)
+           ========================================================================= */}
+        <div className="hidden lg:flex gap-3 h-[620px] w-full">
+          {SERVICES.map((service, idx) => {
+            const isSelected = activeIndex === idx;
+            const num = String(idx + 1).padStart(2, "0");
 
-            <div className="flex items-center gap-2">
-              <button
-                onClick={handlePrev}
-                aria-label="Previous practice"
-                className="w-10 h-10 rounded-full bg-[#07130E]/5 hover:bg-[#C5A059] text-[#07130E] hover:text-white border border-[#07130E]/15 hover:border-[#C5A059] flex items-center justify-center transition-all duration-300 outline-none cursor-pointer"
+            return (
+              <motion.div
+                key={service.id || idx}
+                onClick={() => setActiveIndex(idx)}
+                onMouseEnter={() => setActiveIndex(idx)}
+                layout
+                transition={{ duration: 0.55, ease: [0.25, 1, 0.5, 1] }}
+                className={`relative rounded-3xl overflow-hidden cursor-pointer transition-colors duration-300 border flex ${
+                  isSelected
+                    ? "flex-[5.5] border-[#C5A059]/60 bg-[#091D15] shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
+                    : "flex-[0.8] border-white/10 bg-[#0A1812]/75 hover:bg-[#0D2219] hover:border-[#C5A059]/40"
+                }`}
               >
-                <ArrowLeft className="w-4 h-4" />
-              </button>
-              <button
-                onClick={handleNext}
-                aria-label="Next practice"
-                className="w-10 h-10 rounded-full bg-[#07130E]/5 hover:bg-[#C5A059] text-[#07130E] hover:text-white border border-[#07130E]/15 hover:border-[#C5A059] flex items-center justify-center transition-all duration-300 outline-none cursor-pointer"
-              >
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
+                {/* Subtle Inner Glow on Selected */}
+                {isSelected && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#C5A059]/10 via-transparent to-transparent pointer-events-none" />
+                )}
 
-          {/* Main Layout Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            
-            {/* Left: Interactive Horizontal Spines Shelf (Width optimized so all 8 spines fit perfectly without hiding) */}
-            <div className="lg:col-span-6 flex items-end gap-2 sm:gap-2.5 overflow-x-auto pb-6 pt-4 px-2 [scrollbar-width:thin] [scrollbar-color:#8B6E33_#EDE9E1]">
-              {SERVICES.map((s, i) => {
-                const isSelected = activeIndex === i;
-                const labelNum = `0${i + 1}`;
+                {/* 1. COLLAPSED STRIP CONTENT (Shown when NOT selected) */}
+                <div
+                  className={`w-full h-full flex flex-col justify-between items-center py-8 transition-opacity duration-300 ${
+                    isSelected ? "hidden" : "flex"
+                  }`}
+                >
+                  <div className="flex flex-col items-center gap-2">
+                    <span className="font-mono text-sm tracking-widest font-semibold text-[#D4AF37]">
+                      {num}
+                    </span>
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#C5A059]/40" />
+                  </div>
 
-                return (
-                  <motion.div
-                    key={s.id || i}
-                    onClick={() => setActiveIndex(i)}
-                    whileHover={{ y: -10 }}
-                    animate={{ y: isSelected ? -24 : 0 }}
-                    transition={{ type: "spring", stiffness: 320, damping: 22 }}
-                    className={`relative group shrink-0 cursor-pointer rounded-md overflow-hidden flex flex-col justify-between py-6 px-2 transition-all duration-500 shadow-xl bg-[#EAE5DD] ${
-                      isSelected 
-                        ? "w-14 sm:w-16 lg:w-18 border-2 border-[#C5A059] shadow-[0_0_30px_rgba(197,160,89,0.4)] z-20" 
-                        : "w-10 sm:w-12 lg:w-13 text-[#07130E]/80 border border-[#07130E]/20 hover:border-[#8B6E33]"
-                    }`}
-                    style={{ height: '440px' }}
+                  {/* Vertical Spine Title */}
+                  <div
+                    className="my-auto py-4 flex items-center justify-center"
+                    style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
                   >
-                    <div className="flex flex-col items-center gap-2">
-                      <span className="font-mono text-[9px] sm:text-[10px] tracking-widest font-bold text-[#8B6E33]">
-                        {labelNum}
-                      </span>
-                      <div className="w-1 h-1 rounded-full bg-[#8B6E33]" />
+                    <span className="font-serif text-sm tracking-wider uppercase font-medium text-[#FDFBF7]/70 hover:text-white whitespace-nowrap transition-colors">
+                      {service.title}
+                    </span>
+                  </div>
+
+                  <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-[#D4AF37]/60">
+                    CERIX
+                  </span>
+                </div>
+
+                {/* 2. EXPANDED CONTENT PANEL (Active Card) */}
+                {isSelected && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.45, delay: 0.1 }}
+                    className="relative w-full h-full grid grid-cols-12 gap-8 p-10 items-center overflow-hidden"
+                  >
+                    {/* Left Details Column */}
+                    <div className="col-span-6 flex flex-col justify-between h-full z-10 py-2">
+                      <div>
+                        {/* Number & Tagline */}
+                        <div className="flex items-center gap-3 mb-6">
+                          <span className="font-serif text-3xl font-medium text-[#D4AF37]">
+                            {num}
+                          </span>
+                          <div className="h-px w-8 bg-[#C5A059]/40" />
+                          <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#C5A059] font-medium">
+                            Practice Area
+                          </span>
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="font-serif text-3xl xl:text-4xl leading-tight text-[#FDFBF7] mb-5 tracking-normal">
+                          {service.title}
+                        </h3>
+
+                        {/* Description */}
+                        <p className="font-sans text-sm xl:text-base text-[#FDFBF7]/75 font-light leading-relaxed max-w-md">
+                          {service.desc || service.description}
+                        </p>
+                      </div>
+
+                      {/* CTA Button */}
+                      <div className="pt-8">
+                        <Link
+                          to={`/expertise/${service.slug}`}
+                          className="inline-flex items-center gap-3 bg-gradient-to-r from-[#D4AF37] to-[#AA8327] hover:brightness-110 text-[#07130E] px-7 py-3.5 rounded-xl font-mono text-xs font-bold uppercase tracking-[0.2em] shadow-lg transition-transform duration-300 hover:scale-[1.02] outline-none"
+                        >
+                          <span>Explore Practice Area</span>
+                          <ArrowRight className="w-4 h-4 text-[#07130E]" />
+                        </Link>
+                      </div>
                     </div>
 
-                    <div className="my-auto py-4 flex justify-center" style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}>
-                      <span className="font-serif text-[11px] sm:text-xs lg:text-sm tracking-wider uppercase font-medium whitespace-nowrap text-[#07130E] group-hover:text-black transition-colors">
-                        {s.title}
-                      </span>
-                    </div>
+                    {/* Right 3D Render Column */}
+                    <div className="col-span-6 relative h-full rounded-2xl overflow-hidden border border-[#C5A059]/20 shadow-2xl bg-[#040C09]">
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        className="w-full h-full object-cover object-center select-none"
+                      />
 
-                    <div className="text-center font-mono text-[8px] sm:text-[9px] tracking-[0.2em] uppercase text-[#8B6E33]">
-                      CERIX
+                      {/* Floating Counter Badge */}
+                      <div className="absolute top-5 right-5 px-3.5 py-1.5 rounded-full bg-[#06140F]/80 backdrop-blur-md border border-[#C5A059]/30 text-[#D4AF37] font-mono text-[11px] uppercase tracking-widest font-semibold shadow-md">
+                        {num} / 0{SERVICES.length}
+                      </div>
+
+                      {/* Subtle Edge Vignette */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#06140F]/60 via-transparent to-transparent pointer-events-none" />
                     </div>
                   </motion.div>
-                );
-              })}
-            </div>
-
-            {/* Right: Immersive, Borderless Active Practice Showcase with Razor-Sharp Native Image */}
-            <div className="lg:col-span-6 relative">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeIndex}
-                  initial={{ opacity: 0, scale: 0.97, y: 15 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.97, y: -15 }}
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex flex-col"
-                >
-                  {/* Large, Unconstrained, Borderless 3D Artwork Stage with Crisp Rendering */}
-                  <div className="relative w-full h-[360px] sm:h-[420px] lg:h-[480px] rounded-3xl overflow-hidden mb-8 shadow-2xl bg-[#07130E]">
-                    <img
-                      src={activeService.image}
-                      alt={activeService.title}
-                      className="w-full h-full object-cover [image-rendering:-webkit-optimize-contrast]"
-                    />
-                    
-                    {/* Floating Index Pill inside image corner */}
-                    <div className="absolute top-6 right-6 px-4 py-2 rounded-full bg-[#07130E]/80 backdrop-blur-md border border-white/20 text-[#C5A059] font-mono text-xs uppercase tracking-widest font-semibold shadow-lg">
-                      0{activeIndex + 1} / 0{SERVICES.length}
-                    </div>
-                  </div>
-
-                  {/* Typography & Direct Action */}
-                  <div className="space-y-4 px-2">
-                    <h3 className="font-serif text-3xl lg:text-4xl text-[#07130E] leading-tight">
-                      {activeService.title}
-                    </h3>
-                    <p className="font-sans text-base lg:text-lg text-[#07130E]/75 font-light leading-relaxed max-w-xl">
-                      {activeService.desc || activeService.description}
-                    </p>
-
-                    <div className="pt-4">
-                      <Link
-                        to={`/expertise/${activeService.slug}`}
-                        className="inline-flex items-center gap-3 bg-[#07130E] hover:bg-[#14261f] text-white px-8 py-4 rounded-xl font-mono text-xs font-bold uppercase tracking-[0.2em] shadow-lg transition-all duration-300 hover:-translate-y-0.5 outline-none"
-                      >
-                        <span>Explore Practice Area</span>
-                        <ArrowRight className="w-4 h-4 text-[#C5A059]" />
-                      </Link>
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-          </div>
-
+                )}
+              </motion.div>
+            );
+          })}
         </div>
 
+        {/* =========================================================================
+            MOBILE & TABLET VIEW: Fluid Vertical Accordion (Under lg)
+           ========================================================================= */}
+        <div className="flex lg:hidden flex-col gap-3.5 w-full">
+          {SERVICES.map((service, idx) => {
+            const isSelected = activeIndex === idx;
+            const num = String(idx + 1).padStart(2, "0");
+
+            return (
+              <div
+                key={service.id || idx}
+                onClick={() => setActiveIndex(isSelected ? -1 : idx)}
+                className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+                  isSelected
+                    ? "border-[#C5A059] bg-[#091D15] shadow-xl"
+                    : "border-white/10 bg-[#0A1812]/80"
+                }`}
+              >
+                {/* Header Strip */}
+                <div className="flex items-center justify-between p-4 sm:p-5 cursor-pointer">
+                  <div className="flex items-center gap-3.5">
+                    <span className="font-mono text-xs sm:text-sm font-bold text-[#D4AF37]">
+                      {num}.
+                    </span>
+                    <span className="font-serif text-lg sm:text-xl text-[#FDFBF7]">
+                      {service.title}
+                    </span>
+                  </div>
+                  <ChevronDown
+                    className={`w-5 h-5 text-[#C5A059] transition-transform duration-300 ${
+                      isSelected ? "rotate-180" : ""
+                    }`}
+                  />
+                </div>
+
+                {/* Dropdown Content */}
+                <AnimatePresence initial={false}>
+                  {isSelected && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.35, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-4 pb-6 sm:px-6 sm:pb-8 flex flex-col gap-4">
+                        {/* 3D Render */}
+                        <div className="relative w-full h-56 sm:h-72 rounded-xl overflow-hidden border border-[#C5A059]/20 bg-[#040C09]">
+                          <img
+                            src={service.image}
+                            alt={service.title}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+
+                        {/* Description */}
+                        <p className="font-sans text-sm sm:text-base text-[#FDFBF7]/75 font-light leading-relaxed">
+                          {service.desc || service.description}
+                        </p>
+
+                        {/* Button */}
+                        <div className="pt-2">
+                          <Link
+                            to={`/expertise/${service.slug}`}
+                            className="inline-flex items-center justify-center gap-2.5 w-full bg-gradient-to-r from-[#D4AF37] to-[#AA8327] text-[#07130E] py-3.5 rounded-xl font-mono text-xs font-bold uppercase tracking-[0.2em] shadow-md"
+                          >
+                            <span>Explore Practice Area</span>
+                            <ArrowRight className="w-4 h-4" />
+                          </Link>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
