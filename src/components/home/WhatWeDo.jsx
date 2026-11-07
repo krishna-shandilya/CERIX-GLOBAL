@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { SERVICES } from "@/lib/cerixData";
 import MotionText from "@/components/MotionText";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function WhatWeDo() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -29,9 +29,9 @@ export default function WhatWeDo() {
         </svg>
       </div>
 
-      {/* Warm ambient depth glows behind the cards */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-[#C5A059]/10 blur-[160px] pointer-events-none rounded-full" />
-      <div className="absolute bottom-10 left-10 w-[450px] h-[400px] bg-[#0E2F20]/5 blur-[140px] pointer-events-none rounded-full" />
+      {/* Ambient Depth Gradients under glass */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[1100px] h-[500px] bg-[#C5A059]/12 blur-[140px] pointer-events-none rounded-full" />
+      <div className="absolute bottom-12 right-1/4 w-[600px] h-[400px] bg-[#0E2F20]/8 blur-[130px] pointer-events-none rounded-full" />
 
       <div className="relative z-20 mx-auto max-w-[1680px] px-5 sm:px-8 lg:px-12">
         {/* Top Header */}
@@ -68,9 +68,9 @@ export default function WhatWeDo() {
         </div>
 
         {/* =========================================================================
-            DESKTOP VIEW: Frosted Glass Architectural Spines (lg & above)
+            DESKTOP VIEW: Luxury Frosted Glass Accordion (lg & above)
            ========================================================================= */}
-        <div className="hidden lg:flex gap-3.5 h-[620px] w-full items-stretch">
+        <div className="hidden lg:flex gap-3 h-[620px] w-full items-stretch">
           {SERVICES.map((service, idx) => {
             const isSelected = activeIndex === idx;
             const num = String(idx + 1).padStart(2, "0");
@@ -82,18 +82,32 @@ export default function WhatWeDo() {
                 onMouseEnter={() => setActiveIndex(idx)}
                 layout
                 transition={{ duration: 0.55, ease: [0.25, 1, 0.5, 1] }}
+                style={
+                  !isSelected
+                    ? {
+                        background:
+                          "linear-gradient(180deg, rgba(255, 255, 255, 0.58) 0%, rgba(245, 241, 233, 0.28) 100%)",
+                        backdropFilter: "blur(24px)",
+                        WebkitBackdropFilter: "blur(24px)",
+                        border: "1px solid rgba(255, 255, 255, 0.85)",
+                        boxShadow:
+                          "0 12px 32px 0 rgba(7, 19, 14, 0.05), inset 0 1px 2px 0 rgba(255, 255, 255, 0.95), inset 0 -1px 2px 0 rgba(0, 0, 0, 0.03)",
+                      }
+                    : {
+                        background: "#081D15",
+                        border: "2px solid #C5A059",
+                        boxShadow: "0 25px 60px rgba(7, 19, 14, 0.35)",
+                      }
+                }
                 className={`relative rounded-3xl overflow-hidden cursor-pointer flex transition-all duration-300 ${
-                  isSelected
-                    ? "flex-[5.5] border-2 border-[#C5A059] bg-[#081D15] text-[#FDFBF7] shadow-[0_25px_60px_rgba(7,19,14,0.35)]"
-                    : "flex-[0.8] bg-white/35 hover:bg-white/55 backdrop-blur-2xl border border-white/80 hover:border-[#C5A059]/70 shadow-[0_8px_32px_rgba(7,19,14,0.06),inset_0_1px_1px_rgba(255,255,255,0.9)] hover:shadow-[0_15px_35px_rgba(197,160,89,0.2),inset_0_1px_1px_rgba(255,255,255,1)]"
+                  isSelected ? "flex-[5.5] text-[#FDFBF7]" : "flex-[0.8] hover:translate-y-[-2px]"
                 }`}
               >
-                {/* Prismatic Glass Specular Sheen (Only on inactive frosted cards) */}
+                {/* Frosted Specular Sheen & Glass Edge Refraction */}
                 {!isSelected && (
                   <>
-                    <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/10 to-transparent pointer-events-none" />
-                    <div className="absolute inset-x-0 top-0 h-px bg-white/90 pointer-events-none" />
-                    <div className="absolute inset-y-0 left-0 w-px bg-white/60 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-black/[0.02] pointer-events-none" />
+                    <div className="absolute top-0 inset-x-0 h-1 bg-white/70 pointer-events-none" />
                   </>
                 )}
 
@@ -115,7 +129,7 @@ export default function WhatWeDo() {
                     className="my-auto py-4 flex items-center justify-center"
                     style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
                   >
-                    <span className="font-serif text-[13px] tracking-[0.16em] uppercase font-semibold text-[#07130E]/75 group-hover:text-[#07130E] whitespace-nowrap transition-colors drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]">
+                    <span className="font-serif text-[12.5px] tracking-[0.18em] uppercase font-semibold text-[#07130E]/80 group-hover:text-[#07130E] whitespace-nowrap transition-colors drop-shadow-[0_1px_1px_rgba(255,255,255,0.7)]">
                       {service.title}
                     </span>
                   </div>
@@ -125,7 +139,7 @@ export default function WhatWeDo() {
                   </span>
                 </div>
 
-                {/* 2. EXPANDED ACTIVE CONTENT PANEL (Dark Emerald Vault) */}
+                {/* 2. EXPANDED ACTIVE CONTENT PANEL */}
                 {isSelected && (
                   <motion.div
                     initial={{ opacity: 0 }}
@@ -134,7 +148,6 @@ export default function WhatWeDo() {
                     transition={{ duration: 0.45, delay: 0.1 }}
                     className="relative w-full h-full grid grid-cols-12 gap-8 p-10 items-center overflow-hidden z-10"
                   >
-                    {/* Subtle Gold Ambient Corner Inside Panel */}
                     <div className="absolute top-0 left-0 w-80 h-80 bg-[#C5A059]/10 blur-[90px] pointer-events-none" />
 
                     {/* Left Details Column */}
@@ -192,88 +205,62 @@ export default function WhatWeDo() {
         </div>
 
         {/* =========================================================================
-            MOBILE & TABLET VIEW: Frosted Glass Accordion Stack
+            MOBILE VIEW: Scroll-Driven Reveal Feed (Under lg)
+            Every card opens automatically on scroll without needing taps or hovers
            ========================================================================= */}
-        <div className="flex lg:hidden flex-col gap-3.5 w-full">
+        <div className="flex lg:hidden flex-col gap-6 w-full">
           {SERVICES.map((service, idx) => {
-            const isSelected = activeIndex === idx;
             const num = String(idx + 1).padStart(2, "0");
 
             return (
-              <div
+              <motion.div
                 key={service.id || idx}
-                onClick={() => setActiveIndex(isSelected ? -1 : idx)}
-                className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
-                  isSelected
-                    ? "border-[#C5A059] bg-[#081D15] text-[#FDFBF7] shadow-xl"
-                    : "border-white/80 bg-white/40 backdrop-blur-2xl shadow-[0_6px_20px_rgba(7,19,14,0.04),inset_0_1px_1px_rgba(255,255,255,0.9)]"
-                }`}
+                initial={{ opacity: 0, y: 36 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className="rounded-3xl overflow-hidden border-2 border-[#C5A059]/60 bg-[#081D15] text-[#FDFBF7] shadow-xl p-6 sm:p-8"
               >
-                {/* Header Strip */}
-                <div className="flex items-center justify-between p-4 sm:p-5 cursor-pointer">
-                  <div className="flex items-center gap-3.5">
-                    <span
-                      className={`font-mono text-xs sm:text-sm font-bold ${
-                        isSelected ? "text-[#D4AF37]" : "text-[#8B6E33]"
-                      }`}
-                    >
-                      {num}.
-                    </span>
-                    <span
-                      className={`font-serif text-lg sm:text-xl ${
-                        isSelected ? "text-[#FDFBF7]" : "text-[#07130E]"
-                      }`}
-                    >
-                      {service.title}
-                    </span>
-                  </div>
-                  <ChevronDown
-                    className={`w-5 h-5 text-[#C5A059] transition-transform duration-300 ${
-                      isSelected ? "rotate-180" : ""
-                    }`}
+                {/* 3D Render Banner */}
+                <div className="relative w-full h-64 sm:h-80 rounded-2xl overflow-hidden border border-[#C5A059]/30 bg-[#040C09] mb-6">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover"
                   />
+                  <div className="absolute top-4 right-4 px-3.5 py-1 rounded-full bg-[#06140F]/85 backdrop-blur-md border border-[#C5A059]/40 text-[#D4AF37] font-mono text-xs uppercase tracking-widest font-semibold">
+                    {num} / 0{SERVICES.length}
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#06140F]/70 via-transparent to-transparent pointer-events-none" />
                 </div>
 
-                {/* Dropdown Content */}
-                <AnimatePresence initial={false}>
-                  {isSelected && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-4 pb-6 sm:px-6 sm:pb-8 flex flex-col gap-4">
-                        {/* 3D Render */}
-                        <div className="relative w-full h-56 sm:h-72 rounded-xl overflow-hidden border border-[#C5A059]/30 bg-[#040C09]">
-                          <img
-                            src={service.image}
-                            alt={service.title}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
+                {/* Content Details */}
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="font-serif text-2xl font-medium text-[#D4AF37]">
+                    {num}
+                  </span>
+                  <div className="h-px w-6 bg-[#C5A059]/50" />
+                  <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#C5A059]">
+                    Practice Area
+                  </span>
+                </div>
 
-                        {/* Description */}
-                        <p className="font-sans text-sm sm:text-base text-[#FDFBF7]/80 font-light leading-relaxed">
-                          {service.desc || service.description}
-                        </p>
+                <h3 className="font-serif text-2xl sm:text-3xl text-white mb-3">
+                  {service.title}
+                </h3>
 
-                        {/* Button */}
-                        <div className="pt-2">
-                          <Link
-                            to={`/expertise/${service.slug}`}
-                            className="inline-flex items-center justify-center gap-2.5 w-full bg-gradient-to-r from-[#D4AF37] to-[#AA8327] text-[#07130E] py-3.5 rounded-xl font-mono text-xs font-bold uppercase tracking-[0.2em] shadow-md"
-                          >
-                            <span>Explore Practice Area</span>
-                            <ArrowRight className="w-4 h-4" />
-                          </Link>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                <p className="font-sans text-sm sm:text-base text-white/75 font-light leading-relaxed mb-6">
+                  {service.desc || service.description}
+                </p>
+
+                <Link
+                  to={`/expertise/${service.slug}`}
+                  className="inline-flex items-center justify-center gap-2.5 w-full bg-gradient-to-r from-[#D4AF37] to-[#AA8327] text-[#07130E] py-4 rounded-xl font-mono text-xs font-bold uppercase tracking-[0.2em] shadow-lg"
+                >
+                  <span>Explore Practice Area</span>
+                  <ArrowRight className="w-4 h-4 text-[#07130E]" />
+                </Link>
+              </motion.div>
             );
           })}
         </div>
