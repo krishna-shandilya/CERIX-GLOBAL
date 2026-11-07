@@ -68,9 +68,9 @@ export default function WhatWeDo() {
         </div>
 
         {/* =========================================================================
-            DESKTOP VIEW: Horizontal Expanding Accordion with Frosted Glass Spines
+            DESKTOP VIEW: Frosted Glass Architectural Spines (lg & above)
            ========================================================================= */}
-        <div className="hidden lg:flex gap-3 h-[620px] w-full items-stretch">
+        <div className="hidden lg:flex gap-3.5 h-[620px] w-full items-stretch">
           {SERVICES.map((service, idx) => {
             const isSelected = activeIndex === idx;
             const num = String(idx + 1).padStart(2, "0");
@@ -85,12 +85,16 @@ export default function WhatWeDo() {
                 className={`relative rounded-3xl overflow-hidden cursor-pointer flex transition-all duration-300 ${
                   isSelected
                     ? "flex-[5.5] border-2 border-[#C5A059] bg-[#081D15] text-[#FDFBF7] shadow-[0_25px_60px_rgba(7,19,14,0.35)]"
-                    : "flex-[0.8] bg-[#FAF7F0]/65 hover:bg-[#FAF7F0]/90 backdrop-blur-xl border border-[#07130E]/15 hover:border-[#C5A059]/60 shadow-[0_10px_30px_rgba(7,19,14,0.06)] hover:shadow-[0_15px_35px_rgba(197,160,89,0.15)]"
+                    : "flex-[0.8] bg-white/35 hover:bg-white/55 backdrop-blur-2xl border border-white/80 hover:border-[#C5A059]/70 shadow-[0_8px_32px_rgba(7,19,14,0.06),inset_0_1px_1px_rgba(255,255,255,0.9)] hover:shadow-[0_15px_35px_rgba(197,160,89,0.2),inset_0_1px_1px_rgba(255,255,255,1)]"
                 }`}
               >
-                {/* Frosted Glass Specular Highlight (Light reflection on edge) */}
+                {/* Prismatic Glass Specular Sheen (Only on inactive frosted cards) */}
                 {!isSelected && (
-                  <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-transparent to-transparent pointer-events-none" />
+                  <>
+                    <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/10 to-transparent pointer-events-none" />
+                    <div className="absolute inset-x-0 top-0 h-px bg-white/90 pointer-events-none" />
+                    <div className="absolute inset-y-0 left-0 w-px bg-white/60 pointer-events-none" />
+                  </>
                 )}
 
                 {/* 1. COLLAPSED FROSTED STRIP CONTENT */}
@@ -100,10 +104,10 @@ export default function WhatWeDo() {
                   }`}
                 >
                   <div className="flex flex-col items-center gap-2">
-                    <span className="font-mono text-sm tracking-widest font-bold text-[#8B6E33]">
+                    <span className="font-mono text-xs tracking-widest font-bold text-[#8B6E33]">
                       {num}
                     </span>
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#8B6E33]" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#8B6E33]/70 shadow-[0_0_6px_rgba(139,110,51,0.4)]" />
                   </div>
 
                   {/* Vertical Spine Title */}
@@ -111,7 +115,7 @@ export default function WhatWeDo() {
                     className="my-auto py-4 flex items-center justify-center"
                     style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
                   >
-                    <span className="font-serif text-sm tracking-wider uppercase font-semibold text-[#07130E]/80 group-hover:text-[#07130E] whitespace-nowrap transition-colors">
+                    <span className="font-serif text-[13px] tracking-[0.16em] uppercase font-semibold text-[#07130E]/75 group-hover:text-[#07130E] whitespace-nowrap transition-colors drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]">
                       {service.title}
                     </span>
                   </div>
@@ -136,7 +140,6 @@ export default function WhatWeDo() {
                     {/* Left Details Column */}
                     <div className="col-span-6 flex flex-col justify-between h-full z-10 py-2">
                       <div>
-                        {/* Number & Tagline */}
                         <div className="flex items-center gap-3 mb-6">
                           <span className="font-serif text-3xl font-medium text-[#D4AF37]">
                             {num}
@@ -147,18 +150,15 @@ export default function WhatWeDo() {
                           </span>
                         </div>
 
-                        {/* Title */}
                         <h3 className="font-serif text-3xl xl:text-4xl leading-tight text-[#FDFBF7] mb-5 tracking-normal">
                           {service.title}
                         </h3>
 
-                        {/* Description */}
                         <p className="font-sans text-sm xl:text-base text-[#FDFBF7]/75 font-light leading-relaxed max-w-md">
                           {service.desc || service.description}
                         </p>
                       </div>
 
-                      {/* CTA Button */}
                       <div className="pt-8">
                         <Link
                           to={`/expertise/${service.slug}`}
@@ -178,12 +178,10 @@ export default function WhatWeDo() {
                         className="w-full h-full object-cover object-center select-none"
                       />
 
-                      {/* Floating Counter Badge */}
                       <div className="absolute top-5 right-5 px-3.5 py-1.5 rounded-full bg-[#06140F]/85 backdrop-blur-md border border-[#C5A059]/40 text-[#D4AF37] font-mono text-[11px] uppercase tracking-widest font-semibold shadow-md">
                         {num} / 0{SERVICES.length}
                       </div>
 
-                      {/* Subtle Edge Vignette */}
                       <div className="absolute inset-0 bg-gradient-to-t from-[#06140F]/60 via-transparent to-transparent pointer-events-none" />
                     </div>
                   </motion.div>
@@ -208,7 +206,7 @@ export default function WhatWeDo() {
                 className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
                   isSelected
                     ? "border-[#C5A059] bg-[#081D15] text-[#FDFBF7] shadow-xl"
-                    : "border-[#07130E]/15 bg-[#FAF7F0]/75 backdrop-blur-lg shadow-sm"
+                    : "border-white/80 bg-white/40 backdrop-blur-2xl shadow-[0_6px_20px_rgba(7,19,14,0.04),inset_0_1px_1px_rgba(255,255,255,0.9)]"
                 }`}
               >
                 {/* Header Strip */}
