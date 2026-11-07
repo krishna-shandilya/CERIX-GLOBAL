@@ -34,7 +34,7 @@ export default function WhatWeDo() {
       <div className="absolute bottom-12 right-1/4 w-[600px] h-[400px] bg-[#0E2F20]/8 blur-[130px] pointer-events-none rounded-full" />
 
       <div className="relative z-20 mx-auto max-w-[1680px] px-5 sm:px-8 lg:px-12">
-        {/* Top Header */}
+        {/* Top Header - Harmonized with Who We Advise */}
         <div className="max-w-3xl mb-12 lg:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -44,7 +44,7 @@ export default function WhatWeDo() {
             className="flex items-center gap-3 mb-6"
           >
             <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C5A059]" />
-            <span className="text-[11px] font-mono tracking-[0.25em] uppercase font-semibold text-[#8B6E33] px-2.5 py-0.5 border border-[#C5A059]/40 rounded-sm bg-[#C5A059]/10">
+            <span className="text-xs font-mono tracking-[0.35em] text-[#8B6E33] uppercase">
               What We Do
             </span>
             <div className="h-px w-24 bg-gradient-to-r from-[#C5A059]/40 to-transparent" />
@@ -53,7 +53,7 @@ export default function WhatWeDo() {
           <MotionText
             text="From complexity to structure."
             as="h2"
-            className="font-serif text-[2.6rem] sm:text-6xl lg:text-[4.2rem] leading-[1.05] text-[#07130E] text-balance mb-6 tracking-tight"
+            className="font-serif text-[2.8rem] sm:text-6xl lg:text-[4.5rem] leading-[1.05] text-[#07130E] text-balance mb-6 tracking-tight"
           />
 
           <motion.p
@@ -144,7 +144,7 @@ export default function WhatWeDo() {
                   </span>
                 </div>
 
-                {/* 2. EXPANDED ACTIVE CONTENT PANEL (Persistent DOM structure to kill flickering) */}
+                {/* 2. EXPANDED ACTIVE CONTENT PANEL */}
                 <div
                   className={`relative w-full h-full grid grid-cols-12 gap-8 p-10 items-center overflow-hidden z-10 transition-opacity duration-400 ${
                     isSelected ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none hidden"
