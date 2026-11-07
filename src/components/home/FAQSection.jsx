@@ -91,6 +91,10 @@ const faqDeck = [
 export default function FAQSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const activeItem = faqDeck[activeIndex] || faqDeck[0];
+  const ActiveIcon = activeItem.icon;
+  const activeNum = String(activeItem.id).padStart(2, "0");
+
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % faqDeck.length);
   };
@@ -100,39 +104,32 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="relative bg-[#FDFBF7] text-[#07130E] py-24 lg:py-36 overflow-hidden select-none">
-      {/* Paper Grain Overlay - Exact match with What We Do */}
-      <div className="absolute inset-0 z-10 pointer-events-none opacity-40 mix-blend-multiply">
-        <svg className="w-full h-full">
-          <filter id="faq-beige-grain">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.85"
-              numOctaves="3"
-              stitchTiles="stitch"
-            />
-            <feColorMatrix
-              type="matrix"
-              values="1 0 0 0 0.45  0 1 0 0 0.42  0 0 1 0 0.38  0 0 0 0.22 0"
-            />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#faq-beige-grain)" />
-        </svg>
-      </div>
+    <section
+      style={{ backgroundColor: "#F3EFE6" }}
+      className="relative bg-[#F3EFE6] text-[#07130E] py-24 lg:py-36 overflow-hidden select-none"
+    >
+      {/* Subtle Architectural Grid Lines matching The Cerix Approach */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-45"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(7, 19, 14, 0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(7, 19, 14, 0.04) 1px, transparent 1px)",
+          backgroundSize: "24rem 24rem",
+        }}
+      />
 
       {/* Warm Ambient Depth Gradients */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[1100px] h-[500px] bg-[#C5A059]/12 blur-[140px] pointer-events-none rounded-full" />
-      <div className="absolute bottom-12 right-1/4 w-[600px] h-[400px] bg-[#0E2F20]/8 blur-[130px] pointer-events-none rounded-full" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[1100px] h-[500px] bg-[#C5A059]/10 blur-[140px] pointer-events-none rounded-full" />
 
       <div className="relative z-20 mx-auto max-w-[1680px] px-5 sm:px-8 lg:px-12">
-        {/* Top Header - Harmonized with What We Do & Who We Advise */}
+        {/* Top Header */}
         <div className="max-w-3xl mb-14 lg:mb-20">
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center gap-3 mb-6"
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="flex items-center gap-3 mb-6 transform-gpu"
           >
             <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C5A059]" />
             <span className="text-xs font-mono tracking-[0.35em] text-[#8B6E33] uppercase">
@@ -148,21 +145,21 @@ export default function FAQSection() {
           />
 
           <motion.p
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-[#07130E]/75 font-light text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl font-sans"
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+            className="text-[#07130E]/75 font-light text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl font-sans transform-gpu"
           >
             Essential guidance on cross-border jurisdiction selection, fund structuring, and regulatory governance.
           </motion.p>
         </div>
 
         {/* =========================================================================
-            DESKTOP VIEW: Full-Text Editorial Index + Forest Green Stacked Vault
+            DESKTOP VIEW: Zero-Jitter Persistent Vault & Gliding Index
            ========================================================================= */}
         <div className="hidden lg:grid grid-cols-12 gap-12 xl:gap-16 items-center">
-          {/* Left Column: Editorial Question List (Full Titles, Zero Truncation) */}
+          {/* Left Column: Editorial Question List */}
           <div className="col-span-5 flex flex-col border-t border-[#07130E]/15">
             {faqDeck.map((item, idx) => {
               const isActive = idx === activeIndex;
@@ -174,24 +171,28 @@ export default function FAQSection() {
                   type="button"
                   onClick={() => setActiveIndex(idx)}
                   onMouseEnter={() => setActiveIndex(idx)}
-                  className={`group relative w-full text-left py-5 px-5 border-b border-[#07130E]/15 transition-all duration-300 flex items-start justify-between gap-4 outline-none cursor-pointer ${
+                  className={`group relative w-full text-left py-5 px-5 border-b border-[#07130E]/15 transition-colors duration-300 flex items-start justify-between gap-4 outline-none cursor-pointer ${
                     isActive
-                      ? "bg-[#081D15]/[0.05]"
-                      : "hover:bg-[#081D15]/[0.02]"
+                      ? "bg-[#081D15]/[0.06]"
+                      : "hover:bg-[#081D15]/[0.03]"
                   }`}
                 >
-                  {/* Active Gold Left Indicator Bar */}
-                  <div
-                    className={`absolute left-0 top-0 bottom-0 w-1 transition-all duration-300 ${
-                      isActive
-                        ? "bg-[#C5A059] opacity-100"
-                        : "bg-[#C5A059]/40 opacity-0 group-hover:opacity-60"
-                    }`}
-                  />
+                  {/* Smooth Gliding Gold Indicator Bar */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="faqActiveIndicator"
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 34,
+                      }}
+                      className="absolute left-0 top-0 bottom-0 w-1 bg-[#C5A059]"
+                    />
+                  )}
 
                   <div className="flex items-baseline gap-4 pl-2">
                     <span
-                      className={`font-mono text-xs tracking-widest font-bold transition-colors duration-300 ${
+                      className={`font-mono text-xs tracking-widest font-bold transition-colors duration-200 ${
                         isActive
                           ? "text-[#8B6E33]"
                           : "text-[#07130E]/40 group-hover:text-[#8B6E33]"
@@ -201,9 +202,9 @@ export default function FAQSection() {
                     </span>
 
                     <span
-                      className={`font-serif text-lg xl:text-xl leading-snug transition-all duration-300 ${
+                      className={`font-serif text-lg xl:text-xl leading-snug transition-colors duration-200 ${
                         isActive
-                          ? "text-[#07130E] font-medium translate-x-1"
+                          ? "text-[#07130E] font-medium"
                           : "text-[#07130E]/70 font-normal group-hover:text-[#07130E]"
                       }`}
                     >
@@ -212,10 +213,10 @@ export default function FAQSection() {
                   </div>
 
                   <ArrowRight
-                    className={`w-4 h-4 shrink-0 mt-1.5 transition-all duration-300 ${
+                    className={`w-4 h-4 shrink-0 mt-1.5 transition-all duration-200 ${
                       isActive
                         ? "text-[#8B6E33] translate-x-0 opacity-100"
-                        : "text-[#07130E]/30 -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-70"
+                        : "text-[#07130E]/30 -translate-x-1 opacity-0 group-hover:translate-x-0 group-hover:opacity-70"
                     }`}
                   />
                 </button>
@@ -223,90 +224,89 @@ export default function FAQSection() {
             })}
           </div>
 
-          {/* Right Column: Stacked Forest Green Frosted Dossier Deck */}
-          <div className="col-span-7 relative h-[520px] flex items-center justify-center">
-            {faqDeck.map((item, idx) => {
-              const offset = idx - activeIndex;
-              if (Math.abs(offset) > 2) return null;
+          {/* Right Column: Persistent Forest Green Vault */}
+          <div className="col-span-7 relative h-[500px]">
+            {/* Static Decorative Stacked Backplates */}
+            <div
+              className="absolute inset-x-8 -bottom-5 h-full rounded-3xl pointer-events-none opacity-30 transform-gpu"
+              style={{
+                background: "#081D15",
+                border: "1px solid rgba(197, 160, 89, 0.25)",
+              }}
+            />
+            <div
+              className="absolute inset-x-4 -bottom-2.5 h-full rounded-3xl pointer-events-none opacity-60 transform-gpu"
+              style={{
+                background: "#081D15",
+                border: "1px solid rgba(197, 160, 89, 0.4)",
+              }}
+            />
 
-              const isCurrent = offset === 0;
-              const num = String(item.id).padStart(2, "0");
+            {/* Main Foreground Vault Card */}
+            <div
+              style={{
+                background:
+                  "linear-gradient(145deg, #092017 0%, #06150F 100%)",
+                border: "2px solid #C5A059",
+                boxShadow:
+                  "0 25px 60px rgba(7, 19, 14, 0.32), inset 0 1px 1px rgba(255, 255, 255, 0.14)",
+              }}
+              className="relative w-full h-full p-10 xl:p-12 rounded-3xl flex flex-col justify-between overflow-hidden text-[#FDFBF7] transform-gpu z-10"
+            >
+              <div className="absolute top-0 right-0 w-80 h-80 bg-[#C5A059]/10 blur-[90px] pointer-events-none" />
+              <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
 
-              return (
+              {/* Smooth Cross-Fading Inner Content */}
+              <AnimatePresence mode="wait" initial={false}>
                 <motion.div
-                  key={item.id}
-                  initial={false}
-                  animate={{
-                    scale: 1 - Math.abs(offset) * 0.04,
-                    y: offset * 20,
-                    zIndex: 20 - Math.abs(offset),
-                    opacity: offset === 0 ? 1 : 0.35 - Math.abs(offset) * 0.12,
+                  key={activeItem.id}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{
+                    duration: 0.22,
+                    ease: [0.22, 1, 0.36, 1],
                   }}
-                  transition={{ type: "spring", stiffness: 260, damping: 28 }}
-                  style={
-                    isCurrent
-                      ? {
-                          background: "#081D15",
-                          border: "2px solid #C5A059",
-                          boxShadow: "0 25px 60px rgba(7, 19, 14, 0.35)",
-                        }
-                      : {
-                          background:
-                            "linear-gradient(180deg, rgba(14, 43, 31, 0.88) 0%, rgba(8, 26, 19, 0.75) 100%)",
-                          backdropFilter: "blur(20px)",
-                          WebkitBackdropFilter: "blur(20px)",
-                          border: "1px solid rgba(197, 160, 89, 0.3)",
-                        }
-                  }
-                  className={`absolute inset-0 p-10 xl:p-12 rounded-3xl flex flex-col justify-between overflow-hidden text-[#FDFBF7] ${
-                    isCurrent ? "" : "pointer-events-none"
-                  }`}
+                  className="relative z-10 flex flex-col justify-between h-full transform-gpu"
                 >
-                  {/* Subtle Gold Corner Ambient Glow */}
-                  <div className="absolute top-0 right-0 w-80 h-80 bg-[#C5A059]/10 blur-[90px] pointer-events-none" />
-
-                  {/* Large Background Watermark Number */}
-                  <span className="pointer-events-none absolute right-8 bottom-16 font-serif text-[8.5rem] leading-none text-white/[0.03] select-none">
-                    {num}
+                  <span className="pointer-events-none absolute right-2 bottom-12 font-serif text-[8.5rem] leading-none text-white/[0.03] select-none">
+                    {activeNum}
                   </span>
 
-                  <div className="relative z-10">
+                  <div>
                     {/* Top Metadata Bar */}
                     <div className="flex items-center justify-between border-b border-white/10 pb-5 mb-7">
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-xl bg-[#C5A059]/15 border border-[#C5A059]/40 flex items-center justify-center text-[#D4AF37]">
-                          <item.icon className="w-5 h-5" />
+                          <ActiveIcon className="w-5 h-5" />
                         </div>
                         <div>
                           <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#C5A059] block">
-                            Dossier {num} / 0{faqDeck.length}
+                            Dossier {activeNum} / 0{faqDeck.length}
                           </span>
                           <span className="text-xs font-mono tracking-[0.2em] uppercase text-white/90 font-semibold">
-                            {item.tag}
+                            {activeItem.tag}
                           </span>
                         </div>
                       </div>
 
                       <span className="text-[11px] font-mono uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-[#06140F]/85 text-[#D4AF37] border border-[#C5A059]/40 font-semibold shadow-sm">
-                        {item.jurisdiction}
+                        {activeItem.jurisdiction}
                       </span>
                     </div>
 
-                    {/* Question Heading */}
                     <h3 className="text-2xl xl:text-3xl font-serif font-normal text-white mb-4 leading-snug tracking-tight">
-                      {item.title}
+                      {activeItem.title}
                     </h3>
 
-                    {/* Highlighted Lead Quote */}
                     <div className="pl-4 border-l-2 border-[#C5A059] mb-5">
                       <p className="font-serif italic text-base xl:text-lg text-[#E5C378] leading-relaxed">
-                        "{item.lead}"
+                        "{activeItem.lead}"
                       </p>
                     </div>
 
-                    {/* Main Answer Body */}
-                    <p className="font-sans text-sm xl:text-base text-[#D4CFC4] leading-relaxed font-light">
-                      {item.content}
+                    <p className="font-sans text-sm xl:text-base text-[#D4CFC4] leading-relaxed font-light max-w-2xl">
+                      {activeItem.content}
                     </p>
                   </div>
 
@@ -318,7 +318,9 @@ export default function FAQSection() {
                         <strong className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#C5A059] font-semibold mr-2">
                           Key Takeaway:
                         </strong>
-                        <span className="text-white font-normal">{item.takeaway}</span>
+                        <span className="text-white font-normal">
+                          {activeItem.takeaway}
+                        </span>
                       </span>
                     </div>
 
@@ -326,7 +328,7 @@ export default function FAQSection() {
                       <button
                         type="button"
                         onClick={handlePrev}
-                        className="w-10 h-10 rounded-full border border-white/15 bg-white/5 hover:bg-[#C5A059] text-white hover:text-[#07130E] hover:border-[#C5A059] flex items-center justify-center transition-all duration-300 cursor-pointer outline-none"
+                        className="w-10 h-10 rounded-full border border-white/15 bg-white/5 hover:bg-[#C5A059] text-white hover:text-[#07130E] hover:border-[#C5A059] flex items-center justify-center transition-colors duration-200 cursor-pointer outline-none"
                         aria-label="Previous"
                       >
                         <ArrowLeft className="w-4 h-4" />
@@ -334,7 +336,7 @@ export default function FAQSection() {
                       <button
                         type="button"
                         onClick={handleNext}
-                        className="w-10 h-10 rounded-full border border-white/15 bg-white/5 hover:bg-[#C5A059] text-white hover:text-[#07130E] hover:border-[#C5A059] flex items-center justify-center transition-all duration-300 cursor-pointer outline-none"
+                        className="w-10 h-10 rounded-full border border-white/15 bg-white/5 hover:bg-[#C5A059] text-white hover:text-[#07130E] hover:border-[#C5A059] flex items-center justify-center transition-colors duration-200 cursor-pointer outline-none"
                         aria-label="Next"
                       >
                         <ArrowRight className="w-4 h-4" />
@@ -342,13 +344,13 @@ export default function FAQSection() {
                     </div>
                   </div>
                 </motion.div>
-              );
-            })}
+              </AnimatePresence>
+            </div>
           </div>
         </div>
 
         {/* =========================================================================
-            MOBILE & TABLET VIEW: Clean Accordion Stack (Under lg)
+            MOBILE & TABLET VIEW: Fluid Accordion Stack (Under lg)
            ========================================================================= */}
         <div className="flex lg:hidden flex-col gap-3.5 w-full">
           {faqDeck.map((item, idx) => {
@@ -359,13 +361,12 @@ export default function FAQSection() {
               <div
                 key={item.id}
                 onClick={() => setActiveIndex(isSelected ? -1 : idx)}
-                className={`rounded-2xl transition-all duration-300 overflow-hidden cursor-pointer ${
+                className={`rounded-2xl transition-colors duration-300 overflow-hidden cursor-pointer transform-gpu ${
                   isSelected
-                    ? "border-2 border-[#C5A059] bg-[#081D15] text-[#FDFBF7] shadow-2xl"
-                    : "border border-[#07130E]/15 bg-white/60 backdrop-blur-md text-[#07130E]"
+                    ? "border-2 border-[#C5A059] bg-[#081D15] text-[#FDFBF7] shadow-xl"
+                    : "border border-[#07130E]/15 bg-[#EAE4D7]/80 text-[#07130E]"
                 }`}
               >
-                {/* Header Row */}
                 <div className="p-5 sm:p-6 flex items-start justify-between gap-4">
                   <div className="flex items-baseline gap-3.5">
                     <span
@@ -386,20 +387,24 @@ export default function FAQSection() {
 
                   <ChevronDown
                     className={`w-5 h-5 shrink-0 mt-1 transition-transform duration-300 ${
-                      isSelected ? "rotate-180 text-[#C5A059]" : "text-[#8B6E33]"
+                      isSelected
+                        ? "rotate-180 text-[#C5A059]"
+                        : "text-[#8B6E33]"
                     }`}
                   />
                 </div>
 
-                {/* Expanded Dossier Content */}
                 <AnimatePresence initial={false}>
                   {isSelected && (
                     <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35, ease: "easeInOut" }}
-                      className="overflow-hidden"
+                      transition={{
+                        duration: 0.28,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                      className="overflow-hidden transform-gpu"
                     >
                       <div className="px-5 pb-6 sm:px-6 sm:pb-8 pt-3 border-t border-white/10 space-y-4">
                         <div className="flex items-center justify-between gap-2">
